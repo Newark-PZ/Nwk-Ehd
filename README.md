@@ -1,3 +1,5 @@
-# angular-ckykky
+# Nwk-Ehd Angular Web Application
+# Newark Department of Economic & Housing Development
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ckykky)
+This website is being developed from within the Office of Planning & Zoning.
+
