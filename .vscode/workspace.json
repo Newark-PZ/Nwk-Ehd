@@ -1,0 +1,53 @@
+{
+    "settings": {
+        "editor.suggestSelection": "first",
+        "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+        "npm.enableRunFromFolder": true,
+        "npm.enableScriptExplorer": true,
+        "terminal.integrated.shell.windows": "C:\\Users\\erwinn\\AppData\\Local\\Programs\\Git\\bin\\bash.exe",
+        "workbench.colorTheme": "Material Theme High Contrast",
+        "workbench.colorCustomizations": {
+            "button.foreground": "#FFF"
+        },
+        "workbench.iconTheme": "ayu",
+        "task.quickOpen.detail": false
+    },
+    "extensions": {
+        "recommendations": [
+            "afractal.node-essentials",
+            "be5invis.vscode-icontheme-nomo-dark",
+            "bengreenier.vscode-node-readme",
+            "christian-kohler.path-intellisense",
+            "dbaeumer.vscode-eslint",
+            "eamodio.gitlens",
+            "EditorConfig.EditorConfig",
+            "eg2.vscode-npm-script",
+            "Equinusocio.vsc-material-theme",
+            "GitHub.vscode-pull-request-github",
+            "ionutvmi.path-autocomplete",
+            "johnpapa.Angular2",
+            "lonefy.vscode-JS-CSS-HTML-formatter",
+            "mgesbert.python-path",
+            "michelemelluso.code-beautifier",
+            "mikestead.dotenv",
+            "mohsen1.prettify-json",
+            "mrmlnc.vscode-scss",
+            "ms-kubernetes-tools.vscode-kubernetes-tools",
+            "ms-python.python",
+            "ms-vscode-remote.remote-containers",
+            "ms-vscode-remote.remote-ssh",
+            "ms-vscode-remote.remote-ssh-edit",
+            "ms-vscode.vscode-typescript-tslint-plugin",
+            "ms-vsliveshare.vsliveshare",
+            "msjsdiag.debugger-for-chrome",
+            "Orta.vscode-jest",
+            "redhat.fabric8-analytics",
+            "redhat.vscode-yaml",
+            "teabyii.ayu",
+            "VisualStudioExptTeam.vscodeintellicode",
+            "WallabyJs.quokka-vscode",
+            "wix.vscode-import-cost",
+            "xabikos.JavaScriptSnippets"
+        ]
+    }
+}
