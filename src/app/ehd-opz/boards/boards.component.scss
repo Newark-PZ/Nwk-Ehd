@@ -52,7 +52,10 @@
 .secondary-content {
     height: auto;
     width: 100%;
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
+    .nav {
+        overflow-x: scroll;
+    }
 }
 
 #tabs-content {

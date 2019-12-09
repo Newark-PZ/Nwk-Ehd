@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     components.planningComponents,
     components.planningAboutComponents,
     components.planningMapComponents,
-    components.planningResComponents
+    components.planningResComponents,
+    components.planningBoardsComponents
   ],
   imports: [
     CommonModule,

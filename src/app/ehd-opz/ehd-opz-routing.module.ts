@@ -19,10 +19,25 @@ export const PLANNING_ROUTES: Routes = [
   {
     component: components.OpzAboutComponent,
     data: {
-      icon: 'info',
+      icon: 'info-standard',
       title: 'About OPZ'
     },
     path: 'about'
+  },
+  {
+    children: [
+      { path: '', redirectTo: 'zba', pathMatch: 'full' },
+      { path: 'zba', component: components.ZBAComponent },
+      { path: 'cpb', component: components.CPBComponent },
+      { path: 'lhpc', component: components.LHPCComponent },
+      { path: 'ec', component: components.ECComponent }
+    ],
+    component: components.OpzBoardsComponent,
+    data: {
+      icon: 'users',
+      title: 'Boards & Commissions'
+    },
+    path: 'boards'
   },
   {
     children: [
@@ -34,7 +49,7 @@ export const PLANNING_ROUTES: Routes = [
     ,
     component: components.OpzStaffComponent,
     data: {
-      icon: 'users',
+      icon: 'id-badge',
       title: 'Our Team'
     },
     path: 'team'
@@ -54,7 +69,7 @@ export const PLANNING_ROUTES: Routes = [
   {
     component: components.OpzPlanningComponent,
     data: {
-      icon: 'team',
+      icon: 'network-globe',
       title: 'Planning'
     },
     path: 'planning'
@@ -82,7 +97,7 @@ export const PLANNING_ROUTES: Routes = [
   {
   component: components.OpzContactComponent,
   data: {
-    icon: 'info',
+    icon: 'phone-handset',
     title: 'Contact Us'
   },
   path: 'contact'
