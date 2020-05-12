@@ -31,7 +31,7 @@
             </map-content>
             </map-overlay>
         </map-map>
-        <div [ngClass]="!(basemap$ | async) ? 'map-buttons-top' : 'map-buttons-top sat'">
+        <div [ngClass]="!(basemap$ | async) ? 'map-buttons-top right' : 'map-buttons-top right sat'">
             <button class="general-button"
             color="primary"
             [matTooltip]="!(basemap$ | async) ? 'Satellite View' : 'Map View'"
@@ -73,5 +73,29 @@
             matTooltipPosition="before">
             <mat-icon>layers</mat-icon>
             </button>
+        </div>
+        <div class="legend" [ngClass]="!(basemap$ | async) ? 'map-buttons-top left' : 'map-buttons-top sat left'">
+            <button class="general-button"
+            color="primary"
+            (click)="showLegend = !showLegend"
+            [matTooltip]="'Legend'"
+            matTooltipPosition="before">
+            <mat-icon>{{ showLegend ? 'close' : 'palette' }}</mat-icon>
+            <span>Legend</span>
+            </button>
+            <mat-table [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend" [dataSource]="legendEls">
+                <ng-container matColumnDef="element">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let row"><div class="legend-symbol" [style.background]="row.borderColor" [style.background]="row.background"></div></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="label">
+                    <mat-header-cell *matHeaderCellDef>Layer</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="legendCols; sticky: true"></mat-header-row>
+                <mat-row class="row" *matRowDef="let row; columns: legendCols;"
+                [class.expanded]="row.expanded === row"
+                (click)="row.expanded = !row.expanded"></mat-row>
+            </mat-table>              
         </div>
 </section>

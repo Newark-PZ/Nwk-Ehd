@@ -17,6 +17,7 @@ import { MapLayer } from '../../shared/classes/maplayer';
 import { BottomSheetComponent } from '../../shared/components/elements/bottomsheet.component';
 import { PropSnackbarComponent } from '../../shared/components/mapels/prop-snackbar.component';
 import { MapInput } from '../../shared/models';
+import { rowExpand } from '../../shared/util/animations';
 import * as LayersActions from '../../store/layers/layers.actions';
 import * as MapPaneActions from '../../store/map-pane/map-pane.actions';
 import * as MapActions from '../../store/map/map.actions';
@@ -24,6 +25,7 @@ import * as PropPaneActions from '../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../store/store.reducers';
 
 @Component({
+  animations: [rowExpand],
   changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-maps',
   styleUrls: ['../../shared/components/mapels/mapels.component.scss'],
@@ -49,6 +51,9 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   basemap$: Observable<boolean>;
   paneState$: Observable<boolean>;
   panesub: Subscription;
+  legendEls = [{background: 'grey', borderColor: 'black', name: 'R-1'}];
+  showLegend = false;
+  legendCols = ['element', 'label'];
   @ViewChild(MatRipple) ripple: MatRipple;
   @ViewChild('map') map: MapComponent;
   @ViewChild('cartolayer') cartoLayer: LayerComponent;

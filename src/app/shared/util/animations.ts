@@ -94,7 +94,7 @@ export const slideshowAnimation = trigger(
 );
 export const rowExpand = trigger('rowExpand', [
     state('collapsed, void', style({ height: '0px', minHeight: '0', display: 'none' })),
-    state('expanded', style({ height: '*' })),
+    state('expanded', style({ minHeight: '15rem' })),
     transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
   ]);

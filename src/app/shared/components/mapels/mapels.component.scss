@@ -259,3 +259,21 @@ mat-row.expandable-row {
   .cdk-drop-list-dragging .mat-row:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
+.legend {
+    button {
+        width: 8rem !important;
+    }
+    mat-table {
+        width: 15rem;
+        box-shadow: 0px 3px 10px lightgray;
+        .legend-symbol {
+            background: grey none repeat scroll 0% 0%;
+            width: 2rem;
+            height: 1rem;
+            display: block;
+            position: relative;
+            margin: auto;
+            content: "";
+        }
+    }
+}
