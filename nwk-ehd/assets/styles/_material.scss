@@ -23,8 +23,18 @@ $custom-typography: mat-typography-config(
   color: unset !important;
 }
 .map-buttons-top {
-    top:1rem;
-    right:2rem;
+    &.right {
+        top:1rem;
+        right:2rem;
+    }
+    &.left {
+        top: 3rem;
+        left: 3rem;
+        @media screen and (max-width: 576px){
+            top: 1rem;
+            left: 2rem;
+        }
+    }
     position:absolute;
     &.sat {
       .general-button:not(.split),
@@ -157,7 +167,7 @@ $custom-typography: mat-typography-config(
     @media screen and (max-width: 576px){
         left: 1.1rem !important;
         padding: 0.1rem !important;
-        top: .6rem !important;
+        top: 4rem !important;
         bottom: unset !important;
     }
   }
