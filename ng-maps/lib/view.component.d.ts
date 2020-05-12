@@ -1,0 +1,36 @@
+import { EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Coordinate } from 'ol/coordinate';
+import { Extent } from 'ol/extent';
+import { ObjectEvent } from 'ol/Object';
+import View from 'ol/View';
+import { MapComponent } from './map.component';
+import * as i0 from "@angular/core";
+export declare class ViewComponent implements OnInit, OnChanges {
+    readonly host: MapComponent;
+    instance: View;
+    componentType: string;
+    constrainRotation: boolean | number;
+    enableRotation: boolean;
+    extent: Extent;
+    maxResolution: number;
+    minResolution: number;
+    maxZoom: number;
+    minZoom: number;
+    resolution: number;
+    resolutions: Array<number>;
+    rotation: number;
+    zoom: number;
+    zoomFactor: number;
+    center: Coordinate;
+    projection: string;
+    zoomAnimation: boolean;
+    readonly changeZoom: EventEmitter<ObjectEvent>;
+    readonly changeResolution: EventEmitter<ObjectEvent>;
+    readonly changeCenter: EventEmitter<ObjectEvent>;
+    props: string[];
+    constructor(host: MapComponent);
+    ngOnInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    static ɵfac: i0.ɵɵFactoryDef<ViewComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<ViewComponent, "map-view", never, { "constrainRotation": "constrainRotation"; "enableRotation": "enableRotation"; "extent": "extent"; "maxResolution": "maxResolution"; "minResolution": "minResolution"; "maxZoom": "maxZoom"; "minZoom": "minZoom"; "resolution": "resolution"; "resolutions": "resolutions"; "rotation": "rotation"; "zoom": "zoom"; "zoomFactor": "zoomFactor"; "center": "center"; "projection": "projection"; "zoomAnimation": "zoomAnimation"; }, { "changeZoom": "changeZoom"; "changeResolution": "changeResolution"; "changeCenter": "changeCenter"; }, never, ["*"]>;
+}

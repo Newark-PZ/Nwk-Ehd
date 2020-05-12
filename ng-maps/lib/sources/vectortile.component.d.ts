@@ -1,0 +1,30 @@
+import { AfterContentInit } from '@angular/core';
+import Feature from 'ol/format/Feature';
+import { ProjectionLike } from 'ol/proj';
+import VectorTile from 'ol/source/VectorTile';
+import { UrlFunction } from 'ol/Tile';
+import TileGrid from 'ol/tilegrid/TileGrid';
+import { FormatComponent } from '../formats/format.component';
+import { LayerVectorTileComponent } from '../layers/layervectortile.component';
+import { TileGridComponent } from '../tilegrid.component';
+import { SourceComponent } from './source.component';
+import * as i0 from "@angular/core";
+export declare class SourceVectorTileComponent extends SourceComponent implements AfterContentInit {
+    instance: VectorTile;
+    cacheSize: number;
+    overlaps: boolean;
+    projection: ProjectionLike;
+    tilePixelRatio: number;
+    tileUrlFunction: UrlFunction;
+    url: string;
+    urls: Array<string>;
+    wrapX: boolean;
+    formatComponent: FormatComponent;
+    format: Feature;
+    tileGridComponent: TileGridComponent;
+    tileGrid: TileGrid;
+    constructor(layer: LayerVectorTileComponent);
+    ngAfterContentInit(): void;
+    static ɵfac: i0.ɵɵFactoryDef<SourceVectorTileComponent, [{ host: true; }]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<SourceVectorTileComponent, "map-source-vectortile", never, { "cacheSize": "cacheSize"; "overlaps": "overlaps"; "projection": "projection"; "tilePixelRatio": "tilePixelRatio"; "tileUrlFunction": "tileUrlFunction"; "url": "url"; "urls": "urls"; "wrapX": "wrapX"; }, {}, ["formatComponent", "tileGridComponent"], ["*"]>;
+}

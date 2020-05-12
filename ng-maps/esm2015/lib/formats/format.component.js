@@ -1,0 +1,6 @@
+export class FormatComponent {
+    constructor() {
+        this.componentType = 'format';
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZm9ybWF0LmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25nLW1hcHMvIiwic291cmNlcyI6WyJsaWIvZm9ybWF0cy9mb3JtYXQuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBLE1BQU0sT0FBTyxlQUFlO0lBQTVCO1FBRUUsa0JBQWEsR0FBRyxRQUFRLENBQUM7SUFDM0IsQ0FBQztDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEZlYXR1cmUgZnJvbSAnb2wvZm9ybWF0L0ZlYXR1cmUnO1xuXG5leHBvcnQgY2xhc3MgRm9ybWF0Q29tcG9uZW50IHtcbiAgaW5zdGFuY2U6IEZlYXR1cmU7XG4gIGNvbXBvbmVudFR5cGUgPSAnZm9ybWF0Jztcbn1cbiJdfQ==

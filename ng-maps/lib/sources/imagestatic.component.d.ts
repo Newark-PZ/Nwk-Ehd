@@ -1,0 +1,31 @@
+import { EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Extent } from 'ol/extent';
+import { LoadFunction } from 'ol/Image';
+import { ProjectionLike } from 'ol/proj';
+import { Size } from 'ol/size';
+import { ImageStatic } from 'ol/source';
+import { ImageSourceEvent } from 'ol/source/Image';
+import { AttributionLike } from 'ol/source/Source';
+import { LayerImageComponent } from '../layers/layerimage.component';
+import { SourceComponent } from './source.component';
+import * as i0 from "@angular/core";
+export declare class SourceImageStaticComponent extends SourceComponent implements OnInit, OnChanges {
+    instance: ImageStatic;
+    projection: ProjectionLike | string;
+    imageExtent: Extent;
+    url: string;
+    attributions: AttributionLike;
+    crossOrigin?: string;
+    imageLoadFunction?: LoadFunction;
+    imageSize?: Size;
+    props: string[];
+    readonly imageLoadStart: EventEmitter<ImageSourceEvent>;
+    readonly imageLoadEnd: EventEmitter<ImageSourceEvent>;
+    readonly imageLoadError: EventEmitter<ImageSourceEvent>;
+    constructor(layer: LayerImageComponent);
+    setLayerSource(): void;
+    ngOnInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    static ɵfac: i0.ɵɵFactoryDef<SourceImageStaticComponent, [{ host: true; }]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<SourceImageStaticComponent, "map-source-imagestatic", never, { "projection": "projection"; "imageExtent": "imageExtent"; "url": "url"; "attributions": "attributions"; "crossOrigin": "crossOrigin"; "imageLoadFunction": "imageLoadFunction"; "imageSize": "imageSize"; }, { "imageLoadStart": "imageLoadStart"; "imageLoadEnd": "imageLoadEnd"; "imageLoadError": "imageLoadError"; }, never, ["*"]>;
+}

@@ -1,0 +1,117 @@
+@use '../../../node_modules/@angular/material/theming'as *;
+
+$link-hover-decoration: none;
+$label-margin-bottom: 0;
+
+$success-colors: mat-palette($mat-green, 400);
+$warning-colors: mat-palette($mat-amber, 400);
+$nwk-primary-colors: mat-palette($mat-deep-purple);
+$nwk-accent-colors: mat-palette($mat-blue-gray, 100, 500, A100);
+$nwk-warn-colors: mat-palette($mat-deep-orange);
+$primary-color: mat-color($nwk-primary-colors);
+$accent-color: mat-color($nwk-accent-colors);
+$warn-color: mat-color($nwk-warn-colors);
+
+$nwk-font-family: 'Segoe UI',
+'Open Sans',
+sans-serif;
+$nwk-sidebar-width: 25vw;
+$grey: rgba(0, 0, 0, 0.2);
+$transition-time: 0.2s;
+$transition: padding-left $transition-time,
+border-left $transition-time,
+color $transition-time;
+
+@mixin mat-icon-size($size: 24px) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+}
+
+$info-color: hsl(198, 79%, 28%);
+$success-color: hsl(122, 45%, 23%);
+$danger-color: hsl(357, 50%, 35%);
+$warning-color: hsl(47, 87%, 27%);
+$app-info-color: hsl(178, 90%, 39%);
+$app-info-color-alt: #a2e4e1;
+$app-success-color: hsl(90, 67%, 38%);
+$app-danger-color: hsl(3, 90%, 62%);
+$app-warning-color: hsl(48, 98%, 51%);
+$white: hsl(0, 0%, 100%);
+$white-alt: hsl(210, 16%, 93%);
+$black: hsl(0, 0%, 0%);
+$black-alt: hsl(203, 30%, 8%);
+$black-alt-2: hsl(201, 30%, 13%);
+$black-light: hsla(0, 0%, 100%, 0.1);
+$gray: hsl(211, 10%, 47%);
+$gray-alt: hsl(200, 30%, 12%);
+$gray-light: hsl(203, 16%, 72%);
+$purple: hsl(281, 44%, 62%);
+$purple-dark: hsl(233, 26%, 33%);
+$blue: hsl(201, 100%, 36%);
+$blue-hover: hsl(194, 78%, 63%);
+$blue-light: hsl(194, 57%, 71%);
+$blue-dark: hsl(206, 63%, 27%);
+$red-hover: hsl(3, 100%, 69%);
+$red-dark: hsl(315, 27%, 28%);
+$orange: hsl(31, 100%, 60%);
+$green: hsl(92, 79%, 40%);
+$green-hover: hsl(83, 77%, 44%);
+$green-dark: hsl(195, 65%, 24%);
+$dropdown-bg: $white-alt;
+$button-shadow: lightgrey;
+$flex-positions: ( "col":column, "row":row);
+@each $name, $position in $flex-positions { 
+.flex-#{$name} {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: $position;
+    padding: .5rem;
+  }
+}
+$flex-positions: ("center": center, "end": flex-end, "start": flex-start);
+@each $name, $position in $flex-positions { 
+  .justify-content-#{$name} {justify-content: $position;}
+  .align-content-#{$name} {justify-content: $position;}
+  .align-items-#{$name} {align-items: $position;}
+  .align-self-#{$name} {align-items: $position;}
+}
+.justify-content-between {justify-content: space-between;}
+.justify-content-around {justify-content: space-around;}
+.justify-content-even {justify-content: space-evenly;}
+.align-content-between {align-content: space-between;}
+.align-content-around {align-content: space-around;}
+.align-items-stretch {align-items: stretch;}
+.align-self-stretch {align-items: stretch;}
+$breakpoints: ("xs": 0,"sm": 576px, "md": 768px, "lg": 992px, "xl": 1200px);
+
+@each $size, $point in $breakpoints {
+  .hide-above-#{$size} {
+    @media screen and (min-width: $point) { display: none; }
+  }
+  .hide-below-#{$size} {
+    @media screen and (max-width: $point) { display: none; }
+  }
+}
+$columns: 1,2,3,4,5,6,7,8,9,10,11,12;
+@each $col in $columns {
+  .cols {
+    display: inline-flex !important;
+    &-#{$col} { flex: 1 1 #{$col * 8.33%}; &[src] {width: #{$col * 8.33%} !important} }
+    &-xs-#{$col} {
+      @media screen and (max-width: 576px) { flex: 1 1 #{$col * 8.33%} !important;&[src] {width: #{$col * 8.33%} !important}}
+    }
+    &-sm-#{$col} {
+      @media screen and (min-width: 576px) and (max-width: 768px) { flex: 1 1 #{$col * 8.33%} !important; &[src] {width: #{$col * 8.33%} !important}}
+    }
+    &-md-#{$col} {
+      @media screen and (min-width: 768px) and (max-width: 992px) { flex: 1 1 #{$col * 8.33%} !important; &[src] {width: #{$col * 8.33%} !important}}
+    }
+    &-lg-#{$col} {
+      @media screen and (min-width: 992px) and (max-width: 1200px) { flex: 1 1 #{$col * 8.33%} !important; &[src] {width: #{$col * 8.33%} !important}}
+    }
+    &-xl-#{$col} {
+      @media screen and (min-width: 1200px) { flex: 1 1 #{$col * 8.33%} !important; &[src] {width: #{$col * 8.33%} !important}}
+    }
+  }
+}

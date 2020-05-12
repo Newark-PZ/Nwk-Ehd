@@ -1,0 +1,32 @@
+import { OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Icon } from 'ol/style';
+import IconAnchorUnits from 'ol/style/IconAnchorUnits';
+import IconOrigin from 'ol/style/IconOrigin';
+import { StyleComponent } from './style.component';
+import * as i0 from "@angular/core";
+export declare class StyleIconComponent implements OnInit, OnChanges {
+    private readonly host;
+    instance: Icon;
+    anchor: [number, number];
+    anchorXUnits: IconAnchorUnits;
+    anchorYUnits: IconAnchorUnits;
+    anchorOrigin: IconOrigin;
+    color: [number, number, number, number];
+    crossOrigin: IconOrigin;
+    img: HTMLImageElement | HTMLCanvasElement;
+    offset: [number, number];
+    offsetOrigin: IconOrigin;
+    opacity: number;
+    scale: number;
+    snapToPixel: boolean;
+    rotateWithView: boolean;
+    rotation: number;
+    size: [number, number];
+    imgSize: [number, number];
+    src: string;
+    constructor(host: StyleComponent);
+    ngOnInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    static ɵfac: i0.ɵɵFactoryDef<StyleIconComponent, [{ host: true; }]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<StyleIconComponent, "map-style-icon", never, { "anchor": "anchor"; "anchorXUnits": "anchorXUnits"; "anchorYUnits": "anchorYUnits"; "anchorOrigin": "anchorOrigin"; "color": "color"; "crossOrigin": "crossOrigin"; "img": "img"; "offset": "offset"; "offsetOrigin": "offsetOrigin"; "opacity": "opacity"; "scale": "scale"; "snapToPixel": "snapToPixel"; "rotateWithView": "rotateWithView"; "rotation": "rotation"; "size": "size"; "imgSize": "imgSize"; "src": "src"; }, {}, never, never>;
+}
