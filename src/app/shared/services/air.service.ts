@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AirtablePayload } from '../models';
@@ -13,8 +12,7 @@ export class AirService {
   // tslint:disable-next-line: restrict-plus-operands
   header = { authorization: `${this.API_STRING + environment.config.AIRTABLE_API_KEY}` };
   constructor(
-    public http: HttpClient,
-    readonly store: AngularFirestore) {
+    public http: HttpClient) {
     }
   getRecords(API_BASE_NAME: string, API_FILTER: string): Observable<AirtablePayload> {
     const BASE_NAME = API_BASE_NAME;

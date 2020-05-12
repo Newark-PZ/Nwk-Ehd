@@ -1,7 +1,6 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Event, Router, RouterModule, Scroll } from '@angular/router';
@@ -11,7 +10,6 @@ import { filter } from 'rxjs/operators';
 import { APP_ROUTES } from './app-routing';
 import { SharedModule } from './shared/shared.module';
 
-import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { EhdMainComponent } from './ehd-main/ehd-main.component';
 import { EhdOpzComponent } from './ehd-opz/ehd-opz.component';
@@ -29,7 +27,6 @@ export const metaReducers: Array<MetaReducer<StoreState>> = [clearState];
     HttpClientModule,
     HammerModule,
     SharedModule,
-    AngularFireModule.initializeApp(environment.config.firebase),
     RouterModule.forRoot(APP_ROUTES, {
       anchorScrolling: 'enabled',
       initialNavigation: 'enabled',
