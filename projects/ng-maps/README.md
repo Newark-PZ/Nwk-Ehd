@@ -25,7 +25,7 @@ Run `ng test ng-maps` to execute the unit tests via [Karma](https://karma-runner
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-
+# For the original package see:
 # ngx-openlayers [![Build Status](https://travis-ci.org/quentin-ol/ngx-openlayers.svg?branch=master)](https://travis-ci.org/quentin-ol/ngx-openlayers)[![Join the chat at https://gitter.im/ngx-openlayers](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ngx-openlayers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## License
