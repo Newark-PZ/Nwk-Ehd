@@ -1,7 +1,5 @@
-import { Route } from '@angular/router';
-
 export * from './airtable-model';
-export interface MyRoute extends Route {
-  icon?: string;
-  title?: string;
-}
+export * from './bulk-use.models';
+export * from './interfaces';
+export * from './layers.model';
+export * from './pages.model';

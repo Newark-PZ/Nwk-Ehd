@@ -1,0 +1,67 @@
+<mat-sidenav-container hasBackdrop="false" id="inner-sidenav">
+    <mat-sidenav #minibar opened mode="side" [@sideToggle]="sideStatus ? 'open' : 'closed'">
+        <button mat-button color="accent" (click)="shrinkSideNav()" class="side-button">
+            <mat-icon [@sidebarButtonState]="sideStatus ? 'opened' : 'closed' ">
+                {{ sideStatus ? 'menu_open' : 'menu'}}
+            </mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+        <mat-tree [dataSource]="treeDataSource" [treeControl]="treeControl" class="link-tree">
+        <mat-tree-node *matTreeNodeDef="let node" (click)="nodeSelect(node)" matTreeNodeToggle>
+        <li [ngClass]="node.level === 0 ? 'router-tree-node' : 'router-tree-child-node'" [style.margin]="'0 ' + node.level + 'rem'">
+            <button mat-icon-button><mat-icon>subdirectory_arrow_right</mat-icon></button>
+            <span *ngIf="!textHide">{{node.name}}</span>
+        </li>
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild">
+        <li [style.margin]="'0 ' + node.level + 'rem'">
+            <button matTreeNodeToggle mat-icon-button [attr.aria-label]="'toggle ' + node.title">
+            <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+            <span *ngIf="!textHide">{{node.name}}</span>
+            </button>
+            <ul [class.tree-invisible]="!treeControl.isExpanded(node)">
+            <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+        </li>
+        </mat-tree-node>
+        </mat-tree>
+    </mat-sidenav>
+    <mat-sidenav-content [@contentToggle]="sideStatus ? 'open' : 'closed'">
+        <h3 *ngIf="selectedGroup!.label || selectedGroup!.name">{{ selectedGroup.label }}{{ selectedGroup.name }}</h3>
+        <mat-form-field class="example-form-field">
+            <mat-label>Search by Document</mat-label>
+            <input matInput type="text" (keyup)="applyFilter(filterValue)" [(ngModel)]="filterValue">
+            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+<mat-table [dataSource]="dataSource" matSort class="cols-8">
+<ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+    </mat-cell>
+</ng-container>
+<ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="label">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Document</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.label}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="pubDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.pubDate | date}}</mat-cell>
+</ng-container>
+<mat-header-row *matHeaderRowDef="cols; sticky: true"></mat-header-row>
+<mat-row class="row" *matRowDef="let row; columns: cols;" (click)="selection.toggle(row)"></mat-row>
+</mat-table>
+<mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+</mat-sidenav-content>
+</mat-sidenav-container>

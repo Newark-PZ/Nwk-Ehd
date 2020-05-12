@@ -1,91 +1,79 @@
-import { OpzAboutComponent } from './about/about.component';
-import { OpzBoardsComponent } from './boards/boards.component';
-import { OpzContactComponent } from './contact/contact.component';
-import { OpzHomeComponent } from './home/home.component';
-import { OurCityComponent } from './ourcity/ourcity.component';
-import { OpzPlanningComponent } from './planning/planning.component';
-import { OpzResourcesComponent } from './resources/resources.component';
-import { OpzStaffComponent } from './staff/staff.component';
-import { OpzZoningComponent } from './zoning/zoning.component';
-
-// Boards page component imports
-import { CPBComponent } from './boards/cpb/cpb.component';
-import { ECComponent } from './boards/ec/ec.component';
-import { LHPCComponent } from './boards/lhpc/lhpc.component';
-import { ZBAComponent } from './boards/zba/zba.component';
-
-// Staff page components imports
-import { LeadersComponent } from './staff/leaders/leaders.component';
-import { PlannersComponent } from './staff/planners/planners.component';
-import { SupportComponent } from './staff/support/support.component';
-
-// Our City page components imports
-import { MapPipelineComponent } from './ourcity/map-pipeline/map-pipeline.component';
-
-import * as mapPieces from './ourcity/map-pipeline';
+import { OpzAboutComponent } from './pages/about.component';
+import { OpzApplicationsComponent } from './pages/applications.component';
+import { OpzContactComponent } from './pages/contact.component';
+import { OpzHomeComponent } from './pages/home.component';
+import { MapsComponent } from './pages/maps.component';
+import { OpzPlanningComponent } from './pages/planning.component';
+import { OpzResourcesComponent } from './pages/resources.component';
+import { OpzStaffComponent } from './pages/staff.component';
+import { OpzZoningComponent } from './pages/zoning.component';
 
 // Resources page component imports
-import { ApplicationsDataComponent } from './resources/sub-pages/applications/applications.component';
+import { ApplicationsDataComponent } from './pages/sub-pages/applications/applications.component';
+import { BoardsDocsDataComponent } from './pages/sub-pages/boards-docs/boards-docs.component';
+
+import { DiagramsComponent } from './pages/diagrams/diagrams.component';
+import { LotComponent } from './pages/diagrams/lot.component';
+import { OpzZoningInfoComponent } from './pages/sub-pages/info/info.component';
+import { OpzZoningRegsComponent } from './pages/sub-pages/regs/regs.component';
+import { OpzZoningResComponent } from './pages/sub-pages/res/res.component';
+
+// boards components
+import { CpbComponent } from './pages/boards-cpb.component';
+import { EcComponent } from './pages/boards-ec.component';
+import { LhpcComponent } from './pages/boards-lhpc.component';
+import { ZbaComponent } from './pages/boards-zba.component';
 
 export const planningComponents = [
   OpzHomeComponent,
   OpzAboutComponent,
-  OpzBoardsComponent,
+  OpzApplicationsComponent,
   OpzStaffComponent,
-  OurCityComponent,
+  MapsComponent,
   OpzPlanningComponent,
   OpzResourcesComponent,
   OpzZoningComponent,
   OpzContactComponent
 ];
 
-export const planningAboutComponents = [
-  LeadersComponent,
-  PlannersComponent,
-  SupportComponent
-];
-
-export const planningMapComponents = [
-  MapPipelineComponent,
-  mapPieces.BasemapComponent,
-  mapPieces.LayerComponent,
-  mapPieces.WidgetComponent,
-  mapPieces.MapComponent
-];
-
 export const planningResComponents = [
-  ApplicationsDataComponent
+  ApplicationsDataComponent,
+  BoardsDocsDataComponent
 ];
-export const  planningBoardsComponents = [
-  CPBComponent,
-  ECComponent,
-  LHPCComponent,
-  ZBAComponent
+
+export const planningZonesComponents = [
+  DiagramsComponent,
+  OpzZoningInfoComponent,
+  OpzZoningRegsComponent,
+  OpzZoningResComponent,
+  LotComponent
 ];
-// page component exports
-export * from './about/about.component';
-export * from './boards/boards.component';
-export * from './contact/contact.component';
-export * from './home/home.component';
-export * from './ourcity/ourcity.component';
-export * from './planning/planning.component';
-export * from './resources/resources.component';
-export * from './staff/staff.component';
-export * from './zoning/zoning.component';
+export const boardsComponents = [
+  CpbComponent,
+  EcComponent,
+  LhpcComponent,
+  ZbaComponent
+];
 
-// Boards page component imports
-export * from './boards/cpb/cpb.component';
-export * from './boards/ec/ec.component';
-export * from './boards/lhpc/lhpc.component';
-export * from './boards/zba/zba.component';
+export * from './pages/about.component';
+export * from './pages/applications.component';
+export * from './pages/contact.component';
+export * from './pages/home.component';
+export * from './pages/maps.component';
+export * from './pages/planning.component';
+export * from './pages/resources.component';
+export * from './pages/staff.component';
+export * from './pages/zoning.component';
 
-// Staff page components exports
-export * from './staff/leaders/leaders.component';
-export * from './staff/planners/planners.component';
-export * from './staff/support/support.component';
+export * from './pages/sub-pages/applications/applications.component';
+export * from './pages/sub-pages/boards-docs/boards-docs.component';
+export * from './pages/diagrams/diagrams.component';
+export * from './pages/diagrams/lot.component';
+export * from './pages/sub-pages/info/info.component';
+export * from './pages/sub-pages/regs/regs.component';
+export * from './pages/sub-pages/res/res.component';
 
-// Our City page components exports
-export * from './ourcity/map-pipeline/map-pipeline.component';
-
-// Resources page components exports
-export * from './resources/sub-pages/applications/applications.component';
+export * from './pages/boards-cpb.component';
+export * from './pages/boards-ec.component';
+export * from './pages/boards-lhpc.component';
+export * from './pages/boards-zba.component';

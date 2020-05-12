@@ -1,0 +1,90 @@
+<mat-toolbar>
+  <div class="title">
+    <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
+    <h2>{{ page.title }}</h2>
+  </div>
+  <div class="subtitle">
+    <h3>{{ page.subtitle }}</h3>
+  </div>
+</mat-toolbar>
+<mat-list class="intro-cards" *ngIf="page.introText">
+  <mat-list-item class="intro-card">
+    <mat-card>
+      <div class="card-body" [innerHtml]="page.introText"></div>
+      <mat-card-actions align="end" *ngIf="page.buttons">
+        <button  mat-stroked-button [ngClass]="button.live === true && button.icon ? 'stream-live' : 'info-buttons'"
+          *ngFor="let button of page.infoButtons" [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
+          <span *ngIf="button.text; else standardText0">{{ button.text }}</span>
+          <ng-template #standardText0>Learn More</ng-template>
+          <mat-icon>{{button.icon ? button.icon : 'double_arrow'}}</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-list-item>
+</mat-list>
+<section class="content-intro" *ngIf="page.contentIntro">
+  <div [ngClass]="page.contentIntro.right ? 'content-intro left' : 'content-intro'">
+    <h4 *ngIf="page.contentIntro.header">{{ page.contentIntro.header }}</h4>
+    <p *ngIf="page.contentIntro.text">{{ page.contentIntro.text }}</p>
+    <div class="content-intro-btns" *ngIf="page.contentIntro.events">
+      <button *ngFor="let button of page.contentIntro.events" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
+        <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
+        <b>{{ button.event }}</b><br>{{ button.date }}
+        <ng-template #icon><mat-icon>exit_to_app</mat-icon></ng-template>
+      </button>
+    </div>
+    <h4 *ngIf="page.contentIntro.footer">{{ page.contentIntro.footer }}</h4>
+  </div>
+  <div class="content-intro right" *ngIf="page.contentIntro.right">
+      <h3>{{ page.contentIntro.right.text }}</h3>
+      <mat-icon>arrow_downward</mat-icon>
+  </div>
+</section>
+<mat-list class="program-cats">
+  <mat-list-item *ngFor="let card of page.sections">
+    <mat-card class="program-card" >
+      <mat-card-header *ngIf="card.header">
+        <mat-card-title>{{ card.header }}</mat-card-title>
+      </mat-card-header>
+      <div class="card-body" [innerHtml]="card.text"></div>
+      <div class="logos" *ngIf="card.logos">
+        <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
+      </div>
+      <mat-card-actions align="end" *ngIf="card.buttons">
+        <a mat-stroked-button *ngFor="let button of card.buttons"
+        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+        <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+        <ng-template #standardText0>Apply</ng-template>
+        <mat-icon>double_arrow</mat-icon>
+      </a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-accordion [multi]="expansionMulti$ | async" >
+      <mat-expansion-panel *ngFor="let cat of page.buttonCategories" [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>
+              {{ cat }}
+            </h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="name-cards">
+        <mat-card [class]="'name-card ' + card.category.slice(0,8)" [routerLink]="card.link ? [card.parent, card.link] : undefined"
+        *ngFor="let card of page.buttons | FilterCatPipe:filterCat(cat)">
+          <div class="button-card">
+            <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
+            <h4 style="margin: auto">{{ card.title }}</h4>
+          </div>
+          <div class="card-content">  
+            <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
+            <span [innerHtml]="card.subtext"></span>
+          </div>
+        </mat-card>
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-list-item>
+</mat-list>
+<span class="page-bottom"></span>

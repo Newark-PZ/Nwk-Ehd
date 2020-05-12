@@ -4,11 +4,22 @@
 
 export const environment = {
   application: {
-    name: 'nwk-planning'
+    name: 'nwk-ehd'
   },
   config: {
 
     AIRTABLE_API_KEY: 'key5WJB3zRIAyyfTr',
+
+    firebase: {
+      apiKey: 'AIzaSyDPM5PHaxFJD7V_hica4nB503CnK3FN2ZA',
+      authDomain: 'nwkehd.firebaseapp.com',
+      databaseURL: 'https://nwkehd.firebaseio.com',
+      projectId: 'nwkehd',
+      storageBucket: 'nwkehd.appspot.com',
+      messagingSenderId: '565290842176',
+      appId: '1:565290842176:web:cf8aa0e43c571d303f87a5',
+      measurementId: 'G-1N7R1XHHYK'
+    },
 
     LOGIN_URL: 'login',
 

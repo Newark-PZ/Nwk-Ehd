@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Record } from '../models';
+import { AirtablePayload } from '../models';
 
 @Injectable()
 export class AirService {
@@ -11,22 +12,19 @@ export class AirService {
   readonly API_BASE_URL = 'https://api.airtable.com';
   // tslint:disable-next-line: restrict-plus-operands
   header = { authorization: `${this.API_STRING + environment.config.AIRTABLE_API_KEY}` };
-  records: Observable<Record>;
   constructor(
-    public http: HttpClient) {
-    // tslint:disable-next-line: no-console
-    console.log(this.records);
-  }
-  getRecords(API_BASE_NAME: string, API_FILTER: string): Observable<any> {
+    public http: HttpClient,
+    readonly store: AngularFirestore) {
+    }
+  getRecords(API_BASE_NAME: string, API_FILTER: string): Observable<AirtablePayload> {
     const BASE_NAME = API_BASE_NAME;
     const FILTER = API_FILTER;
 
-    return this.http.get<Record>(
+    return this.http.get<AirtablePayload>(
       `${this.API_BASE_URL}/v0/${this.API_APP_ID}/${BASE_NAME}?${FILTER}`,
       {
         headers: this.header
       }
     );
   }
-
 }

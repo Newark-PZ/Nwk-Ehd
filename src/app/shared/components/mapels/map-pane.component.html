@@ -1,0 +1,125 @@
+<section class="flex-row">
+<mat-card class="sheet-card flex-cols-4">
+  <mat-card-header>
+    <mat-card-title>
+      Select the Main Geography
+    </mat-card-title>
+  </mat-card-header>
+  <div class="card-content">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Layer</mat-label>
+      <mat-select [formControl]="geographiesControl">
+        <mat-option *ngFor="let geo of geographies" [value]="geo.value">
+          {{geo.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-card-actions>
+    <mat-slider
+        class="opacity-slider"
+        [max]="1"
+        [min]="0"
+        [step]=".1"
+        thumbLabel
+        [tickInterval]="1"
+        (valueChange)="setOpacity(geoOpacity, 'geo')"
+        [(ngModel)]="geoOpacity">
+    </mat-slider>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="sheet-card flex-cols-4">
+  <mat-card-header>
+    <mat-card-title>
+      Select How Parcels Display
+    </mat-card-title>
+  </mat-card-header>
+  <div class="card-content">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Layer</mat-label>
+      <mat-select [formControl]="parcelsControl">
+        <mat-option *ngFor="let view of parcelview" [(value)]="view.value">
+          {{view.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-card-actions>
+    <mat-slider
+        class="opacity-slider"
+        [max]="1"
+        [min]="0"
+        [step]=".1"
+        thumbLabel
+        [tickInterval]="1"
+        (valueChange)="setOpacity(parcelsOpacity, 'parcels')"
+        [(ngModel)]="parcelsOpacity">
+    </mat-slider>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="sheet-card flex-cols-4">
+  <mat-card-header>
+    <mat-card-title>
+      Select Other Overlays
+    </mat-card-title>
+  </mat-card-header>
+  <div class="card-content">
+    <mat-table [dataSource]="overlays | async" class="cols-8" multiTemplateDataRows cdkDropList (cdkDropListDropped)="onListDrop($event)">
+      <ng-container matColumnDef="zIndex">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.layer.getZIndex()}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="visible">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-slide-toggle (click)="$event.stopPropagation()"
+            [labelPosition]="'before'"
+            color="primary"
+            (change)="$event ? toggleVisible(row) : null"
+            [checked]="row.layer.getVisible()"><mat-icon>{{ row.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon></mat-slide-toggle>
+          </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Layer</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="opacity">
+        <td mat-cell *matCellDef="let row" [attr.colspan]="cols.length">
+          <div class="row-detail" [@rowExpand]="row.expanded ? 'expanded' : 'collapsed'" [style.height]="row.expanded ? 'unset' : '0 !important'">
+            <mat-slider
+            class="opacity-slider"
+            [max]="1"
+            [min]="0"
+            [step]=".1"
+            [tickInterval]="1"
+            (valueChange)="setOpacity(row, 'overlay')"
+            [(ngModel)]="row.layer.opacity">
+        </mat-slider>          
+        </div>
+        </td>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="cols; sticky: true"></mat-header-row>
+      <mat-row class="row" cdkDrag [cdkDragData]="row" *matRowDef="let row; columns: cols;"
+      [class.expanded]="row.expanded === row"
+      (click)="row.expanded = !row.expanded"></mat-row>
+      <mat-row *matRowDef="let row; columns: ['opacity']; when: isExpansionDetailRow"
+      [@rowExpand]="row.expanded ? 'expanded' : 'collapsed'"
+      style="overflow: hidden"> 
+      </mat-row>
+      </mat-table>
+      <mat-paginator [length]="(overlays | async).length" [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+  <mat-card-actions>
+    <!-- <mat-slider
+        class="opacity-slider"
+        [max]="1"
+        [min]="0"
+        [step]=".1"
+        thumbLabel
+        [tickInterval]="1"
+        [(ngModel)]="overlayOpacity">
+    </mat-slider> -->
+  </mat-card-actions>
+</mat-card>
+</section>
+  

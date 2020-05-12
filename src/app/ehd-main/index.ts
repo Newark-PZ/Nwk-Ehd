@@ -1,10 +1,10 @@
-import { EhdAboutComponent } from './about/about.component';
-import { EhdHomeComponent } from './home/home.component';
+import { EhdAboutComponent } from './pages/about.component';
+import { EhdHomeComponent } from './pages/home.component';
 
 export const ehdComponents = [
   EhdAboutComponent,
   EhdHomeComponent
 ];
 
-export * from './about/about.component';
-export * from './home/home.component';
+export * from './pages/about.component';
+export * from './pages/home.component';

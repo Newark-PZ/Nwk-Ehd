@@ -1,6 +1,6 @@
 export const environment = {
   application: {
-    name: 'nwk-planning'
+    name: 'nwk-ehd'
   },
   config: {
     AIRTABLE_API_KEY: 'key5WJB3zRIAyyfTr',

@@ -1,0 +1,52 @@
+<mat-toolbar>
+  <div class="title">
+    <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
+    <h2>{{ page.title }}</h2>
+  </div>
+  <div class="subtitle">
+    <h3>{{ page.subtitle }}</h3>
+  </div>
+</mat-toolbar>
+<mat-list class="intro-cards" *ngIf="page.introText">
+  <mat-list-item class="intro-card">
+    <mat-card>
+      <div class="card-body" [innerHtml]="page.introText"></div>
+      <mat-card-actions align="end" *ngIf="page.buttons">
+        <a mat-stroked-button *ngFor="let button of page.buttons"
+          [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [routerLink]="['./', button.link]">
+          <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+          <ng-template #standardText0>Apply</ng-template>
+          <mat-icon>double_arrow</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-list-item>
+</mat-list>
+<section class="content-intro" *ngIf="page.contentIntro">
+  <h3>{{ page.contentIntro.header }}</h3>
+  <h3 [innerHtml]='page.contentIntro.body'></h3>
+  <mat-icon>arrow_downward</mat-icon>
+</section>
+<router-outlet></router-outlet>
+<mat-list class="program-cards">
+  <mat-list-item class="program-card" *ngFor="let card of page.sections">
+    <mat-card>
+      <mat-card-header *ngIf="card.header">
+        <mat-card-title>{{ card.header }}</mat-card-title>
+      </mat-card-header>
+      <div class="card-body" [innerHtml]="card.text"></div>
+      <div class="logos" *ngIf="card.logos">
+        <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
+      </div>
+      <mat-card-actions align="end" *ngIf="card.buttons">
+        <a mat-stroked-button *ngFor="let button of card.buttons"
+        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+        <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+        <ng-template #standardText0>Apply</ng-template>
+        <mat-icon>double_arrow</mat-icon>
+      </a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-list-item>
+</mat-list>
+<span class="page-bottom"></span>

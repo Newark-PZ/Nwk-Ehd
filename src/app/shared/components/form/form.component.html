@@ -1,0 +1,21 @@
+<mat-vertical-stepper #stepper style="margin: 2rem 2rem 2rem 25%">
+  <mat-step *ngFor="let step of step$; let i = index" [stepControl]="stepperFormGroup" >
+    <form (ngSubmit)="onSubmit()" [formGroup]="stepperFormGroup" class="flex-col">
+      <ng-template matStepLabel>{{ step.name }}</ng-template>
+      <div *ngFor="let question of (questions$ | async)" class="form-row" class="cols-10 justify-content-around">
+        <app-question [question]="question" [form]="stepperFormGroup"></app-question>
+      </div>
+      <!-- <div class="form-row">
+        <button mat-raised-button type="submit" [color]="stepperFormGroup.valid ? 'primary' : 'accent'" [disabled]="!stepperFormGroup.valid">Save</button>
+      </div> -->
+    </form>
+    <div>
+      <button mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<div *ngIf="payLoad" class="form-row">
+<strong>Saved the following values</strong><br>{{payLoad}}
+</div>

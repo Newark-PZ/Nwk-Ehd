@@ -1,0 +1,77 @@
+<section matRipple
+    matRippleDisabled="disabled"
+    matRippleRadius="12"
+    matRippleColor="rgba(0, 255, 191, .5)"
+    class="map-frame">
+        <map-map #map [height]="'85vh'" [width]="'100%'">
+            <map-view [zoom]="13" maxZoom="18" enableRotation="false">
+                <map-interaction-default></map-interaction-default>
+                <map-control-scaleline [units]="'us'"></map-control-scaleline>
+                <map-coordinate [x]="-74.1723667" [y]="40.735657" [srid]="'EPSG:4326'"></map-coordinate>
+            </map-view>
+            <map-layer-group zIndex="0">
+                <map-layer-tile zIndex="0">
+                    <map-source-xyz [url]="(basemap$ | async) ? basemapUrls[1] : basemapUrls[0]"></map-source-xyz>
+                </map-layer-tile>
+                <map-layer-tile zIndex="6" [visible]="!(basemap$ | async)">
+                    <map-source-xyz [url]="cartoLabelsUrl"></map-source-xyz>
+                </map-layer-tile>
+            </map-layer-group>
+            <map-layer-group zIndex="2">
+                <map-layer-tile #parcelgrid className="parcelgrid"></map-layer-tile>
+                <map-layer-tile [opacity]="parcelsOpacity" #cartolayer></map-layer-tile>
+            </map-layer-group>
+            <map-layer-vector #geoLayer zIndex="4"></map-layer-vector>
+            <map-overlay #overlay 
+            id="selectionMarker"
+            [insertFirst]="true"
+            [stopEvent]="false" zIndex="13">
+            <map-content>
+                <mat-icon class="overlayMarker">place</mat-icon>
+            </map-content>
+            </map-overlay>
+        </map-map>
+        <div [ngClass]="!(basemap$ | async) ? 'map-buttons-top' : 'map-buttons-top sat'">
+            <button class="general-button"
+            color="primary"
+            [matTooltip]="!(basemap$ | async) ? 'Satellite View' : 'Map View'"
+            matTooltipPosition="before"
+            (click)="setBasemap()"
+            id="basemap">
+                <mat-icon>{{!(basemap$ | async) ? 'satellite' : 'map'}}</mat-icon>
+            </button>
+            <div class="general-button split">
+                <button
+                color="primary"
+                (click)="zoomChange('in')"
+                [matTooltip]="'Zoom In'"
+                matTooltipPosition="before">
+                <mat-icon>add</mat-icon>
+                </button>
+                <hr>
+                <button
+                color="primary"
+                [matTooltip]="'Reset View'"
+                matTooltipPosition="before"
+                (click)="resetView()"
+                id="zoomExtent">
+                <mat-icon>crop_free</mat-icon>
+                </button>
+                <hr>
+                <button
+                    color="primary"
+                    (click)="zoomChange('out')"
+                    [matTooltip]="'Zoom Out'"
+                    matTooltipPosition="before">
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </div>
+            <button class="general-button inverted"
+            color="primary"
+            (click)="shrinkSideNav()" 
+            [matTooltip]="'Layers'"
+            matTooltipPosition="before">
+            <mat-icon>layers</mat-icon>
+            </button>
+        </div>
+</section>

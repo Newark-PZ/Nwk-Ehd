@@ -1,30 +1,35 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-import { MyRoute } from '../shared/models';
-import { EHD_ROUTES } from './ehd-main-routing.module';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { SidebarLink } from '../shared/interfaces/other.interface';
+import * as RoutesArrayActions from '../store/routes/routes.actions';
+import * as fromStore from '../store/store.reducers';
+import { EHD_ROUTES } from './ehd-main.routing';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-ehd-container',
-  styleUrls: ['../app.component.scss'],
-  templateUrl: './ehd-main.component.html'
+  template: '<router-outlet></router-outlet>'
 })
 
-export class EhdMainComponent {
-  collapsed = true;
-  @HostBinding('class.content-container') class = true;
-  @Input() parentFragment = '/opz';
-  @Input() sideMenuItems: Array<MyRoute> =
-    EHD_ROUTES
-      .filter(route => route.data)
-      .map(route => {
-        const routedata = route.data ? route.data : '';
-        const icon = 'icon';
-        const title = 'title';
-
-        return {
-          icon: routedata[icon],
-          path: route.path,
-          title: routedata[title]
-        };
-      });
+export class EhdMainComponent implements OnInit {
+  routes: Array<SidebarLink>;
+  constructor(
+    private readonly store: Store<fromStore.StoreState>
+  ) {
+    // tslint:disable: no-non-null-assertion
+    this.routes = EHD_ROUTES.filter(r => r.title && r.title.length > 0)
+    .map(r =>
+      ({
+          title: r.title,
+          icon: r.icon,
+          parentFragment: r.parentFragment,
+          path: r.path,
+          children: r.children ?  r.children.filter(child => child.title && child.title.length > 0) : undefined
+        })
+      );
+  }
+  @HostBinding('class.content-container') clas = true;
+  ngOnInit(): void {
+    this.store.dispatch(new RoutesArrayActions.SetRouteArray(this.routes));
+  }
 }

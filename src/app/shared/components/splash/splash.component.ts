@@ -1,6 +1,9 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClrForm } from '@clr/angular';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { JsonDataService } from '../../services/get-json-data.service';
 
 @Component({
   selector: 'app-splash',
@@ -8,22 +11,44 @@ import { ClrForm } from '@clr/angular';
   templateUrl: './splash.component.html'
 })
 
-export class SplashComponent {
-  @Input() parentFragment: string;
+export class SplashComponent implements OnInit {
+  @Input() parentFragment = '/ehd';
   @Input() backgroundSetting: TemplateRef<any>;
-  @Input() logoSrc: TemplateRef<any>;
+  @Input() logoSrc = 'assets/img/NwkEhdLogos/SVG/NwkEhd_Divs_web_ehd.svg';
   @Input() searchDisplay = 'none';
-  @ViewChild(ClrForm, { static: true }) clrForm: ClrForm;
+  results: Array<any>;
+  page;
+  searchControl = new FormControl();
+  filteredOptions: Observable<Array<string>>;
 
-  exampleForm = new FormGroup({
-    sample: new FormControl('', Validators.required)
-  });
+  constructor(
+    readonly searchData: JsonDataService,
+    readonly route: ActivatedRoute,
+    readonly router: Router
+    ) {  }
+  ngOnInit(): void {
+    this.parentFragment = this.router.url.substr(0, 4);
+    this.logoSrc = `assets/img/NwkEhdLogos/SVG/NwkEhd_Divs_web_${this.router.url.substr(1, 3)}.svg`;
+    this.filteredOptions = this.searchControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
 
-  submit(): void {
-    if (this.exampleForm.invalid) {
-      this.clrForm.markAsTouched();
-    } else {
-      // Do submit logic
-    }
+  private _filter(value: string): Array<string> {
+    const filterValue = value.toLowerCase();
+    this.searchData.getSiteMap()
+    .then(res => {
+      this.results = res;
+    });
+
+    return this.results.filter(option => option.toLowerCase()
+      .includes(filterValue));
+  }
+  goTo(value): any {
+    (value.parent)
+    ? window.open(`/${value.office}/${value.parent}/${value.path}`, '_self')
+    : window.open(`/${value.office}/${value.path}`, '_self');
   }
 }

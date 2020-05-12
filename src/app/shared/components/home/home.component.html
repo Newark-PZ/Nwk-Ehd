@@ -1,0 +1,80 @@
+<section class="splash" [ngStyle]="homePage.backgroundStyling">
+    <div class="splash-image-carousel" *ngIf="homePage.splashImgs">
+      <div class="carousel-img-wrapper" [@slideInOut]="(slideshowIndex$ | async) === i ? 'shown' : 'hidden'" *ngFor="let img of homePage.splashImgs; let i = index" [id]="'carousel'+i">
+          <img src="{{img.src}}" alt="{{img.alt}}">
+      </div>
+    </div>
+    <div class="splash-header">
+      <span class="toolbar-spacer left-space"></span>
+      <span class="splash-title"><h2>{{ homePage.splashTitle }}</h2></span>
+      <span class="toolbar-spacer right-space"></span>
+    </div>
+    <div class="splash-body">
+        <span class="toolbar-spacer left-space"></span>
+        <span class="splash-subtitle">
+          <div *ngIf="homePage.splashBlurb" style="color: white;-webkit-text-fill-color: white !important;">
+            <p [innerHtml]="homePage.splashBlurb.text"></p>
+            <div class="splash-blurb-btns" *ngIf="homePage.splashBlurb.buttons">
+              <button *ngFor="let button of homePage.splashBlurb.buttons" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
+                {{ button.text }}
+                <mat-icon>exit_to_app</mat-icon>
+              </button>
+            </div>
+            <span *ngIf="homePage.officer">{{ homePage.officer.name }}
+              <span class="officer-position" *ngIf="homePage.officer.position">{{ homePage.officer.position }}</span>
+              <img *ngIf="homePage.officer.flair" [src]="'assets/img/' + homePage.officer.flair" class="officer-flair">
+            </span>
+        </div>
+          <img *ngIf="homePage.officer && homePage.officer.pic" [src]="'assets/img/' + homePage.officer.pic" class="officer-pic">
+        </span>
+        <span class="toolbar-spacer right-space"></span>
+    </div>
+  </section>
+  <section class="content-intro" *ngIf="homePage.contentIntro">
+    <div [ngClass]="homePage.contentIntro.right ? 'content-intro left' : 'content-intro'">
+      <h4 *ngIf="homePage.contentIntro.header">{{ homePage.contentIntro.header }}</h4>
+      <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
+      <div class="content-intro-btns" *ngIf="homePage.contentIntro.events">
+        <button *ngFor="let button of homePage.contentIntro.events" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
+          <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
+          <b>{{ button.event }}</b><br>{{ button.date }}
+          <ng-template #icon><mat-icon>exit_to_app</mat-icon></ng-template>
+        </button>
+      </div>
+      <h4 *ngIf="homePage.contentIntro.footer">{{ homePage.contentIntro.footer }}</h4>
+    </div>
+    <div class="content-intro right" *ngIf="homePage.contentIntro.right">
+        <h3>{{ homePage.contentIntro.right.text }}</h3>
+        <mat-icon>arrow_downward</mat-icon>
+    </div>
+  </section>
+  <mat-list class="program-cats">
+    <mat-list-item>
+      <mat-accordion [multi]="expansionMulti$ | async" >
+        <mat-expansion-panel *ngFor="let cat of homePage.buttonCategories" [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h3>
+                {{ cat }}
+              </h3>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="program-cards">
+          <mat-card [routerLink]="[card.parent, card.link]" (click)="goTo(card.extUrl)" class="program-card" *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
+            <div class="button-card">
+              <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
+              <h4 style="margin: auto">{{ card.title }}</h4>
+              <mat-icon style="margin-left: .5rem">exit_to_app</mat-icon>
+            </div>
+            <div class="card-content">  
+              <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
+              <span [innerHtml]="card.subtext"></span>
+            </div>
+          </mat-card>
+        </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-list-item>
+  </mat-list>
+  <span class="page-bottom"></span>
+  

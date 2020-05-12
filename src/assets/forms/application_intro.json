@@ -1,0 +1,102 @@
+[
+    {
+        "key": "applicationType",
+        "class": "sm",
+        "type": "dropdown",
+        "label": "Which board are you applying to?",
+        "options": [
+            {
+                "key": "cpb",
+                "value": "Central Planning Board"
+            },
+            {
+                "key": "zba",
+                "value": "Zoning Board of Adjustment"
+            }
+        ],
+        "validators": {
+            "required": true
+        },
+        "order": 1
+    },
+    {
+        "key": "board",
+        "class": "md",
+        "type": "dropdown",
+        "label": "What kind of application are you filing?",
+        "options": [
+            {
+                "key": "prelimSitePlan",
+                "value": "Preliminary Site Plan"
+            },
+            {
+                "key": "finalSitePlan",
+                "value": "Final Site Plan"
+            },
+            {
+                "key": "minorSitePlan",
+                "value": "Minor Site Plan"
+            },
+            {
+                "key": "majorSubdivision",
+                "value": "Major Subdivision"
+            },
+            {
+                "key": "minorSubdivision",
+                "value": "Minor Subdivision"
+            },
+            {
+                "key": "conditionalUse",
+                "value": "Conditional Use"
+            },
+            {
+                "key": "cVar",
+                "value": "C Variance"
+            },
+            {
+                "key": "dVar",
+                "value": "D Variance"
+            }
+        ],
+        "validators": {
+            "required": true
+        },
+        "order": 2
+    },
+    {
+        "key": "applicationNumber",
+        "class": "sm",
+        "type": "textbox",
+        "label": "If you already have an application number type it in below?",
+        "placeholder": "e.g. ZBA-20-001 or CPB-20-001",
+        "validators": {
+            "pattern": "(^ZBA|CPB)-[0-9]{2}-[0-9]{3}"
+        },
+        "icon": "number",
+        "order": 3
+    },
+    {
+        "key": "dateFiled",
+        "label": "Date Filed?",
+        "value": "",
+        "hint": "mm/dd/yyyy",
+        "type": "date",
+        "picker": "picker1",
+        "validators": {
+            "required": true
+        },
+        "order": 4
+    },
+    {
+        "key": "dateHearing",
+        "label": "Hearing Date?",
+        "value": "",
+        "hint": "mm/dd/yyyy",
+        "type": "date",
+        "picker": "picker1",
+        "validators": {
+            "required": true
+        },
+        "order": 5
+    }
+]

@@ -1,0 +1,54 @@
+<section class="flex-row" *ngIf="propSub | async">
+<mat-card class="sheet-card flex-cols-4">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image">        
+      <span class="zone {{ (propSub | async).code }}">
+      {{ (propSub | async).code }}
+      </span>
+    </div>
+    <mat-card-title (click)="copyVal(mapInput)" [innerHTML]="(propSub | async).proploc ? (propSub | async).proploc : (propSub | async).blocklot | titlecase">
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ (propSub | async).block }} | {{ (propSub | async).lot }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <div class="card-content">
+      <p class="p-col-12" innerHTML="{{ (propSub | async).property_d }}"></p>
+    </div>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="sheet-card" *ngIf="(propSub | async).redevelopm != 'N/A'">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+        <span>Redevelopment Area</span>
+      </mat-card-title>
+    </mat-card-header>
+    <div class="card-content">
+      <p innerHTML="{{ (propSub | async).redevelopm}}"></p>
+    </div>
+</mat-card>
+<mat-card class="sheet-card" *ngIf="((propSub | async).historic_d) != 'N/A' || ((propSub | async).landmark) != 'N/A'">
+  <mat-card-header>
+      <mat-card-title>
+        <span>Historic Designations</span>
+      </mat-card-title>
+    </mat-card-header>
+    <div class="card-content">
+      <p class="p-col-12" *ngIf="(propSub | async).historic_d  != 'N/A'"><span innerHTML="{{ (propSub | async).historic_d }} Historic District"></span></p>
+      <p class="p-col-12" *ngIf="((propSub | async).landmark ) != 'N/A'"><span innerHTML="{{ (propSub | async).landmark }}"></span></p>
+    </div>
+</mat-card>
+<mat-card class="sheet-card" *ngIf="((propSub | async).historic_d) != 'N/A' || ((propSub | async).landmark) != 'N/A'">
+  <mat-card-header>
+      <mat-card-title>
+        <span>Allowed Building Types</span>
+      </mat-card-title>
+    </mat-card-header>
+    <div class="card-content">
+      <p class="p-col-12" innerHTML="{{ (propSub | async).building_t }}"></p>
+    </div>
+</mat-card>
+</section>
+  

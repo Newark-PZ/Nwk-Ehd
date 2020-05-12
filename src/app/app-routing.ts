@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 import { EhdMainComponent } from './ehd-main/ehd-main.component';
 import { EhdOpzComponent } from './ehd-opz/ehd-opz.component';
 
@@ -19,6 +18,16 @@ export const APP_ROUTES: Routes = [
     component: EhdOpzComponent,
     loadChildren: async () => import('./ehd-opz/ehd-opz.module')
       .then(m => m.EhdOpzModule),
-    path: 'opz'
+    path: 'planningzoning'
+  },
+  {
+    path: 'ehd/',
+    pathMatch: 'full',
+    redirectTo: 'ehd'
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'ehd'
   }
 ];
