@@ -191,22 +191,3 @@ export interface SearchResult {
     };
     features: Array<SearchFeature>;
 }
-// R-1	#fffaca
-// R-2	#fff68f
-// R-3	#fff100
-// R-4	#ebd417
-// C-1	#a18aad
-// C-2	#da2028
-// C-3	#850204
-// MX-1	#e4a024
-// MX-2	#f37520
-// MX-3	#FF2900
-// I-1	#e1c3dd
-// I-2	#A53ED5
-// I-3	#c0188c
-// RDV	#dddddd
-// PARK	#229A00
-// INST	#0063ff
-// CEM	#561818
-// PORT	#B81609
-// EWR	#820c0c

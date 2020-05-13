@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GeoJSON } from 'ol/format';
+import { FeatureLike } from 'ol/Feature';
+import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style, Text } from 'ol/style';
@@ -12,28 +13,13 @@ import { MapLayer } from '../classes/maplayer';
  * Service to query data from NZLUR Carto
  * @method initOverlayLayers() Set the initial overlay layers as empty in the store, and add them to target layer group
  */
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class LayersService {
     overlays: Array<MapLayer> = [];
     overlayLayers: Observable<Array<MapLayer>>;
-    colorPallette = ['#54494b', '#f1f7ed', '#91c7b1', '#b33951', '#e3d081'];
-    overlayStyle = new Style({
-        stroke: new Stroke({color: 'black', lineDash: [5, 0, 0, 5], width: 3}),
-        fill: new Fill({color: 'rgba(0,0,0,.25)'}),
-        text: new Text({
-            font: 'bold 1rem Segoe UI,sans-serif',
-            overflow: true,
-            scale: 0.85,
-            padding: [5, 5, 5, 5],
-            fill: new Fill({
-              color: 'black'
-            }),
-            stroke: new Stroke({
-              color: 'white',
-              width: 3
-            })
-        })
-    });
+    overlayStyle: Style;
 
     constructor(
         readonly store: Store<fromStore.StoreState>,
@@ -46,6 +32,23 @@ export class LayersService {
      * @param overlayGroup layergroup component target for the layers to initialize inside
      */
     initOverlayLayers(): Array<MapLayer> {
+        this.overlayStyle = new Style({
+            stroke: new Stroke({color: 'black', lineDash: [5, 0, 0, 5], width: 3}),
+            fill: new Fill({color: 'rgba(0,0,0,.25)'}),
+            text: new Text({
+                font: 'bold 1rem Segoe UI,sans-serif',
+                overflow: true,
+                scale: 0.85,
+                padding: [5, 5, 5, 5],
+                fill: new Fill({
+                  color: 'black'
+                }),
+                stroke: new Stroke({
+                  color: 'white',
+                  width: 3
+                })
+            })
+        });
         // tslint:disable: max-line-length newline-before-return newline-per-chained-call
         this.overlays = [
             new MapLayer({name: 'Historic Districts', cartoCols: 'name',
@@ -87,8 +90,9 @@ export class LayersService {
         layer: string,
         propset: {name: 'opacity' | 'zIndex', propVal: number } | {name: 'visible', propVal: boolean}
         ): void {
-            if (this.overlays.find(ol => ol.name === layer)?.layer) {
-                this.overlays.find(ol => ol.name === layer)?.layer
+            // tslint:disable: no-non-null-assertion
+            if (this.overlays.find(ol => ol.name === layer)!.layer) {
+                this.overlays.find(ol => ol.name === layer)!.layer
                     .set(propset.name, propset.propVal);
                 this.storeService.setOverlayLayers(this.overlays);
             }
@@ -110,7 +114,7 @@ export class LayersService {
             default: return '*';
         }
     };
-    stringDivider = (str: string, width: number, spaceReplacer) => {
+    stringDivider = (str: string, width: number, spaceReplacer): string => {
         if (str.length > width) {
           let p = width;
           while (p > 0 && (str[p] !== ' ' && str[p] !== '-')) {
@@ -126,10 +130,14 @@ export class LayersService {
         }
         return str.replace('Redevelopment Plan', '').replace('District Plan', '').replace('Plan', '');
       };
-    styleFunction = (feature, labelProp = 'name') => {
+    styleFunction(feature: FeatureLike, labelProp = 'name'): Style {
         this.overlayStyle.getText().setText(
             this.stringDivider(feature.get(labelProp), 20, '\n'));
 
         return this.overlayStyle;
-    };
+    }
+    resetService(): void {
+        this.storeService.setOverlayLayers([]);
+        this.overlays = [];
+    }
 }

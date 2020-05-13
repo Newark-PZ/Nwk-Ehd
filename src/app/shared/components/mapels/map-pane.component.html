@@ -1,11 +1,19 @@
 <section class="flex-row">
 <mat-card class="sheet-card flex-cols-4">
+  <ng-template  [ngIf]="(parcelLayers | async)[0]" let-parcels="ngIf">
   <mat-card-header>
     <mat-card-title>
       Select the Main Geography
     </mat-card-title>
   </mat-card-header>
-  <div class="card-content">
+  <div class="card-content top">
+    <button
+      mat-icon-button
+      [color]="parcels.layer.getVisible() ? 'primary' : 'secondary'"
+      [style.backgroundColor]="parcels.layer.getVisible() ? 'rgba(10,200,10,.25)':'whitesmoke'"
+      (click)="$event ? toggleVisible('geo', parcels) : null">
+      <mat-icon>{{ parcels.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </button>
     <mat-form-field appearance="outline">
       <mat-label>Select Layer</mat-label>
       <mat-select [formControl]="geographiesControl">
@@ -27,18 +35,27 @@
         [(ngModel)]="geoOpacity">
     </mat-slider>
   </mat-card-actions>
+  </ng-template>
 </mat-card>
 <mat-card class="sheet-card flex-cols-4">
+  <ng-template  [ngIf]="(parcelLayers | async)[0]" let-parcels="ngIf">
   <mat-card-header>
     <mat-card-title>
       Select How Parcels Display
     </mat-card-title>
   </mat-card-header>
-  <div class="card-content">
+  <div class="card-content top">
+    <button
+      mat-icon-button
+      [color]="parcels.layer.getVisible() ? 'primary' : 'secondary'"
+      [style.backgroundColor]="parcels.layer.getVisible() ? 'rgba(10,200,10,.25)':'whitesmoke'"
+      (click)="$event ? toggleVisible('parcels', parcels) : null">
+      <mat-icon>{{ parcels.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </button>
     <mat-form-field appearance="outline">
       <mat-label>Select Layer</mat-label>
       <mat-select [formControl]="parcelsControl">
-        <mat-option *ngFor="let view of parcelview" [(value)]="view.value">
+        <mat-option *ngFor="let view of parcelview" [value]="view.value">
           {{view.label}}
         </mat-option>
       </mat-select>
@@ -52,10 +69,11 @@
         [step]=".1"
         thumbLabel
         [tickInterval]="1"
-        (valueChange)="setOpacity(parcelsOpacity, 'parcels')"
-        [(ngModel)]="parcelsOpacity">
+        (valueChange)="setOpacity(parcels, 'parcels')"
+        [(ngModel)]="parcels.layer['opacity']">
     </mat-slider>
   </mat-card-actions>
+</ng-template>
 </mat-card>
 <mat-card class="sheet-card flex-cols-4">
   <mat-card-header>
@@ -64,20 +82,38 @@
     </mat-card-title>
   </mat-card-header>
   <div class="card-content">
-    <mat-table [dataSource]="overlays | async" class="cols-8" multiTemplateDataRows cdkDropList (cdkDropListDropped)="onListDrop($event)">
+    <mat-table [dataSource]="overlays | async" multiTemplateDataRows cdkDropList (cdkDropListDropped)="onListDrop($event)">
+      <ng-container matColumnDef="expand">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button
+          mat-icon-button
+          [color]="row.expanded ? 'primary' : 'secondary'"
+          (click)="row.expanded = !row.expanded">
+          <mat-icon>{{ row.expanded  ? 'expand_less' : 'chevron_right'}}</mat-icon>
+        </button>
+        </mat-cell>
+      </ng-container>
       <ng-container matColumnDef="zIndex">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.layer.getZIndex()}}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          <button
+          mat-icon-button
+          color="secondary">
+          <mat-icon>drag_handle</mat-icon>
+        </button>
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="visible">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <mat-slide-toggle (click)="$event.stopPropagation()"
-            [labelPosition]="'before'"
-            color="primary"
-            (change)="$event ? toggleVisible(row) : null"
-            [checked]="row.layer.getVisible()"><mat-icon>{{ row.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon></mat-slide-toggle>
-          </mat-cell>
+            <button
+            mat-icon-button
+            [color]="row.layer.getVisible() ? 'primary' : 'secondary'"
+            (click)="$event ? toggleVisible('overlay', row, $event) : null">
+            <mat-icon>{{ row.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </button>
+         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef>Layer</mat-header-cell>
@@ -86,6 +122,7 @@
       <ng-container matColumnDef="opacity">
         <td mat-cell *matCellDef="let row" [attr.colspan]="cols.length">
           <div class="row-detail" [@rowExpand]="row.expanded ? 'expanded' : 'collapsed'" [style.height]="row.expanded ? 'unset' : '0 !important'">
+            <h5>Opacity</h5>
             <mat-slider
             class="opacity-slider"
             [max]="1"
@@ -93,15 +130,14 @@
             [step]=".1"
             [tickInterval]="1"
             (valueChange)="setOpacity(row, 'overlay')"
-            [(ngModel)]="row.layer.opacity">
-        </mat-slider>          
+            [(ngModel)]="row.layer['opacity']">
+          </mat-slider>          
         </div>
         </td>
       </ng-container>
       <mat-header-row *matHeaderRowDef="cols; sticky: true"></mat-header-row>
       <mat-row class="row" cdkDrag [cdkDragData]="row" *matRowDef="let row; columns: cols;"
-      [class.expanded]="row.expanded === row"
-      (click)="row.expanded = !row.expanded"></mat-row>
+      [class.expanded]="row.expanded === row"></mat-row>
       <mat-row *matRowDef="let row; columns: ['opacity']; when: isExpansionDetailRow"
       [@rowExpand]="row.expanded ? 'expanded' : 'collapsed'"
       style="overflow: hidden"> 

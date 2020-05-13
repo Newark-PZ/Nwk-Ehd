@@ -1,6 +1,5 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SnackbarComponent } from '../../shared';
@@ -30,13 +29,12 @@ export class OpzStaffComponent implements OnInit {
   constructor(
     readonly clipboard: Clipboard,
     readonly _snackBar: MatSnackBar,
-    readonly router: Router,
-    readonly firestore: AngularFirestore
+    readonly router: Router
     ) {
-      this.firestore.collection('staff')
-      .get()
-      .subscribe(resp => this.data = resp.docs.map(doc => doc.data())
-        .sort(d => d.Hierarchy));
+      // this.firestore.collection('staff')
+      // .get()
+      // .subscribe(resp => this.data = resp.docs.map(doc => doc.data())
+      //   .sort(d => d.Hierarchy));
     }
 
   ngOnInit(): void {

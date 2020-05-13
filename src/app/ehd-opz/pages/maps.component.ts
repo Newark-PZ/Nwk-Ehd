@@ -3,7 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatRipple } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { LayerComponent, LayerVectorComponent, MapComponent, OverlayComponent } from 'ng-maps';
+import { LayerVectorComponent, MapComponent, OverlayComponent } from 'ng-maps';
 import { MapBrowserEvent } from 'ol';
 import { easeOut } from 'ol/easing';
 import { fromExtent } from 'ol/geom/Polygon';
@@ -16,7 +16,6 @@ import { LayersService, MapLayersService } from '../../shared';
 import { MapLayer } from '../../shared/classes/maplayer';
 import { BottomSheetComponent } from '../../shared/components/elements/bottomsheet.component';
 import { PropSnackbarComponent } from '../../shared/components/mapels/prop-snackbar.component';
-import { MapInput } from '../../shared/models';
 import { rowExpand } from '../../shared/util/animations';
 import * as LayersActions from '../../store/layers/layers.actions';
 import * as MapPaneActions from '../../store/map-pane/map-pane.actions';
@@ -26,7 +25,7 @@ import * as fromStore from '../../store/store.reducers';
 
 @Component({
   animations: [rowExpand],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-maps',
   styleUrls: ['../../shared/components/mapels/mapels.component.scss'],
   templateUrl: './maps.component.html',
@@ -38,29 +37,27 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     'http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'
   ];
   cartoLabelsUrl = 'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png';
-  data: Array<any>;
   fullScreen = false;
   sideStatus = true;
   textHide = true;
   zoom = 13;
   coords;
-  propinfo: MapInput;
   layersSubscription: Subscription;
+  parcelsSubscription: Subscription;
   parcelsOpacity: number;
   clicked = {blocklot: '', block: '', lot: '', proploc: ''};
   basemap$: Observable<boolean>;
   paneState$: Observable<boolean>;
   panesub: Subscription;
-  legendEls = [{background: 'grey', borderColor: 'black', name: 'R-1'}];
+  legendEls: Array<{ name: string; background: string; desc: string; borderColor: string; }> = [];
   showLegend = false;
-  legendCols = ['element', 'label'];
+  legendCols = ['element', 'label', 'info'];
   @ViewChild(MatRipple) ripple: MatRipple;
   @ViewChild('map') map: MapComponent;
-  @ViewChild('cartolayer') cartoLayer: LayerComponent;
-  @ViewChild('parcelgrid') parcelgrid: LayerComponent;
   @ViewChild('overlay') overlay: OverlayComponent;
   @ViewChild('geoLayer') geoLayer: LayerVectorComponent;
   overlaylyrs: Array<MapLayer> = [];
+  parcelLyrs: Array<MapLayer> = [];
 
   constructor(
     readonly store: Store<fromStore.StoreState>,
@@ -71,6 +68,24 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   ) {
     this.basemap$ = this.store.select(state => state.layers.basemap);
     this.paneState$ = this.store.select(state => state.propPane.opened);
+  }
+  convertRemToPixels(rem: number): number {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  }
+  ngAfterViewInit(): void {
+    this.map.instance.once('rendercomplete', () => {
+      this.store.dispatch(new MapActions.SetMap(this.map.instance));
+      this.map.instance.updateSize();
+      this.overlaylyrs = this.layerservice.initOverlayLayers();
+      this.overlaylyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
+      this.parcelLyrs = this.getlayers.initGeoParcelLayers();
+      this.parcelLyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
+      });
+    this.map.instance.getView()
+      .on('change', () =>
+        this.zoom = this.map.instance.getView()
+        .getZoom()
+        );
     this.panesub = this.paneState$.subscribe(opened => {
       if (opened) {
         this._bottomSheet.open(BottomSheetComponent, {
@@ -81,24 +96,22 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
           });
       }
     });
-  }
-  convertRemToPixels(rem: number): number {
-    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-  }
-  ngAfterViewInit(): void {
-    this.map.instance.once('rendercomplete', () => {
-      this.store.dispatch(new MapActions.SetMap(this.map.instance));
-      this.map.instance.updateSize();
-      this.overlaylyrs = this.layerservice.initOverlayLayers();
-      this.getlayers.setParcelViz('zoning', this.cartoLayer.instance, this.parcelgrid.instance);
-      this.overlaylyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
-      });
-    this.map.instance.on('singleclick', e => { this.handleSingleClick(e); });
-    this.map.instance.getView()
-      .on('change', () =>
-        this.zoom = this.map.instance.getView()
-        .getZoom()
-        );
+    this.parcelsSubscription = this.store
+      .select(state => state.layers.parcelLayers)
+      .pipe(take(1))
+      .subscribe(layers => {
+        if (this.parcelLyrs.length > 0) {
+          this.parcelLyrs.forEach(l => {
+              this.map.instance.removeLayer(l.layer);
+              this.parcelLyrs.shift();
+            });
+          layers.forEach(l => {
+            this.parcelLyrs.push(l);
+            this.map.instance.addLayer(l);
+          });
+          this.getlayers.getLegendData(layers[0].layer.getClassName() as 'zoning' | 'landuse' | 'base');
+      }
+    });
     this.layersSubscription = this.store
         .select(state => state.layers.overlays)
         .pipe(take(1))
@@ -115,20 +128,22 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
             this.map.instance.addLayer(l);
           });
     });
+    this.map.instance.on('singleclick', e => { this.handleSingleClick(e); });
   }
   ngOnDestroy(): void {
     this.snackBar.dismiss();
     this._bottomSheet.dismiss();
     this.layersSubscription.unsubscribe();
+    this.overlaylyrs = [];
     this.panesub.unsubscribe();
-    this.map.instance.dispose();
+    this.layerservice.resetService();
   }
-  shrinkSideNav(): void {
+  openBottomsheet(page: number): void {
     this._bottomSheet.open(BottomSheetComponent,
       { data: { map: this.map, geoLayer: this.geoLayer, overlay: this.overlay } })
       .afterOpened()
       .subscribe(() => {
-        this.store.dispatch(new MapPaneActions.SetSelectedModule(1));
+        this.store.dispatch(new MapPaneActions.SetSelectedModule(page));
       });
     setTimeout(() => { this.map.instance.updateSize(); }, 450, easeOut);
   }
@@ -162,7 +177,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this.map.instance.getLayers()
       .forEach(l => {if (l.getClassName() === 'parcelgrid') { ((l as TileLayer).getSource() as UTFGrid)
         .forDataAtCoordinateAndResolution(e.coordinate, viewResolution, data => {
-        this.clicked.blocklot = data.blocklot || '__-__';
+        this.clicked.blocklot = data.blocklot || data.block_lot || '__-__';
         this.clicked.proploc = data.proploc || 'No Address/Non-Parcel';
         this.store.dispatch(new PropPaneActions.SetSelectedProp(
           { blocklot: this.clicked.blocklot, address: this.clicked.proploc, coords: this.coords }

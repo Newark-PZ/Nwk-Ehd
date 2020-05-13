@@ -7,10 +7,7 @@ export interface State {
   geoOpacity: number;
   geoVisible: boolean;
   geoColor?: string;
-  parcelsLayer: string;
-  parcelsOpacity: number;
-  parcelsVisible: boolean;
-  parcelsColor?: string;
+  parcelLayers: Array<MapLayer>;
   overlays: Array<MapLayer>;
 }
 
@@ -20,10 +17,7 @@ const initialState: State = {
   geoOpacity: 1,
   geoVisible: true,
   geoColor: undefined,
-  parcelsLayer: 'zoning',
-  parcelsOpacity: 1,
-  parcelsVisible: true,
-  parcelsColor: undefined,
+  parcelLayers: [],
   overlays: []
 };
 
@@ -40,14 +34,8 @@ export const layersReducer = (
       return { ...state, geoVisible: action.payload };
     case LayersActions.SET_GEOGRAPHY_COLOR:
       return { ...state, geoColor: action.payload };
-    case LayersActions.SET_PARCELS_LAYER:
-      return { ...state, parcelsLayer: action.payload };
-    case LayersActions.SET_PARCELS_OPACITY:
-      return { ...state, parcelsOpacity: action.payload };
-    case LayersActions.SET_PARCELS_VISIBLE:
-      return { ...state, parcelsVisible: action.payload };
-    case LayersActions.SET_PARCELS_COLOR:
-      return { ...state, parcelsColor: action.payload };
+    case LayersActions.SET_PARCEL_LAYERS:
+      return { ...state, parcelLayers: action.payload };
     case LayersActions.SET_OVERLAY_LAYERS:
       return { ...state, overlays: action.payload };
     case LayersActions.SET_BASEMAP:

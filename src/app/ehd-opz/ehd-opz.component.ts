@@ -16,7 +16,7 @@ import { PLANNING_ROUTES } from './ehd-opz.routing';
 export class EhdOpzComponent implements OnInit {
   routes: Array<SidebarLink>;
   constructor(
-    private readonly store: Store<fromStore.StoreState>,
+    readonly store: Store<fromStore.StoreState>,
     public dialog: MatDialog
   ) {
     this.routes = PLANNING_ROUTES.filter(r => r.title && r.title.length > 0)

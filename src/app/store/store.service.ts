@@ -96,8 +96,8 @@ export class StoreService {
     setGeoLayer(layer: string): void {
         this.store.dispatch(new LayersActions.SetGeoLayer(layer));
     }
-    setParcelLayer(layer: string): void {
-        this.store.dispatch(new LayersActions.SetParcelsLayer(layer));
+    setParcelLayers(layers: Array<MapLayer>): void {
+        this.store.dispatch(new LayersActions.SetParcelLayers(layers));
     }
     setOverlayLayers(layers: Array<MapLayer>): void {
         this.store.dispatch(new LayersActions.SetOverlayLayers(layers));

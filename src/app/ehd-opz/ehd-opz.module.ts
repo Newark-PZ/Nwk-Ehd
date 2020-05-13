@@ -8,7 +8,6 @@ import * as components from './index';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-// tslint:disable-next-line: no-implicit-dependencies
 import { AngularOpenlayersModule } from 'ng-maps';
 
 @NgModule({

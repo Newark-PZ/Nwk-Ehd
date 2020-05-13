@@ -17,7 +17,6 @@ import { FilterCatPipe } from './services/filter.pipe';
 import { JsonDataService } from './services/get-json-data.service';
 import { GetRegsService } from './services/getregs.service';
 import { GoogleService } from './services/google.service';
-import { MapLayersService } from './services/maplayers.service';
 import { QuestionControlService } from './services/question-control.service';
 import { QuestionService } from './services/question.service';
 
@@ -25,7 +24,6 @@ import { IntroPaneComponent } from './components/mapels/intro-pane.component';
 import { MapPaneComponent } from './components/mapels/map-pane.component';
 import { PropPaneComponent } from './components/mapels/prop-pane.component';
 import { PropSnackbarComponent } from './components/mapels/prop-snackbar.component';
-import { LayersService } from './services/layers.service';
 
 export const components = [
     HomeComponent,
@@ -53,8 +51,6 @@ export const services = [
     CartoService,
     JsonDataService,
     GetRegsService,
-    LayersService,
-    MapLayersService,
     QuestionService,
     QuestionControlService,
     GoogleService

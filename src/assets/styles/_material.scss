@@ -190,3 +190,9 @@ app-bottomsheet .mat-tab-body-wrapper {
     }
 
 }
+.mat-tooltip{ // making the font size on the mat-tooltip 1.5rem globally
+    font-size: 1.1rem;
+    &.legend-tooltip {  // to modify the tooltip create a class like this
+        font-size: 1.2rem;
+    }
+}

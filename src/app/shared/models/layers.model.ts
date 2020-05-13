@@ -87,16 +87,12 @@ export const baseParcelCartoCSS = `
   }
 `;
 export const zoningParcelCartoCSS = `
-#zoning_2 {
-    polygon-opacity: 0.7;
-    line-color: black;
-    line-width: 0.1;
-    line-opacity: 1;
-}
 #zoning_2[code='R-1'] {polygon-fill: #fffaca;}
 #zoning_2[code='R-2'] {polygon-fill: #fff68f;}
 #zoning_2[code='R-3'] {polygon-fill: #fff100;}
 #zoning_2[code='R-4'] {polygon-fill: #ebd417;}
+#zoning_2[code='R-5'] {polygon-fill: #b49d34;}
+#zoning_2[code='R-6'] {polygon-fill: #998439;}
 #zoning_2[code='C-1'] {polygon-fill: #fbc8b3;}
 #zoning_2[code='C-2'] {polygon-fill: #da2028;}
 #zoning_2[code='C-3'] {polygon-fill: #850204;}
@@ -111,7 +107,33 @@ export const zoningParcelCartoCSS = `
 #zoning_2[code='CEM'] {polygon-fill: #561818;}
 #zoning_2[code='RDV'] {polygon-fill: #dddddd;}
 #zoning_2[code='EWR'] {polygon-fill: #820c0c;}
-#zoning_2[code='PORT'] {polygon-fill: #B81609;}`;
+#zoning_2[code='PORT'] {polygon-fill: #B81609;}
+#zoning_2 {
+    polygon-opacity: 0.7;
+    line-color: black;
+    line-width: 0.1;
+    line-opacity: 1;
+}`;
+export const landUseParcelCartoCSS = `
+#table_2017_zoning_layer[propclass='1'] {polygon-fill: #686868;}
+#table_2017_zoning_layer[propclass='2'] {polygon-fill: #FFEBAF;}
+#table_2017_zoning_layer[propclass='4A'] {polygon-fill: #FF7F7F;}
+#table_2017_zoning_layer[propclass='4B'] {polygon-fill: #E8BEFF;}
+#table_2017_zoning_layer[propclass='4C'] {polygon-fill: #FFAA00;}
+#table_2017_zoning_layer[propclass='5A'] {polygon-fill: #B5E6B9;}
+#table_2017_zoning_layer[propclass='5B'] {polygon-fill: #B5E6B9;}
+#table_2017_zoning_layer[propclass='15A'] {polygon-fill: #BED2FF;}
+#table_2017_zoning_layer[propclass='15B'] {polygon-fill: #BED2FF;}
+#table_2017_zoning_layer[propclass='15C'] {polygon-fill: #BEFFE8;}
+#table_2017_zoning_layer[propclass='15D'] {polygon-fill: #73B2FF;}
+#table_2017_zoning_layer[propclass='15E'] {polygon-fill: #fff;}
+#table_2017_zoning_layer[propclass='15F'] {polygon-fill: #00C5FF;}
+#table_2017_zoning_layer {
+    polygon-opacity: 0.7;
+    line-color: black;
+    line-width: 0.1;
+    line-opacity: 1;
+}`;
 export const cartoGrid = (z, x, y) => 'https://cartocdn-gusc-a.global.ssl.fastly.net/' +
     'nzlur/api/v1/map/828afba5071058f312755e751aea6b1d:1581093818059/' +
     `parcels/${z}/${x}/${y}.grid.json`;
@@ -123,7 +145,7 @@ export const layerCartoCSS = `
   }
 `;
 // tslint:disable: no-parameter-reassignment
-export const apiConfig = (parcelStyle, layername = 'zoning_2', interactivity?: Array<string>) => {
+export const apiConfig = (parcelStyle, layername: 'zoning_2' | 'table_2017_zoning_layer', interactivity?: Array<string>) => {
     let cartoCSS = '';
     switch (parcelStyle) {
         case 'None':
@@ -132,7 +154,11 @@ export const apiConfig = (parcelStyle, layername = 'zoning_2', interactivity?: A
             break;
         case 'zoning':
             cartoCSS = zoningParcelCartoCSS;
-            interactivity = ['cartodb_id', 'proploc', 'blocklot', 'code'];
+            interactivity = ['proploc', 'blocklot'];
+            break;
+        case 'landuse':
+            cartoCSS = landUseParcelCartoCSS;
+            interactivity = ['proploc', 'block_lot'];
             break;
         default:
             cartoCSS = baseParcelCartoCSS;
