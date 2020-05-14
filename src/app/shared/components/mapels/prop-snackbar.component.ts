@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { fromLonLat } from 'ol/proj';
 import { Observable } from 'rxjs';
@@ -52,7 +53,8 @@ export class PropSnackbarComponent {
     constructor(
         public google: GoogleService,
         private readonly store: Store<fromStore.StoreState>,
-        private readonly carto: CartoService
+        private readonly carto: CartoService,
+        @Inject(MAT_SNACK_BAR_DATA) public data: {bottomsheet(): void; }
     ) {
         this.basemap$ = this.store.select(state => state.layers.basemap);
         this.sidebarOpened$ = this.store.select(state => state.propPane.opened);
@@ -66,6 +68,7 @@ export class PropSnackbarComponent {
         this.prop.pipe(take(1))
             .subscribe(p => blocklot = p.blocklot);
         this.getPropInfo(blocklot.split('-')[0], blocklot.split('-')[1]);
+        this.data.bottomsheet();
         this.store.dispatch(new PropPaneActions.SetOpened(true));
     }
     zoomToLoc(coords): void {

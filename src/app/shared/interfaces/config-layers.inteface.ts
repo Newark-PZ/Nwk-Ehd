@@ -22,3 +22,9 @@ export interface MapLayerGroupOptions {
   details?: string;
   children: Array<MapLayer>;
 }
+export interface LegendItem {
+  name: string;
+  background: string;
+  desc: string;
+  borderColor?: string;
+}

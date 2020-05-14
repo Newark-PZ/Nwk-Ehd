@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Map } from 'ol';
 import { Observable } from 'rxjs';
 import { MapLayer } from '../shared/classes/maplayer';
+import { LegendItem } from '../shared/interfaces/config-layers.inteface';
 import { SidebarLink } from '../shared/interfaces/other.interface';
 import { HomeCard, ZoningFields } from '../shared/models';
 import * as StoreActions from '../store/store.actions';
@@ -101,6 +102,9 @@ export class StoreService {
     }
     setOverlayLayers(layers: Array<MapLayer>): void {
         this.store.dispatch(new LayersActions.SetOverlayLayers(layers));
+    }
+    setLegend(legend: Array<LegendItem>): void {
+        this.store.dispatch(new LayersActions.SetLegend(legend));
     }
     /*
     * Map state functions

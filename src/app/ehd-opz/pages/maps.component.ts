@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatRipple } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +16,7 @@ import { LayersService, MapLayersService } from '../../shared';
 import { MapLayer } from '../../shared/classes/maplayer';
 import { BottomSheetComponent } from '../../shared/components/elements/bottomsheet.component';
 import { PropSnackbarComponent } from '../../shared/components/mapels/prop-snackbar.component';
+import { LegendItem } from '../../shared/interfaces/config-layers.inteface';
 import { rowExpand } from '../../shared/util/animations';
 import * as LayersActions from '../../store/layers/layers.actions';
 import * as MapPaneActions from '../../store/map-pane/map-pane.actions';
@@ -25,7 +26,6 @@ import * as fromStore from '../../store/store.reducers';
 
 @Component({
   animations: [rowExpand],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-maps',
   styleUrls: ['../../shared/components/mapels/mapels.component.scss'],
   templateUrl: './maps.component.html',
@@ -49,7 +49,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   basemap$: Observable<boolean>;
   paneState$: Observable<boolean>;
   panesub: Subscription;
-  legendEls: Array<{ name: string; background: string; desc: string; borderColor: string; }> = [];
+  legendEls: Observable<Array<LegendItem>>;
   showLegend = false;
   legendCols = ['element', 'label', 'info'];
   @ViewChild(MatRipple) ripple: MatRipple;
@@ -67,15 +67,16 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     readonly _bottomSheet: MatBottomSheet
   ) {
     this.basemap$ = this.store.select(state => state.layers.basemap);
+    this.legendEls = this.store.select(state => state.layers.legend);
     this.paneState$ = this.store.select(state => state.propPane.opened);
   }
   convertRemToPixels(rem: number): number {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
   }
   ngAfterViewInit(): void {
+    this.map.instance.updateSize();
     this.map.instance.once('rendercomplete', () => {
       this.store.dispatch(new MapActions.SetMap(this.map.instance));
-      this.map.instance.updateSize();
       this.overlaylyrs = this.layerservice.initOverlayLayers();
       this.overlaylyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
       this.parcelLyrs = this.getlayers.initGeoParcelLayers();
@@ -86,31 +87,22 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
         this.zoom = this.map.instance.getView()
         .getZoom()
         );
-    this.panesub = this.paneState$.subscribe(opened => {
-      if (opened) {
-        this._bottomSheet.open(BottomSheetComponent, {
-          data: { map: this.map, geoLayer: this.geoLayer, overlay: this.overlay } })
-          .afterOpened()
-          .subscribe(() => {
-            this.store.dispatch(new MapPaneActions.SetSelectedModule(2));
-          });
-      }
-    });
     this.parcelsSubscription = this.store
       .select(state => state.layers.parcelLayers)
       .pipe(take(1))
       .subscribe(layers => {
-        if (this.parcelLyrs.length > 0) {
-          this.parcelLyrs.forEach(l => {
+          if (this.parcelLyrs.length > 0) {
+            this.parcelLyrs.forEach(l => {
               this.map.instance.removeLayer(l.layer);
               this.parcelLyrs.shift();
             });
-          layers.forEach(l => {
-            this.parcelLyrs.push(l);
-            this.map.instance.addLayer(l);
-          });
-          this.getlayers.getLegendData(layers[0].layer.getClassName() as 'zoning' | 'landuse' | 'base');
-      }
+          }
+          if (layers.length > 0) {
+            layers.forEach(l => {
+              this.parcelLyrs.push(l);
+              this.map.instance.addLayer(l);
+            });
+          }
     });
     this.layersSubscription = this.store
         .select(state => state.layers.overlays)
@@ -134,9 +126,10 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this.snackBar.dismiss();
     this._bottomSheet.dismiss();
     this.layersSubscription.unsubscribe();
+    this.parcelsSubscription.unsubscribe();
     this.overlaylyrs = [];
-    this.panesub.unsubscribe();
     this.layerservice.resetService();
+    this.getlayers.resetService();
   }
   openBottomsheet(page: number): void {
     this._bottomSheet.open(BottomSheetComponent,
@@ -145,7 +138,6 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
       .subscribe(() => {
         this.store.dispatch(new MapPaneActions.SetSelectedModule(page));
       });
-    setTimeout(() => { this.map.instance.updateSize(); }, 450, easeOut);
   }
   zoomChange(type: 'in' | 'out'): void {
     type === 'in'
@@ -185,6 +177,6 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
       });
     }});
     this.overlay.instance.setPosition(e.coordinate);
-    this.snackBar.openFromComponent(PropSnackbarComponent);
+    this.snackBar.openFromComponent(PropSnackbarComponent, {data: {bottomsheet: () => { this.openBottomsheet(2); }}});
   }
 }

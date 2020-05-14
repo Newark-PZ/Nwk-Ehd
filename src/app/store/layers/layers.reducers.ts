@@ -1,4 +1,5 @@
 import { MapLayer } from '../../shared/classes/maplayer';
+import { LegendItem } from '../../shared/interfaces/config-layers.inteface';
 import * as LayersActions from './layers.actions';
 
 export interface State {
@@ -9,6 +10,7 @@ export interface State {
   geoColor?: string;
   parcelLayers: Array<MapLayer>;
   overlays: Array<MapLayer>;
+  legend: Array<LegendItem>;
 }
 
 const initialState: State = {
@@ -18,7 +20,8 @@ const initialState: State = {
   geoVisible: true,
   geoColor: undefined,
   parcelLayers: [],
-  overlays: []
+  overlays: [],
+  legend: []
 };
 
 export const layersReducer = (
@@ -40,6 +43,8 @@ export const layersReducer = (
       return { ...state, overlays: action.payload };
     case LayersActions.SET_BASEMAP:
       return { ...state, basemap: !state.basemap };
+    case LayersActions.SET_LEGEND:
+      return { ...state, legend: action.payload };
     default:
       return state;
   }

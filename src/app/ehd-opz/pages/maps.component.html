@@ -97,7 +97,7 @@
             <mat-icon>{{ showLegend ? 'close' : 'palette' }}</mat-icon>
             <span>Legend</span>
             </button>
-            <mat-table [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend" [dataSource]="legendEls">
+            <mat-table [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend" [dataSource]="legendEls | async">
                 <ng-container matColumnDef="layerName">
                     <mat-header-cell *matHeaderCellDef>Newark Zoning Map</mat-header-cell>
                 </ng-container>
