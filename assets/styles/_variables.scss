@@ -75,6 +75,7 @@ $flex-positions: ( "col":column, "row":row);
     }
   }
 }
+.cols-auto { flex: 1 1 auto; &[src] {width: auto !important} }
 $flex-positions: ("center": center, "end": flex-end, "start": flex-start);
 @each $name, $position in $flex-positions { 
   .justify-content-#{$name} {justify-content: $position;}

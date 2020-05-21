@@ -5,13 +5,13 @@
     "NameExtra" : "", 
     "Position" : "System Analyst & GIS Administrator", 
     "Hierarchy" : 3, 
-    "Headshot" : "https://dl.airtable.com/.attachments/a08493b9f54ca5aea66bb754ac83cc9a/82f1e926/placeholderhead.png", 
+    "Headshot" : "assets/img/billbishop.jpg", 
     "Bio" : "", 
     "Articles" : "", 
     "Room" : 419, 
     "Phone" : "(973) 733-5732", 
     "Email" : "bishopb@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "BrownS", 
@@ -20,7 +20,7 @@
     "NameExtra" : "", 
     "Position" : "Zoning Officer", 
     "Hierarchy" : 2, 
-    "Headshot" : "https://dl.airtable.com/.attachments/0a43b4272769d0ebf2207d9f526202ca/905d43d4/placeholderhead.png", 
+    "Headshot" : "assets/img/susanbrown.jpg", 
     "Bio" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id fermentum nulla. In bibendum vel augue vulputate aliquet. Nulla lacinia justo at condimentum laoreet. Mauris congue rhoncus nibh suscipit venenatis. Cras sed dignissim justo. Fusce vitae tristique arcu, non tincidunt turpis. Pellentesque hendrerit metus non magna sodales euismod. Praesent quis sodales risus. Proin risus dolor, facilisis varius vehicula ac, blandit id dui. Maecenas et vestibulum dolor. Nulla at cursus augue, at auctor dolor. Mauris rutrum commodo mauris. Praesent pellentesque lacinia neque a ullamcorper. Mauris finibus gravida purus lacinia euismod. Suspendisse pharetra eget tellus ut lobortis. Morbi eget lorem eu metus.", 
     "Articles" : "", 
     "Room" : 112, 
@@ -41,7 +41,7 @@
     "Room" : 112, 
     "Phone" : "(973) 877-9536", 
     "Email" : "browno@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "BrownM", 
@@ -56,7 +56,7 @@
     "Room" : 112, 
     "Phone" : "(973) 733-6333", 
     "Email" : "brownma@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "da SilvaM", 
@@ -64,14 +64,14 @@
     "NameLast" : "da Silva", 
     "NameExtra" : "", 
     "Position" : "Senior Planner", 
-    "Hierarchy" : 3, 
+    "Hierarchy" : 2, 
     "Headshot" : "https://dl.airtable.com/.attachments/91c21a5121547d49591c534172137e00/52070178/daSilvaMatt.png", 
     "Bio" : "Matt has joined Newark to manage a diverse portfolio of housing and economic development projects devoted to helping Newark grow equitably. A strong believer in the value of access to opportunity, he strives to bridge the gap between Newark's most vulnerable residents and the resources that can enable their social and economic mobility. He obtained his B.A. in Growth and Structure of Cities from Haverford College and a Masters in City Planning from the University of California, Berkeley. Alongside previous experience working in land use and transportation planning in New York State, Oakland, and Philadelphia, he is most proud of his work as a researcher for the  <a href=\\\"https://urbandisplacement.org/\\\" style=\\\"text-decoration:underline;color:blue\\\">Urban Displacement Project</a> at UC Berkeley's <a href=\\\"https://communityinnovation.berkeley.edu\\\" style=\\\"text-decoration:underline;color:blue\\\">Center for Community Innovation</a>, where he studied the root causes of gentrification and displacement in the San Francisco Bay Area.", 
     "Articles" : "", 
     "Room" : 419, 
     "Phone" : "(973) 733-5859", 
     "Email" : "dasilvamat@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "DentleyOsgoodC", 
@@ -80,13 +80,13 @@
     "NameExtra" : "", 
     "Position" : "Assistant Zoning Officer", 
     "Hierarchy" : 3, 
-    "Headshot" : "https://dl.airtable.com/.attachments/a08493b9f54ca5aea66bb754ac83cc9a/82f1e926/placeholderhead.png", 
+    "Headshot" : "assets/img/cherylosgood.jpg", 
     "Bio" : "", 
     "Articles" : "", 
     "Room" : 112, 
     "Phone" : "(973) 733-5784", 
     "Email" : "osgoodc@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "EgertonD", 
@@ -95,13 +95,13 @@
     "NameExtra" : "", 
     "Position" : "", 
     "Hierarchy" : 4, 
-    "Headshot" : "https://dl.airtable.com/.attachments/d2c727a78b84df9240a91d941cac627a/8c96b623/placeholderhead.png", 
+    "Headshot" : "assets/img/dawnegerton.jpg", 
     "Bio" : "", 
     "Articles" : "", 
     "Room" : 112, 
     "Phone" : "(973) 733-6254", 
     "Email" : "egertond@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "EnnisW", 
@@ -110,13 +110,13 @@
     "NameExtra" : "", 
     "Position" : "Senior Administrative Analyst", 
     "Hierarchy" : 3, 
-    "Headshot" : "https://dl.airtable.com/.attachments/a08493b9f54ca5aea66bb754ac83cc9a/82f1e926/placeholderhead.png", 
+    "Headshot" : "assets/img/enniswalford.jpg", 
     "Bio" : "", 
     "Articles" : "", 
     "Room" : 112, 
     "Phone" : "(973) 733-4452", 
     "Email" : "ennisw@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "ErwinN", 
@@ -131,7 +131,7 @@
     "Room" : 419, 
     "Phone" : "(973) 733-6219", 
     "Email" : "erwinn@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "JenssenT", 
@@ -146,7 +146,7 @@
     "Room" : 112, 
     "Phone" : "(973) 733-3931", 
     "Email" : "jenssent@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "JumahN", 
@@ -161,7 +161,7 @@
     "Room" : 112, 
     "Phone" : "(973) 877-9400", 
     "Email" : "jumahn@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "KrishnanV", 
@@ -176,7 +176,7 @@
     "Room" : 419, 
     "Phone" : "(973) 733-5371", 
     "Email" : "krishnanv@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "LatimerB", 
@@ -191,7 +191,7 @@
     "Room" : 419, 
     "Phone" : "(973) 733-5345", 
     "Email" : "latimerb@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "MillerK", 
@@ -206,7 +206,7 @@
     "Room" : 112, 
     "Phone" : "(973) 877-9442", 
     "Email" : "millerk@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "ONeillJ", 
@@ -215,13 +215,13 @@
     "NameExtra" : "", 
     "Position" : "Planner, Economic & Community Development", 
     "Hierarchy" : 4, 
-    "Headshot" : "https://dl.airtable.com/.attachments/a08493b9f54ca5aea66bb754ac83cc9a/82f1e926/placeholderhead.png", 
+    "Headshot" : "assets/img/juanoneill.jpg", 
     "Bio" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id fermentum nulla. In bibendum vel augue vulputate aliquet. Nulla lacinia justo at condimentum laoreet. Mauris congue rhoncus nibh suscipit venenatis. Cras sed dignissim justo. Fusce vitae tristique arcu, non tincidunt turpis. Pellentesque hendrerit metus non magna sodales euismod. Praesent quis sodales risus. Proin risus dolor, facilisis varius vehicula ac, blandit id dui. Maecenas et vestibulum dolor. Nulla at cursus augue, at auctor dolor. Mauris rutrum commodo mauris. Praesent pellentesque lacinia neque a ullamcorper. Mauris finibus gravida purus lacinia euismod. Suspendisse pharetra eget tellus ut lobortis. Morbi eget lorem eu metus.", 
     "Articles" : "", 
     "Room" : 419, 
     "Phone" : "(973) 877-9414", 
     "Email" : "oneillj@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "planning & special projects"
 },
 { 
     "_id" : "OttoW", 
@@ -230,13 +230,13 @@
     "NameExtra" : "", 
     "Position" : "Administrative Assistant & OPRA Custodian", 
     "Hierarchy" : 4, 
-    "Headshot" : "https://dl.airtable.com/.attachments/d2c727a78b84df9240a91d941cac627a/8c96b623/placeholderhead.png", 
+    "Headshot" : "assets/img/wandaotto.jpg", 
     "Bio" : "", 
     "Articles" : "", 
     "Room" : 112, 
     "Phone" : "(973) 491-5420", 
     "Email" : "ottow@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "ShindeP", 
@@ -266,7 +266,7 @@
     "Room" : 112, 
     "Phone" : "(973) 733-6204", 
     "Email" : "taylork@ci.newark.nj.us", 
-    "Class" : "planning"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "TurnerK", 
@@ -281,7 +281,7 @@
     "Room" : 112, 
     "Phone" : "(973) 877-9438", 
     "Email" : "turnerk@ci.newark.nj.us", 
-    "Class" : "support"
+    "Class" : "office & boards support"
 },
 { 
     "_id" : "WatsonC", 
