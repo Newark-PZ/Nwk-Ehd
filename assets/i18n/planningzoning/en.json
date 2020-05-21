@@ -111,14 +111,14 @@
             "header": "Upcoming Hearings",
             "events": [
                 {
-                    "icon": "notification_important",
+                    "icon": "event",
                     "event": "Central Planning Board",
-                    "date": "Mon, May 11 @ 6pm"
-                },
-                {
-                    "icon": "notification_important",
-                    "event": "Environmental Commission",
-                    "date": "Wed, May 13 @ 6pm"
+                    "date": "Mon, June 1 @ 6pm"
+                  },
+                  {
+                    "icon": "event",
+                    "event": "Central Planning Board",
+                    "date": "Mon, June 15 @ 6pm"
                 }
             ],
             "right": {
@@ -189,34 +189,21 @@
             "header": "Upcoming Hearings",
             "events": [
                 {
-                    "icon": "event",
-                    "event": "Central Planning Board",
-                    "date": "Mon, May 11 @ 6pm"
+                "icon": "event",
+                "event": "Central Planning Board",
+                "date": "Mon, June 1 @ 6pm"
                 },
                 {
-                    "icon": "event",
-                    "event": "Central Planning Board",
-                    "date": "Wed, May 13 @ 6pm"
-                }
+                "icon": "event",
+                "event": "Central Planning Board",
+                "date": "Mon, June 15 @ 6pm"
+        }
             ],
             "right": {
                 "text": "More Info Below"
             }
         },
-        "introText": "<img class='intro-pic' src='assets/img/NwkLibrary.jpg'>This space will have a short description of the Board, and talk about the next meeting:",
-        "infobuttons": [
-            {
-                "text": "Link to Virtual Hearing",
-                "icon": "this.live ? 'live_tv' : 'tv_off",
-                "parent": "/opz/boards/planning",
-                "link": "live"
-            },
-            {
-                "text": "Upcoming Meeting Agenda",
-                "parent": "/opz/applications",
-                "link": "payments"
-            }
-        ],
+        "introText": "<img class='intro-pic' src='assets/img/NwkLibrary.jpg'>The Central Planning Board is entrusted with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.",
         "sections": [
             {
                 "header": "Applications to the Central Planning Board",
@@ -584,6 +571,7 @@
                 "alt": "Newark Skyline"
             }
         ],
+        "introText": "The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
         "buttonCategories": [
             "Zoning Board of Adjustment",
             "Resources"
@@ -611,17 +599,16 @@
         ],
         "contentIntro": {
             "header": "Upcoming Hearings",
-            "events": [
-                {
-                    "icon": "notification_important",
-                    "event": "Central Planning Board",
-                    "date": "Mon, May 11 @ 6pm"
+            "events": [{
+                "icon": "event",
+                "event": "Zoning Board of Adjustment",
+                "date": "Thu, June 4 @ 7pm"
                 },
                 {
-                    "icon": "notification_important",
-                    "event": "Environmental Commission",
-                    "date": "Wed, May 13 @ 6pm"
-                }
+                "icon": "event",
+                "event": "Zoning Board of Adjustment",
+                "date": "Thu, June 11 @ 7pm"
+        }
             ],
             "right": {
                 "text": "More Info Below"
