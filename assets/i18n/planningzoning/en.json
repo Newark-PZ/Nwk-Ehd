@@ -571,7 +571,7 @@
                 "alt": "Newark Skyline"
             }
         ],
-        "introText": "The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
+        "introText": "<img class='intro-pic' src='assets/img/nwkcityhall-01.png'>The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
         "buttonCategories": [
             "Zoning Board of Adjustment",
             "Resources"
@@ -602,12 +602,12 @@
             "events": [{
                 "icon": "event",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 4 @ 7pm"
+                "date": "Thu, June 4 @ 6pm"
                 },
                 {
                 "icon": "event",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 11 @ 7pm"
+                "date": "Thu, June 11 @ 6pm"
         }
             ],
             "right": {
