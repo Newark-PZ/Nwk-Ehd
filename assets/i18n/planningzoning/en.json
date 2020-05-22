@@ -190,11 +190,15 @@
             "events": [
                 {
                 "icon": "event",
+                "board": "CPB",
+                "eventType": "Virtual Hearing",
                 "event": "Central Planning Board",
                 "date": "Mon, June 1 @ 6pm"
                 },
                 {
                 "icon": "event",
+                "board": "CPB",
+                "eventType": "Virtual Hearing",
                 "event": "Central Planning Board",
                 "date": "Mon, June 15 @ 6pm"
         }
@@ -453,11 +457,15 @@
             "events": [
                 {
                     "icon": "notification_important",
+                    "board": "CPB",
+                    "eventType": "Virtual Hearing",
                     "event": "Central Planning Board",
                     "date": "Mon, May 11 @ 6pm"
                 },
                 {
                     "icon": "notification_important",
+                    "board": "CPB",
+                    "eventType": "Virtual Hearing",
                     "event": "Environmental Commission",
                     "date": "Wed, May 13 @ 6pm"
                 }
@@ -600,39 +608,23 @@
         "contentIntro": {
             "header": "Upcoming Hearings",
             "events": [{
-                "icon": "event",
+                "icon": "notification_important",
+                "board": "ZBA",
+                "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 4 @ 6pm"
+                "date": "Wed, June 4 @ 6pm"
                 },
                 {
                 "icon": "event",
+                "board": "ZBA",
+                "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
                 "date": "Thu, June 11 @ 6pm"
-        }
+                }
             ],
             "right": {
                 "text": "More Info Below"
             }
-        },
-        "splashBlurb": {
-            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
-            "buttons": [
-                {
-                    "text": "Applications",
-                    "parent": "/opz/applications",
-                    "link": "info"
-                },
-                {
-                    "text": "Payments",
-                    "parent": "/opz/applications",
-                    "link": "payments"
-                },
-                {
-                    "text": "Zoning Map",
-                    "parent": "/opz/maps",
-                    "link": "zoning"
-                }
-            ]
         },
         "members": [
         {
