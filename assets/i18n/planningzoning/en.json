@@ -170,19 +170,21 @@
                 "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
-                "subText": "2019-2020",
+                "subText": "2020",
                 "subtextIcon": "info",
-                "parent": "/opz/resources",
-                "link": "res-minutes"
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "cpb", "type": "agendas", "year": "2020"}
             },
             {
                 "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
-                "subText": "2019-2020",
+                "subText": "2020",
                 "subtextIcon": "info",
-                "parent": "/opz/resources",
-                "link": "res-minutes"
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "cpb", "type": "minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
@@ -590,19 +592,21 @@
                 "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
-                "subText": "2019-2020",
+                "subText": "2020",
                 "subtextIcon": "info",
-                "parent": "/opz/resources",
-                "link": "res-minutes"
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "zba", "type": "agendas", "year": "2020"}
             },
             {
                 "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
-                "subText": "2019-2020",
+                "subText": "2020",
                 "subtextIcon": "info",
-                "parent": "/opz/resources",
-                "link": "res-minutes"
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "zba", "type": "minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
