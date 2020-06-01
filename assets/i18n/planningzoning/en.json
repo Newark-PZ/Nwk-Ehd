@@ -18,7 +18,7 @@
         ],
         "buttons": [
             {
-                "icon": "house",
+                "disabled": false, "icon": "house",
                 "category": "Boards & Commissions",
                 "title": "Central Planning Board",
                 "subtext": "Next Hearing: <b>May 11</b>",
@@ -28,7 +28,7 @@
                 "link": "cpb"
             },
             {
-                "icon": "house",
+                "disabled": false, "icon": "house",
                 "category": "Boards & Commissions",
                 "title": "Zoning Board of Adjustment",
                 "isEvent": true,
@@ -38,7 +38,7 @@
                 "link": "zba"
             },
             {
-                "icon": "house",
+                "disabled": false, "icon": "house",
                 "category": "Boards & Commissions",
                 "title": "Landmarks & Historic Preservation",
                 "isEvent": true,
@@ -48,7 +48,7 @@
                 "link": "lhpc"
             },
             {
-                "icon": "house",
+                "disabled": false, "icon": "house",
                 "category": "Boards & Commissions",
                 "title": "Environmental Commission",
                 "isEvent": true,
@@ -58,49 +58,49 @@
                 "link": "ec"
             },
             {
-                "icon": "info",
+                "disabled": false, "icon": "info",
                 "category": "Tools",
                 "title": "Application Submission & Status",
                 "parent": "/planningzoning/zoning",
                 "link": "zoning"
             },
             {
-                "icon": "map",
+                "disabled": false, "icon": "map",
                 "category": "Tools",
                 "title": "Interactive Zoning Map",
                 "parent": "/planningzoning/maps",
                 "link": "zoning"
             },
             {
-                "icon": "info",
+                "disabled": false, "icon": "info",
                 "category": "Tools",
                 "title": "Our Zoning, Explained",
                 "parent": "/planningzoning/zoning",
                 "link": "zoning"
             },
             {
-                "icon": "attachment",
+                "disabled": false, "icon": "attachment",
                 "category": "Tools",
                 "title": "Redevelopment Plans",
                 "parent": "/planningzoning/resources",
                 "link": "res-minutes"
             },
             {
-                "icon": "attachment",
+                "disabled": false, "icon": "attachment",
                 "category": "Tools",
                 "title": "Master Plan",
                 "parent": "/planningzoning/resources",
                 "link": "res-minutes"
             },
             {
-                "icon": "people",
+                "disabled": true, "icon": "people",
                 "category": "Our Office",
                 "title": "Our Team",
                 "parent": "/planningzoning/team",
                 "link": "leadership"
             },
             {
-                "icon": "info",
+                "disabled": true, "icon": "info",
                 "category": "Our Office",
                 "title": "Contact Us",
                 "parent": "/planningzoning",
@@ -111,12 +111,12 @@
             "header": "Upcoming Hearings",
             "events": [
                 {
-                    "icon": "event",
+                    "disabled": false, "icon": "event",
                     "event": "Central Planning Board",
                     "date": "Mon, June 1 @ 6pm"
                   },
                   {
-                    "icon": "event",
+                    "disabled": false, "icon": "event",
                     "event": "Central Planning Board",
                     "date": "Mon, June 15 @ 6pm"
                 }
@@ -167,7 +167,7 @@
         "title": "Central Planning Board",
         "buttons": [
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
                 "subText": "2020",
@@ -177,7 +177,7 @@
                 "params": {"group": "cpb", "type": "agendas", "year": "2020"}
             },
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
                 "subText": "2020",
@@ -191,14 +191,14 @@
             "header": "Upcoming Hearings",
             "events": [
                 {
-                "icon": "event",
+                "disabled": false, "icon": "event",
                 "board": "CPB",
                 "eventType": "Virtual Hearing",
                 "event": "Central Planning Board",
                 "date": "Mon, June 1 @ 6pm"
                 },
                 {
-                "icon": "event",
+                "disabled": false, "icon": "event",
                 "board": "CPB",
                 "eventType": "Virtual Hearing",
                 "event": "Central Planning Board",
@@ -305,7 +305,7 @@
         "title": "Environmental Commission",
         "buttons": [
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
                 "subText": "2019-2020",
@@ -314,7 +314,7 @@
                 "link": "res-minutes"
             },
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
                 "subtext": "2019-2020",
@@ -327,12 +327,12 @@
             "header": "Upcoming Events",
             "events": [
                 {
-                    "icon": "notification_important",
+                    "disabled": false, "icon": "notification_important",
                     "event": "Central Planning Board",
                     "date": "Mon, May 11 @ 6pm"
                 },
                 {
-                    "icon": "notification_important",
+                    "disabled": false, "icon": "notification_important",
                     "event": "Environmental Commission",
                     "date": "Wed, May 13 @ 6pm"
                 }
@@ -436,7 +436,7 @@
         "title": "Landmark & Historic Preservation Commission",
         "buttons": [
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
                 "subText": "2019-2020",
@@ -445,7 +445,7 @@
                 "link": "res-minutes"
             },
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
                 "subText": "2019-2020",
@@ -458,14 +458,14 @@
             "header": "Upcoming Events",
             "events": [
                 {
-                    "icon": "notification_important",
+                    "disabled": false, "icon": "notification_important",
                     "board": "CPB",
                     "eventType": "Virtual Hearing",
                     "event": "Central Planning Board",
                     "date": "Mon, May 11 @ 6pm"
                 },
                 {
-                    "icon": "notification_important",
+                    "disabled": false, "icon": "notification_important",
                     "board": "CPB",
                     "eventType": "Virtual Hearing",
                     "event": "Environmental Commission",
@@ -589,7 +589,7 @@
         "title": "Zoning Board of Adjustment",
         "buttons": [
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
                 "subText": "2020",
@@ -599,7 +599,7 @@
                 "params": {"group": "zba", "type": "agendas", "year": "2020"}
             },
             {
-                "icon": "attach_file",
+                "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
                 "subText": "2020",
@@ -612,14 +612,14 @@
         "contentIntro": {
             "header": "Upcoming Hearings",
             "events": [{
-                "icon": "notification_important",
+                "disabled": false, "icon": "notification_important",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
                 "date": "Wed, June 4 @ 6pm"
                 },
                 {
-                "icon": "event",
+                "disabled": false, "icon": "event",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",

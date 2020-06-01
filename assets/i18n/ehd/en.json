@@ -12,14 +12,14 @@
     ],
     "buttons": [
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Affordable Housing",
         "subtext": "Jerrah Crowder",
         "extUrl": "https://www.newarknj.gov/departments/affordable-housing"
       },
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Housing",
         "subtext": "Jenine Hazzard-Williams",
@@ -27,7 +27,7 @@
         "link": "home"
       },
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Opportunity Zones",
         "subtext": "Chiagorom Osu",
@@ -35,7 +35,7 @@
         "link": "home"
       },
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Planning & Zoning",
         "subtext": "Chris Watson",
@@ -43,7 +43,7 @@
         "link": "home"
       },
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Property Management",
         "subtext": "Keith Hamilton",
@@ -51,7 +51,7 @@
         "link": "home"
       },
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Rent Control",
         "subtext": "Jacquea Lee",
@@ -59,7 +59,7 @@
         "link": "home"
       },
       {
-        "icon": "house",
+        "disabled": true, "icon": "house",
         "category": "Divisions",
         "title": "Tenant Legal Services",
         "subtext": "Khabirah Myers",
@@ -67,13 +67,13 @@
         "link": "home"
       },
       {
-        "icon": "business_center",
+        "disabled": true, "icon": "business_center",
         "category": "Important Partners",
         "title": "Invest Newark",
         "extUrl": "https://investnewark.org/"
       },
       {
-        "icon": "business_center",
+        "disabled": true, "icon": "business_center",
         "category": "Important Partners",
         "title": "Greater Newark Convention & Visitor Bureau",
         "extUrl": "https://www.newarkhappening.com/"
@@ -83,12 +83,12 @@
       "header": "Upcoming Hearings",
       "events": [
         {
-          "icon": "notification_important",
+          "disabled": true, "icon": "notification_important",
           "event": "Central Planning Board",
           "date": "Mon, May 11 @ 6pm"
         },
         {
-          "icon": "notification_important",
+          "disabled": true, "icon": "notification_important",
           "event": "Environmental Commission",
           "date": "Wed, May 13 @ 6pm"
         }
