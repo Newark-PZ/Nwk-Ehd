@@ -1,12 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { fromLonLat } from 'ol/proj';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as PropPaneActions from '../../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../../store/store.reducers';
-import { CartoSQLResp, ZoningFields } from '../../models';
+import { CartoSQLResp, SearchItem, ZoningFields } from '../../models';
 import { CartoService } from '../../services/carto.service';
 import { GoogleService } from '../../services/google.service';
 
@@ -23,8 +22,8 @@ import { GoogleService } from '../../services/google.service';
             (click)="zoomToLoc(coords)"
             matTooltip="Center Map on Address"
             matTooltipPosition="above">
-            <h3>{{ (prop | async).address | titlecase }}</h3>
-            <p>Block {{(prop | async).blocklot.split('-')[0]}}, Lot {{(prop | async).blocklot.split('-')[1]}}</p>
+            <h3>{{ (prop | async).STREET_ADD | titlecase }}</h3>
+            <p>Block {{(prop | async).BLOCK_LOT.split('-')[0]}}, Lot {{(prop | async).BLOCK_LOT.split('-')[1]}}</p>
         </div>
         <div>
             <button mat-stroked-button
@@ -45,8 +44,8 @@ import { GoogleService } from '../../services/google.service';
 })
 export class PropSnackbarComponent {
     sidebarOpened$: Observable<boolean>;
-    prop: Observable<{ blocklot: string; address: string; coords: [number, number]; }>;
-    coords: [number, number];
+    prop: Observable<SearchItem>;
+    coords;
     propInfo: Observable<ZoningFields>;
     basemap$: Observable<boolean>;
 
@@ -60,13 +59,16 @@ export class PropSnackbarComponent {
         this.sidebarOpened$ = this.store.select(state => state.propPane.opened);
         this.prop = this.store.select(state => state.propPane.selectedProp);
         this.propInfo = this.store.select(state => state.propPane.propInfo);
-        this.store.select(state => state.propPane.selectedProp.coords)
-            .subscribe(r => this.coords = r);
+        this.prop.subscribe(r => {
+            if (r.geometry) {
+                this.coords = r.geometry;
+            }
+        });
     }
     openPropInfo(): void {
         let blocklot;
         this.prop.pipe(take(1))
-            .subscribe(p => blocklot = p.blocklot);
+            .subscribe(p => blocklot = p.BLOCK_LOT);
         this.getPropInfo(blocklot.split('-')[0], blocklot.split('-')[1]);
         this.data.bottomsheet();
         this.store.dispatch(new PropPaneActions.SetOpened(true));
@@ -78,7 +80,7 @@ export class PropSnackbarComponent {
             .subscribe(m => {
                 if (m) {
                 m.getView()
-                .animate({center: fromLonLat([coords[1], coords[0]]), zoom: 17});
+                .animate({center: this.coords, zoom: 17});
                 }
             }
         );

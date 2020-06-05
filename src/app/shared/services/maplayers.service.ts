@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { FeatureLike } from 'ol/Feature';
 import { EsriJSON, GeoJSON } from 'ol/format';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import { UTFGrid, XYZ } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
+import { Fill, Stroke, Style, Text } from 'ol/style';
 import * as fromStore from '../../store/store.reducers';
 import { StoreService } from '../../store/store.service';
 import { MapLayer } from '../classes/maplayer';
@@ -26,6 +28,7 @@ export class MapLayersService {
     mapsApiUrl = 'https://nzlur.carto.com/api/v1/map/';
     arcgisRestBaseURL = 'https://services1.arcgis.com/WAUuvHqqP3le2PMh/ArcGIS/rest/services/';
     parcelLayers: Array<MapLayer> = [];
+    geoLayer: Array<MapLayer> = [];
     legendItems: Array<LegendItem> = [];
     esriFeatures: EsriJSON;
     constructor(
@@ -42,7 +45,7 @@ export class MapLayersService {
 
         return featureData;
     }
-    initGeoParcelLayers(): Array<MapLayer> {
+    initGeoParcelLayers(): Array<Array<MapLayer>> {
         this.parcelLayers = [
             new MapLayer(
                 {name: 'zoning', layer: new TileLayer({className: 'parcels',  zIndex: 3, opacity: 1, visible: true})}
@@ -51,9 +54,18 @@ export class MapLayersService {
                 {name: 'Parcel Grid', layer: new TileLayer({className: 'parcelgrid',  zIndex: 2, opacity: 1, visible: true})}
             )
         ];
+        this.geoLayer = [
+            new MapLayer(
+                {name: 'wards', layer: new VectorLayer({
+                    className: 'geo', zIndex: 4, opacity: 1, visible: true,
+                    style: feature => this.styleFunction(feature, 'ward_name', [0, 0, 0])
+                })}
+            )
+        ];
+        this.getGeoLayer('wards');
         this.setParcelViz('zoning');
 
-        return this.parcelLayers;
+        return [this.parcelLayers, this.geoLayer];
     }
     setParcelViz(layer: 'zoning' | 'landuse' | 'base' | 'none'): void {
         const dataset = {zoning: 'zoning_2', landuse: 'table_2017_zoning_layer', base: 'zoning_2'};
@@ -78,13 +90,18 @@ export class MapLayersService {
     }
     updateLayer(
         layer: string,
+        type: 'geo' | 'parcels',
         propset: {name: 'opacity' | 'zIndex', propVal: number } | {name: 'visible', propVal: boolean}
         ): void {
             // tslint:disable: no-non-null-assertion
-            if (this.parcelLayers.find(ol => ol.name === layer)!.layer) {
+            if (type === 'parcels') {
                 this.parcelLayers.find(ol => ol.name === layer)!.layer
                     .set(propset.name, propset.propVal);
                 this.storeService.setParcelLayers(this.parcelLayers);
+            } else if (type === 'geo') {
+                this.geoLayer.find(ol => ol.name === layer)!.layer
+                    .set(propset.name, propset.propVal);
+                this.storeService.setGeoLayer(this.geoLayer);
             }
     }
     getLegendData(): void {
@@ -157,30 +174,82 @@ export class MapLayersService {
             }));
         }
     }
-    getCartoLayer(
-        layerRef: VectorLayer,
-        layerName: 'landmarkdistricts_160203'
+    getGeoLayer(
+        layerName: 'none'
+        | 'newarktractpolygon_1'
         | 'nwkneighborhoods'
         | 'wards'
         ): void {
+        if (layerName === 'none') {
+            this.geoLayer[0].layer.setSource( new VectorSource());
+            this.geoLayer[0].name = 'none';
+        } else {
         const columns = this.findCols(layerName);
-        this.storeService.setGeoLayer(layerName);
-        layerRef.setSource(
+        this.geoLayer[0].layer.setSource(
             new VectorSource({
             url: `https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select%20the_geom,${columns}%20from%20public.${layerName}`,
             format: new GeoJSON({geometryName: layerName})
         }));
+        this.geoLayer[0].name = layerName;
+        (this.geoLayer[0].layer as VectorLayer).setStyle(feat => this.styleFunction(feat, this.findCols(layerName), [0, 0, 0]));
+        }
+        this.storeService.setGeoLayer(this.geoLayer);
     }
     findCols = (layer: string) => {
         switch (layer) {
-            case 'newarktractpolygon_1': return 'name';
+            case 'newarktractpolygon_1': return 'namelsad';
             case 'nwkneighborhoods': return 'name';
-            case 'wards': return 'WARD_NAME';
+            case 'wards': return 'ward_name';
             default: return '*';
         }
     };
+    stringDivider = (str: string, width: number, spaceReplacer): string => {
+        if (str.length > width) {
+          let p = width;
+          while (p > 0 && (str[p] !== ' ' && str[p] !== '-')) {
+            p--;
+          }
+          if (p > 0) {
+            let left;
+            left = (str.substring(p, p + 1) === '-') ? str.substring(0, p + 1) : str.substring(0, p);
+            const right = str.substring(p + 1);
+
+            return `${left}${spaceReplacer}${this.stringDivider(right, width, spaceReplacer)}`;
+          }
+        }
+
+        return str.replace('Census Tract ', '');
+      };
+    geoStyle(rgb: [number, number, number] = [0, 0, 0]): Style {
+        return new Style({
+          stroke: new Stroke({color: `rgba(${rgb.join(',')})`, width: 3}),
+          text: new Text({
+              font: 'bold 1rem Segoe UI,sans-serif',
+              overflow: true,
+              scale: 0.85,
+              padding: [5, 5, 5, 5],
+              fill: new Fill({
+                color: `rgba(${rgb.join(',')}, 1)`
+              }),
+              stroke: new Stroke({
+                color: 'white',
+                width: 3
+              })
+          })
+       });
+      }
+    styleFunction(feature: FeatureLike, labelProp = 'name', rgb?: [number, number, number]): Style {
+          const newstyle = this.geoStyle(rgb);
+          newstyle.getText()
+              .setText(
+              this.stringDivider(feature.get(labelProp), 20, '\n'));
+
+          return newstyle;
+    }
     resetService(): void {
         this.storeService.setParcelLayers([]);
+        this.storeService.setGeoLayer([]);
         this.parcelLayers = [];
+        this.geoLayer = [];
     }
 }

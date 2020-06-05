@@ -1,0 +1,41 @@
+<mat-toolbar class="title">
+<mat-icon style="margin-right: .5rem" [innerHtml]='(docContent | async).icon'></mat-icon>
+<h2>Virtual Hearings Dashboard</h2>
+</mat-toolbar>
+<mat-tab-group [selectedIndex]="currentTab">
+    <mat-tab *ngFor="let board of boardTabs" [disabled]="board.disabled">
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right: 1rem">{{ board.live ? 'live_tv' : 'tv_off' }}</mat-icon>
+        <h4>{{board.label}}</h4>
+      </ng-template>
+      <div class="flex-row justify-content-center">
+        <app-event-detail class="cols-8" style="margin: 1rem;"
+        [board]="board.board"
+        [date]="(board.event | async).start | date:'EEE, MMM d, y, h:mm a'"
+        [link]="(board.event | async).link"
+        [fofId]="board.fofId"></app-event-detail>
+      </div>
+      <mat-card class="flex-col" style="margin: 2rem;">
+        <div class="button-card">
+          <mat-icon style="margin-right: .5rem">file</mat-icon>
+          <h4>Applications and Supporting Documents</h4>
+        </div>
+        <div class="card-content card-table">  
+          <mat-table [dataSource]="board.data" multiTemplateDataRows>
+              <ng-container matColumnDef="application">
+                  <mat-cell *matCellDef="let row">
+                   {{ row.board }}-{{ row.app }}
+                 </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="address">
+                  <mat-cell *matCellDef="let row">{{row.address}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="icon">
+                <mat-cell *matCellDef="let row"><mat-icon>launch</mat-icon></mat-cell>
+            </ng-container>
+            <mat-row class="row" (click)="goToUrl(row.folderlink)" *matRowDef="let row; columns: ['application', 'address','icon'];"></mat-row>
+          </mat-table>
+        </div>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>

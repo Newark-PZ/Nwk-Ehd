@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Map } from 'ol';
 import { Observable } from 'rxjs';
+import { Link } from '../shared/classes/link.class';
 import { MapLayer } from '../shared/classes/maplayer';
 import { LegendItem } from '../shared/interfaces/config-layers.inteface';
-import { SidebarLink } from '../shared/interfaces/other.interface';
-import { HomeCard, ZoningFields } from '../shared/models';
+import { HomeCard, SearchItem, ZoningFields } from '../shared/models';
 import * as StoreActions from '../store/store.actions';
 import * as fromStore from '../store/store.reducers';
 import * as homePanelActions from './home-panels/home-panels.actions';
@@ -81,7 +81,7 @@ export class StoreService {
       this.store.dispatch(new homePanelActions.SetToggle(toggle));
     }
     // Routes Array State
-    setRoutesArray(routes: Array<SidebarLink>): void {
+    setRoutesArray(routes: Array<Link>): void {
         this.store.dispatch(new RoutesArrayActions.SetRouteArray(routes));
     }
     // Image Index State
@@ -94,7 +94,7 @@ export class StoreService {
     /*
     * Layers state functions
     */
-    setGeoLayer(layer: string): void {
+    setGeoLayer(layer: Array<MapLayer>): void {
         this.store.dispatch(new LayersActions.SetGeoLayer(layer));
     }
     setParcelLayers(layers: Array<MapLayer>): void {
@@ -152,7 +152,7 @@ export class StoreService {
     setPropPaneTitle(title: string): void {
         this.store.dispatch(new PropPaneActions.SetTitle(title));
     }
-    setPropPanSelectedProp(selectedProp: { blocklot: string; address: string; coords: [number, number]; }): void {
+    setPropPanSelectedProp(selectedProp: SearchItem): void {
         this.store.dispatch(new PropPaneActions.SetSelectedProp(selectedProp));
     }
     setPropPanPropInfo(propInfo: ZoningFields): void {

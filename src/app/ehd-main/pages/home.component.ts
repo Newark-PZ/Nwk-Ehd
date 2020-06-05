@@ -10,50 +10,54 @@ import { HomePage } from '../../shared/models';
 
 export class EhdHomeComponent {
   homePageDetails: HomePage = {
+    id: 'home',
     splashImgs: [
       {src: 'assets/img/NwkCitySky.png', alt: 'Newark Skyline'}
     ],
-    buttonCategories: ['Dept of Economic & Housing Development', 'Divisions'],
+    buttonCategories: ['Divisions', 'Important Partners'],
     buttons: [
-      { icon: 'house', category: 'Divisions', title: 'Affordable Housing', subtext: 'Vacant', parent: '/affordablehousing', link: 'home' },
-      { icon: 'house', category: 'Divisions', title: 'Housing', subtext: 'Jenine Hazzard-Williams',
+      { disabled: true, icon: 'house', category: 'Divisions', title: 'Affordable Housing', subtext: 'Jerrah Crowder', extUrl: 'https://www.newarknj.gov/departments/affordable-housing' },
+      { disabled: true, icon: 'house', category: 'Divisions', title: 'Housing', subtext: 'Jenine Hazzard-Williams',
         parent: '/housingfinance', link: 'home' },
-      { icon: 'house', category: 'Divisions', title: 'Opportunity Zones', subtext: 'Chi', parent: '/opportunityzones', link: 'home' },
-      { icon: 'house', category: 'Divisions', title: 'Planning & Zoning',
+      { disabled: true, icon: 'house', category: 'Divisions', title: 'Opportunity Zones', subtext: 'Chiagorom Osu', parent: '/opportunityzones', link: 'home' },
+      { disabled: false, icon: 'house', category: 'Divisions', title: 'Planning & Zoning',
         subtext: 'Chris Watson', parent: '/planningzoning', link: 'home' },
-      { icon: 'house', category: 'Divisions', title: 'Property Management', subtext: 'Keith Hamilton', parent: '/propertymanagement', link: 'home' },
-      { icon: 'house', category: 'Divisions', title: 'Rent Control', subtext: 'Jay Lee', parent: '/rentcontrol', link: 'home'},
-      { icon: 'house', category: 'Divisions', title: 'Tenant Legal Services', subtext: 'Khabirah', parent: '/tenantlegalservices', link: 'home' }
+      { disabled: true, icon: 'house', category: 'Divisions', title: 'Property Management', subtext: 'Keith Hamilton', parent: '/propertymanagement', link: 'home' },
+      { disabled: true, icon: 'house', category: 'Divisions', title: 'Rent Control', subtext: 'Jacquea Lee', parent: '/rentcontrol', link: 'home'},
+      { disabled: true, icon: 'house', category: 'Divisions', title: 'Tenant Legal Services', subtext: 'Khabirah Myers',
+        parent: '/tenantlegalservices', link: 'home' },
+      { disabled: true, icon: 'business_center', category: 'Important Partners', title: 'Invest Newark',
+        extUrl: 'https://investnewark.org/' },
+      { disabled: true, icon: 'business_center', category: 'Important Partners', title: 'Greater Newark Convention & Visitor Bureau',
+        extUrl: 'https://www.newarkhappening.com/' }
     ],
     contentIntro: {
       header: 'Upcoming Hearings',
       events: [
         {
           icon: 'notification_important',
-          event: 'Central Planning Board',
-          date: 'Mon, May 11 @ 6pm'
+          event: 'Planning Board',
+          board: 'CPB',
+          eventType: 'Virtual Hearing',
+          date: 'Mon, June 1 @ 6pm'
         },
         {
           icon: 'notification_important',
-          event: 'Environmental Commission',
-          date: 'Wed, May 13 @ 6pm'
+          board: 'ZBA',
+          eventType: 'Virtual Hearing',
+          event: 'Zoning Board',
+          date: 'Thu, June 4 @ 6pm'
         }
       ],
-      right: {text: 'More Tools and Services Below'}
+      right: {text: 'Our Divisions & Partners'}
     },
     splashTitle: 'Welcome to EHD',
-    searchDisplay: 'none',
     officer: {
       name: 'Allison Ladd',
       pic: 'Allison_Fitzgibbon.png'
     },
     splashBlurb: {
-      text: "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
-      buttons: [
-        {text: 'Applications', parent: '/opz/applications', link: 'info' },
-        { text: 'Payments', parent: '/opz/applications', link: 'payments' },
-        { text: 'Zoning Map', parent: '/opz/maps', link: 'zoning' }
-      ]
+      text: 'The mission of the Department of Economic and Housing Development is to create economic opportunity for Newark residents and enhance the vibrancy of our city. To this end, the department seeks to position Newark to take advantage of its unique assets, including its strategic location, a diverse and underutilized workforce, a large amount of developable land, concentration of corporate and business service firms, several major universities, and a wealth of arts and cultural assets.'
     }
   };
 }

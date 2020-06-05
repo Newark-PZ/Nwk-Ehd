@@ -4,7 +4,9 @@ export const environment = {
   },
   config: {
     AIRTABLE_API_KEY: 'key5WJB3zRIAyyfTr',
-
+    MONGO_API_KEY: 'IwgVRWO4eDXC563cIusNxtvNo3Ba1Xn8zWyV7xcWKfD77GcD6yo4qe7kpr6UlTJl',
+    GDRIVE_API_KEY: 'AIzaSyDL58hGXLIi69tpowrlqXjoWzde-_CS7JI',
+    GCAL_API_KEY: 'AIzaSyCN96OiB7kDEpTfX0LsRPISn9RvdMUdZ5g',
     api: false,
     url: './assets/params/json/',
 

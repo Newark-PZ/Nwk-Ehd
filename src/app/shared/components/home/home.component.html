@@ -1,4 +1,4 @@
-<section class="splash" [ngStyle]="homePage.backgroundStyling">
+<section class="splash">
     <div class="splash-image-carousel" *ngIf="homePage.splashImgs">
       <div class="carousel-img-wrapper" [@slideInOut]="(slideshowIndex$ | async) === i ? 'shown' : 'hidden'" *ngFor="let img of homePage.splashImgs; let i = index" [id]="'carousel'+i">
           <img src="{{img.src}}" alt="{{img.alt}}">
@@ -32,13 +32,16 @@
   </section>
   <section class="content-intro" *ngIf="homePage.contentIntro">
     <div [ngClass]="homePage.contentIntro.right ? 'content-intro left' : 'content-intro'">
-      <h4 *ngIf="homePage.contentIntro.header">{{ homePage.contentIntro.header }}</h4>
+      <h4 *ngIf="homePage.contentIntro.header"><mat-icon style="margin: 0 .5rem;vertical-align: bottom;">event</mat-icon>{{ homePage.contentIntro.header }}</h4>
       <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
       <div class="content-intro-btns" *ngIf="homePage.contentIntro.events">
-        <button *ngFor="let button of homePage.contentIntro.events" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
-          <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
-          <b>{{ button.event }}</b><br>{{ button.date }}
-          <ng-template #icon><mat-icon>exit_to_app</mat-icon></ng-template>
+        <button *ngFor="let button of homePage.contentIntro.events" class="event" (click)="openEvent(button)">
+          <div><b>{{ button.event }}</b><br><span>{{ button.date }}</span></div>
+        </button>
+        <button class="dashboard-btn" [routerLink]="['/planningzoning','virtualhearing']">
+          <mat-icon>live_tv</mat-icon>
+          <span>Virtual Hearing</span>
+          <span>Dashboard</span>
         </button>
       </div>
       <h4 *ngIf="homePage.contentIntro.footer">{{ homePage.contentIntro.footer }}</h4>
@@ -60,13 +63,13 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="program-cards">
-          <mat-card [routerLink]="[card.parent, card.link]" (click)="goTo(card.extUrl)" class="program-card" *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
+          <mat-card [ngClass]="card.disabled ? 'disabled' : ''" [routerLink]="card.disabled ? undefined : [card.parent, card.link]" (click)="card.disabled ? '' : goTo(card.extUrl)" class="program-card" *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
             <div class="button-card">
               <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
               <h4 style="margin: auto">{{ card.title }}</h4>
               <mat-icon style="margin-left: .5rem">exit_to_app</mat-icon>
             </div>
-            <div class="card-content">  
+            <div class="card-content" [ngClass]="card.isEvent ? 'event' : ''">  
               <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
               <span [innerHtml]="card.subtext"></span>
             </div>

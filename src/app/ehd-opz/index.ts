@@ -1,9 +1,7 @@
-import { OpzAboutComponent } from './pages/about.component';
 import { OpzApplicationsComponent } from './pages/applications.component';
 import { OpzContactComponent } from './pages/contact.component';
 import { OpzHomeComponent } from './pages/home.component';
 import { MapsComponent } from './pages/maps.component';
-import { OpzPlanningComponent } from './pages/planning.component';
 import { OpzResourcesComponent } from './pages/resources.component';
 import { OpzStaffComponent } from './pages/staff.component';
 import { OpzZoningComponent } from './pages/zoning.component';
@@ -23,17 +21,17 @@ import { CpbComponent } from './pages/boards-cpb.component';
 import { EcComponent } from './pages/boards-ec.component';
 import { LhpcComponent } from './pages/boards-lhpc.component';
 import { ZbaComponent } from './pages/boards-zba.component';
+import { DashboardComponent } from './pages/dashboard.component';
 
 export const planningComponents = [
   OpzHomeComponent,
-  OpzAboutComponent,
   OpzApplicationsComponent,
   OpzStaffComponent,
   MapsComponent,
-  OpzPlanningComponent,
   OpzResourcesComponent,
   OpzZoningComponent,
-  OpzContactComponent
+  OpzContactComponent,
+  DashboardComponent
 ];
 
 export const planningResComponents = [
@@ -55,12 +53,10 @@ export const boardsComponents = [
   ZbaComponent
 ];
 
-export * from './pages/about.component';
 export * from './pages/applications.component';
 export * from './pages/contact.component';
 export * from './pages/home.component';
 export * from './pages/maps.component';
-export * from './pages/planning.component';
 export * from './pages/resources.component';
 export * from './pages/staff.component';
 export * from './pages/zoning.component';

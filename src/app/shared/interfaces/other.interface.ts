@@ -1,10 +1,15 @@
 import { Route } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Hearing } from '../classes/hearing';
+import { CalEvent } from '../models';
 
 export interface ModalConfig {
   header?: string;
   message?: string;
-  event?: any;
+  event?: CalEvent;
+  link?: string;
   tabIndex?: number;
+  eventButtons?: Array<{id: string; link: string; linkText: string; icon: string; styling?: string; }>;
 }
 export interface StoreConfigImageIndex {
   currentINnex?: number;
@@ -103,4 +108,15 @@ export interface ResourcePage {
         footer?: string;
       }>;
     hideBottomBar?: boolean;
+}
+export interface VirtualHearingTab {
+  board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
+  label: string;
+  live: boolean;
+  disabled?: boolean;
+  agenda: string;
+  fofId?: string;
+  event: Observable<Hearing>;
+  data?: Array<any>;
+  currentEvent?: CalEvent;
 }

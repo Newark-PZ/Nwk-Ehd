@@ -2,7 +2,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { SnackbarComponent } from '../../shared';
+import { JsonDataService, SnackbarComponent } from '../../shared';
 import { StaffPage } from '../../shared/models';
 
 @Component({
@@ -16,6 +16,7 @@ export class OpzStaffComponent implements OnInit {
   activeViewName;
   data: Array<any> = [];
   pageDetails: StaffPage = {
+    id: 'staff',
     title: 'Our Staff',
     icon: 'people',
     subtitle: this.activeFragment,
@@ -29,12 +30,12 @@ export class OpzStaffComponent implements OnInit {
   constructor(
     readonly clipboard: Clipboard,
     readonly _snackBar: MatSnackBar,
-    readonly router: Router
+    readonly router: Router,
+    readonly getData: JsonDataService
     ) {
-      // this.firestore.collection('staff')
-      // .get()
-      // .subscribe(resp => this.data = resp.docs.map(doc => doc.data())
-      //   .sort(d => d.Hierarchy));
+      this.getData.getStaff()
+        .then(resp => this.data = resp.sort((d1, d2) => d1.Hierarchy - d2.Hierarchy))
+        .catch(err => { console.error(err); });
     }
 
   ngOnInit(): void {

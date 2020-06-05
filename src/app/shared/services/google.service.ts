@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { toLonLat } from 'ol/proj';
 
 /**
  * Service with methods to connect map clicks to
@@ -13,7 +14,8 @@ export class GoogleService {
  * @param LONG Numerical Longitude, in decimal degrees
  */
     openStreetView(LAT: number, LONG: number): any {
-        window.open(`https://www.google.com/maps?q=&layer=c&cbll=${LAT.toString()},${LONG.toString()}`, '_blank');
+        const latlon = toLonLat([LAT, LONG]);
+        window.open(`https://www.google.com/maps?q=&layer=c&cbll=${latlon[1].toString()},${latlon[0].toString()}`, '_blank');
     }
 /* Open Location as pin in Google Maps with only Lat Long
  * @param LAT Numerical Latitude, in decimal degrees

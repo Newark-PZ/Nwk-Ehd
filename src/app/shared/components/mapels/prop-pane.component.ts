@@ -2,7 +2,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, HostBinding } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { MapInput, ZoningFields } from '../../models';
+import { MapInput, SearchItem, ZoningFields } from '../../models';
 import { CartoService } from '../../services/carto.service';
 
 import * as fromStore from '../../../store/store.reducers';
@@ -22,7 +22,7 @@ export class PropPaneComponent {
     accessoryUsesCols: Array<string> = ['Accessory Use'];
     @HostBinding('class') class = 'map-prop-pane';
 
-    prop: Observable<{blocklot: string; address: string; coords: [number, number]; }>;
+    prop: Observable<SearchItem>;
     constructor(
         public carto: CartoService,
         public clipboard: Clipboard,

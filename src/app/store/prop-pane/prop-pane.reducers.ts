@@ -1,17 +1,22 @@
-import { ZoningFields } from '../../shared/models';
+import { SearchItem, ZoningFields } from '../../shared/models';
 import * as PropPaneActions from './prop-pane.actions';
 
 export interface State {
   opened: boolean;
   title: string;
-  selectedProp: { blocklot: string; address: string; coords: [number, number]; };
+  selectedProp: SearchItem;
+  selectedGeo: any;
   propInfo: ZoningFields;
 }
 
 const initialState: State = {
   opened: false,
   title: '',
-  selectedProp: { blocklot: '', address: '', coords: [0, 0] },
+  selectedProp: {
+     BLOCK_LOT: '',
+     STREET_ADD: '',
+     geometry: [ 0, 0 ]
+  },
   propInfo: {
     cartodb_id: '',
     the_geom: '',
@@ -28,7 +33,8 @@ const initialState: State = {
     accessory: [''],
     building_t: [''],
     proploc: ''
-  }
+  },
+  selectedGeo: undefined
 };
 
 export const propPaneReducer = (
@@ -44,6 +50,8 @@ export const propPaneReducer = (
       return { ...state, title: action.payload };
     case PropPaneActions.SET_SELECTED_PROP:
       return { ...state, selectedProp: action.payload };
+    case PropPaneActions.SET_SELECTED_GEO:
+      return { ...state, selectedGeo: action.payload };
     case PropPaneActions.SET_PROP_INFO:
       return { ...state, propInfo: action.payload };
     default:

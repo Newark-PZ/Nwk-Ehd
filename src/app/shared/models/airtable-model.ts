@@ -125,7 +125,7 @@ export interface AirBulk {
   orientationPrimaryEntrance: Array<string>;
   activeGroundFloorReqs: Array<string>;
 }
-export interface FirebaseStaff {
+export interface Staff {
     Articles: string;
     Bio: string;
     Class: 'leadership' | 'planners' | 'Support';

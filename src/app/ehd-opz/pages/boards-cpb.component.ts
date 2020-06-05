@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AirService, ModalComponent } from '../../shared';
-import { BoardPage, BoardsFields, HomeCard } from '../../shared/models';
+import { JsonDataService, ModalComponent } from '../../shared';
+import { BoardPage, HomeCard } from '../../shared/models';
 import * as PageStateActions from '../../store/page-state/page-state.actions';
 import * as fromStore from '../../store/store.reducers';
 
@@ -19,10 +19,11 @@ export class CpbComponent implements OnInit {
   activeFragment;
   boardMembers$: Observable<Array<HomeCard>>;
   live = true;
-  constructor(readonly airData: AirService, readonly store: Store<fromStore.StoreState>, public dialog: MatDialog) {
+  constructor(readonly getData: JsonDataService, readonly store: Store<fromStore.StoreState>, public dialog: MatDialog) {
       this.boardMembers$ = this.store.select(state => state.pageState.boardCPB);
   }
   pageDetails: BoardPage = {
+    id: 'cpb',
     splashImgs: [
       {src: 'assets/img/NwkCitySky.png', alt: 'Newark Skyline'}
     ],
@@ -44,18 +45,18 @@ export class CpbComponent implements OnInit {
         {
           icon: 'event',
           event: 'Central Planning Board',
-          date: 'Mon, May 11 @ 6pm'
+          date: 'Mon, June 1 @ 6pm'
         },
         {
           icon: 'event',
           event: 'Central Planning Board',
-          date: 'Wed, May 13 @ 6pm'
+          date: 'Mon, June 15 @ 6pm'
         }
       ],
       right: {text: 'More Info Below'}
     },
     searchDisplay: 'none',
-    introText: '<img class="intro-pic" src="assets/img/NwkLibrary.jpg">This space will have a short description of the Board, and talk about the next meeting:',
+    introText: `<img class="intro-pic" src="assets/img/NwkLibrary.jpg">The Central Planning Board is entrusted  with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.`,
     infoButtons: [
       // tslint:disable-next-line: max-line-length
       { text: 'Link to Virtual Hearing', icon: this.live ? 'live_tv' : 'tv_off', parent: '/opz/boards/planning', link: 'live', live: this.live },
@@ -82,24 +83,25 @@ export class CpbComponent implements OnInit {
   }
   getBoard(): Array<HomeCard> {
     const buttons: Array<HomeCard> = [];
-    this.airData.getRecords('Boards', 'view=planning')
-    .subscribe(
+    this.getData.getBoardMembers('Central Planning Board')
+    .then(
       data => {
-        data.records.forEach(val => buttons.push({
+        data.forEach(val => buttons.push({
           icon: 'person',
           title: `
-          ${(val.fields as BoardsFields).nameFirst} ${(val.fields as BoardsFields).nameLast} ${(val.fields as BoardsFields).nameExtra ? (val.fields as BoardsFields).nameExtra : ''}
+          ${val.nameFirst} ${val.nameLast} ${val.nameExtra ? val.nameExtra : ''}
           `,
-          category: `${(val.fields as BoardsFields).boardCommission}`,
-          subtext: `${(val.fields as BoardsFields).position ? (val.fields as BoardsFields).position : ''}`
+          category: `${val.boardCommission}`,
+          subtext: `${val.position ? val.position : ''}`
         }));
       }
     )
-    .add(() => {this.store.dispatch(new PageStateActions.SetBoardCPB(buttons)); });
+    .then(() => {this.store.dispatch(new PageStateActions.SetBoardCPB(buttons)); })
+    .catch(err => { console.error(err); });
 
     return buttons;
   }
-  getEventInfo(event) {
+  getEventInfo(event): void {
   this.dialog.open(ModalComponent, {
     data: {
       header: event.title,

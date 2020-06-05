@@ -1,19 +1,21 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Page } from '../../shared/models';
 import { LotComponent } from './diagrams/lot.component';
 import { buildingTypes, getDimensions, getReqs } from './diagrams/models/zoning.model';
+import { OpzZoningRegsComponent } from './sub-pages/regs/regs.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-opz-zoning',
-  template: '<app-page [page]="pageDetails"></app-page>'
+  template: '<app-page [page]="pageDetails"><opz-zoning-regs childComponent></opz-zoning-regs></app-page>'
 })
 export class OpzZoningComponent implements OnInit {
   @ViewChild(LotComponent) lotComponent: LotComponent;
   @ViewChild('reqReport') report: ElementRef;
+  @ContentChild('opz-zoning-regs') regs: OpzZoningRegsComponent;
   @Input() reportVal;
   zoneOptions: Array<string> = [
     'R-1',
@@ -50,18 +52,15 @@ export class OpzZoningComponent implements OnInit {
   activeFragment;
   activeViewName;
   pageDetails: Page = {
-    title: 'Zoning',
-    subtitle: this.activeFragment,
+    id: 'zoning',
+    title: 'Zoning: Click through our regulations below',
     introText: '',
-    contentIntro: {text: 'This is our staff'},
-    searchDisplay: 'none',
-    buttonCategories: ['staff'],
     buttons: [
       { icon: 'calendar', category: 'staff', title: 'Our Leadership', link: 'leadership' },
       { icon: 'file', category: 'staff', title: 'Planning Staff', link: 'planners' },
       { icon: 'map', category: 'staff', title: 'Zoning & Support Staff', link: 'support' }
     ],
-    subComponents: []
+    hideBottomBar: true
   };
   constructor(
     public clipboard: Clipboard,
@@ -71,7 +70,6 @@ export class OpzZoningComponent implements OnInit {
   ngOnInit(): void {
     this.dimensions = getDimensions('R-1', 'One-family');
   }
-
   changeTypes(zone): any {
     this.buildingTypes = buildingTypes(this.zoneName);
   }

@@ -4,21 +4,18 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 
-import * as components from './index';
-
 import { EHD_ROUTES } from './ehd-main.routing';
 
 import { EhdMainComponent } from './ehd-main.component';
+import { EhdHomeComponent } from './pages/home.component';
 
 @NgModule({
-  declarations: [
-    components.ehdComponents
-  ],
+  declarations: [EhdHomeComponent],
   entryComponents: [EhdMainComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(EHD_ROUTES),
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(EHD_ROUTES)
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

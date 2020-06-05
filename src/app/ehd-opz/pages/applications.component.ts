@@ -15,6 +15,7 @@ export class OpzApplicationsComponent implements OnInit {
   activeFragment;
   activeViewName;
   page: AppPage = {
+    id: 'applications',
     title: 'Applications & Payment',
     icon: 'assessment',
     contentIntro: {text: ''},

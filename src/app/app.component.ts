@@ -4,7 +4,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { SidebarLink } from './shared/interfaces/other.interface';
+import { Link } from './shared/classes/link.class';
+import { EventsService } from './shared/services/events.service';
 import * as SidebarActions from './store/sidebar/sidebar.actions';
 import * as RightSidebarActions from './store/sidebarRight/sidebar.actions';
 import * as fromStoreActions from './store/store.actions';
@@ -20,30 +21,20 @@ export class AppComponent implements OnDestroy, OnInit {
   sidebarOpenedSubscription: Subscription;
   deptDisplay: boolean;
   mayorDisplay: boolean;
-  selectedModule$: Observable<string | undefined>;
-
-  title$: Observable<string | undefined>;
-  hasSidebar$: Observable<boolean>;
   sidebarOpened$: Observable<boolean>;
   sidebarMode$: Observable<string>;
-  hasSidebarRight$: Observable<boolean>;
   sidebarRightOpened$: Observable<boolean>;
   sidebarRightMode$: Observable<string>;
-  routesArray$: Observable<Array<SidebarLink> | undefined>;
-  treeControl = new NestedTreeControl<SidebarLink>(node => node.children);
-  hasChild = (_: number, node: SidebarLink) => !!node.children && node.children.length > 0;
+  routesArray$: Observable<Array<Link> | undefined>;
+  treeControl = new NestedTreeControl<Link>(node => node.children);
+  hasChild = (_: number, node: Link) => !!node.children && node.children.length > 0;
   constructor(
-    private readonly store: Store<fromStore.StoreState>,
-    public breakpointObserver: BreakpointObserver
+    readonly store: Store<fromStore.StoreState>,
+    readonly breakpointObserver: BreakpointObserver,
+    readonly events: EventsService
     ) {
-    this.selectedModule$ = this.store.select(
-      state => state.sidebar.selectedModule
-    );
-    this.title$ = this.store.select(state => state.sidebar.title);
-    this.hasSidebar$ = this.store.select(state => state.sidebar.hasSidebar);
     this.sidebarOpened$ = this.store.select(state => state.sidebar.opened);
     this.sidebarMode$ = this.store.select(state => state.sidebar.mode);
-    this.hasSidebarRight$ = this.store.select(state => state.sidebarRight.hasSidebar);
     this.sidebarRightOpened$ = this.store.select(state => state.sidebarRight.opened);
     this.sidebarRightMode$ = this.store.select(state => state.sidebarRight.mode);
     this.routesArray$ = this.store.select(state => state.routesArray.routesArray);
@@ -56,6 +47,7 @@ export class AppComponent implements OnDestroy, OnInit {
         if (state.matches) {this.mayorDisplay = true; this.deptDisplay = true;
         } else {this.mayorDisplay = false; this.deptDisplay = false; }
     });
+    this.events.initHearings();
     this.store.dispatch(new fromStoreActions.ClearState());
   }
 

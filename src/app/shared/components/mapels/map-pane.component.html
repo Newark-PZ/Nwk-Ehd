@@ -1,6 +1,6 @@
 <section class="flex-row">
 <mat-card class="sheet-card flex-cols-4">
-  <ng-template  [ngIf]="(parcelLayers | async)[0]" let-parcels="ngIf">
+  <ng-template  [ngIf]="(geoLayer | async)[0]" let-geo="ngIf">
   <mat-card-header>
     <mat-card-title>
       Select the Main Geography
@@ -9,10 +9,10 @@
   <div class="card-content top">
     <button
       mat-icon-button
-      [color]="parcels.layer.getVisible() ? 'primary' : 'secondary'"
-      [style.backgroundColor]="parcels.layer.getVisible() ? 'rgba(10,200,10,.25)':'whitesmoke'"
-      (click)="$event ? toggleVisible('geo', parcels) : null">
-      <mat-icon>{{ parcels.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+      [color]="geo.layer.getVisible() ? 'primary' : 'secondary'"
+      [style.backgroundColor]="geo.layer.getVisible() ? 'rgba(10,200,10,.25)':'whitesmoke'"
+      (click)="$event ? toggleVisible('geo', geo) : null">
+      <mat-icon>{{ geo.layer.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
     </button>
     <mat-form-field appearance="outline">
       <mat-label>Select Layer</mat-label>
@@ -31,8 +31,9 @@
         [step]=".1"
         thumbLabel
         [tickInterval]="1"
-        (valueChange)="setOpacity(geoOpacity, 'geo')"
-        [(ngModel)]="geoOpacity">
+        [tickInterval]="1"
+        (valueChange)="setOpacity(geo, 'geo')"
+        [(ngModel)]="geo.layer['opacity']">
     </mat-slider>
   </mat-card-actions>
   </ng-template>
@@ -76,13 +77,8 @@
 </ng-template>
 </mat-card>
 <mat-card class="sheet-card flex-cols-4">
-  <mat-card-header>
-    <mat-card-title>
-      Select Other Overlays
-    </mat-card-title>
-  </mat-card-header>
   <div class="card-content">
-    <mat-table [dataSource]="overlays | async" multiTemplateDataRows cdkDropList (cdkDropListDropped)="onListDrop($event)">
+    <mat-table [dataSource]="overlays | async" multiTemplateDataRows>
       <ng-container matColumnDef="expand">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
@@ -91,16 +87,6 @@
           [color]="row.expanded ? 'primary' : 'secondary'"
           (click)="row.expanded = !row.expanded">
           <mat-icon>{{ row.expanded  ? 'expand_less' : 'chevron_right'}}</mat-icon>
-        </button>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="zIndex">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <button
-          mat-icon-button
-          color="secondary">
-          <mat-icon>drag_handle</mat-icon>
         </button>
         </mat-cell>
       </ng-container>
@@ -116,7 +102,7 @@
          </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Layer</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Other Layers</mat-header-cell>
           <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="opacity">
@@ -136,7 +122,7 @@
         </td>
       </ng-container>
       <mat-header-row *matHeaderRowDef="cols; sticky: true"></mat-header-row>
-      <mat-row class="row" cdkDrag [cdkDragData]="row" *matRowDef="let row; columns: cols;"
+      <mat-row class="row" *matRowDef="let row; columns: cols;"
       [class.expanded]="row.expanded === row"></mat-row>
       <mat-row *matRowDef="let row; columns: ['opacity']; when: isExpansionDetailRow"
       [@rowExpand]="row.expanded ? 'expanded' : 'collapsed'"
@@ -145,17 +131,6 @@
       </mat-table>
       <mat-paginator [length]="(overlays | async).length" [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
   </div>
-  <mat-card-actions>
-    <!-- <mat-slider
-        class="opacity-slider"
-        [max]="1"
-        [min]="0"
-        [step]=".1"
-        thumbLabel
-        [tickInterval]="1"
-        [(ngModel)]="overlayOpacity">
-    </mat-slider> -->
-  </mat-card-actions>
 </mat-card>
 </section>
   

@@ -95,9 +95,17 @@
 }
 
 .link-tree {
+  mat-tree-node:first-of-type li:not(.router-tree-child-node){
+    background: antiquewhite;
+    color: rgb(183, 28, 28) !important;
+    -webkit-text-fill-color: rgb(183, 28, 28) !important;
+    border-color: rgb(183, 28, 28) !important;
+    box-shadow: 0px 2px 2px rgb(183, 28, 28) !important;
+    &:hover {background-color: whitesmoke !important;}
+  }
   &::before {
     background: #0d47a1;
-    height: 3.3rem;
+    height: 3.6rem;
     display: block;
     position: relative;
     content: '';
@@ -125,7 +133,7 @@
   }
 
   &:hover {
-      background-color: $primary-color !important;
+      background-color: slategray !important;
       box-shadow: none;
       color: white;
       -webkit-text-fill-color: white;
@@ -139,7 +147,7 @@
   }
 }
 .mat-nested-tree-node {
-  li {min-height: 48px !important; width: 100%;}
+  li {min-height: 52px !important; width: 100%;}
 }
 .router-tree-node {
     .mat-button-wrapper {
@@ -154,30 +162,33 @@
         font-size: 1.5rem;
         margin: auto 0;
     }
-
     background: none;
-    font-family: 'Segoe UI',
-    'Open Sans',
-    sans-serif;
+    font-family: "Segoe UI", "Open Sans", sans-serif;
     display: flex;
-    margin: 1rem 5%;
-    height: 2.75rem;
+    margin: .5rem auto;
+    height: auto;
     text-align: center;
     justify-content: space-between;
     align-items: center;
     font-size: 1.25rem;
     border: none;
     border-top: 2px solid !important;
-    border-radius: .25rem;
-    box-shadow: 0px 2px 0px rgba(0,0,0,.25) !important;
+    border-radius: 0.25rem;
+    box-shadow: 0px 2px 1.5px rgba(0, 0, 0, 0.25) !important;
     width: 90%;
-    padding: 0 .5rem;
+    padding: 0 .85rem;
     list-style: none !important;
     cursor: pointer;
-
+    &.drop {
+      display: flex !important;
+      justify-content: space-between !important;
+      margin: 0.5rem auto !important;
+      height: 2.75rem;
+    }
     &:hover {
-        background-color: $primary-color !important;
+        background-color: slategrey !important;
         box-shadow: none;
+        text-decoration-color: white;
         color: white;
         -webkit-text-fill-color: white;
     }
@@ -215,5 +226,7 @@
   font-weight: 500 !important;
   margin-right: .1rem !important;
 }
-
-
+.disabled {
+  color: whitesmoke !important;
+  -webkit-text-fill-color: whitesmoke !important;
+}

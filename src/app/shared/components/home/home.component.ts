@@ -1,14 +1,15 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as HomePanelActions from '../../../store/home-panels/home-panels.actions';
 import * as ImageIndexActions from '../../../store/image-index/image-index.actions';
 import * as fromStore from '../../../store/store.reducers';
-import { HomePage, PageCompsFields } from '../../models';
-import { AirService } from '../../services/air.service';
+import { CalEvent, HomePage } from '../../models';
 import { slideshowAnimation } from '../../util/animations';
+import { ModalComponent } from '../elements/modal.component';
 
 @Component({
   animations: [slideshowAnimation],
@@ -21,9 +22,9 @@ import { slideshowAnimation } from '../../util/animations';
 export class HomeComponent implements OnInit, OnDestroy {
   @Input() homePage: HomePage;
   constructor(
-    public airData: AirService,
     readonly router: Router,
     public breakpointObserver: BreakpointObserver,
+    public dialog: MatDialog,
     readonly store: Store<fromStore.StoreState>
     ) {
       this.expansionOpen$ = this.store.select(state => state.homePanel.open);
@@ -52,12 +53,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.store.dispatch(new HomePanelActions.SetToggle(true));
       }
     });
-    if (!this.homePage.splashTitle) {
-      this.airData.getRecords('PageComps', `filterByFormula=%7BName%7D%3D'${this.router.url.substr(1, 3)}+Homepage+Splash+Title'`)
-        .subscribe(
-          data => this.homePage.splashTitle = (data.records[0].fields as PageCompsFields).content,
-          err => { console.error(err); } );
-    }
   }
   ngOnDestroy(): void {
     this.store.dispatch(new ImageIndexActions.ResetImageIndex(0));
@@ -79,5 +74,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.slideshowIndex++;
     if (this.slideshowIndex > imgsLength - 1) { this.slideshowIndex = 0; }
     this.store.dispatch(new ImageIndexActions.SetImageIndex(this.slideshowIndex));
+  }
+  openEvent(evt: CalEvent): void {
+    this.dialog.open(ModalComponent, {
+      maxWidth: '90vw',
+      data: {
+        header: `<b>${evt.event}</b><br><span>${evt.date}</span>`,
+        message: 'event',
+        event: evt
+      }
+    });
   }
 }

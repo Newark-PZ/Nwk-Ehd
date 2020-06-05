@@ -3,12 +3,13 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatRipple } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { LayerVectorComponent, MapComponent, OverlayComponent } from 'ng-maps';
+import { MapComponent, OverlayComponent } from 'ng-maps';
 import { MapBrowserEvent } from 'ol';
 import { easeOut } from 'ol/easing';
 import { fromExtent } from 'ol/geom/Polygon';
 import TileLayer from 'ol/layer/Tile';
-import { fromLonLat, toLonLat } from 'ol/proj';
+import VectorLayer from 'ol/layer/Vector';
+import { fromLonLat } from 'ol/proj';
 import { UTFGrid } from 'ol/source';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -44,6 +45,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   coords;
   layersSubscription: Subscription;
   parcelsSubscription: Subscription;
+  geosSubscription: Subscription;
   parcelsOpacity: number;
   clicked = {blocklot: '', block: '', lot: '', proploc: ''};
   basemap$: Observable<boolean>;
@@ -55,9 +57,9 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatRipple) ripple: MatRipple;
   @ViewChild('map') map: MapComponent;
   @ViewChild('overlay') overlay: OverlayComponent;
-  @ViewChild('geoLayer') geoLayer: LayerVectorComponent;
   overlaylyrs: Array<MapLayer> = [];
   parcelLyrs: Array<MapLayer> = [];
+  geoLyr: Array<MapLayer> = [];
 
   constructor(
     readonly store: Store<fromStore.StoreState>,
@@ -79,8 +81,10 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
       this.store.dispatch(new MapActions.SetMap(this.map.instance));
       this.overlaylyrs = this.layerservice.initOverlayLayers();
       this.overlaylyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
-      this.parcelLyrs = this.getlayers.initGeoParcelLayers();
+      this.getlayers.initGeoParcelLayers()
+        .forEach((g, i) => i === 0 ? this.parcelLyrs = g : this.geoLyr = g);
       this.parcelLyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
+      this.geoLyr.forEach(l => {this.map.instance.addLayer(l.layer); });
       });
     this.map.instance.getView()
       .on('change', () =>
@@ -120,6 +124,22 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
             this.map.instance.addLayer(l);
           });
     });
+    this.geosSubscription = this.store
+    .select(state => state.layers.geoLayer)
+    .pipe(take(1))
+    .subscribe(layers => {
+      if (this.geoLyr.length > 0) {
+        this.geoLyr.forEach(l => {
+            this.map.instance.removeLayer(l.layer);
+            this.geoLyr.shift();
+          });
+      }
+      // Add all OL layers
+      layers.forEach(l => {
+        this.geoLyr.push(l);
+        this.map.instance.addLayer(l);
+      });
+    });
     this.map.instance.on('singleclick', e => { this.handleSingleClick(e); });
   }
   ngOnDestroy(): void {
@@ -127,13 +147,14 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this._bottomSheet.dismiss();
     this.layersSubscription.unsubscribe();
     this.parcelsSubscription.unsubscribe();
+    this.geosSubscription.unsubscribe();
     this.overlaylyrs = [];
     this.layerservice.resetService();
     this.getlayers.resetService();
   }
   openBottomsheet(page: number): void {
     this._bottomSheet.open(BottomSheetComponent,
-      { data: { map: this.map, geoLayer: this.geoLayer, overlay: this.overlay } })
+      { data: { map: this.map, overlay: this.overlay } })
       .afterOpened()
       .subscribe(() => {
         this.store.dispatch(new MapPaneActions.SetSelectedModule(page));
@@ -165,17 +186,28 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this.ripple.launch(e.pixel[0] + this.convertRemToPixels(1), e.pixel[1] + this.convertRemToPixels(5.5));
     const viewResolution = this.map.instance.getView()
       .getResolution();
-    this.coords = [toLonLat(e.coordinate)[1], toLonLat(e.coordinate)[0]];
     this.map.instance.getLayers()
       .forEach(l => {if (l.getClassName() === 'parcelgrid') { ((l as TileLayer).getSource() as UTFGrid)
         .forDataAtCoordinateAndResolution(e.coordinate, viewResolution, data => {
         this.clicked.blocklot = data.blocklot || data.block_lot || '__-__';
         this.clicked.proploc = data.proploc || 'No Address/Non-Parcel';
         this.store.dispatch(new PropPaneActions.SetSelectedProp(
-          { blocklot: this.clicked.blocklot, address: this.clicked.proploc, coords: this.coords }
+          {
+            BLOCK_LOT: this.clicked.blocklot,
+            STREET_ADD: this.clicked.proploc,
+            geometry: [e.coordinate[0], e.coordinate[1]]
+          }
           ));
       });
-    }});
+      } else if (l.getClassName() === 'geo') {
+        const geofeat = (l as VectorLayer).getSource()
+          .getFeaturesAtCoordinate(e.coordinate)[0]
+          .getProperties();
+        this.store.dispatch(new PropPaneActions.SetSelectedGeo(
+          geofeat ? geofeat : ''
+        ));
+      }
+    });
     this.overlay.instance.setPosition(e.coordinate);
     this.snackBar.openFromComponent(PropSnackbarComponent, {data: {bottomsheet: () => { this.openBottomsheet(2); }}});
   }

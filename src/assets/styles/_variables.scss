@@ -62,13 +62,20 @@ $dropdown-bg: $white-alt;
 $button-shadow: lightgrey;
 $flex-positions: ( "col":column, "row":row);
 @each $name, $position in $flex-positions { 
-.flex-#{$name} {
+  .flex {
     display: flex !important;
-    flex-wrap: wrap;
-    flex-direction: $position;
     padding: .5rem;
+    .mat-form-field-wrapper {width: 100%;margin: 0;
+      padding: 0;}
+    &-#{$name} { 
+      display: flex !important;
+      padding: 0 .5rem;
+      flex-wrap: wrap;
+      flex-direction: $position;
+    }
   }
 }
+.cols-auto { flex: 1 1 auto; &[src] {width: auto !important} }
 $flex-positions: ("center": center, "end": flex-end, "start": flex-start);
 @each $name, $position in $flex-positions { 
   .justify-content-#{$name} {justify-content: $position;}

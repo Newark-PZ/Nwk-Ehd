@@ -1,55 +1,28 @@
-import { Clipboard } from '@angular/cdk/clipboard';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { SnackbarComponent } from '../../shared';
+import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Page } from '../../shared/models';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-opz-contact',
-  template: '<app-page [page]="pageDetails"></app-page>'
+  selector: 'app-opz-resources',
+  styles: [`
+    .airtable-embed { width:95%; height: 80vh; background: transparent; border: 1px solid #ccc; margin-left: 2.5% !important;}
+  `],
+    // tslint:disable: template-no-call-expression
+  template: `<app-page [page]="pageDetails">
+      <iframe class="airtable-embed" childComponent [src]="sanitizer.bypassSecurityTrustResourceUrl(link)" frameborder="0" onmousewheel=""></iframe>
+    </app-page>`
 })
 
-export class OpzContactComponent implements OnInit {
-  activeFragment;
-  activeViewName;
+export class OpzContactComponent {
   pageDetails: Page = {
-    title: 'Zoning',
-    subtitle: this.activeFragment,
-    introText: '',
-    contentIntro: {text: 'This is our staff'},
-    searchDisplay: 'none',
-    buttonCategories: ['staff'],
-    buttons: [
-      { icon: 'calendar', category: 'staff', title: 'Our Leadership', link: 'leadership' },
-      { icon: 'file', category: 'staff', title: 'Planning Staff', link: 'planners' },
-      { icon: 'map', category: 'staff', title: 'Zoning & Support Staff', link: 'support' }
-    ],
-    subComponents: []
+    id: 'contact',
+    title: 'Submit the form below to contact us',
+    hideBottomBar: true
   };
-
+  link = 'https://airtable.com/embed/shrXXlLSQ5ZepfZo2?backgroundColor=purple';
   constructor(
-    public clipboard: Clipboard,
-    public _snackBar: MatSnackBar,
-    private readonly router: Router
-    ) { }
+    public sanitizer: DomSanitizer
+    ) {
 
-  ngOnInit(): void {
-    this.activeFragment = this.router.url.slice(this.router.url.lastIndexOf('/') + 1);
-    this.getTab(this.activeFragment);
-  }
-  copySuccess(object): any {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
-      data: { message: 'Copied!', detail: object }
-    });
-  }
-  getTab(view): any {
-    this.activeViewName = view;
-  }
-  copyVal(val, object): any {
-    this.clipboard.copy(val);
-    this.copySuccess(object);
-  }
+    }
 }

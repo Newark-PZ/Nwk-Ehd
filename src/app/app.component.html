@@ -11,8 +11,9 @@
 <mat-sidenav #sidebar fixedInViewport="true" fixedTopGap="64" [opened]="sidebarOpened$ | async" [mode]="'over'"
      (openedChange)="onOpenedChange($event)">
      <mat-tree [dataSource]="routesArray$" [treeControl]="treeControl" class="link-tree">
-      <mat-tree-node *matTreeNodeDef="let node" (click)="sidebar.close()" matTreeNodeToggle routerLinkActive="router-link-active" [routerLink]="(node.parentFragment === undefined) ? ['/', node.path] : [node.parentFragment, node.path]">
-        <li [ngClass]="node.isChild ? 'router-tree-child-node' : 'router-tree-node'">
+      <mat-tree-node *matTreeNodeDef="let node" (click)="sidebar.close()" matTreeNodeToggle routerLinkActive="router-link-active"
+        [routerLink]="[node.fullPath]" [queryParams]="node.queryParams" [ngClass]="node.disabled ? 'disabled' : ''">
+        <li [ngClass]="node.parent !== '' ? 'router-tree-child-node' : 'router-tree-node'">
           <button mat-icon-button><mat-icon>{{ node.icon }}</mat-icon></button>
           {{node.title}}
         </li>
@@ -20,7 +21,7 @@
       <!-- This is the tree node template for expandable nodes -->
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <li>
-          <button class="router-tree-node" matTreeNodeToggle mat-icon-button [attr.aria-label]="'toggle ' + node.title">
+          <button class="router-tree-node drop" matTreeNodeToggle [attr.aria-label]="'toggle ' + node.title">
             <mat-icon class="mat-icon-rtl-mirror">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>

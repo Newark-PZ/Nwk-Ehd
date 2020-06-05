@@ -92,9 +92,20 @@ export const slideshowAnimation = trigger(
     transition('hidden => shown', [animate('500ms ease-in')])
   ]
 );
+export const rowExpandButtons = trigger(
+    'rowExpandButtons', [
+    state('shown', style({
+        transform: 'translateX(0px)'
+    })),
+    state('hidden', style({
+        transform: 'translateX(-600px)'
+    })),
+    transition('shown <=> hidden', [animate('300ms ease-out')]),
+  ]
+);
 export const rowExpand = trigger('rowExpand', [
-    state('collapsed, void', style({ height: '0px', minHeight: '0', display: 'none' })),
-    state('expanded', style({ minHeight: '*' })),
+    state('collapsed, void', style({ height: '0px', paddingRight: '50%', minHeight: '0', display: 'none' })),
+    state('expanded', style({ minHeight: '*', height: '*', paddingRight: '*'  })),
     transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
   ]);

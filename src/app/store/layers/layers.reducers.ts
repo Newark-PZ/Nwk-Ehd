@@ -4,10 +4,7 @@ import * as LayersActions from './layers.actions';
 
 export interface State {
   basemap: boolean;
-  geoLayer: string;
-  geoOpacity: number;
-  geoVisible: boolean;
-  geoColor?: string;
+  geoLayer: Array<MapLayer>;
   parcelLayers: Array<MapLayer>;
   overlays: Array<MapLayer>;
   legend: Array<LegendItem>;
@@ -15,10 +12,7 @@ export interface State {
 
 const initialState: State = {
   basemap: false,
-  geoLayer: 'wards',
-  geoOpacity: 1,
-  geoVisible: true,
-  geoColor: undefined,
+  geoLayer: [],
   parcelLayers: [],
   overlays: [],
   legend: []
@@ -31,12 +25,6 @@ export const layersReducer = (
   switch (action.type) {
     case LayersActions.SET_GEOGRAPHY_LAYER:
       return { ...state, geoLayer: action.payload };
-    case LayersActions.SET_GEOGRAPHY_OPACITY:
-      return { ...state, geoOpacity: action.payload };
-    case LayersActions.SET_GEOGRAPHY_VISIBLE:
-      return { ...state, geoVisible: action.payload };
-    case LayersActions.SET_GEOGRAPHY_COLOR:
-      return { ...state, geoColor: action.payload };
     case LayersActions.SET_PARCEL_LAYERS:
       return { ...state, parcelLayers: action.payload };
     case LayersActions.SET_OVERLAY_LAYERS:

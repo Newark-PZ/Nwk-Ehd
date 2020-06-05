@@ -1,6 +1,7 @@
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { BoardPageComponent } from './components/boardpage/board-page.component';
 import { BottomSheetComponent } from './components/elements/bottomsheet.component';
+import { EventComponent } from './components/elements/event.component';
 import { ModalComponent } from './components/elements/modal.component';
 import { SnackbarComponent } from './components/elements/snackbar.component';
 import { BlockLotFormComponent } from './components/form/blocklot.component';
@@ -20,6 +21,7 @@ import { GoogleService } from './services/google.service';
 import { QuestionControlService } from './services/question-control.service';
 import { QuestionService } from './services/question.service';
 
+import { AreaPaneComponent } from './components/mapels/area-pane.component';
 import { IntroPaneComponent } from './components/mapels/intro-pane.component';
 import { MapPaneComponent } from './components/mapels/map-pane.component';
 import { PropPaneComponent } from './components/mapels/prop-pane.component';
@@ -43,7 +45,9 @@ export const components = [
     PropSnackbarComponent,
     PropPaneComponent,
     MapPaneComponent,
-    IntroPaneComponent
+    IntroPaneComponent,
+    AreaPaneComponent,
+    EventComponent
 ];
 
 export const services = [
@@ -60,10 +64,12 @@ export * from './components/applications/applications.component';
 export * from './components/boardpage/board-page.component';
 export * from './components/elements/modal.component';
 export * from './components/elements/snackbar.component';
+export * from './components/elements/event.component';
 export * from './components/form/blocklot.component';
 export * from './components/form/form.component';
 export * from './components/form/question.component';
 export * from './components/home/home.component';
+export * from './components/mapels/area-pane.component';
 export * from './components/mapels/intro-pane.component';
 export * from './components/mapels/map-pane.component';
 export * from './components/page/page.component';
@@ -80,6 +86,7 @@ export * from './services/get-json-data.service';
 export * from './services/getregs.service';
 export * from './services/google.service';
 export * from './services/layers.service';
+export * from './services/link.service';
 export * from './services/maplayers.service';
 export * from './services/question-control.service';
 export * from './services/question.service';

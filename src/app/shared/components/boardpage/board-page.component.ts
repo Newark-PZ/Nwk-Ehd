@@ -1,14 +1,16 @@
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as HomePanelActions from '../../../store/home-panels/home-panels.actions';
+import { take } from 'rxjs/operators';
 import * as ImageIndexActions from '../../../store/image-index/image-index.actions';
+import * as PageStateActions from '../../../store/page-state/page-state.actions';
 import * as fromStore from '../../../store/store.reducers';
-import { BoardPage } from '../../models/pages.model';
-import { AirService } from '../../services/air.service';
+import { BoardPage, CalEvent } from '../../models/pages.model';
+import { LinkService } from '../../services/link.service';
 import { slideshowAnimation } from '../../util/animations';
+import { ModalComponent } from '../elements/modal.component';
 
 @Component({
   animations: [slideshowAnimation],
@@ -18,52 +20,63 @@ import { slideshowAnimation } from '../../util/animations';
   templateUrl: './board-page.component.html'
 })
 
-export class BoardPageComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() page: BoardPage;
-  @Input() view: string;
-  constructor(
-    public airData: AirService,
-    readonly router: Router,
-    public breakpointObserver: BreakpointObserver,
-    readonly store: Store<fromStore.StoreState>
-    ) {
-      this.expansionOpen$ = this.store.select(state => state.homePanel.open);
-      this.expansionMulti$ = this.store.select(state => state.homePanel.multi);
-      this.expansionDisabled$ = this.store.select(state => state.homePanel.toggleDisabled);
-      this.slideshowIndex$ = this.store.select(state => state.imageIndex.currentIndex);
-    }
+export class BoardPageComponent implements OnDestroy {
+  link: string;
+  boardPage$: Observable<BoardPage>;
+  currentLanguage$: Observable<string>;
   expansionOpen$: Observable<boolean>;
   expansionMulti$: Observable<boolean>;
   expansionDisabled$: Observable<boolean>;
-  slideshowIndex$: Observable<number>;
-  slideshowIndex = 0;
-  slideshowEnd = false;
-  ngOnInit(): void {
-    this.breakpointObserver
-    .observe(['(max-width: 767px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        this.store.dispatch(new HomePanelActions.SetMulti(false));
-        this.store.dispatch(new HomePanelActions.SetOpen(false));
-        this.store.dispatch(new HomePanelActions.SetToggle(false));
-      } else {
-        this.store.dispatch(new HomePanelActions.SetMulti(true));
-        this.store.dispatch(new HomePanelActions.SetOpen(true));
-        this.store.dispatch(new HomePanelActions.SetToggle(true));
-      }
+  live: boolean;
+  boardPageButtons: Array<any> = [];
+  constructor(
+    readonly router: Router,
+    readonly store: Store<fromStore.StoreState>,
+    readonly route: ActivatedRoute,
+    readonly linker: LinkService,
+    public dialog: MatDialog
+  ) {
+    this.boardPage$ = this.store.select(state => state.pageState.boardPage);
+    this.currentLanguage$ = this.store.select(state => state.i18n.currentLanguage);
+    this.expansionOpen$ = this.store.select(state => state.homePanel.open);
+    this.expansionMulti$ = this.store.select(state => state.homePanel.multi);
+    this.expansionDisabled$ = this.store.select(state => state.homePanel.toggleDisabled);
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.link = params.get('id') || 'zba';
+      this.boardPageButtons = [{
+        text: 'Virtual Hearing Dashboard',
+        icon: this.live ? 'live_tv' : 'tv_off',
+        parent: '/planningzoning',
+        link: 'virtualhearing',
+        param: this.link
+      }];
+      this.store
+      .select(state => state.i18n.currentLanguage)
+      .pipe(take(1))
+      .subscribe(currentLang => {
+        if (currentLang) {
+          this.linker.getPage(this.link, currentLang)
+          .subscribe(p => {
+            this.store.dispatch(new PageStateActions.SetPageBoard(p));
+          });
+        }
+      });
     });
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.page = changes.page.currentValue;
-    this.view = changes.view.currentValue;
   }
   ngOnDestroy(): void {
     this.store.dispatch(new ImageIndexActions.ResetImageIndex(0));
   }
-  filterCat(category): void {
-    return category;
-  }
   goTo(url?: string): void {
     if (url) {window.open(url, '_self'); }
+  }
+  openEvent(evt: CalEvent): void {
+    this.dialog.open(ModalComponent, {
+      maxWidth: '90vw',
+      data: {
+        header: `<b>${evt.event}</b><br><span>${evt.date}</span>`,
+        message: 'event',
+        event: evt
+      }
+    });
   }
 }

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AirService } from '../../shared';
-import { BoardPage, BoardsFields, HomeCard } from '../../shared/models';
+import { JsonDataService } from '../../shared';
+import { BoardPage, HomeCard } from '../../shared/models';
 import * as PageStateActions from '../../store/page-state/page-state.actions';
 import * as fromStore from '../../store/store.reducers';
 
@@ -17,10 +17,11 @@ import * as fromStore from '../../store/store.reducers';
 export class LhpcComponent implements OnInit {
   activeFragment;
   boardMembers$: Observable<Array<HomeCard>>;
-  constructor(readonly airData: AirService, readonly store: Store<fromStore.StoreState>) {
+  constructor(readonly getData: JsonDataService, readonly store: Store<fromStore.StoreState>) {
       this.boardMembers$ = this.store.select(state => state.pageState.boardLHPC);
   }
   pageDetails: BoardPage = {
+    id: 'lhpc',
     splashImgs: [
       {src: 'assets/img/NwkCitySky.png', alt: 'Newark Skyline'}
     ],
@@ -68,7 +69,8 @@ export class LhpcComponent implements OnInit {
     }
   };
   ngOnInit(): void {
-    this.boardMembers$.subscribe(data => {
+    this.boardMembers$
+      .subscribe(data => {
       data.length > 0
       ? data.forEach(btn => this.pageDetails.buttons.push(btn))
       : this.getBoard();
@@ -76,20 +78,21 @@ export class LhpcComponent implements OnInit {
   }
   getBoard(): Array<HomeCard> {
     const buttons: Array<HomeCard> = [];
-    this.airData.getRecords('Boards', 'view=lhpc')
-    .subscribe(
+    this.getData.getBoardMembers('Landmark & Historic Preservation Commission')
+    .then(
       data => {
-        data.records.forEach(val => buttons.push({
+        data.forEach(val => buttons.push({
           icon: 'person',
           title: `
-          ${(val.fields as BoardsFields).nameFirst} ${(val.fields as BoardsFields).nameLast} ${(val.fields as BoardsFields).nameExtra ? (val.fields as BoardsFields).nameExtra : ''}
+          ${val.nameFirst} ${val.nameLast} ${val.nameExtra ? val.nameExtra : ''}
           `,
-          category: `${(val.fields as BoardsFields).boardCommission}`,
-          subtext: `${(val.fields as BoardsFields).position ? (val.fields as BoardsFields).position : ''}`
+          category: `${val.boardCommission}`,
+          subtext: `${val.position ? val.position : ''}`
         }));
       }
     )
-    .add(() => {this.store.dispatch(new PageStateActions.SetBoardLHPC(buttons)); });
+    .then(() => {this.store.dispatch(new PageStateActions.SetBoardLHPC(buttons)); })
+    .catch(err => { console.error(err); });
 
     return buttons;
   }

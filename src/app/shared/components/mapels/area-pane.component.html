@@ -1,0 +1,31 @@
+<section class="flex-row" [ngSwitch]="(geo | async) === undefined">
+  <ng-container *ngSwitchDefault>
+    <mat-card class="sheet-card" >
+      <mat-card-header>
+          <mat-card-title>
+            <span>Click on the map to get information about an area</span>
+          </mat-card-title>
+        </mat-card-header>
+        <div class="card-content">
+          <p class="flex-col-12">Make sure to click on a location with an address/blocklot associated to it</p>
+        </div>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="false">
+  <mat-card class="sheet-card flex-cols-4">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">        
+      </div>
+      <!-- <mat-card-title [innerHTML]="(geo | async) | json">
+      </mat-card-title> -->
+    </mat-card-header>
+    <div class="card-content">
+        <p class="p-col-12" *ngIf="(geo | async).ward_name" innerHTML="{{ (geo | async).ward_name }}"></p>
+        <p class="p-col-12" *ngIf="(geo | async).namelsad" innerHTML="{{ (geo | async).namelsad }}"></p>
+        <p class="p-col-12" *ngIf="(geo | async).name" innerHTML="{{ (geo | async).name }}"></p>
+      </div>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+  </ng-container>
+</section>

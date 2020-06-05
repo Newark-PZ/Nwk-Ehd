@@ -1,11 +1,12 @@
 import { Action } from '@ngrx/store';
-import { ZoningFields } from '../../shared/models';
+import { SearchItem, ZoningFields } from '../../shared/models';
 // tslint:disable: max-classes-per-file
 
 export const TOGGLE = '[Prop Pane] Toggle';
 export const SET_OPENED = '[Prop Pane] Set Opened';
 export const SET_TITLE = '[Prop Pane] Set Title';
 export const SET_SELECTED_PROP = '[Prop Pane] Set Selected Property';
+export const SET_SELECTED_GEO = '[Prop Pane] Set Selected Geo Feature';
 export const SET_PROP_INFO = '[Prop Pane] Set Property Data';
 
 export class Toggle implements Action {
@@ -21,7 +22,11 @@ export class SetTitle implements Action {
 }
 export class SetSelectedProp implements Action {
   readonly type = SET_SELECTED_PROP;
-  constructor(public payload: { blocklot: string; address: string; coords: [number, number]; }) { }
+  constructor(public payload: SearchItem) { }
+}
+export class SetSelectedGeo implements Action {
+  readonly type = SET_SELECTED_GEO;
+  constructor(public payload: any) { }
 }
 export class SetPropInfo implements Action {
   readonly type = SET_PROP_INFO;
@@ -33,4 +38,5 @@ export type PropPaneActions =
   | SetOpened
   | SetTitle
   | SetSelectedProp
+  | SetSelectedGeo
   | SetPropInfo;

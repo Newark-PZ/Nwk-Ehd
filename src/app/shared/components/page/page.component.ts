@@ -1,5 +1,5 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,7 +10,6 @@ import { AirService } from '../../services/air.service';
 import { SnackbarComponent } from '../elements/snackbar.component';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PageCompsFields } from '../../models';
 
 @Component({
   selector: 'app-page',
@@ -18,10 +17,8 @@ import { PageCompsFields } from '../../models';
   templateUrl: './page.component.html'
 })
 
-export class PageComponent implements OnInit {
+export class PageComponent implements OnInit, OnChanges {
   @Input() page: Page;
-  activeFragment;
-  activeViewName;
   expansionOpen$: Observable<boolean>;
   expansionMulti$: Observable<boolean>;
   expansionDisabled$: Observable<boolean>;
@@ -37,8 +34,6 @@ export class PageComponent implements OnInit {
       this.expansionDisabled$ = this.store.select(state => state.homePanel.toggleDisabled);
     }
   ngOnInit(): void {
-    this.activeFragment = this.router.url.slice(this.router.url.lastIndexOf('/') + 1);
-    this.getTab(this.activeFragment);
     this.breakpointObserver
     .observe(['(max-width: 767px)'])
     .subscribe((state: BreakpointState) => {
@@ -52,12 +47,9 @@ export class PageComponent implements OnInit {
         this.store.dispatch(new HomePanelActions.SetToggle(true));
       }
     });
-    if (!this.page.title) {
-      this.airData.getRecords('PageComps', `filterByFormula=%7BName%7D%3D'${this.router.url.substr(1, 3)}+Homepage+Splash+Title'`)
-        .subscribe(
-          data => this.page.title = (data.records[0].fields as PageCompsFields).content,
-          err => { console.error(err); } );
-    }
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.page = changes.page.currentValue;
   }
   filterCat(category): void {
     return category;
@@ -70,8 +62,5 @@ export class PageComponent implements OnInit {
       duration: 1000,
       data: { message: 'Copied!', detail: object }
     });
-  }
-  getTab(view: 'Leadership' | string): any {
-    this.activeViewName = view;
   }
 }

@@ -17,9 +17,10 @@ export class OpzAppBoardComponent implements OnInit {
   activeFragment;
   activeViewName;
   pageDetails: Page = {
+    id: 'apps',
     title: 'Applications',
     subtitle: 'Documents and Other FIles',
-    searchDisplay: 'none',
+    hideBottomBar: true,
     subComponents: [
       { label: 'Applications', path: 'res-apps' },
       { label: 'Redevelopment Plans', path: 'res-redev' },

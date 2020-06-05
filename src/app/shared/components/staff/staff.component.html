@@ -3,14 +3,11 @@
       <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
       <h2>{{ page.title }}</h2>
     </div>
-    <div class="subtitle">
-      <h3>{{ page.subtitle }}</h3>
-    </div>
   </mat-toolbar>
   <section class="content-intro" *ngIf="page.contentIntro">
     <div [ngClass]="page.contentIntro.right ? 'content-intro left' : 'content-intro'">
       <h4 *ngIf="page.contentIntro.header">{{ page.contentIntro.header }}</h4>
-      <p *ngIf="page.contentIntro.text">{{ page.contentIntro.text }}</p>
+      <p *ngIf="page.contentIntro.text" style="text-align: left;margin: 1.5rem auto; max-width: 800px; text-align-last: center;">{{ page.contentIntro.text }}</p>
       <div class="content-intro-btns" *ngIf="page.contentIntro.events">
         <button *ngFor="let button of page.contentIntro.events" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
           <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
@@ -32,23 +29,25 @@
           <mat-expansion-panel-header (click)="headerClick()">
             <mat-panel-title>
               <h3>
-                {{ cat }}
+                {{ cat | titlecase}}
               </h3>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="staff-cards">
             <mat-card *ngFor='let data of data$ | FilterCatPipe:filterCat(cat)' class="staff-card">
-                <mat-card-header>
+                <mat-card-header class="flex-row">
+                  <img src="{{ data.Headshot }} " class='card-image cols-3' />
+                  <div class="cols-7">
                     <mat-card-title>
                         <h2 class="card-title">{{ data.NameFirst }} {{ data.NameLast }} {{ data.NameExtra }}</h2>
                     </mat-card-title>
                     <mat-card-subtitle>
                         <h3 innerHtml="{{ data.Position }}"></h3>
                     </mat-card-subtitle>
+                  </div>
                 </mat-card-header>
                 <div class="card-content">
-                    <img src="{{ data.Headshot }} " class='card-image' />
-                    <p innerHtml="{{ data.Bio }}"></p>
+                    <p *ngIf="data.Hierarchy < 3" innerHtml="{{ data.Bio }}"></p>
                 </div>
                 <mat-card-actions>
                     <button mat-stroked-button (click)="copyVal(data.Room, 'Room Number')">

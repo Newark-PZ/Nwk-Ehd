@@ -1,9 +1,10 @@
 <mat-toolbar>
   <div class="title">
     <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
-    <h2>{{ page.title }}</h2>
+    <h2>{{ page.title }}</h2>    
   </div>
-  <div class="subtitle">
+  <ng-content select='[subtitleDrop]'></ng-content>
+  <div class="subtitle" *ngIf="page.subtitle">
     <h3>{{ page.subtitle }}</h3>
   </div>
 </mat-toolbar>
@@ -27,6 +28,7 @@
   <h3 [innerHtml]='page.contentIntro.body'></h3>
   <mat-icon>arrow_downward</mat-icon>
 </section>
+<ng-content select='[childComponent]'></ng-content>
 <router-outlet></router-outlet>
 <mat-list class="program-cards">
   <mat-list-item class="program-card" *ngFor="let card of page.sections">
@@ -49,4 +51,4 @@
     </mat-card>
   </mat-list-item>
 </mat-list>
-<span class="page-bottom"></span>
+<span class="page-bottom" *ngIf="!page.hideBottomBar"></span>

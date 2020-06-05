@@ -1,4 +1,3 @@
-import FillPattern from 'ol-ext/style/FillPattern';
 import { Fill, Stroke, Style, Text } from 'ol/style';
 
 export const geoStyles = new Style({
@@ -10,38 +9,6 @@ export const geoStyles = new Style({
         color: 'rgba(0, 0, 0, 0)'
     })
 });
-export const overlayStyles = (id: string): Style => {
-    let strokecolor;
-    switch (id) {
-        case 'histDists':
-        case 'redevAreas':
-        case 'oppoZones':
-        case 'westMNI':
-        default:
-            strokecolor = 'rgb(102, 255, 255)';
-            break;
-    }
-
-    return new Style({
-        stroke: new Stroke({
-            color: strokecolor,
-            width: 3
-        }),
-        fill: new FillPattern(
-            {
-                pattern: 'hatch',
-                color: 'black',
-                offset: 0,
-                scale: 1.25,
-                fill: new Fill({
-                    color: 'rgba(0, 0, 0, 0)'
-                }),
-                size: 2,
-                spacing: 4,
-                angle: (Math.random() * 180)
-            })
-    });
-};
 export const overLabelStyle = (labelstatus: boolean): Style | undefined => {
     if (labelstatus) {
         return new Style({

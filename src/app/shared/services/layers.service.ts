@@ -19,8 +19,6 @@ import { MapLayer } from '../classes/maplayer';
 export class LayersService {
     overlays: Array<MapLayer> = [];
     overlayLayers: Observable<Array<MapLayer>>;
-    overlayStyle: Style;
-
     constructor(
         readonly store: Store<fromStore.StoreState>,
         readonly storeService: StoreService
@@ -32,41 +30,24 @@ export class LayersService {
      * @param overlayGroup layergroup component target for the layers to initialize inside
      */
     initOverlayLayers(): Array<MapLayer> {
-        this.overlayStyle = new Style({
-            stroke: new Stroke({color: 'black', lineDash: [5, 0, 0, 5], width: 3}),
-            fill: new Fill({color: 'rgba(0,0,0,.25)'}),
-            text: new Text({
-                font: 'bold 1rem Segoe UI,sans-serif',
-                overflow: true,
-                scale: 0.85,
-                padding: [5, 5, 5, 5],
-                fill: new Fill({
-                  color: 'black'
-                }),
-                stroke: new Stroke({
-                  color: 'white',
-                  width: 3
-                })
-            })
-        });
-        // tslint:disable: max-line-length newline-before-return newline-per-chained-call
+        // tslint:disable: max-line-length newline-before-return
         this.overlays = [
             new MapLayer({name: 'Historic Districts', cartoCols: 'name',
-                          layer: new VectorLayer({className: 'landmarkdistricts_160203',  zIndex: 7, opacity: 1, visible: false,
-                                                  style: feature => this.styleFunction(feature)  })
+                          layer: new VectorLayer({className: 'landmarkdistricts_160203',  zIndex: 11, opacity: 1, visible: false,
+                                                  style: feature => this.styleFunction(feature, 'name', [128, 147, 241])  })
             }),
             new MapLayer({name: 'Redevelopment Plans', cartoCols: 'name',
                           layer: new VectorLayer({
-                              className: 'redevelopmentplanareas_170208', zIndex: 8, opacity: 1, visible: false, style: feature => this.styleFunction(feature) })
+                              className: 'redevelopmentplanareas_170208', zIndex: 10, opacity: 1, visible: false, style: feature => this.styleFunction(feature) })
             }),
             new MapLayer({name: 'Opportunity Zones', cartoCols: 'name',
-                          layer: new VectorLayer({ className: 'opertunity_zones', zIndex: 9, opacity: 1, visible: false, style: feature => this.styleFunction(feature) })
+                          layer: new VectorLayer({ className: 'opertunity_zones', zIndex: 9, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'name', [106, 88, 55]) })
             }),
             new MapLayer({name: 'Urban Enterprise Zone', cartoCols: 'uez_name',
-                          layer: new VectorLayer({ className: 'uez', zIndex: 10, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'uez_name')  })
+                          layer: new VectorLayer({ className: 'uez', zIndex: 8, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'uez_name', [226, 157, 227])  })
             }),
             new MapLayer({name: 'West Ward MNI', cartoCols: 'column_1571935764873',
-                          layer: new VectorLayer({ className: 'west_wardmni_copy', zIndex: 11, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'column_1571935764873') })
+                          layer: new VectorLayer({ className: 'west_wardmni_copy', zIndex: 7, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'column_1571935764873',  [254, 95, 0]) })
             })
         ];
         this.overlays.forEach(
@@ -88,14 +69,16 @@ export class LayersService {
      */
     updateOverlayLayer(
         layer: string,
-        propset: {name: 'opacity' | 'zIndex', propVal: number } | {name: 'visible', propVal: boolean}
+        propset: {name: 'opacity', propVal: number } | {name: 'visible', propVal: boolean}
         ): void {
             // tslint:disable: no-non-null-assertion
-            if (this.overlays.find(ol => ol.name === layer)!.layer) {
-                this.overlays.find(ol => ol.name === layer)!.layer
-                    .set(propset.name, propset.propVal);
-                this.storeService.setOverlayLayers(this.overlays);
-            }
+            this.overlays.forEach(
+                (ol, i) => {
+                    if ( ol.name === layer) {
+                        ol.layer.set(propset.name, propset.propVal);
+                    }
+            });
+            this.storeService.setOverlayLayers(this.overlays);
     }
     getCartoUrl(columns, className): string {
         return 'https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select%20the_geom,' +
@@ -128,16 +111,42 @@ export class LayersService {
             return `${left}${spaceReplacer}${this.stringDivider(right, width, spaceReplacer)}`;
           }
         }
-        return str.replace('Redevelopment Plan', '').replace('District Plan', '').replace('Plan', '');
+        return str.replace('Redevelopment Plan', '')
+            .replace('District Plan', '')
+            .replace('Plan', '');
       };
-    styleFunction(feature: FeatureLike, labelProp = 'name'): Style {
-        this.overlayStyle.getText().setText(
+    overlayStyle(rgb: [number, number, number] = [0, 0, 0]): Style {
+      return new Style({
+        stroke: new Stroke({color: `rgba(${rgb.join(',')})`, lineDash: [5, 0, 0, 5], width: 3}),
+        fill: new Fill({color: `rgba(${rgb.join(',')}, 0.4)`}),
+        text: new Text({
+            font: 'bold 1rem Segoe UI,sans-serif',
+            overflow: true,
+            scale: 0.85,
+            padding: [5, 5, 5, 5],
+            fill: new Fill({
+              color: `rgba(${rgb.join(',')}, 1)`
+            }),
+            stroke: new Stroke({
+              color: 'white',
+              width: 3
+            })
+        })
+     });
+    }
+    styleFunction(feature: FeatureLike, labelProp = 'name', rgb?: [number, number, number]): Style {
+        const newstyle = this.overlayStyle(rgb);
+        newstyle.getText()
+            .setText(
             this.stringDivider(feature.get(labelProp), 20, '\n'));
 
-        return this.overlayStyle;
+        return newstyle;
     }
     resetService(): void {
         this.storeService.setOverlayLayers([]);
         this.overlays = [];
     }
 }
+
+// use mongo for search with regex filter
+// {"attributes.STREET_ADD": { "$regex": "(920 Bro)"}}

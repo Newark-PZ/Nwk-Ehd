@@ -1,0 +1,703 @@
+[
+    {
+        "id": "home",
+        "splashImgs": [
+            {
+                "src": "assets/img/HalseyStreet_image7.png",
+                "alt": "Halsey Street"
+            },
+            {
+                "src": "assets/img/NwkCitySky.png",
+                "alt": "Newark Skyline"
+            }
+        ],
+        "buttonCategories": [
+            "Boards & Commissions",
+            "Tools",
+            "Our Office"
+        ],
+        "buttons": [
+            {
+                "disabled": false, "icon": "house",
+                "category": "Boards & Commissions",
+                "title": "Central Planning Board",
+                "subtext": "Next Hearing: <b>May 11</b>",
+                "isEvent": true,
+                "subtexticon": "notification_important",
+                "parent": "/planningzoning/boards",
+                "link": "cpb"
+            },
+            {
+                "disabled": false, "icon": "house",
+                "category": "Boards & Commissions",
+                "title": "Zoning Board of Adjustment",
+                "isEvent": true,
+                "subtext": "Next Hearing: <b>May 14</b>",
+                "subtextIcon": "notification_important",
+                "parent": "/planningzoning/boards",
+                "link": "zba"
+            },
+            {
+                "disabled": false, "icon": "house",
+                "category": "Boards & Commissions",
+                "title": "Landmarks & Historic Preservation",
+                "isEvent": true,
+                "subtext": "Next Hearing: <b>May 20</b>",
+                "subtextIcon": "notification_important",
+                "parent": "/planningzoning/boards",
+                "link": "lhpc"
+            },
+            {
+                "disabled": false, "icon": "house",
+                "category": "Boards & Commissions",
+                "title": "Environmental Commission",
+                "isEvent": true,
+                "subtext": "Next Hearing: <b>May 13</b>",
+                "subtextIcon": "notification_important",
+                "parent": "/planningzoning/boards",
+                "link": "ec"
+            },
+            {
+                "disabled": false, "icon": "info",
+                "category": "Tools",
+                "title": "Application Submission & Status",
+                "parent": "/planningzoning/zoning",
+                "link": "zoning"
+            },
+            {
+                "disabled": false, "icon": "map",
+                "category": "Tools",
+                "title": "Interactive Zoning Map",
+                "parent": "/planningzoning/maps",
+                "link": "zoning"
+            },
+            {
+                "disabled": false, "icon": "info",
+                "category": "Tools",
+                "title": "Our Zoning, Explained",
+                "parent": "/planningzoning/zoning",
+                "link": "zoning"
+            },
+            {
+                "disabled": false, "icon": "attachment",
+                "category": "Tools",
+                "title": "Redevelopment Plans",
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes"
+            },
+            {
+                "disabled": false, "icon": "attachment",
+                "category": "Tools",
+                "title": "Master Plan",
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes"
+            },
+            {
+                "disabled": true, "icon": "people",
+                "category": "Our Office",
+                "title": "Our Team",
+                "parent": "/planningzoning/team",
+                "link": "leadership"
+            },
+            {
+                "disabled": true, "icon": "info",
+                "category": "Our Office",
+                "title": "Contact Us",
+                "parent": "/planningzoning",
+                "link": "contact"
+            }
+        ],
+        "contentIntro": {
+            "header": "Upcoming Hearings",
+            "events": [
+                {
+                    "disabled": false, "icon": "event",
+                    "event": "Central Planning Board",
+                    "date": "Mon, June 1 @ 6pm"
+                  },
+                  {
+                    "disabled": false, "icon": "event",
+                    "event": "Central Planning Board",
+                    "date": "Mon, June 15 @ 6pm"
+                }
+            ],
+            "right": {
+                "text": "More Tools and Services Below"
+            }
+        },
+        "splashTitle": "Welcome to the Office of Planning & Zoning",
+        "officer": {
+            "name": "Chris Watson",
+            "position": "City Planning Officer",
+            "pic": "headerPhotos/APANJTreatPl.jpeg"
+        },
+        "splashBlurb": {
+            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
+            "buttons": [
+                {
+                    "text": "Applications",
+                    "parent": "/planningzoning/applications",
+                    "link": "info"
+                },
+                {
+                    "text": "Payments",
+                    "parent": "/planningzoning/applications",
+                    "link": "payments"
+                },
+                {
+                    "text": "Zoning Map",
+                    "parent": "/planningzoning",
+                    "link": "maps"
+                }
+            ]
+        }
+    },
+    {
+        "id": "cpb",
+        "splashImgs": [
+            {
+                "src": "assets/img/NwkCitySky.png",
+                "alt": "Newark Skyline"
+            }
+        ],
+        "buttonCategories": [
+            "Central Planning Board",
+            "Resources"
+        ],
+        "title": "Central Planning Board",
+        "buttons": [
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Agendas",
+                "subText": "2020",
+                "subtextIcon": "info",
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "cpb", "type": "agendas", "year": "2020"}
+            },
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Minutes",
+                "subText": "2020",
+                "subtextIcon": "info",
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "cpb", "type": "minutes", "year": "2020"}
+            }
+        ],
+        "contentIntro": {
+            "header": "Upcoming Hearings",
+            "events": [
+                {
+                "disabled": false, "icon": "event",
+                "board": "CPB",
+                "eventType": "Virtual Hearing",
+                "event": "Central Planning Board",
+                "date": "Mon, June 1 @ 6pm"
+                },
+                {
+                "disabled": false, "icon": "event",
+                "board": "CPB",
+                "eventType": "Virtual Hearing",
+                "event": "Central Planning Board",
+                "date": "Mon, June 15 @ 6pm"
+        }
+            ],
+            "right": {
+                "text": "More Info Below"
+            }
+        },
+        "introText": "<img class='intro-pic' src='assets/img/NwkLibrary.jpg'>The Central Planning Board is entrusted with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.",
+        "sections": [
+            {
+                "header": "Applications to the Central Planning Board",
+                "text": "<ul><li>Site plan reviews where no 'd' variance is required as defined in N.J.S.A.40:55d.</li><li>Subdivision or conditional use reviews where no 'd' variance is required as defined in N.J.S.A.40:55d.</li><li>Conditional uses where all conditions are met.</li><li>Site plan, or subdivision reviews where a 'c' variance is requested as defined in N.J.S. A.40:55d.</li></ul>"
+            }
+        ],
+        "members": [
+        {
+            "nameLast": "Richardson",
+            "nameFirst": "Wayne",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 1,
+            "position": "Chair"
+        },
+        {
+            "nameLast": "Baraka",
+            "nameFirst": "Ras",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 2,
+            "position": "Class I"
+        },
+        {
+            "nameLast": "Vacant",
+            "nameFirst": " ",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 3,
+            "position": "Class II"
+        },
+        {
+            "nameLast": "Amador",
+            "nameFirst": "August",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 4,
+            "position": "Class III"
+        },
+        {
+            "nameLast": "DeCapua",
+            "nameFirst": "Michael",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 5
+        },
+        {
+            "nameLast": "Good",
+            "nameFirst": "Gregory",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 5
+        },
+        {
+            "nameLast": "Purdie",
+            "nameFirst": "Leon",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 5
+        },
+        {
+            "nameLast": "Timmons",
+            "nameFirst": "Anthony",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 5
+        },
+        {
+            "nameLast": "Witcher",
+            "nameFirst": "Kalenah",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 5
+        },
+        {
+            "nameLast": "Oliver",
+            "nameFirst": "Paul",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 6,
+            "position": "Alternate #1"
+        },
+        {
+            "nameLast": "James",
+            "nameFirst": "Jermaine",
+            "boardCommission": "Central Planning Board",
+            "hierarchy": 7,
+            "position": "Alternate #2"
+        }]
+    },
+    {
+        "id": "ec",
+        "splashImgs": [
+            {
+                "src": "assets/img/NwkCitySky.png",
+                "alt": "Newark Skyline"
+            }
+        ],
+        "buttonCategories": [
+            "Environmental Commission",
+            "Resources"
+        ],
+        "title": "Environmental Commission",
+        "buttons": [
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Agendas",
+                "subText": "2019-2020",
+                "subtextIcon": "info",
+                "parent": "/opz/resources",
+                "link": "res-minutes"
+            },
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Minutes",
+                "subtext": "2019-2020",
+                "subtextIcon": "info",
+                "parent": "/opz/resources",
+                "link": "res-minutes"
+            }
+        ],
+        "contentIntro": {
+            "header": "Upcoming Events",
+            "events": [
+                {
+                    "disabled": false, "icon": "notification_important",
+                    "event": "Central Planning Board",
+                    "date": "Mon, May 11 @ 6pm"
+                },
+                {
+                    "disabled": false, "icon": "notification_important",
+                    "event": "Environmental Commission",
+                    "date": "Wed, May 13 @ 6pm"
+                }
+            ],
+            "right": {
+                "text": "More Info Below"
+            }
+        },
+        "splashBlurb": {
+            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
+            "buttons": [
+                {
+                    "text": "Applications",
+                    "parent": "/opz/applications",
+                    "link": "info"
+                },
+                {
+                    "text": "Payments",
+                    "parent": "/opz/applications",
+                    "link": "payments"
+                },
+                {
+                    "text": "Zoning Map",
+                    "parent": "/opz/maps",
+                    "link": "zoning"
+                }
+            ]
+        },
+        "members": [
+            {
+                "nameLast": "Mellon",
+                "nameFirst": "Cynthia",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 1,
+                "position": "Chairman"
+            },
+            {
+                "nameLast": "Barnes",
+                "nameFirst": "William",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 2
+            },
+            {
+                "nameLast": "Hinds",
+                "nameFirst": "Winnie-Fred Victor",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 2
+            },
+            {
+                "nameLast": "McGrady",
+                "nameFirst": "Elizabeth",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 2
+            },
+            {
+                "nameLast": "Miller",
+                "nameFirst": "Nicole",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 2
+            },
+            {
+                "nameLast": "Molina",
+                "nameFirst": "Michael",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 2
+            },
+            {
+                "nameLast": "Timmons",
+                "nameFirst": "Anthony",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 2
+            },
+            {
+                "nameLast": "Weirich",
+                "nameFirst": "Moacir Pedro",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 3,
+                "position": "Alternate #1"
+            },
+            {
+                "nameLast": "Ramirez",
+                "nameFirst": "Isella",
+                "boardCommission": "Environmental Commission",
+                "hierarchy": 4,
+                "position": "Alternate #2"
+            }
+        ]
+    },
+    {
+        "id": "lhpc",
+        "splashImgs": [
+            {
+                "src": "assets/img/NwkCitySky.png",
+                "alt": "Newark Skyline"
+            }
+        ],
+        "buttonCategories": [
+            "Landmark & Historic Preservation Commission",
+            "Resources"
+        ],
+        "title": "Landmark & Historic Preservation Commission",
+        "buttons": [
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Agendas",
+                "subText": "2019-2020",
+                "subtextIcon": "info",
+                "parent": "/opz/resources",
+                "link": "res-minutes"
+            },
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Minutes",
+                "subText": "2019-2020",
+                "subtextIcon": "info",
+                "parent": "/opz/resources",
+                "link": "res-minutes"
+            }
+        ],
+        "contentIntro": {
+            "header": "Upcoming Events",
+            "events": [
+                {
+                    "disabled": false, "icon": "notification_important",
+                    "board": "CPB",
+                    "eventType": "Virtual Hearing",
+                    "event": "Central Planning Board",
+                    "date": "Mon, May 11 @ 6pm"
+                },
+                {
+                    "disabled": false, "icon": "notification_important",
+                    "board": "CPB",
+                    "eventType": "Virtual Hearing",
+                    "event": "Environmental Commission",
+                    "date": "Wed, May 13 @ 6pm"
+                }
+            ],
+            "right": {
+                "text": "More Info Below"
+            }
+        },
+        "splashBlurb": {
+            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
+            "buttons": [
+                {
+                    "text": "Applications",
+                    "parent": "/opz/applications",
+                    "link": "info"
+                },
+                {
+                    "text": "Payments",
+                    "parent": "/opz/applications",
+                    "link": "payments"
+                },
+                {
+                    "text": "Zoning Map",
+                    "parent": "/opz/maps",
+                    "link": "zoning"
+                }
+            ]
+        },
+        "members": [
+            {
+                "nameLast": "Partyka",
+                "nameFirst": "Richard",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 1,
+                "position": "Chairman"
+            },
+            {
+                "nameLast": "Grossklaus",
+                "nameFirst": "Richard",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 2,
+                "position": "Vice Chairman"
+            },
+            {
+                "nameLast": "Robinson",
+                "nameFirst": "David",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 3,
+                "position": "Class A"
+            },
+            {
+                "nameLast": "Woodridge",
+                "nameFirst": "Wilson",
+                "nameExtra": "Jr.",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 3,
+                "position": "Class A"
+            },
+            {
+                "nameLast": "Motten",
+                "nameFirst": "Gwen",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 4,
+                "position": "Class B"
+            },
+            {
+                "nameLast": "Benavente",
+                "nameFirst": "Sylvia",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 5
+            },
+            {
+                "nameLast": "Bey",
+                "nameFirst": "Fredericka",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 5
+            },
+            {
+                "nameLast": "Hartman",
+                "nameFirst": "Robert",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 5
+            },
+            {
+                "nameLast": "Smith",
+                "nameFirst": "Anthony",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 5
+            },
+            {
+                "nameLast": "Miller",
+                "nameFirst": "Nicaury",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 6,
+                "position": "Alternate #1"
+            },
+            {
+                "nameLast": "Holguin-Veras",
+                "nameFirst": "Susan",
+                "boardCommission": "Landmark & Historic Preservation Commission",
+                "hierarchy": 7,
+                "position": "Alternate #2"
+            }
+        ]
+    },
+    {
+        "id": "zba",
+        "splashImgs": [
+            {
+                "src": "assets/img/NwkCitySky.png",
+                "alt": "Newark Skyline"
+            }
+        ],
+        "introText": "<img class='intro-pic' src='assets/img/nwkcityhall-01.png'>The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
+        "buttonCategories": [
+            "Zoning Board of Adjustment",
+            "Resources"
+        ],
+        "title": "Zoning Board of Adjustment",
+        "buttons": [
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Agendas",
+                "subText": "2020",
+                "subtextIcon": "info",
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "zba", "type": "agendas", "year": "2020"}
+            },
+            {
+                "disabled": false, "icon": "attach_file",
+                "category": "Resources",
+                "title": "Minutes",
+                "subText": "2020",
+                "subtextIcon": "info",
+                "parent": "/planningzoning/resources",
+                "link": "res-minutes",
+                "params": {"group": "zba", "type": "minutes", "year": "2020"}
+            }
+        ],
+        "contentIntro": {
+            "header": "Upcoming Hearings",
+            "events": [{
+                "disabled": false, "icon": "notification_important",
+                "board": "ZBA",
+                "eventType": "Virtual Hearing",
+                "event": "Zoning Board of Adjustment",
+                "date": "Thu, June 4 @ 6pm"
+                },
+                {
+                "disabled": false, "icon": "event",
+                "board": "ZBA",
+                "eventType": "Virtual Hearing",
+                "event": "Zoning Board of Adjustment",
+                "date": "Thu, June 11 @ 6pm"
+                }
+            ],
+            "right": {
+                "text": "More Info Below"
+            }
+        },
+        "members": [
+        {
+            "nameLast": "Auffant",
+            "nameFirst": "Charles",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 1,
+            "position": "Chairman"
+        },
+        {
+            "nameLast": "Baine",
+            "nameFirst": "Terence",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 2,
+            "position": "Vice Chairman"
+        },
+        {
+            "nameLast": "Hall",
+            "nameFirst": "Charles",
+            "nameExtra": "Jr.",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 3
+        },
+        {
+            "nameLast": "Jenkins",
+            "nameFirst": "Wesley",
+            "nameExtra": "IV",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 3
+        },
+        {
+            "nameLast": "Montford",
+            "nameFirst": "Julius",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 3
+        },
+        {
+            "nameLast": "Ruivo",
+            "nameFirst": "Rose Marie",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 3
+        },
+        {
+            "nameLast": "Cobian",
+            "nameFirst": "Katiria",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 4,
+            "position": "Alternate #1"
+        },
+        {
+            "nameLast": "Dobson",
+            "nameFirst": "Barry",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 5,
+            "position": "Alternate #2"
+        },
+        {
+            "nameLast": "Jones",
+            "nameFirst": "Robin",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 6,
+            "position": "Alternate #3"
+        },
+        {
+            "nameLast": "Arias",
+            "nameFirst": "Juan",
+            "boardCommission": "Zoning Board of Adjustment",
+            "hierarchy": 7,
+            "position": " Alternate #4"
+        }]
+    }
+]
