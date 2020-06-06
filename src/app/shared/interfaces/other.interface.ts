@@ -1,5 +1,4 @@
 import { Route } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Hearing } from '../classes/hearing';
 import { CalEvent } from '../models';
 
@@ -109,14 +108,21 @@ export interface ResourcePage {
       }>;
     hideBottomBar?: boolean;
 }
+export interface DataRow {
+  board: string;
+  app: string;
+  address: string;
+  folderlink: string;
+}
 export interface VirtualHearingTab {
-  board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
+  board: 'CPB' | 'EC' | 'LHPC' | 'ZBA' | string;
   label: string;
   live: boolean;
   disabled?: boolean;
-  agenda: string;
+  agenda?: string;
   fofId?: string;
-  event: Observable<Hearing>;
-  data?: Array<any>;
+  event?: Hearing;
+  data?: Array<DataRow>;
+  oldData?: Array<DataRow>;
   currentEvent?: CalEvent;
 }

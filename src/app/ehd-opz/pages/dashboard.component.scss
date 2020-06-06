@@ -72,3 +72,8 @@ cursor: pointer;
       }
   }
 }
+.docs-accordion {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  mat-expansion-panel {margin: 1.5rem;}
+}

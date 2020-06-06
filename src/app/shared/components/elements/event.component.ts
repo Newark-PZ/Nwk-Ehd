@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Hearing } from '../../classes/hearing';
+import { EventsService } from '../../services/events.service';
 
 export interface EventTableRow {
     section: string;
@@ -43,50 +45,31 @@ export interface EventTableRow {
       </mat-table>
     `
 })
-export class EventComponent implements OnChanges {
+export class EventComponent implements OnInit, OnChanges {
     @Input() board: 'CPB' | 'EC' | 'LHCP' | 'ZBA' = 'CPB';
-    @Input() date: string;
-    @Input() link: string;
-    @Input() fofId = '';
+    @Input() agenda;
+    @Input() fofId = 'https://drive.google.com/file/d/16Jm1WOZMElujT1dwiLcJppg7-ozG5Zxh/view?usp=sharing';
+    @Input() type: 'popup' | undefined;
     cols = ['section', 'content'];
-    data: Array<EventTableRow> = [
-        { section: 'When', content: `${this.date ? this.date : ''} Eastern Time (US and Canada)`},
-        { section: 'Topic', content: 'Find Agendas & Information', link: `planningzoning/virtualhearing/${this.board ? this.board.toLowerCase() : 'cpb'}`},
-        { section: 'To Join Online', content: 'Go To Zoom Meeting', link: this.link ? this.link : ''},
-        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
-        { section: 'Or Other Telephone<br>' +
-          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-          content: 'US',
-          extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
-          numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
-    ];
+    hearing: Hearing;
+    data: Array<EventTableRow>;
     @Output() readonly eventClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
-    constructor(readonly router: Router) {}
+    constructor(readonly router: Router, readonly events: EventsService) {}
+    ngOnInit(): void {
+        if (!this.agenda) {
+            this.agenda = this.board === 'ZBA' ? 'https://drive.google.com/file/d/1EtpOlrFFacFw6ZmWF9qUjwBHkK3_DcyR/view?usp=sharing' : 'https://drive.google.com/file/d/1ASSj1bEBxv8NL69tRZ2yftP_L_mMnjiS/view?usp=sharing';
+        }
+        this.hearing = this.events.hearings.filter(h => h.board === this.board)[0];
+        this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
+        if (this.type === 'popup') {
+         this.data.push({ section: 'Find More Info', content: 'Virtual Hearing Dashboard', link: `/planningzoning/virtualhearing/${this.board.toLowerCase()}` });
+        }
+    }
     ngOnChanges(changes: SimpleChanges): void {
-        this.data = changes.board.currentValue !== 'ZBA'
-        ? [
-            { section: 'When', content: `${changes.date.currentValue} Eastern Time (US and Canada)`},
-            { section: 'Topic', content: 'See Agendas & Information', link: `planningzoning/virtualhearing/${changes.board.currentValue.toLowerCase()}`},
-            { section: 'To Join Online', content: 'Go To Zoom Meeting', link: changes.link.currentValue},
-            { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
-            { section: 'Or Other Telephone<br>' +
-              '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-              content: 'US',
-              extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
-              numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
-            ]
-        : [
-            { section: 'When', content: `${changes.date.currentValue} Eastern Time (US and Canada)`},
-            { section: 'Topic', content: 'Find Agendas & Information', link: `planningzoning/virtualhearing/${changes.board.currentValue.toLowerCase()}`},
-            { section: 'Findings of Fact', content: 'Download Findings of Fact', link: `https://drive.google.com/file/d/${changes.fofId.currentValue}/view?usp=sharing` },
-            { section: 'To Join Online', content: 'Go To Zoom Meeting', link: changes.link.currentValue},
-            { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
-            { section: 'Or Other Telephone<br>' +
-              '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-              content: 'US',
-              extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
-              numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
-        ];
+        this.board = changes.board.currentValue;
+        this.agenda = changes.agenda.currentValue;
+        this.hearing = this.events.hearings.filter(h => h.board === this.board)[0];
+        this.data = this.setData(changes.board.currentValue, this.hearing, this.agenda, this.fofId);
     }
     fixPhone(num: string): string {
         return num.replace('(', '')
@@ -104,5 +87,30 @@ export class EventComponent implements OnChanges {
                 .catch(err => { console.error(err); });
             this.eventClicked.emit(true);
         }
+    }
+    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHCP', hearing: Hearing, agenda: string, fofId?: string ): Array<EventTableRow> {
+    return board !== 'ZBA'  ? [
+        { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
+        { section: 'Topic', content: 'Download Agenda', link: agenda },
+        { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
+        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
+        { section: 'Or Other Telephone<br>' +
+          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
+          content: 'US',
+          extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
+          numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
+        ]
+    : [
+        { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
+        { section: 'Topic', content: 'Download Agenda', link: agenda},
+        { section: 'Findings of Fact', content: 'Download Findings of Fact', link: fofId },
+        { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
+        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
+        { section: 'Or Other Telephone<br>' +
+          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
+          content: 'US',
+          extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
+          numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
+    ];
     }
 }

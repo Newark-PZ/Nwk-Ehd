@@ -57,17 +57,17 @@ export class OpzHomeComponent {
       events: [
         {
           icon: 'notification_important',
-          event: 'Planning Board',
-          board: 'CPB',
-          eventType: 'Virtual Hearing',
-          date: 'Mon, June 1st @ 6pm'
-        },
-        {
-          icon: 'notification_important',
           event: 'Zoning Board',
           board: 'ZBA',
           eventType: 'Virtual Hearing',
-          date: 'Thu, June 4th @ 6pm'
+          date: 'Thu, June 11th @ 6pm'
+        },
+        {
+          icon: 'notification_important',
+          event: 'Planning Board',
+          board: 'CPB',
+          eventType: 'Virtual Hearing',
+          date: 'Mon, June 15th @ 6pm'
         }
       ],
       right: {text: 'More Tools and Resources Below'}

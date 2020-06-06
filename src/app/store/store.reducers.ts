@@ -1,5 +1,6 @@
 import { ActionReducer, ActionReducerMap } from '@ngrx/store';
 
+import * as fromHearing from './hearing/hearing.reducers';
 import * as fromHomePanels from './home-panels/home-panels.reducers';
 import * as fromI18n from './i18n/i18n.reducers';
 import * as fromImageIndex from './image-index/image-index.reducers';
@@ -15,6 +16,7 @@ import * as fromSidebarRight from './sidebarRight/sidebar.reducers';
 import * as StoreActions from './store.actions';
 
 export interface StoreState {
+  hearing: fromHearing.State;
   homePanel: fromHomePanels.State;
   i18n: fromI18n.State;
   imageIndex: fromImageIndex.State;
@@ -30,6 +32,7 @@ export interface StoreState {
 }
 
 export const storeReducers: ActionReducerMap<StoreState> = {
+  hearing: fromHearing.hearingReducer,
   homePanel: fromHomePanels.homePanelReducer,
   i18n: fromI18n.i18nReducer,
   imageIndex: fromImageIndex.imageIndexReducer,

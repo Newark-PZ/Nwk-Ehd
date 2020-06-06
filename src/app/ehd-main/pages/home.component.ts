@@ -36,17 +36,17 @@ export class EhdHomeComponent {
       events: [
         {
           icon: 'notification_important',
-          event: 'Planning Board',
-          board: 'CPB',
+          event: 'Zoning Board',
+          board: 'ZBA',
           eventType: 'Virtual Hearing',
-          date: 'Mon, June 1 @ 6pm'
+          date: 'Thu, June 11th @ 6pm'
         },
         {
           icon: 'notification_important',
-          board: 'ZBA',
+          event: 'Planning Board',
+          board: 'CPB',
           eventType: 'Virtual Hearing',
-          event: 'Zoning Board',
-          date: 'Thu, June 4 @ 6pm'
+          date: 'Mon, June 15th @ 6pm'
         }
       ],
       right: {text: 'Our Divisions & Partners'}

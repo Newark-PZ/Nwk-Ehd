@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { BaseQuestion } from '../components/formTypes/question-base.class';
-import { BoardHearing, BoardsFields, DocData, DriveSearch, SearchFeature, SearchResult, Staff } from '../models';
+import { BoardHearing, BoardsFields, DocData, SearchFeature, SearchResult, Staff } from '../models';
 
 @Injectable()
 export class JsonDataService {
@@ -51,19 +50,5 @@ export class JsonDataService {
             )
             .toPromise()
             .then(res => res.features);
-    }
-    async getZBAFolderItem(fileName: Array<string>): Promise<Array<{id: string; name: string; }>> {
-        const baseUrl = `https://www.googleapis.com/drive/v3/files?q="1-PffP9_Bk9eF8AvCkQ0hfXUcov06aAi5"%20in%20parents&key=${environment.config.GDRIVE_API_KEY}`;
-
-        return this.http.get<DriveSearch>(`${baseUrl}`)
-            .toPromise()
-            // tslint:disable-next-line: no-non-null-assertion
-            .then(res =>
-                res.files.filter(f => f.name === fileName[0] || f.name === fileName[1])
-                .map(f => ({
-                        id: f.id,
-                        name: f.name
-                    }))
-            );
     }
 }

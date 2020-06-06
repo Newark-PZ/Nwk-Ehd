@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../shared';
+import { EventsService } from '../shared/services/events.service';
 import { LinkService } from '../shared/services/link.service';
 
 @Component({
@@ -12,8 +13,10 @@ import { LinkService } from '../shared/services/link.service';
 export class EhdOpzComponent implements OnInit {
   constructor(
     public linker: LinkService,
-    public dialog: MatDialog
-  ) {
+    public dialog: MatDialog,
+    readonly events: EventsService
+    ) {
+    this.events.initHearings();
     this.linker.initRoutes('planningzoning');
   }
   @HostBinding('class.content-container') class = true;
