@@ -1,0 +1,1065 @@
+{
+    "kind": "calendar#events",
+    "etag": "\"p33cbfelomnlui0g\"",
+    "summary": "Newark Board Hearings",
+    "updated": "2020-06-05T19:33:47.991Z",
+    "timeZone": "America/New_York",
+    "accessRole": "owner",
+    "defaultReminders": [],
+    "nextSyncToken": "CNi3uri16-kCENi3uri16-kCGAU=",
+    "items": [
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk60pj0o9pcgs3eob169hjedpo60o32p1gccp6ceb274omae1ocgr0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2MHBqMG85cGNnczNlb2IxNjloamVkcG82MG8zMnAxZ2NjcDZjZWIyNzRvbWFlMW9jZ3IwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-07-20T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-07-20T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert030a9d87aa2c778001d0c2f9b91e88d6",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk61gjcor1c4om4c9ocpi3ep9icosm8c9h69hj4phgc5ij2oj2cgo0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2MWdqY29yMWM0b200YzlvY3BpM2VwOWljb3NtOGM5aDY5aGo0cGhnYzVpajJvajJjZ28wIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-10-19T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-10-19T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert0a6caa1b18fd7e2f9d112c2f0ae1bbd0",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk65i32chhcdgm6e1l6sq64cpn6gom4e1p71h34c9h75gjgcr16gpg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2NWkzMmNoaGNkZ202ZTFsNnNxNjRjcG42Z29tNGUxcDcxaDM0YzloNzVnamdjcjE2Z3BnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-12-17T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-12-17T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert1d121cac8574b3741b898b2119a83a43",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk65ijadj5clh64eb4c8sjap336ph66e9p69h3acj6ccrm4o9o68r0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2NWlqYWRqNWNsaDY0ZWI0YzhzamFwMzM2cGg2NmU5cDY5aDNhY2o2Y2NybTRvOW82OHIwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-11-23T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-11-23T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert1e56eebb9db95dc6bc992b52fc7ba826",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk68o30e3364p66d9o61gjcd9k75j3eo9k6ss6cc1pclij4d1h74sg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OG8zMGUzMzY0cDY2ZDlvNjFnamNkOWs3NWozZW85azZzczZjYzFwY2xpajRkMWg3NHNnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-09-28T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-09-28T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert2008c12c580a6549f7a478f09ee24199",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk68o66dhj6hijidpgcgq38cr56dhj0c1ncdij6opn6cp30eb369i0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OG82NmRoajZoaWppZHBnY2dxMzhjcjU2ZGhqMGMxbmNkaWo2b3BuNmNwMzBlYjM2OWkwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-06-25T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-06-25T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert20c634e970d443e3c007ce3c73209c2d",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk68o68cpg6sq38cb3cpj62d9lcgpjadhm6ti3id3574p3icpi6krg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OG82OGNwZzZzcTM4Y2IzY3BqNjJkOWxjZ3BqYWRobTZ0aTNpZDM1NzRwM2ljcGk2a3JnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-12-07T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-12-07T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert20d307441cffa55d35667d94e9293257",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk68om6dpiclimap346phjgdj1c9h3ed35c8qj6opkc4o6cor2ccp0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OG9tNmRwaWNsaW1hcDM0NnBoamdkajFjOWgzZWQzNWM4cWo2b3BrYzRvNmNvcjJjY3AwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-12-21T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-12-21T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert21c72eeedd6c86abb74eb53c4a0fcbc2",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk68om6or36crm2or160ojcdr264sjee1l75j66c1jc8sj2chg74rg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OG9tNm9yMzZjcm0yb3IxNjBvamNkcjI2NHNqZWUxbDc1ajY2YzFqYzhzajJjaGc3NHJnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[\"19-16\",\"19-37\",\"19-99\",\"19-92\",\"19-106\"]",
+      "location": "https://us02web.zoom.us/j/87298686457",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-06-11T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-06-11T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert21ccc37aca0167b197859fc03b912097",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk68q64c9h6grj0d9m71im2php68rjiopm60s38dj465i62opj74rg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OHE2NGM5aDZncmowZDltNzFpbTJwaHA2OHJqaW9wbTYwczM4ZGo0NjVpNjJvcGo3NHJnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-09-10T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-09-10T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert24b11470568eaf9279c60846d1dac397",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk69h38e34cdhjgcr36ks66pb260s3ccpkcgqmae9m75ijep1ic8o0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OWgzOGUzNGNkaGpnY3IzNmtzNjZwYjI2MHMzY2Nwa2NncW1hZTltNzVpamVwMWljOG8wIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-07-23T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-07-23T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert2b48dcc83c58ceb08634d5e969e7d2b0",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk69hj0opg74s3gc1mc5imccr66sq6copm74oj4cj56tj3aoj5cgqg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2OWhqMG9wZzc0czNnYzFtYzVpbWNjcjY2c3E2Y29wbTc0b2o0Y2o1NnRqM2FvajVjZ3FnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-08-27T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-08-27T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert2c0c098806aef3f74fc69122e7f5bed5",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6dh3iphm70o3ac3264o62d9i68r32d9o6srj2d36copjao9o74p0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2ZGgzaXBobTcwbzNhYzMyNjRvNjJkOWk2OHIzMmQ5bzZzcmoyZDM2Y29wamFvOW83NHAwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-09-24T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-09-24T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert3b9f68050b10a52261587714ff35a892",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6di3acplc5h36d9g70p3ic9gc5i6cc1mchhj6c366lhjcp1nckpg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2ZGkzYWNwbGM1aDM2ZDlnNzBwM2ljOWdjNWk2Y2MxbWNoaGo2YzM2NmxoamNwMW5ja3BnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-11-02T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-11-02T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert3d535ab35082910adf06dc30f5c6d7e3",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6go30e33c9im2d1lccq3cdj5ccrm2or2c5j30ob6cos3ichpc4rg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2Z28zMGUzM2M5aW0yZDFsY2NxM2NkajVjY3JtMm9yMmM1ajMwb2I2Y29zM2ljaHBjNHJnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Landmarks & Historic Preservation Committee Hearings",
+      "description": "\"board\": \"LHPC\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-11-04T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-11-04T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert4008cbea45c466ec7acbaf0aff8929a7",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6go6ad9lclgmachjcoo6aopp6or6ap1hc5j6cdj2ccp3ic9o70q0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2Z282YWQ5bGNsZ21hY2hqY29vNmFvcHA2b3I2YXAxaGM1ajZjZGoyY2NwM2ljOW83MHEwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-08-06T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-08-06T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert40e55eae23f0ec966ed1aff6bc291884",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6gq3co9mc4p34d1o6hgj6p1i70q6cc316hgjge9gc4qm2c31cosg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2Z3EzY285bWM0cDM0ZDFvNmhnajZwMWk3MHE2Y2MzMTZoZ2pnZTlnYzRxbTJjMzFjb3NnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Landmarks & Historic Preservation Committee Hearings",
+      "description": "\"board\": \"LHPC\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-09-02T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-09-02T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert446a6a22484a3d284f0a4a890a5a0af9",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6gsm2dhn64smaphm6sp3coj5cgs62pho65i3gphk64qjgdpkc4q0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2Z3NtMmRobjY0c21hcGhtNnNwM2NvajVjZ3M2MnBobzY1aTNncGhrNjRxamdkcGtjNHEwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-08-17T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-08-17T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert49a6719ef6726bed8af81d8f415874a4",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6hhmcd9k6oqjeor564o64c1i68qmacpk6lj3gcphc4q34dplcoog",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2aGhtY2Q5azZvcWplb3I1NjRvNjRjMWk2OHFtYWNwazZsajNnY3BoYzRxMzRkcGxjb29nIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-08-03T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-08-03T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert4cf54657ce10b0225e345f831a4275f1",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6orjcc1mcpi30d34cph64e32c4p3ge9h6gs3ae9p6gp62dr46crg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2b3JqY2MxbWNwaTMwZDM0Y3BoNjRlMzJjNHAzZ2U5aDZnczNhZTlwNmdwNjJkcjQ2Y3JnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-09-14T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-09-14T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert67606fd04dfbb8ba28914859942a7d37",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6soj2pb4clhm2cr4cco3ccj168s30ohg6th3adpg6kpj0or1c8pg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2c29qMnBiNGNsaG0yY3I0Y2NvM2NjajE2OHMzMG9oZzZ0aDNhZHBnNmtwajBvcjFjOHBnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-09-17T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-09-17T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert711edeca3dc062a280b07b570530cab3",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk6thjgo9hcpgjae9j6kp38cj56th3adpmckp62dpl6ksm2c9icksg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams2dGhqZ285aGNwZ2phZTlqNmtwMzhjajU2dGgzYWRwbWNrcDYyZHBsNmtzbTJjOWlja3NnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-10-22T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-10-22T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert7c8a1fa5935242e7b576e2a7559a12e9",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk70qm6c9o6opm2dj5c8q30dhm64r3ac9i6grj8pj670o34c1kcgsg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams3MHFtNmM5bzZvcG0yZGo1YzhxMzBkaG02NHIzYWM5aTZncmo4cGo2NzBvMzRjMWtjZ3NnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[\"19-29\",\"20-02\",\"20-03\",\"20-04\",\"20-21\"]",
+      "location": "https://us02web.zoom.us/j/85992872085",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-06-15T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-06-15T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert85c1863a6eb406616512474ff80204d9",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk70rm2chkcorjgcj364o30o9ncgoj6chlcphjadb4c4s6aohhccog",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams3MHJtMmNoa2NvcmpnY2ozNjRvMzBvOW5jZ29qNmNobGNwaGphZGI0YzRzNmFvaGhjY29nIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-10-05T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-10-05T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert87a24f782c100a7d1325fc55da8eb1c1",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk71gm4cr2ckq38d36cgq3gd34chhj0cj5c9i6aopgcpj3ed1n65j0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams3MWdtNGNyMmNrcTM4ZDM2Y2dxM2dkMzRjaGhqMGNqNWM5aTZhb3BnY3BqM2VkMW42NWowIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Landmarks & Historic Preservation Committee Hearings",
+      "description": "\"board\": \"LHPC\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-10-07T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-10-07T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert8ab3be444fd484ddc02ebdec0ff7471f",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk71j34dpm61hj8oj56phm4p36cgr3co9l75j3ie1kc8pj4p3560r0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams3MWozNGRwbTYxaGo4b2o1NnBobTRwMzZjZ3IzY285bDc1ajNpZTFrYzhwajRwMzU2MHIwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-07-09T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-07-09T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvert8f2760c4be6cbdfd66a59f984b32de06",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk75hj0dhl6cp68p1n65hj6o9o74q3aohmccrm4dj5c8sm8db2c9gg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams3NWhqMGRobDZjcDY4cDFuNjVoajZvOW83NHEzYW9obWNjcm00ZGo1YzhzbThkYjJjOWdnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-12-03T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-12-03T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert9c06532dd71c3a8945b6c7b6eb9d5bba",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjk75i38p9m69ijidb26sp68dhkcgq30ohm6li6adhm6hhmco9j6kpg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzams3NWkzOHA5bTY5aWppZGIyNnNwNjhkaGtjZ3EzMG9obTZsaTZhZGhtNmhobWNvOWo2a3BnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Landmarks & Historic Preservation Committee Hearings",
+      "description": "\"board\": \"LHPC\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-12-02T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-12-02T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvert9d4e62e95b72d64d40b65de664cfa353",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkc5ijge9l6oo32cpp6dgj4c9mccp68opiclim8ohockq3ae1h6spg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjNWlqZ2U5bDZvbzMyY3BwNmRnajRjOW1jY3A2OG9waWNsaW04b2hvY2txM2FlMWg2c3BnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Landmarks & Historic Preservation Committee Hearings",
+      "description": "\"board\": \"LHPC\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-07-01T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-07-01T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvertae895601393a216c2dc2eedb8e458173",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkc8ojcdb36lhjge3365hm2dhkcgsj2p1j64rj2p1j70qjiphgc8o0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjOG9qY2RiMzZsaGpnZTMzNjVobTJkaGtjZ3NqMnAxajY0cmoycDFqNzBxamlwaGdjOG8wIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Central Planning Board Hearing",
+      "description": "\"board\": \"CPB\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-07-06T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-07-06T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvertb165c5c88c1ca64d91d3171d3859f0b0",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkc8pm4o9lc4r3gcr2chgj4or2corm6e1kc9gj8o9k61i38dph68r0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjOHBtNG85bGM0cjNnY3IyY2hnajRvcjJjb3JtNmUxa2M5Z2o4bzlrNjFpMzhkcGg2OHIwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-10-15T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-10-15T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvertb3ba5a683bda2cbf7c84ba4a40d47126",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkc8s3gd9l6hi38dj2clhjccj26cpjec33ccr62c9g71hm4ohg6crg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjOHMzZ2Q5bDZoaTM4ZGoyY2xoamNjajI2Y3BqZWMzM2NjcjYyYzlnNzFobTRvaGc2Y3JnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-10-08T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-10-08T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvertb88554d46bec62b3370cc6a108cbb037",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkc9imcc9j6oo30e326tgjioj1corjce326ooj4db160o6cd9hccp0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjOWltY2M5ajZvbzMwZTMyNnRnamlvajFjb3JqY2UzMjZvb2o0ZGIxNjBvNmNkOWhjY3AwIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-11-05T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-11-05T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvertbef136008b7a9baf768b6125a00f51c2",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkcgrm8c32c4qm4d9h61i6ce9l6oqm4chpcosm4cpk61ij6c9pcdig",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjZ3JtOGMzMmM0cW00ZDloNjFpNmNlOWw2b3FtNGNocGNvc200Y3BrNjFpajZjOXBjZGlnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-11-19T18:00:00-05:00"
+      },
+      "end": {
+       "dateTime": "2020-11-19T23:00:00-05:00"
+      },
+      "iCalUID": "CSVConvertd7d0ba5b510df9565b29f9b340e319ce",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     },
+     {
+      "kind": "calendar#event",
+      "etag": "\"3182771255982000\"",
+      "id": "_8d9lcgrfdpr6asjkcpj6copp69h68cpmcopm6pj1c4q62p9kcgs64phh6csjcoj1ccrg",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=XzhkOWxjZ3JmZHByNmFzamtjcGo2Y29wcDY5aDY4Y3BtY29wbTZwajFjNHE2MnA5a2NnczY0cGhoNmNzamNvajFjY3JnIDZhMGo0OW8zZTZoNDN1dDMyaG1ibWlobmI0QGc",
+      "created": "2020-06-05T19:33:47.991Z",
+      "updated": "2020-06-05T19:33:47.991Z",
+      "summary": "Zoning Board of Adjustment Hearing",
+      "description": "\"board\": \"ZBA\", \"applications\":[]",
+      "creator": {
+       "email": "nterwin714@gmail.com"
+      },
+      "organizer": {
+       "email": "6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com",
+       "displayName": "Newark Board Hearings",
+       "self": true
+      },
+      "start": {
+       "dateTime": "2020-08-20T18:00:00-04:00"
+      },
+      "end": {
+       "dateTime": "2020-08-20T23:00:00-04:00"
+      },
+      "iCalUID": "CSVConvertfffc92bd36f3cfaa4ae4d8bf1396bac7",
+      "sequence": 0,
+      "reminders": {
+       "useDefault": true
+      }
+     }
+    ]
+   }
+   
