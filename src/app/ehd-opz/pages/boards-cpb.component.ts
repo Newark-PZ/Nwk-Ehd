@@ -45,7 +45,7 @@ export class CpbComponent implements OnInit {
         {
           icon: 'event',
           event: 'Central Planning Board',
-          date: 'Mon, June 1 @ 6pm'
+          date: 'Mon, June 15 @ 6pm'
         },
         {
           icon: 'event',

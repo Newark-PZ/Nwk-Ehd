@@ -62,7 +62,7 @@ export class EventComponent implements OnInit, OnChanges {
         this.hearing = this.events.hearings.filter(h => h.board === this.board)[0];
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
-         this.data.push({ section: 'Find More Info', content: 'Virtual Hearing Dashboard', link: `/planningzoning/virtualhearing/${this.board.toLowerCase()}` });
+            this.data.push({ section: 'Find More Info', content: 'Applications & Documents', link: `/planningzoning/virtualhearing/${this.board.toLowerCase()}` });
         }
     }
     ngOnChanges(changes: SimpleChanges): void {

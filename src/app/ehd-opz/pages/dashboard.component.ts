@@ -28,6 +28,7 @@ export class DashboardComponent {
   currentTab: number;
   agendaUrl = 'http';
   fofUrl = 'http';
+  colRegex = /[A-Z]/gi;
   @ViewChild('frame') frame: ElementRef;
   cpbTab$: Observable<VirtualHearingTab>;
   zbaTab$: Observable<VirtualHearingTab>;

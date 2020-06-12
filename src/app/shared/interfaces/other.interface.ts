@@ -112,7 +112,8 @@ export interface DataRow {
   board: string;
   app: string;
   address: string;
-  folderlink: string;
+  link: string;
+  type: 'folders' | string;
 }
 export interface VirtualHearingTab {
   board: 'CPB' | 'EC' | 'LHPC' | 'ZBA' | string;
