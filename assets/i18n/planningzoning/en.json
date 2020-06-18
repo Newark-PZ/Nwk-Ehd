@@ -612,7 +612,7 @@
         "contentIntro": {
             "header": "Upcoming Hearings",
             "events": [{
-                "disabled": false, "icon": "notification_important",
+                "disabled": false, "icon": "event",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
