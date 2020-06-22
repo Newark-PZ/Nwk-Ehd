@@ -195,14 +195,14 @@
                 "board": "CPB",
                 "eventType": "Virtual Hearing",
                 "event": "Central Planning Board",
-                "date": "Mon, June 1 @ 6pm"
+                "date": "Tue, July 7 @ 6pm"
                 },
                 {
                 "disabled": false, "icon": "event",
                 "board": "CPB",
                 "eventType": "Virtual Hearing",
                 "event": "Central Planning Board",
-                "date": "Mon, June 15 @ 6pm"
+                "date": "Mon, July 20 @ 6pm"
         }
             ],
             "right": {
@@ -612,18 +612,18 @@
         "contentIntro": {
             "header": "Upcoming Hearings",
             "events": [{
-                "disabled": false, "icon": "notification_important",
+                "disabled": false, "icon": "event",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 4 @ 6pm"
+                "date": "Thu, June 25 @ 6pm"
                 },
                 {
                 "disabled": false, "icon": "event",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 11 @ 6pm"
+                "date": "Thu, July 9 @ 6pm"
                 }
             ],
             "right": {
