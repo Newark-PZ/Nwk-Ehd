@@ -58,7 +58,6 @@ export class OpzResourcesComponent implements AfterViewInit {
         filter(params => params.group && params.type)
       )
       .subscribe(params => {
-        console.log(params); // {order: "popular"}
         if (params.group !== 'redev') {
           this.docsComp.groupSelect({
             group: params.group, type: params.type,
@@ -88,8 +87,8 @@ export class OpzResourcesComponent implements AfterViewInit {
     this.copySuccess(object);
   }
   setSubtitle(group: string): void {
-    const curboard = this.boards.find(b => b.group === group)!.name;
     // tslint:disable-next-line: no-non-null-assertion
+    const curboard = this.boards.find(b => b.group === group) ? this.boards.find(b => b.group === group)!.name : group;
     this.pageDetails.title = `Documents: ${curboard}`;
   }
   groupSelect(group, optgroup): void {

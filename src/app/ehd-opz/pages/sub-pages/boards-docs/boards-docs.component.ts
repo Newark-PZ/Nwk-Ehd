@@ -14,10 +14,7 @@ import { rowExpand } from '../../../../shared/util/animations';
   animations: [rowExpand],
   // tslint:disable:no-unused-css
   selector: 'app-res-minutes',
-  styles: ['.mat-row:not(.detail):hover {background-color: rgba(127, 255, 212, .25)}',
-           '.mat-row:active {box-shadow: inset 1px 1px 5px lightyellow; background-color: rgba(255, 255, 224, .25)}',
-           '.detail {box-shadow: inset 1px 1px 5px aquamarine; background: whitesmoke} .expanded {font-weight: 600;background: rgba(194, 249, 230, 0.3)}'
-  ],
+  styleUrls: ['./boards-docs.component.scss'],
   templateUrl: './boards-docs.component.html'
 })
 
@@ -26,7 +23,7 @@ export class BoardsDocsDataComponent implements AfterViewInit {
   fullScreen = false;
   iframeVis = false;
   isLoadingResults = false;
-  cols: Array<any> = ['label', 'pubDate'];
+  cols: Array<any> = ['label'];
   selection = new SelectionModel<DataItem>(false, []);
   filterValue;
   group: DocGroup;
