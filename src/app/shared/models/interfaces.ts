@@ -15,7 +15,8 @@ export interface DataItem {
     id?: number | string;
     label?: string;
     link?: string;
-    pubDate?: string | Date;
+    published?: string | Date;
+    uploaded?: string | Date;
     type?: string;
     expanded?: boolean;
 }
