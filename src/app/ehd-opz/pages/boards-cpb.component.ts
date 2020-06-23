@@ -45,12 +45,12 @@ export class CpbComponent implements OnInit {
         {
           icon: 'event',
           event: 'Central Planning Board',
-          date: 'Mon, June 15 @ 6pm'
+          date: 'Tue, July 7 @ 6pm'
         },
         {
           icon: 'event',
           event: 'Central Planning Board',
-          date: 'Mon, June 15 @ 6pm'
+          date: 'Mon, July 20 @ 6pm'
         }
       ],
       right: {text: 'More Info Below'}

@@ -12,12 +12,8 @@ import { rowExpand } from '../../../../shared/util/animations';
 
 @Component({
   animations: [rowExpand],
-  // tslint:disable:no-unused-css
   selector: 'app-res-minutes',
-  styles: ['.mat-row:not(.detail):hover {background-color: rgba(127, 255, 212, .25)}',
-           '.mat-row:active {box-shadow: inset 1px 1px 5px lightyellow; background-color: rgba(255, 255, 224, .25)}',
-           '.detail {box-shadow: inset 1px 1px 5px aquamarine; background: whitesmoke} .expanded {font-weight: 600;background: rgba(194, 249, 230, 0.3)}'
-  ],
+  styleUrls: ['./boards-docs.component.scss'],
   templateUrl: './boards-docs.component.html'
 })
 
@@ -26,10 +22,21 @@ export class BoardsDocsDataComponent implements AfterViewInit {
   fullScreen = false;
   iframeVis = false;
   isLoadingResults = false;
-  cols: Array<any> = ['label', 'pubDate'];
+  cols: Array<any> = ['label'];
   selection = new SelectionModel<DataItem>(false, []);
   filterValue;
   group: DocGroup;
+  boards: Array<{group: string; name: string; disabled: boolean, docs: Array<{type?: string; link: string; year?: number}>}> = [
+    {group: 'redev', name: 'Redevelopment Plans', disabled: false, docs: [{link: 'plans'}]},
+    {group: 'cpb', name: 'Central Planning Board', disabled: false, docs: [
+      {type: '2019 Minutes', link: 'cpb/minutes', year: 2019}, {type: '2020 Minutes', link: 'cpb/minutes', year: 2020},
+      {type: '2019 Agendas', link: 'cpb/agendas', year: 2019}, {type: '2020 Agendas', link: 'cpb/agendas', year: 2020}
+    ]},
+    {group: 'zba', name: 'Zoning Board of Adjustment', disabled: false, docs: [
+      {type: '2019 Minutes', link: 'zba/minutes', year: 2019}, {type: '2020 Minutes', link: 'zba/minutes', year: 2020},
+      {type: '2019 Agendas', link: 'zba/agendas', year: 2019}, {type: '2020 Agendas', link: 'zba/agendas', year: 2020}
+    ]}
+  ];
   selectedGroup = {group: 'redev', type: 'Redevelopment Plans', link: 'plans'};
   selectedDoc: DataItem | null;
   resultsLength = 0;
@@ -41,7 +48,7 @@ export class BoardsDocsDataComponent implements AfterViewInit {
   @ViewChild(MatInput, {static: true}) input: MatInput;
   setDocsControl = new FormControl();
   isExpansionDetailRow = (i: number, row: DataItem) => row.hasOwnProperty('expanded');
-  expandedElement: DataItem | null;
+  selectedElement: DataItem | null;
   @Output() readonly groupChange: EventEmitter<string> = new EventEmitter<string>();
   constructor(
     public jsonData: JsonDataService,
@@ -69,7 +76,7 @@ export class BoardsDocsDataComponent implements AfterViewInit {
     this.jsonData.getFiles(group.link)
     .subscribe(
       doc => this.dataSource.data = doc.data.filter(
-       file => group.year ? file.pubDate!.toString()
+       file => group.year ? file.published!.toString()
             .startsWith(group.year.toString()) : file )
     );
     this.dataSource.sort = this.sort;
@@ -84,16 +91,14 @@ export class BoardsDocsDataComponent implements AfterViewInit {
     this.textHide = !this.textHide;
   }
   openDoc(doc: DataItem): void {
+    // tslint:disable-next-line: no-null-keyword
+    this.selectedElement === doc ? this.selectedElement = null : this.selectedElement = doc;
     this.dialog.open(ModalComponent, {
       maxWidth: '100vw',
       data: {
-        header: `<b>${doc.label}</b><br><span>${new Date(doc.pubDate!).toDateString()}</span>`,
+        header: `<b>${doc.label}</b><br><span>${new Date(doc.published!).toDateString()}</span>`,
         link: doc.embedLink
       }
     });
-  }
-  setExpanded(row: DataItem): void {
-    // tslint:disable-next-line: no-null-keyword
-    this.expandedElement === row ? this.expandedElement = null : this.expandedElement = row;
   }
 }

@@ -16,7 +16,7 @@ const initialState: State = {
         disabled: false,
         label: 'Central Planning Board',
         live: false,
-        oldData: []
+        prevHearings: []
     },
     ecTab: {
         agenda: '',
@@ -25,7 +25,7 @@ const initialState: State = {
         disabled: true,
         label: 'Environmental Commission',
         live: false,
-        oldData: []
+        prevHearings: []
     },
     lhcpTab: {
         agenda: '',
@@ -34,7 +34,7 @@ const initialState: State = {
         disabled: true,
         label: 'Landmark & Historic Preservation Committee',
         live: false,
-        oldData: []
+        prevHearings: []
     },
     zbaTab: {
         agenda: '',
@@ -44,7 +44,7 @@ const initialState: State = {
         fofId: '',
         label: 'Zoning Board of Adjustment',
         live: false,
-        oldData: []
+        prevHearings: []
     }
 };
 
@@ -62,7 +62,7 @@ export const hearingReducer = (
             event: action.payload.event,
             label: 'Central Planning Board',
             live: false,
-            oldData: action.payload.oldData
+            prevHearings: action.payload.prevHearings
         }
     };
     case HearingActions.SET_TAB_EC:
@@ -74,7 +74,7 @@ export const hearingReducer = (
             event: action.payload.event,
             label: 'Environmental Commission',
             live: false,
-            oldData: action.payload.oldData
+            prevHearings: action.payload.prevHearings
         }
     };
     case HearingActions.SET_TAB_LHPC:
@@ -86,7 +86,7 @@ export const hearingReducer = (
             event: action.payload.event,
             label: 'Landmark & Historic Preservation Commission',
             live: false,
-            oldData: action.payload.oldData
+            prevHearings: action.payload.prevHearings
         }
     };
     case HearingActions.SET_TAB_ZBA:
@@ -99,7 +99,7 @@ export const hearingReducer = (
             fofId: action.payload.fofId,
             label: 'Zoning Board of Adjustment',
             live: false,
-            oldData: action.payload.oldData
+            prevHearings: action.payload.prevHearings
         }
     };
     default:

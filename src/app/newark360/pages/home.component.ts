@@ -18,12 +18,12 @@ export class OpzHomeComponent {
     buttonCategories: ['Boards & Commissions', 'Tools'],
     buttons: [
       {
-        icon: 'house', category: 'Boards & Commissions', title: 'Central Planning Board', subtext: 'Next Hearing: <b>July 7</b>',
+        icon: 'house', category: 'Boards & Commissions', title: 'Central Planning Board', subtext: 'Next Hearing: <b>June 1</b>',
         isEvent: true, subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'cpb'
       },
       {
         icon: 'house', category: 'Boards & Commissions', title: 'Zoning Board of Adjustment', isEvent: true,
-        subtext: 'Next Hearing: <b>June 25</b>', subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'zba'
+        subtext: 'Next Hearing: <b>June 4</b>', subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'zba'
       },
       // {
       //   icon: 'house', category: 'Boards & Commissions', title: 'Landmarks & Historic Preservation', isEvent: true,
@@ -60,14 +60,14 @@ export class OpzHomeComponent {
           event: 'Zoning Board',
           board: 'ZBA',
           eventType: 'Virtual Hearing',
-          date: 'Thu, June 25th @ 6pm'
+          date: 'Thu, June 11th @ 6pm'
         },
         {
           icon: 'notification_important',
-          event: 'Historic Comm',
-          board: 'LHPC',
+          event: 'Planning Board',
+          board: 'CPB',
           eventType: 'Virtual Hearing',
-          date: 'Wed, July 1st @ 6pm'
+          date: 'Mon, June 15th @ 6pm'
         }
       ],
       right: {text: 'More Tools and Resources Below'}

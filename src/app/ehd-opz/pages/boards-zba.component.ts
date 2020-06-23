@@ -43,12 +43,12 @@ export class ZbaComponent implements OnInit {
         {
           icon: 'notification_important',
           event: 'Zoning Board of Adjustment',
-          date: 'Thu, June 4 @ 7pm'
+          date: 'Thu, June 25 @ 6pm'
         },
         {
           icon: 'notification_important',
           event: 'Zoning Board of Adjustment',
-          date: 'Thu, June 11 @ 7pm'
+          date: 'Thu, July 9 @ 6pm'
         }
       ],
       right: {text: 'More Info and Resources Below'}

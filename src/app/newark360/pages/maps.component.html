@@ -1,0 +1,123 @@
+<section matRipple
+    matRippleDisabled="disabled"
+    matRippleRadius="12"
+    matRippleColor="rgba(0, 255, 191, .5)"
+    class="map-frame">
+        <map-map #map [height]="'85vh'" [width]="'100%'">
+            <map-view [zoom]="13" maxZoom="18" enableRotation="false">
+                <map-interaction-default></map-interaction-default>
+                <map-control-scaleline [units]="'us'"></map-control-scaleline>
+                <map-coordinate [x]="-74.1723667" [y]="40.735657" [srid]="'EPSG:4326'"></map-coordinate>
+            </map-view>
+            <map-layer-group zIndex="0">
+                <map-layer-tile zIndex="0">
+                    <map-source-xyz [url]="(basemap$ | async) ? basemapUrls[1] : basemapUrls[0]"></map-source-xyz>
+                </map-layer-tile>
+                <map-layer-tile zIndex="6" [visible]="!(basemap$ | async)">
+                    <map-source-xyz [url]="cartoLabelsUrl"></map-source-xyz>
+                </map-layer-tile>
+            </map-layer-group>
+            <map-layer-vector #geoLayer zIndex="4"></map-layer-vector>
+            <map-overlay #overlay 
+            id="selectionMarker"
+            [insertFirst]="true"
+            [stopEvent]="false" zIndex="13">
+            <map-content>
+                <mat-icon class="overlayMarker">place</mat-icon>
+            </map-content>
+            </map-overlay>
+        </map-map>
+        <div [ngClass]="!(basemap$ | async) ? 'map-buttons-top right' : 'map-buttons-top right sat'">
+            <button class="general-button"
+            color="primary"
+            [matTooltip]="!(basemap$ | async) ? 'Satellite View' : 'Map View'"
+            matTooltipPosition="before"
+            (click)="setBasemap()"
+            id="basemap">
+                <mat-icon>{{!(basemap$ | async) ? 'satellite' : 'map'}}</mat-icon>
+            </button>
+            <div class="general-button split">
+                <button
+                color="primary"
+                (click)="zoomChange('in')"
+                [matTooltip]="'Zoom In'"
+                matTooltipPosition="before">
+                <mat-icon>add</mat-icon>
+                </button>
+                <hr>
+                <button
+                color="primary"
+                [matTooltip]="'Reset View'"
+                matTooltipPosition="before"
+                (click)="resetView()"
+                id="zoomExtent">
+                <mat-icon>crop_free</mat-icon>
+                </button>
+                <hr>
+                <button
+                    color="primary"
+                    (click)="zoomChange('out')"
+                    [matTooltip]="'Zoom Out'"
+                    matTooltipPosition="before">
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </div>
+            <div class="general-button split">
+                <button
+                color="primary"
+                (click)="openBottomsheet(0)" 
+                [matTooltip]="'Search by Address or Blocklot'"
+                matTooltipPosition="before">
+                <mat-icon>search</mat-icon>
+                </button>
+                <hr>
+                <button
+                color="primary"
+                (click)="openBottomsheet(1)" 
+                [matTooltip]="'Layers'"
+                matTooltipPosition="before">
+                <mat-icon>layers</mat-icon>
+                </button>
+                <hr>
+                <button
+                color="primary"
+                (click)="openBottomsheet(2)" 
+                [matTooltip]="'Property Info'"
+                matTooltipPosition="before">
+                <mat-icon>place</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="legend" [ngClass]="!(basemap$ | async) ? 'map-buttons-top left' : 'map-buttons-top sat left'">
+            <button class="general-button"
+            color="primary"
+            (click)="showLegend = !showLegend"
+            [matTooltip]="'Legend'"
+            matTooltipPosition="before">
+            <mat-icon>{{ showLegend ? 'close' : 'palette' }}</mat-icon>
+            <span>Legend</span>
+            </button>
+            <mat-table [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend" [dataSource]="legendEls | async">
+                <ng-container matColumnDef="layerName">
+                    <mat-header-cell *matHeaderCellDef>Newark Zoning Map</mat-header-cell>
+                </ng-container>
+                <ng-container matColumnDef="element">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let row"><div class="legend-symbol" [ngStyle]="{'border-color':row.borderColor}" [style.background]="row.background"></div></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="label">
+                    <mat-header-cell *matHeaderCellDef>Layer</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="info">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let row"><mat-icon [matTooltip]="row.desc" matTooltipClass="legend-tooltip" matTooltipPosition="after">info</mat-icon></mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="['layerName']; sticky: true"></mat-header-row>
+                <mat-header-row *matHeaderRowDef="legendCols; sticky: true"></mat-header-row>
+                <mat-row class="row" *matRowDef="let row; columns: legendCols;"
+                [class.expanded]="row.expanded === row"
+                (click)="row.expanded = !row.expanded"></mat-row>
+            </mat-table>              
+        </div>
+</section>

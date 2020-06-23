@@ -7,6 +7,7 @@ export const environment = {
     MONGO_API_KEY: 'IwgVRWO4eDXC563cIusNxtvNo3Ba1Xn8zWyV7xcWKfD77GcD6yo4qe7kpr6UlTJl',
     GDRIVE_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
     GCAL_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
+    GSHEETS_API_KEY: 'AIzaSyC-c-K76swQTFo9LLbDXzxnlcQ3ib96ums',
     // GDRIVE_API_KEY: 'AIzaSyDL58hGXLIi69tpowrlqXjoWzde-_CS7JI',
     // GCAL_API_KEY: 'AIzaSyCN96OiB7kDEpTfX0LsRPISn9RvdMUdZ5g',
     api: false,

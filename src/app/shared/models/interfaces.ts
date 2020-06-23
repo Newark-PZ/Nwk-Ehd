@@ -15,7 +15,8 @@ export interface DataItem {
     id?: number | string;
     label?: string;
     link?: string;
-    pubDate?: string | Date;
+    published?: string | Date;
+    uploaded?: string | Date;
     type?: string;
     expanded?: boolean;
 }
@@ -265,4 +266,9 @@ export interface GCalResponse {
     defaultReminders: [];
     nextSyncToken: string;
     items: Array<GCalEvent>;
+}
+export interface GSheetsValuesResponse {
+    range: string;
+    majorDimension: 'ROWS' | 'COLUMNS';
+    values: Array<any>;
 }

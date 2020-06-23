@@ -1,36 +1,35 @@
 export class Hearing {
     id: string;
-    board: 'ZBA' | 'CPB' | 'EC' | 'LHCP';
-    title: string;
+    board: 'ZBA' | 'CPB' | 'EC' | 'LHPC';
     start: Date;
-    end: Date;
     link: string;
-    timeUntil: 'passed' | number;
-    applications: Array<string>;
-    folder: string;
-    desc: {board: 'ZBA' | 'CPB' | 'EC' | 'LHCP'; applications: Array<string>; folderId: string};
+    timeUntil: number;
+    withinLegalNotice: boolean;
+    folderId: string;
+    data: Array<{board: 'CPB' | 'EC' | 'LHPC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>;
+    title: string;
     constructor(
         options: {
-            id?: string,
-            board?: 'ZBA' | 'CPB' | 'EC' | 'LHCP',
-            description: string,
-            title: string,
+            id: string,
+            board: 'ZBA' | 'CPB' | 'EC' | 'LHPC',
             start: string | number,
-            end?: string | number,
-            link?: string
+            link: string,
+            folderId?: string
         }) {
-        this.desc = JSON.parse(options.description) as {
-            board: 'ZBA' | 'CPB' | 'EC' | 'LHCP'; applications: Array<string>; folderId: string;
-        };
-        this.applications = this.desc.applications;
-        this.board = this.desc.board;
+        this.board = options.board;
         this.id = options.id || `${options.board}${(Math.random() * 10).toString()}`;
-        this.title = options.title;
         this.start = new Date(options.start);
-        this.end = new Date(options.end || this.start.getDate() + 1);
-        this.timeUntil = Math.abs(this.start.getDate() - new Date().getDate());
-        this.link = options.link || this.board === 'CPB'
-            ? 'https://us02web.zoom.us/j/85992872085' : 'https://us02web.zoom.us/j/87298686457';
-        this.folder = this.desc.folderId ? `https://drive.google.com/drive/folders/${this.desc.folderId}` : '';
+        this.timeUntil = this.start.getTime() - new Date().getTime();
+        this.withinLegalNotice = this.timeUntil >= -3888000000 && this.timeUntil < 0;
+        this.folderId = options.folderId || '';
+        this.link = options.link || '';
+        this.title = this.getTitle(this.board);
+    }
+    getTitle(board): string {
+        switch (board) {
+            case 'CPB': return 'Planning Board';
+            case 'LHPC': return 'Historic Comm.';
+            default: return 'Zoning Board';
+        }
     }
 }

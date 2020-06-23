@@ -1,0 +1,29 @@
+.mat-row:not(.detail) {
+    margin: .5rem;
+    border: .02rem solid lightgrey;
+    border-radius: .3rem;
+    max-height: unset !important;
+}
+
+.selected {
+    font-weight: 600;
+    background: rgba(194, 249, 230, 0.1)
+}
+.filterBox {
+    width: 28vw;
+    margin: 2rem auto auto .5rem;
+    background: lightsteelblue;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    border-radius: .25rem;
+    border: .02rem solid lightgrey;
+    .filterTagList {
+        flex: 1 1 45%;
+        background-color: white;
+        margin: .5rem;
+        border-radius: .25rem;
+        overflow-y: auto;
+        max-height: 8rem;
+    }
+}

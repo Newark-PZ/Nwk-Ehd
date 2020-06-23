@@ -10,7 +10,8 @@ export const environment = {
     AIRTABLE_API_KEY: 'key5WJB3zRIAyyfTr',
     MONGO_API_KEY: 'IwgVRWO4eDXC563cIusNxtvNo3Ba1Xn8zWyV7xcWKfD77GcD6yo4qe7kpr6UlTJl',
     GDRIVE_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
-    GCAL_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo'
+    GCAL_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
+    GSHEETS_API_KEY: 'AIzaSyC-c-K76swQTFo9LLbDXzxnlcQ3ib96ums'
   },
   production: false
 };
