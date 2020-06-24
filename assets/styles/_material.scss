@@ -210,3 +210,23 @@ app-bottomsheet .mat-tab-body-wrapper {
         }
     }
 }
+.mat-button-toggle-label-content {
+    line-height: inherit !important;
+    padding: .25rem !important;
+    min-width: 3rem;
+}
+.mat-standard-chip {
+    min-height: 1rem !important;
+    padding: .66rem .5rem !important;
+    background-color: lightgrey !important;
+    font-weight: 300 !important;
+    &.RedevelopmentPlan {
+        background-color: lightblue !important;
+    }
+    &[class*='Ward'] {
+        background-color: lightyellow !important;
+    }
+}
+.mat-chip {
+    font-size: .8rem !important;
+}
