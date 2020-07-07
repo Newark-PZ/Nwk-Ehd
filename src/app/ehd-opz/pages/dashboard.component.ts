@@ -58,7 +58,6 @@ export class DashboardComponent {
         this.link = params.get('id') || 'CPB';
         this.currentLink = this.linker.planningzoning[0];
         this.setTab(this.link.toUpperCase());
-        this.getEvents.initHearings();
         this.store.dispatch(new PageStateActions.SetPageCurrent({
           title: this.currentLink.title,
           icon: this.currentLink.icon,

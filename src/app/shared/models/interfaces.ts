@@ -267,3 +267,8 @@ export interface GCalResponse {
     nextSyncToken: string;
     items: Array<GCalEvent>;
 }
+export interface GSheetsValuesResponse {
+    range: string;
+    majorDimension: 'ROWS' | 'COLUMNS';
+    values: Array<any>;
+}

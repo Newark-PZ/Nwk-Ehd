@@ -46,9 +46,9 @@ export interface EventTableRow {
     `
 })
 export class EventComponent implements OnInit, OnChanges {
-    @Input() board: 'CPB' | 'EC' | 'LHCP' | 'ZBA' = 'CPB';
+    @Input() board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
     @Input() agenda;
-    @Input() fofId = 'https://drive.google.com/file/d/16Jm1WOZMElujT1dwiLcJppg7-ozG5Zxh/view?usp=sharing';
+    @Input() fofId = 'https://drive.google.com/file/d/1s8xTG4IeO61U4guy018vxbo7TSa4tSlL/view?usp=sharing';
     @Input() type: 'popup' | undefined;
     cols = ['section', 'content'];
     hearing: Hearing;
@@ -57,9 +57,9 @@ export class EventComponent implements OnInit, OnChanges {
     constructor(readonly router: Router, readonly events: EventsService) {}
     ngOnInit(): void {
         if (!this.agenda) {
-            this.agenda = this.board === 'ZBA' ? 'https://drive.google.com/file/d/1EtpOlrFFacFw6ZmWF9qUjwBHkK3_DcyR/view?usp=sharing' : 'https://drive.google.com/file/d/1ASSj1bEBxv8NL69tRZ2yftP_L_mMnjiS/view?usp=sharing';
+            this.agenda = this.board === 'ZBA' ? 'https://drive.google.com/file/d/1p_5ydzk-tRLpUb-caJoKQ_MP-6oJvmev/view?usp=sharing' : '';
         }
-        this.hearing = this.events.hearings.filter(h => h.board === this.board)[0];
+        this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= 0)[0];
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
             this.data.push({ section: 'Find More Info', content: 'Applications & Documents', link: `/planningzoning/virtualhearing/${this.board.toLowerCase()}` });
@@ -68,7 +68,7 @@ export class EventComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         this.board = changes.board.currentValue;
         this.agenda = changes.agenda.currentValue;
-        this.hearing = this.events.hearings.filter(h => h.board === this.board)[0];
+        this.hearing = this.events.hearings.filter(h => h.board === changes.board.currentValue && h.timeUntil >= 0)[0];
         this.data = this.setData(changes.board.currentValue, this.hearing, this.agenda, this.fofId);
     }
     fixPhone(num: string): string {
@@ -88,10 +88,10 @@ export class EventComponent implements OnInit, OnChanges {
             this.eventClicked.emit(true);
         }
     }
-    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHCP', hearing: Hearing, agenda: string, fofId?: string ): Array<EventTableRow> {
+    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC', hearing: Hearing, agenda: string, fofId?: string ): Array<EventTableRow> {
     return board !== 'ZBA'  ? [
         { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
-        { section: 'Topic', content: 'Download Agenda', link: agenda },
+        { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
         { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
         { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
         { section: 'Or Other Telephone<br>' +

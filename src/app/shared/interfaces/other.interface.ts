@@ -124,6 +124,6 @@ export interface VirtualHearingTab {
   fofId?: string;
   event?: Hearing;
   data?: Array<DataRow>;
-  oldData?: Array<DataRow>;
+  prevHearings?: Array<{event: Hearing; data: Array<DataRow>}>;
   currentEvent?: CalEvent;
 }

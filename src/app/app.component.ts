@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Link } from './shared/classes/link.class';
+import { EventsService } from './shared/services/events.service';
 import * as SidebarActions from './store/sidebar/sidebar.actions';
 import * as RightSidebarActions from './store/sidebarRight/sidebar.actions';
 import * as fromStoreActions from './store/store.actions';
@@ -29,7 +30,8 @@ export class AppComponent implements OnDestroy, OnInit {
   hasChild = (_: number, node: Link) => !!node.children && node.children.length > 0;
   constructor(
     readonly store: Store<fromStore.StoreState>,
-    readonly breakpointObserver: BreakpointObserver
+    readonly breakpointObserver: BreakpointObserver,
+    readonly events: EventsService
   ) {
     this.sidebarOpened$ = this.store.select(state => state.sidebar.opened);
     this.sidebarMode$ = this.store.select(state => state.sidebar.mode);
@@ -46,6 +48,7 @@ export class AppComponent implements OnDestroy, OnInit {
         } else {this.mayorDisplay = false; this.deptDisplay = false; }
     });
     this.store.dispatch(new fromStoreActions.ClearState());
+    this.events.initHearings();
   }
 
   toggleSidebar(): void {

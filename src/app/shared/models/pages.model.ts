@@ -43,7 +43,7 @@ export interface HomeCard {
 export interface CalEvent {
     event: string;
     eventType?: string;
-    board?: 'CPB' | 'EC' | 'LHCP' | 'ZBA';
+    board?: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
     date?: string;
     icon?: string;
     link?: string;

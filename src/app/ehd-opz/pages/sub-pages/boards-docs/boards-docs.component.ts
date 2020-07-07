@@ -12,7 +12,6 @@ import { rowExpand } from '../../../../shared/util/animations';
 
 @Component({
   animations: [rowExpand],
-  // tslint:disable:no-unused-css
   selector: 'app-res-minutes',
   styleUrls: ['./boards-docs.component.scss'],
   templateUrl: './boards-docs.component.html'
@@ -92,6 +91,7 @@ export class BoardsDocsDataComponent implements AfterViewInit {
     this.textHide = !this.textHide;
   }
   openDoc(doc: DataItem): void {
+    // tslint:disable-next-line: no-null-keyword
     this.selectedElement === doc ? this.selectedElement = null : this.selectedElement = doc;
     this.dialog.open(ModalComponent, {
       maxWidth: '100vw',
