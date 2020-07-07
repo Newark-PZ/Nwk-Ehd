@@ -47,8 +47,8 @@ export interface EventTableRow {
 })
 export class EventComponent implements OnInit, OnChanges {
     @Input() board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
-    @Input() agenda;
-    @Input() fofId = 'https://drive.google.com/file/d/1s8xTG4IeO61U4guy018vxbo7TSa4tSlL/view?usp=sharing';
+    @Input() agenda: string;
+    @Input() fofId: string;
     @Input() type: 'popup' | undefined;
     cols = ['section', 'content'];
     hearing: Hearing;
@@ -57,7 +57,10 @@ export class EventComponent implements OnInit, OnChanges {
     constructor(readonly router: Router, readonly events: EventsService) {}
     ngOnInit(): void {
         if (!this.agenda) {
-            this.agenda = this.board === 'ZBA' ? 'https://drive.google.com/file/d/1p_5ydzk-tRLpUb-caJoKQ_MP-6oJvmev/view?usp=sharing' : '';
+            this.agenda = '';
+        }
+        if (!this.fofId) {
+            this.fofId = '';
         }
         this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= 0)[0];
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
@@ -88,28 +91,31 @@ export class EventComponent implements OnInit, OnChanges {
             this.eventClicked.emit(true);
         }
     }
-    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC', hearing: Hearing, agenda: string, fofId?: string ): Array<EventTableRow> {
+    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
+    const idno = hearing.link.substring(hearing.link.lastIndexOf('/') + 1);
+    const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
+
     return board !== 'ZBA'  ? [
         { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
         { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
         { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
-        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
+        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
         { section: 'Or Other Telephone<br>' +
           '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
           content: 'US',
-          extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
+          extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
           numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
         ]
     : [
         { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
-        { section: 'Topic', content: 'Download Agenda', link: agenda},
-        { section: 'Findings of Fact', content: 'Download Findings of Fact', link: fofId },
+        { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
+        { section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings of Fact' : 'Coming Soon', link: fofId },
         { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
-        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: ['9292056099,,82787409169#', '3017158592,,82787409169#']},
+        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
         { section: 'Or Other Telephone<br>' +
           '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
           content: 'US',
-          extra: ['<b>Webinar ID</b>: 827 8740 9169', '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
+          extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
           numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
     ];
     }

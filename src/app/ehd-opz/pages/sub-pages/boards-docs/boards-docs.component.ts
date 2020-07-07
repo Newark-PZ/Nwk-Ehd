@@ -6,39 +6,37 @@ import { MatInput } from '@angular/material/input';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { JsonDataService, ModalComponent } from '../../../../shared/';
-import { DataItem, DocGroup } from '../../../../shared/models';
-import { rowExpand } from '../../../../shared/util/animations';
+import { AirService, JsonDataService, ModalComponent } from '../../../../shared/';
+import { DataItem, DocGroup, DocsFields } from '../../../../shared/models';
 
 @Component({
-  animations: [rowExpand],
-  selector: 'app-res-minutes',
+  selector: 'app-res-docs',
   styleUrls: ['./boards-docs.component.scss'],
   templateUrl: './boards-docs.component.html'
 })
-
-export class BoardsDocsDataComponent implements AfterViewInit {
-  data: Array<DataItem>;
+// tslint:disable: no-string-literal
+export class DocsDataComponent implements AfterViewInit {
+  data: Array<DocsFields>;
   fullScreen = false;
   iframeVis = false;
   isLoadingResults = false;
   cols: Array<any> = ['label'];
-  selection = new SelectionModel<DataItem>(false, []);
+  selection = new SelectionModel<DocsFields>(false, []);
   filterValue;
   group: DocGroup;
   boards: Array<{group: string; name: string; disabled: boolean, docs: Array<{type?: string; link: string; year?: number}>}> = [
     {group: 'redev', name: 'Redevelopment Plans', disabled: false, docs: [{link: 'plans'}]},
     {group: 'cpb', name: 'Central Planning Board', disabled: false, docs: [
-      {type: '2019 Minutes', link: 'cpb/minutes', year: 2019}, {type: '2020 Minutes', link: 'cpb/minutes', year: 2020},
-      {type: '2019 Agendas', link: 'cpb/agendas', year: 2019}, {type: '2020 Agendas', link: 'cpb/agendas', year: 2020}
+      {type: '2018 Minutes', link: 'CPB-Minutes', year: 2018}, {type: '2019 Minutes', link: 'CPB-Minutes', year: 2019}, {type: '2020 Minutes', link: 'CPB-Minutes', year: 2020},
+      {type: '2018 Agendas', link: 'CPB-Agendas', year: 2018}, {type: '2019 Agendas', link: 'CPB-Agendas', year: 2019}, {type: '2020 Agendas', link: 'CPB-Agendas', year: 2020}
     ]},
     {group: 'zba', name: 'Zoning Board of Adjustment', disabled: false, docs: [
-      {type: '2019 Minutes', link: 'zba/minutes', year: 2019}, {type: '2020 Minutes', link: 'zba/minutes', year: 2020},
-      {type: '2019 Agendas', link: 'zba/agendas', year: 2019}, {type: '2020 Agendas', link: 'zba/agendas', year: 2020}
+      {type: '2018 Minutes', link: 'ZBA-Minutes', year: 2018}, {type: '2019 Minutes', link: 'ZBA-Minutes', year: 2019}, {type: '2020 Minutes', link: 'ZBA-Minutes', year: 2020},
+      {type: '2018 Agendas', link: 'ZBA-Agendas', year: 2018}, {type: '2019 Agendas', link: 'ZBA-Agendas', year: 2019}, {type: '2020 Agendas', link: 'ZBA-Agendas', year: 2020}
     ]}
   ];
   selectedGroup = {group: 'redev', type: 'Redevelopment Plans', link: 'plans'};
-  selectedDoc: DataItem | null;
+  selectedDoc: DocsFields | null;
   resultsLength = 0;
   dataSource = new MatTableDataSource<DataItem>();
   sideStatus = false;
@@ -47,15 +45,16 @@ export class BoardsDocsDataComponent implements AfterViewInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatInput, {static: true}) input: MatInput;
   setDocsControl = new FormControl();
-  isExpansionDetailRow = (i: number, row: DataItem) => row.hasOwnProperty('expanded');
-  selectedElement: DataItem | null;
+  isExpansionDetailRow = (i: number, row: DocsFields) => row.hasOwnProperty('expanded');
+  selectedElement: DocsFields | null;
   @Output() readonly groupChange: EventEmitter<string> = new EventEmitter<string>();
   constructor(
     public jsonData: JsonDataService,
+    readonly airData: AirService,
     public dialog: MatDialog
   ) {
-    this.jsonData.getFiles('plans')
-    .subscribe(doc => this.dataSource.data = doc.data);
+    this.airData.getDocs('Plans', '')
+    .subscribe(doc => this.dataSource.data = doc.records);
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -73,31 +72,32 @@ export class BoardsDocsDataComponent implements AfterViewInit {
   groupSelect(group: DocGroup, optgroup: string): void {
     // tslint:disable: no-non-null-assertion
     if (group !== this.selectedGroup) { this.selectedGroup = group; }
-    this.jsonData.getFiles(group.link)
+    this.airData.getDocs(group.link, `view=${group.year ? group.year : 'All'}`)
     .subscribe(
-      doc => this.dataSource.data = doc.data.filter(
-       file => group.year ? file.published!.toString()
-            .startsWith(group.year.toString()) : file )
+      doc => this.dataSource.data = doc.records
+        .filter(
+        file => group.year ? file.fields!['Published']!.toString()
+                .startsWith(group.year.toString()) : file )
     );
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.groupChange.emit(`${optgroup} ${group.type ? group.type : ''}`);
   }
-  download(doc: DataItem): any {
-    window.open(`https://drive.google.com/uc?export=download&id=${doc.docId}`, '_blank');
+  download(doc: DocsFields, docIndex = 0): any {
+    window.open(doc.Files[docIndex].url);
   }
   shrinkSideNav(): void {
     this.sideStatus = !this.sideStatus;
     this.textHide = !this.textHide;
   }
-  openDoc(doc: DataItem): void {
+  openDoc(doc: DocsFields): void {
     // tslint:disable-next-line: no-null-keyword
     this.selectedElement === doc ? this.selectedElement = null : this.selectedElement = doc;
     this.dialog.open(ModalComponent, {
       maxWidth: '100vw',
       data: {
-        header: `<b>${doc.label}</b><br><span>${new Date(doc.published!).toDateString()}</span>`,
-        link: doc.embedLink
+        header: `<b>${doc.Name}</b><br><span>${doc.Published}</span>`,
+        link: doc.Files[0].url
       }
     });
   }

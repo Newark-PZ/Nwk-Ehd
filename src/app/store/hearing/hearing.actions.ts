@@ -20,7 +20,7 @@ export class SetTabEC implements Action {
     agenda: string | '', data: Array<DataRow> | [], event: Hearing, prevHearings: Array<{event: Hearing; data: Array<DataRow> | []}> | []
   }) {}
 }
-export class SetTabLHCP implements Action {
+export class SetTabLHPC implements Action {
   readonly type = SET_TAB_LHPC;
   constructor(public payload: {
     agenda: string | '', data: Array<DataRow> | [], event: Hearing, prevHearings: Array<{event: Hearing; data: Array<DataRow> | []}> | []
@@ -37,5 +37,5 @@ export class SetTabZBA implements Action {
 export type HearingActions =
   | SetTabCPB
   | SetTabEC
-  | SetTabLHCP
+  | SetTabLHPC
   | SetTabZBA;

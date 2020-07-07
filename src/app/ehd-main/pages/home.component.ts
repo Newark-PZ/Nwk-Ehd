@@ -33,22 +33,6 @@ export class EhdHomeComponent {
     ],
     contentIntro: {
       header: 'Upcoming Hearings',
-      events: [
-        {
-          icon: 'notification_important',
-          event: 'Zoning Board',
-          board: 'ZBA',
-          eventType: 'Virtual Hearing',
-          date: 'Thu, June 25th @ 6pm'
-        },
-        {
-          icon: 'notification_important',
-          event: 'Historic Comm',
-          board: 'LHPC',
-          eventType: 'Virtual Hearing',
-          date: 'Wed, July 1st @ 6pm'
-        }
-      ],
       right: {text: 'Our Divisions & Partners'}
     },
     splashTitle: 'Welcome to EHD',

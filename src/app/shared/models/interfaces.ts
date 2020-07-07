@@ -218,7 +218,7 @@ export interface BoardHearing {
 id: string;
 groupId: string;
 allDay: boolean;
-title: 'CPB' | 'EC' | 'ZBA' | 'LHCP';
+title: 'CPB' | 'EC' | 'ZBA' | 'LHPC';
 start: string;
 end: string;
 backgroundColor: string;

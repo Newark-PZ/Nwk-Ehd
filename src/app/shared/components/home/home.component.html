@@ -34,9 +34,9 @@
     <div [ngClass]="homePage.contentIntro.right ? 'content-intro left' : 'content-intro'">
       <h4 *ngIf="homePage.contentIntro.header"><mat-icon style="margin: 0 .5rem;vertical-align: bottom;">event</mat-icon>{{ homePage.contentIntro.header }}</h4>
       <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
-      <div class="content-intro-btns" *ngIf="homePage.contentIntro.events">
-        <button *ngFor="let button of homePage.contentIntro.events" class="event" (click)="openEvent(button)">
-          <div><b>{{ button.event }}</b><br><span>{{ button.date }}</span></div>
+      <div class="content-intro-btns" *ngIf="nextevents | async">
+        <button *ngFor="let button of (nextevents | async)" class="event" (click)="openEvent(button)">
+          <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
         </button>
         <button class="dashboard-btn" [routerLink]="['/planningzoning','virtualhearing']">
           <mat-icon>live_tv</mat-icon>
@@ -51,8 +51,7 @@
         <mat-icon>arrow_downward</mat-icon>
     </div>
   </section>
-  <mat-list class="program-cats">
-    <mat-list-item>
+    <section class="program-cats">
       <mat-accordion [multi]="expansionMulti$ | async" >
         <mat-expansion-panel *ngFor="let cat of homePage.buttonCategories" [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
           <mat-expansion-panel-header>
@@ -77,7 +76,6 @@
         </div>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-list-item>
-  </mat-list>
+    </section>
   <span class="page-bottom"></span>
   

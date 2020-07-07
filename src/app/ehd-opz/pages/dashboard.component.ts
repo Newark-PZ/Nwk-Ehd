@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { JsonDataService } from '../../shared';
 import { Link } from '../../shared/classes/link.class';
 import { VirtualHearingTab } from '../../shared/interfaces/other.interface';
 import { EventsService } from '../../shared/services/events.service';
@@ -17,7 +16,6 @@ import * as fromStore from '../../store/store.reducers';
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html'
 })
-// tslint:disable: max-line-length
 export class DashboardComponent {
   currentUrl: string;
   currentImg: string;
@@ -31,17 +29,20 @@ export class DashboardComponent {
   colRegex = /[A-Z]/gi;
   @ViewChild('frame') frame: ElementRef;
   cpbTab$: Observable<VirtualHearingTab>;
+  lhpcTab$: Observable<VirtualHearingTab>;
   zbaTab$: Observable<VirtualHearingTab>;
   boardTabs: Array<any> = [
     {
       board: 'CPB',
-      label: 'Central Planning Board',
-      live: false
+      label: 'Central Planning Board'
+    },
+    {
+      board: 'LHPC',
+      label: 'Landmarks & Historic Preservation'
     },
     {
       board: 'ZBA',
-      label: 'Zoning Board of Adjustment',
-      live: false
+      label: 'Zoning Board of Adjustment'
     }
   ];
   constructor(
@@ -49,10 +50,10 @@ export class DashboardComponent {
     readonly store: Store<fromStore.StoreState>,
     readonly getEvents: EventsService,
     readonly route: ActivatedRoute,
-    readonly linker: LinkService,
-    readonly getFiles: JsonDataService
+    readonly linker: LinkService
     ) {
       this.cpbTab$ = this.store.select(state => state.hearing.cpbTab);
+      this.lhpcTab$ = this.store.select(state => state.hearing.lhpcTab);
       this.zbaTab$ = this.store.select(state => state.hearing.zbaTab);
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.link = params.get('id') || 'CPB';

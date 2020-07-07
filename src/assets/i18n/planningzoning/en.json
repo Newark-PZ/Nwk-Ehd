@@ -90,7 +90,7 @@
                 "category": "Tools",
                 "title": "Master Plan",
                 "parent": "/planningzoning/resources",
-                "link": "res-minutes"
+                "link": "documents"
             },
             {
                 "disabled": true, "icon": "people",
@@ -173,7 +173,7 @@
                 "subText": "2020",
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
-                "link": "res-minutes",
+                "link": "documents",
                 "params": {"group": "cpb", "type": "agendas", "year": "2020"}
             },
             {
@@ -183,7 +183,7 @@
                 "subText": "2020",
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
-                "link": "res-minutes",
+                "link": "documents",
                 "params": {"group": "cpb", "type": "minutes", "year": "2020"}
             }
         ],
@@ -191,19 +191,19 @@
             "header": "Upcoming Hearings",
             "events": [
                 {
-                "disabled": false, "icon": "event",
-                "board": "CPB",
-                "eventType": "Virtual Hearing",
-                "event": "Central Planning Board",
-                "date": "Mon, June 1 @ 6pm"
-                },
-                {
-                "disabled": false, "icon": "event",
-                "board": "CPB",
-                "eventType": "Virtual Hearing",
-                "event": "Central Planning Board",
-                "date": "Mon, June 15 @ 6pm"
-        }
+                    "disabled": false, "icon": "event",
+                    "board": "CPB",
+                    "eventType": "Virtual Hearing",
+                    "event": "Central Planning Board",
+                    "date": "Tue, July 7 @ 6pm"
+                    },
+                    {
+                    "disabled": false, "icon": "event",
+                    "board": "CPB",
+                    "eventType": "Virtual Hearing",
+                    "event": "Central Planning Board",
+                    "date": "Mon, July 20 @ 6pm"
+            }
             ],
             "right": {
                 "text": "More Info Below"
@@ -439,39 +439,40 @@
                 "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Agendas",
-                "subText": "2019-2020",
+                "subText": "2020",
                 "subtextIcon": "info",
-                "parent": "/opz/resources",
-                "link": "res-minutes"
+                "parent": "/planningzoning/resources",
+                "link": "documents",
+                "params": {"group": "lhpc", "type": "agendas", "year": "2020"}
             },
             {
                 "disabled": false, "icon": "attach_file",
                 "category": "Resources",
                 "title": "Minutes",
-                "subText": "2019-2020",
+                "subText": "2020",
                 "subtextIcon": "info",
-                "parent": "/opz/resources",
-                "link": "res-minutes"
+                "parent": "/planningzoning/resources",
+                "link": "documents",
+                "params": {"group": "lhpc", "type": "minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
             "header": "Upcoming Events",
             "events": [
-                {
-                    "disabled": false, "icon": "notification_important",
-                    "board": "CPB",
-                    "eventType": "Virtual Hearing",
-                    "event": "Central Planning Board",
-                    "date": "Mon, May 11 @ 6pm"
-                },
-                {
-                    "disabled": false, "icon": "notification_important",
-                    "board": "CPB",
-                    "eventType": "Virtual Hearing",
-                    "event": "Environmental Commission",
-                    "date": "Wed, May 13 @ 6pm"
-                }
-            ],
+                    {
+                        "disabled": false, "icon": "event",
+                        "board": "LHPC",
+                        "eventType": "Virtual Hearing",
+                        "event": "Historic Commission",
+                        "date": "Wed, July 1 @ 6pm"
+                    },
+                    {
+                        "disabled": false, "icon": "event",
+                        "board": "LHPC",
+                        "eventType": "Virtual Hearing",
+                        "event": "Historic Commission",
+                        "date": "Wed, Sep 2 @ 6pm"
+                }],
             "right": {
                 "text": "More Info Below"
             }
@@ -595,7 +596,7 @@
                 "subText": "2020",
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
-                "link": "res-minutes",
+                "link": "documents",
                 "params": {"group": "zba", "type": "agendas", "year": "2020"}
             },
             {
@@ -605,27 +606,27 @@
                 "subText": "2020",
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
-                "link": "res-minutes",
+                "link": "documents",
                 "params": {"group": "zba", "type": "minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
             "header": "Upcoming Hearings",
-            "events": [{
-                "disabled": false, "icon": "notification_important",
+            "events": [
+                {
+                "disabled": false, "icon": "event",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 4 @ 6pm"
+                "date": "Thu, June 25 @ 6pm"
                 },
                 {
                 "disabled": false, "icon": "event",
                 "board": "ZBA",
                 "eventType": "Virtual Hearing",
                 "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 11 @ 6pm"
-                }
-            ],
+                "date": "Thu, July 9 @ 6pm"
+            }],
             "right": {
                 "text": "More Info Below"
             }

@@ -54,22 +54,6 @@ export class OpzHomeComponent {
     ],
     contentIntro: {
       header: 'Upcoming Hearings',
-      events: [
-        {
-          icon: 'notification_important',
-          event: 'Zoning Board',
-          board: 'ZBA',
-          eventType: 'Virtual Hearing',
-          date: 'Thu, June 25th @ 6pm'
-        },
-        {
-          icon: 'notification_important',
-          event: 'Historic Comm',
-          board: 'LHPC',
-          eventType: 'Virtual Hearing',
-          date: 'Wed, July 1st @ 6pm'
-        }
-      ],
       right: {text: 'More Tools and Resources Below'}
     },
     splashTitle: 'Welcome to the Office of Planning & Zoning',

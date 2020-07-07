@@ -9,7 +9,7 @@
     <mat-card>
       <div class="card-body" [innerHtml]="(boardPage$  | async).introText"></div>
       <mat-card-actions align="end">
-        <button  mat-stroked-button [ngClass]="live === true && button.icon ? 'stream-live' : 'info-buttons'"
+        <button mat-stroked-button [ngClass]="live === true && button.icon ? 'stream-live' : 'info-buttons'"
           *ngFor="let button of boardPageButtons" [routerLink]="[button.parent, button.link, button.param]">
           <span *ngIf="button.text; else standardText0">{{ button.text }}</span>
           <ng-template #standardText0>Learn More</ng-template>
@@ -23,51 +23,47 @@
   <div [ngClass]="(boardPage$ | async).contentIntro.right ? 'content-intro left' : 'content-intro'">
     <h4 *ngIf="(boardPage$ | async).contentIntro.header">{{ (boardPage$ | async).contentIntro.header }}</h4>
     <p *ngIf="(boardPage$ | async).contentIntro.text">{{ (boardPage$ | async).contentIntro.text }}</p>
-    <div class="content-intro-btns" *ngIf="(boardPage$ | async).contentIntro.events">
-      <button *ngFor="let button of (boardPage$ | async).contentIntro.events; let i = index" class="event" mat-stroked-button (click)="i === 0 ? openEvent(button) : ''">
-        <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
-        <b>{{ button.event }}</b><br><p>{{button.eventType}}<br>{{ button.date }}</p>
-        <ng-template #icon><mat-icon>exit_to_app</mat-icon></ng-template>
+    <div class="content-intro-btns" *ngIf="nextevents | async">
+      <button *ngFor="let button of (nextevents | async)" class="event" (click)="openEvent(button)">
+        <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
       </button>
     </div>
     <h4 *ngIf="(boardPage$ | async).contentIntro.footer">{{ (boardPage$ | async).contentIntro.footer }}</h4>
   </div>
   <div class="content-intro right" *ngIf="(boardPage$ | async).contentIntro.right">
-      <h3>{{ (boardPage$ | async).contentIntro.right.text }}</h3>
-      <mat-icon>arrow_downward</mat-icon>
+    <h3>{{ (boardPage$ | async).contentIntro.right.text }}</h3>
+    <mat-icon>arrow_downward</mat-icon>
   </div>
 </section>
-<mat-list class="program-cats">
-  <mat-list-item *ngFor="let card of (boardPage$  | async).sections">
-    <mat-card class="program-card" >
-      <mat-card-header *ngIf="card.header">
-        <mat-card-title>{{ card.header }}</mat-card-title>
-      </mat-card-header>
-      <div class="card-body" [innerHtml]="card.text"></div>
-      <div class="logos" *ngIf="card.logos">
-        <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
-      </div>
-      <mat-card-actions align="end" *ngIf="card.buttons">
-        <a mat-stroked-button *ngFor="let button of card.buttons"
-        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+<section class="program-cats">
+  <mat-card class="program-card" *ngFor="let card of (boardPage$  | async).sections">
+    <mat-card-header *ngIf="card.header">
+      <mat-card-title>{{ card.header }}</mat-card-title>
+    </mat-card-header>
+    <div class="card-body" [innerHtml]="card.text"></div>
+    <div class="logos" *ngIf="card.logos">
+      <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
+    </div>
+    <mat-card-actions align="end" *ngIf="card.buttons">
+      <a mat-stroked-button *ngFor="let button of card.buttons"
+        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
+        [href]="button.link">
         <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
         <ng-template #standardText0>Apply</ng-template>
         <mat-icon>double_arrow</mat-icon>
       </a>
-      </mat-card-actions>
-    </mat-card>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-accordion [multi]="expansionMulti$ | async" >
-      <mat-expansion-panel [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>
-              Board Members
-            </h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="name-cards">
+    </mat-card-actions>
+  </mat-card>
+  <mat-accordion [multi]="expansionMulti$ | async">
+    <mat-expansion-panel [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3>
+            Board Members
+          </h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="name-cards">
         <mat-card [class]="'name-card'" *ngFor="let card of (boardPage$  | async).members">
           <div class="button-card">
             <mat-icon style="margin-right: .5rem">person</mat-icon>
@@ -78,34 +74,31 @@
           </div>
         </mat-card>
       </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-accordion [multi]="expansionMulti$ | async" >
-      <mat-expansion-panel [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>
-              Information & Resources
-            </h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="name-cards">
-        <mat-card [class]="'name-card ' + card.category.slice(0,8)" [routerLink]="[card.parent, card.link]" [queryParams]="card.params"
-        *ngFor="let card of (boardPage$  | async).buttons">
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion [multi]="expansionMulti$ | async">
+    <mat-expansion-panel [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3>
+            Information & Resources
+          </h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="name-cards">
+        <mat-card [class]="'name-card ' + card.category.slice(0,8)" [routerLink]="[card.parent, card.link]"
+          [queryParams]="card.params" *ngFor="let card of (boardPage$  | async).buttons">
           <div class="button-card">
             <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
             <h4 style="margin: auto">{{ card.title }}</h4>
           </div>
-          <div class="card-content">  
+          <div class="card-content">
             <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
             <span [innerHtml]="card.subtext"></span>
           </div>
         </mat-card>
       </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </mat-list-item>
-</mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>
 <span class="(boardPage$  | async)-bottom"></span>

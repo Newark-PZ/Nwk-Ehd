@@ -11,6 +11,8 @@ import { ModalConfig } from '../../interfaces/other.interface';
 <div mat-dialog-content *ngIf="data.message !== 'event' && data.message" [innerHtml]="data.message"></div>
 <iframe *ngIf="data.link" [src]="link" style="width: 88vw; height: 70vh; border: none;"></iframe>
 <app-event-detail *ngIf="data.message === 'event'"
+[agenda]="data.event.agenda"
+[fofId]="data.event.fof"
 [board]="data.event.board" [type]="'popup'" (eventClicked)="dialogRef.close()"></app-event-detail>
 <div mat-dialog-actions><button mat-raised-button color="primary" (click)="dialogRef.close()" i18n="@@modalButton | Close Modal">Close</button></div>
   `

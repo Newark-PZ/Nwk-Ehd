@@ -1,4 +1,3 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -98,7 +97,6 @@ const globalRippleConfig: RippleGlobalOptions = {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule,
     RouterModule,
     matModules
   ],

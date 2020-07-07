@@ -63,31 +63,6 @@ export interface FaqPage {
   icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
   title: string;
 }
-export interface FaqCategory {
-  name: string;
-  children?: Array<TenantFaq>;
-}
-export interface TenantFaq {
-  name: string;
-  Categories: 'Lockout'
-    | 'Court Hearings'
-    | 'Subsidized Tenants'
-    | 'Additional Housing Assistance'
-    | 'Emergency Assistance'
-    | 'Electricity, Gas, Water';
-  question: string;
-  answer: string;
-  info?: string;
-}
-export interface HomeownerFaq {
-  name: string;
-  Categories: 'Removals'
-    | 'Court_Hearings';
-  question: string;
-  answer: string;
-  info?: string;
-  extraInfo?: Array<string>;
-}
 export interface ResourcePage {
     title: string;
     icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
@@ -118,8 +93,6 @@ export interface DataRow {
 export interface VirtualHearingTab {
   board: 'CPB' | 'EC' | 'LHPC' | 'ZBA' | string;
   label: string;
-  live: boolean;
-  disabled?: boolean;
   agenda?: string;
   fofId?: string;
   event?: Hearing;

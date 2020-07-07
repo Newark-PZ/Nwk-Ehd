@@ -1,28 +1,46 @@
 <div class="filterBox">
-    <mat-form-field class="cols-9" style="padding: 0 1rem">
+    <mat-form-field class="cols-9" style="padding: 0 1rem" class="searchbar">
         <mat-label>Search Documents</mat-label>
         <input matInput type="text" (keyup)="applyFilter(filterValue)" [(ngModel)]="filterValue">
         <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter()">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
-    <mat-selection-list class="filterTagList" dense [multiple]="false">
+    <div class="sortToggles">
+        <span class="hide-below-md"><b>Sort</b></span>
+        <mat-button-toggle-group #group="matButtonToggleGroup" >
+            <mat-button-toggle value="Name" aria-label="Sort by Name">
+                <mat-icon>sort_by_alpha</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="oldest" aria-label="Text align justify" class="toggleButton">
+                <mat-icon>arrow_upwards</mat-icon>
+                Oldest
+            </mat-button-toggle>
+            <mat-button-toggle value="newest" aria-label="Text align justify">
+                <mat-icon>arrow_upwards</mat-icon>
+                Newest
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <span class="filterLabel"><b>Change Documents</b></span>
+    <mat-selection-list class="filterTagList" dense [multiple]="false" #selector>
         <ng-container *ngFor="let group of boards">
             <div mat-subheader>{{group.name}}</div>
-            <mat-list-option *ngFor="let doc of group.docs">
-                {{doc.type ? doc.type : group.name}}
+            <mat-list-option *ngFor="let doc of group.docs" (click)="groupSelect(doc, group.name)">
+                {{doc.type ? group.group.toUpperCase().concat(' ', doc.type) : group.name}}
             </mat-list-option>
             <mat-divider></mat-divider>
         </ng-container>
     </mat-selection-list>
+    <!-- <span class="filterLabel"><b>Filter by Tag</b></span>
     <mat-selection-list class="filterTagList" dense>
         <mat-list-option *ngFor="let tag of ['tag1','tag2','tag3','tag4','tag5']">
           {{tag}}
         </mat-list-option>
-    </mat-selection-list>
+    </mat-selection-list> -->
     </div>
-    <div style="margin: 2rem auto auto 30vw">
-    <mat-table [dataSource]="dataSource" matSort multiTemplateDataRows style="width: 100%; height: 100%">
+    <div style="margin: -.5rem auto auto 30vw">
+    <mat-table [dataSource]="dataSource" matSort matSortActive="label" matSortDirection="desc" style="width: 100%; height: 100%">
     <ng-container matColumnDef="label">
         <!-- <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 1.25rem; font-weight: 600"></mat-header-cell> -->
         <mat-cell *matCellDef="let row">
@@ -30,43 +48,42 @@
                 <mat-grid-tile
                     colspan="3"
                     rowspan="1"
-                    style="border-bottom: solid .02rem black;font-size: 1.15rem; font-weight:500;">
-                    {{row.label}}
+                    style="background-color: rgba(0,0,0,.04); font-size: 1.15rem; font-weight:500; border-radius: .25rem;">
+                    {{row.fields['Name']}}
                 </mat-grid-tile>
                 <mat-grid-tile
                     colspan="2"
                     rowspan="2">
-                    Description of Document
+                    {{row.fields['Description']}}
                 </mat-grid-tile>
                 <mat-grid-tile
                     colspan="1"
                     rowspan="1"
                     style="font-weight: 100;">
-                    Published: {{row.published | date:'MMM-yy'}}
+                    Published: {{row.fields['Published'] | date:'MMM-yyyy'}}
                 </mat-grid-tile>
                 <mat-grid-tile
                 colspan="1"
                 rowspan="1"
                 style="font-weight: 100;">
-                    Uploaded: {{row.uploaded | date:'MMM-yy'}}
+                    Uploaded: {{row.fields['Uploaded'] | date:'MMM-yyyy'}}
                 </mat-grid-tile>
                 <mat-grid-tile
                 colspan="3"
                 rowspan="1"
                 style="border-top: solid .02rem lightgray">
-                <span style=" font-size: 1.15rem; font-weight:500; flex: 1 1 66%">
+                <span style=" font-size: 1rem; font-weight:500; flex: 1 1 66%">
                     <mat-chip-list>
-                        <mat-chip>{{row.type}}</mat-chip>
-                        <mat-chip>One Tag</mat-chip>
-                        <mat-chip>Two Tag</mat-chip>
+                        <mat-chip [ngClass]="row.fields['Type'].replace(' ', '')">{{row.fields['Type']}}</mat-chip>
+                        <mat-chip [ngClass]="tag.replace(' ', '')" *ngFor="let tag of row.fields['Tags']">{{ tag }}</mat-chip>
                     </mat-chip-list>
                 </span>
                 <span style="flex: 1 1 33%; text-align: center;" class="row-detail">
-                    <button mat-button color="primary" (click)="openDoc(row, $event)" style="font-size: .75rem !important; height: 1.5rem; line-height: 1.5rem;">
+                    <button mat-button color="primary" (click)="openDoc(row.fields)" style="font-size: .75rem !important; height: 1.5rem; line-height: 1.5rem;">
                         <mat-icon style="font-size: .9rem;line-height: initial;margin-right: .25rem;">search</mat-icon>
                         View
                     </button>
-                    <button mat-button color="primary" (click)="download(row)"style="font-size: .75rem !important; height: 1.5rem; line-height: 1.5rem;">
+                    <button mat-button color="primary" (click)="download(row.field)"style="font-size: .75rem !important; height: 1.5rem; line-height: 1.5rem;">
                         <mat-icon style="font-size: .9rem;line-height: initial;margin-right: .25rem;">get_app</mat-icon>
                         Download
                     </button>
@@ -75,19 +92,6 @@
             </mat-grid-list>
         </mat-cell>
     </ng-container>
-    <!-- <ng-container matColumnDef="pubDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="flex: 1 30%; padding-right: .25rem; justify-content: center;font-size: 1.25rem; font-weight: 600">Date</mat-header-cell>
-        <mat-cell *matCellDef="let row" style="flex: 1 30%;padding-right: .25rem; justify-content: center;">{{row.pubDate | date:'MMM-yy'}}</mat-cell>
-    </ng-container> -->
-    <!-- <ng-container matColumnDef="actionsbar">
-        <mat-cell *matCellDef="let row" [attr.colspan]="cols.length">
-            <div class="row-detail flex-row justify-content-center" style="width: 100%;" [style.height]="expandedElement === row ? 'unset' : '0 !important'">
-                <button mat-button class="cols-auto" (click)="openDoc(row, $event)"><mat-icon>search</mat-icon>View</button>
-                <button mat-button class="cols-auto" (click)="download(row)"><mat-icon>get_app</mat-icon>Download</button>
-            </div>
-        </mat-cell>
-      </ng-container> -->
-    <!-- <mat-header-row *matHeaderRowDef="cols; sticky: true" style="font-size: 2rem;background: black; color: white; -webkit-text-fill-color: white;"></mat-header-row> -->
     <mat-row class="row" *matRowDef="let row; columns: cols;" [class.selected]="selectedElement === row" style="padding: .5rem 0;"></mat-row>
     </mat-table>
     <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [hidePageSize]="true" showFirstLastButtons  style="background: whitesmoke;"></mat-paginator>

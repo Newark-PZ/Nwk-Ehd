@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { HomeownerFaq, TenantFaq } from '../interfaces/other.interface';
 import { HomeCard, Staff } from '../models';
 
 @Pipe({
@@ -8,7 +7,7 @@ import { HomeCard, Staff } from '../models';
     pure: false
 })
 export class FilterCatPipe implements PipeTransform {
-  transform(items: Array<TenantFaq | HomeownerFaq | HomeCard | Staff>, filter: string): any {
+  transform(items: Array<HomeCard | Staff>, filter: string): any {
     if (!items || !filter) {
         return items;
     }
@@ -21,7 +20,7 @@ export class FilterCatPipe implements PipeTransform {
             // tslint:disable-next-line: prefer-conditional-expression
             if ((item as Staff).Class) { filterRule = (item as Staff).Class.indexOf(filter) !== -1;
             } else if ((item as HomeCard).category) { filterRule = (item as HomeCard).category.indexOf(filter) !== -1;
-            } else { filterRule = (item as TenantFaq | HomeownerFaq).Categories.indexOf(filter) !== -1; }
+            }
 
             return filterRule;
             }

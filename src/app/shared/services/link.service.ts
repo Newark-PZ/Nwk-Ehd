@@ -27,7 +27,7 @@ export class LinkService {
     // new Link({id: 'faqs', title: 'Resources: FAQs', office: 'planningzoning', parent: 'resources', disabled: true }),
     new Link({id: 'cpb', title: 'Central Planning Board', office: 'planningzoning', parent: 'boards'}),
     // new Link({id: 'ec', title: 'Environmental Commission', office: 'planningzoning', parent: 'boards'}),
-    // new Link({id: 'lhpc', title: 'Landmarks & Historic Preservation', office: 'planningzoning', parent: 'boards'}),
+    new Link({id: 'lhpc', title: 'Landmarks & Historic Preservation', office: 'planningzoning', parent: 'boards'}),
     new Link({id: 'zba', title: 'Zoning Board of Adjustment', office: 'planningzoning', parent: 'boards'})
     ];
   planningzoning = [

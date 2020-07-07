@@ -7,7 +7,6 @@ import * as HearingActions from '../../store/hearing/hearing.actions';
 import * as fromStore from '../../store/store.reducers';
 import { Hearing } from '../classes/hearing';
 import { DriveSearch, GSheetsValuesResponse } from '../models';
-import { JsonDataService } from './get-json-data.service';
 /**
  * Service to query data from NZLUR Carto
  * @method initHearings() Set the initial hearings
@@ -21,12 +20,11 @@ export class EventsService {
     hearing$: Observable<Array<Hearing>>;
     folderLinks: Array<{id: string; board: 'CPB' | 'EC' | 'LHPC' | 'ZBA'; currenthearingid: string }> = [
         { id: '1VUq_Se2Kk2DcaD4S2qBUeaE_gRlINjuT', board: 'CPB', currenthearingid: '' },
-        { id: '1-PffP9_Bk9eF8AvCkQ0hfXUcov06aAi5', board: 'LHPC', currenthearingid: '' },
+        { id: '1zP3q4h5r7BJ249KAimygdgW_-5M29J0g', board: 'LHPC', currenthearingid: '' },
         { id: '15bRMsQ7N8nEbXPp6lakD4o0e9QeWRncy', board: 'ZBA', currenthearingid: '' }
     ];
     constructor(
         readonly store: Store<fromStore.StoreState>,
-        readonly getData: JsonDataService,
         readonly http: HttpClient
     ) {
         this.hearing$ = new Observable((observer: Observer<Array<Hearing>>) => {
@@ -55,23 +53,41 @@ export class EventsService {
             .then(() => {
                 this.getHearingFolder('CPB')
                     .then( r => {
-                        if (r) {
+                            this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= 0)[0].agenda =
+                            r.filter(v => v.app.includes('agenda'))[0] ? r.filter(v => v.app.includes('agenda'))[0].link : '';
                             this.store.dispatch(new HearingActions.SetTabCPB({
-                                agenda:  r.length > 0 ? r.filter(v => v.app.includes('agenda'))[0].link : '',
+                                agenda:  r.filter(v => v.app.includes('agenda'))[0] ? r.filter(v => v.app.includes('agenda'))[0].link : '',
                                 data: r.length > 0 ? r : [],
                                 event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= 0)[0],
                                 prevHearings:  this.hearings.filter(h => h.board === 'CPB' && h.withinLegalNotice)
                                     .map(h => ({event: h, data: h.data}))
                             }));
-                    }})
+                    })
+                    .catch(err => { console.error(err); });
+                this.getHearingFolder('LHPC')
+                    .then( r => {
+                            this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= 0)[0].agenda =
+                                r.filter(v => v.app.includes('agenda'))[0] ? r.filter(v => v.app.includes('agenda'))[0].link : '';
+                            this.store.dispatch(new HearingActions.SetTabLHPC({
+                                agenda:  r.filter(v => v.app.includes('agenda'))[0] ? r.filter(v => v.app.includes('agenda'))[0].link : '',
+                                data: r.length > 0 ? r : [],
+                                event: this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= 0)[0],
+                                prevHearings:  this.hearings.filter(h => h.board === 'LHPC' && h.withinLegalNotice)
+                                    .map(h => ({event: h, data: h.data}))
+                            }));
+                    })
                     .catch(err => { console.error(err); });
                 this.getHearingFolder('ZBA')
                     .then(r => {
+                        this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= 0)[0].agenda =
+                            r.filter(v => v.app.includes('agenda'))[0] ? r.filter(v => v.app.includes('agenda'))[0].link : '';
+                        this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= 0)[0].agenda =
+                            r.filter(v => v.app.includes('findings of fact'))[0] ? r.filter(v => v.app.includes('findings of fact'))[0].link : '';
                         this.store.dispatch(new HearingActions.SetTabZBA({
-                            agenda: r.filter(v => v.app.includes('agenda'))[0].link,
-                            data: r,
+                            agenda:  r.filter(v => v.app.includes('agenda'))[0] ? r.filter(v => v.app.includes('agenda'))[0].link : '',
+                            data: r.length > 0 ? r : [],
                             event: this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= 0)[0],
-                            fofId: r.filter(v => v.app.includes('findings of fact'))[0].link,
+                            fofId: r.filter(v => v.app.includes('findings of fact'))[0] ? r.filter(v => v.app.includes('findings of fact'))[0].link : '',
                             prevHearings: this.hearings.filter(h => h.board === 'ZBA' && h.withinLegalNotice)
                                 .map(h => ({event: h, data: h.data}))
                         }));
@@ -132,6 +148,8 @@ export class EventsService {
         if (name.includes('CPB')) {
             return name.split(',')[0]
                 .replace('CPB', '');
+        } else if (name.includes('H20', 0)) {
+            return name.slice(1, 8);
         } else if (name.includes('ZBA')) {
             return name.slice(name.indexOf('ZBA') + 3)
                     .replace(/^-/, '');
@@ -142,6 +160,8 @@ export class EventsService {
     address(name: string): string {
         if (name.includes('CPB')) {
             return name.split(',')[1] || name.replace('CPB', '');
+        } else if (name.includes('H20', 0)) {
+            return name.slice(8);
         } else if (name.includes('ZBA')) {
             return name.split(',')[0]
                 .replace(/^[1-9]../, '');
@@ -153,15 +173,3 @@ export class EventsService {
         this.hearings = [];
     }
 }
-// [
-//     {
-//         event: new Hearing({start: '2020-06-01T22:00:00Z', id: 'CPB_HEARING_2020_06_01', board: 'CPB', link: ''}),
-//         data: [
-//             {board: 'CPB', app: 'video', address: 'Audio Recording of Meeting', link: 'https://drive.google.com/file/d/1ss0RSQZFUHqUj0UnB3GE3jdkutGLVgkO/view?usp=sharing', type: 'mp3'},
-//             {board: 'CPB', app: '19-79', address: '316-330 Mt. Pleasant Avenue, 94 Clay Street & 1239-1243 McCarter Highway', link: 'https://drive.google.com/drive/folders/1PZLEW-Pwh15A8NfK6yc5_UNpebMS9IEr', type: 'folders' },
-//             {board: 'CPB', app: '20-08', address: '420 Springfield Ave', link: 'https://drive.google.com/drive/folders/1AbsOewRUVq_5Op8pryhrp6B82FzWFARf', type: 'folders' },
-//             {board: 'CPB', app: '20-09', address: '246, 248-250, 252, 254-256, 258-262 & 264-268 Jelliff Avenue (Achieve Charter School)', link: 'https://drive.google.com/drive/folders/1SyODI8B7ARpGssFIHdXPf0VYJKyzRcLv', type: 'folders' },
-//             {board: 'CPB', app: '20-18', address: '11-43 Raymond Plaza West, 1 Gateway Center Redevelopment', link: 'https://drive.google.com/drive/folders/1rzwpwl7wfpr6dlumRDSM6kiz5z7I83tZ', type: 'folders' }
-//         ]
-//     }
-// ]

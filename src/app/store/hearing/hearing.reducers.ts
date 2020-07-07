@@ -4,7 +4,7 @@ import * as HearingActions from './hearing.actions';
 export interface State {
     cpbTab: VirtualHearingTab;
     ecTab: VirtualHearingTab;
-    lhcpTab: VirtualHearingTab;
+    lhpcTab: VirtualHearingTab;
     zbaTab: VirtualHearingTab;
 }
 
@@ -13,37 +13,29 @@ const initialState: State = {
         agenda: '',
         board: 'CPB',
         data: [],
-        disabled: false,
         label: 'Central Planning Board',
-        live: false,
         prevHearings: []
     },
     ecTab: {
         agenda: '',
         board: 'EC',
         data: [],
-        disabled: true,
         label: 'Environmental Commission',
-        live: false,
         prevHearings: []
     },
-    lhcpTab: {
+    lhpcTab: {
         agenda: '',
         board: 'LHPC',
         data: [],
-        disabled: true,
         label: 'Landmark & Historic Preservation Committee',
-        live: false,
         prevHearings: []
     },
     zbaTab: {
         agenda: '',
         board: 'ZBA',
         data: [],
-        disabled: false,
         fofId: '',
         label: 'Zoning Board of Adjustment',
-        live: false,
         prevHearings: []
     }
 };
@@ -58,10 +50,8 @@ export const hearingReducer = (
             agenda: action.payload.agenda,
             board: 'CPB',
             data: action.payload.data,
-            disabled: false,
             event: action.payload.event,
             label: 'Central Planning Board',
-            live: false,
             prevHearings: action.payload.prevHearings
         }
     };
@@ -70,22 +60,18 @@ export const hearingReducer = (
             agenda: action.payload.agenda,
             board: 'EC',
             data: action.payload.data,
-            disabled: true,
             event: action.payload.event,
             label: 'Environmental Commission',
-            live: false,
             prevHearings: action.payload.prevHearings
         }
     };
     case HearingActions.SET_TAB_LHPC:
-        return { ...state, lhcpTab: {
+        return { ...state, lhpcTab: {
             agenda: action.payload.agenda,
-            board: 'LHCP',
+            board: 'LHPC',
             data: action.payload.data,
-            disabled: true,
             event: action.payload.event,
             label: 'Landmark & Historic Preservation Commission',
-            live: false,
             prevHearings: action.payload.prevHearings
         }
     };
@@ -94,11 +80,9 @@ export const hearingReducer = (
             agenda: action.payload.agenda,
             board: 'ZBA',
             data: action.payload.data,
-            disabled: false,
             event: action.payload.event,
             fofId: action.payload.fofId,
             label: 'Zoning Board of Adjustment',
-            live: false,
             prevHearings: action.payload.prevHearings
         }
     };

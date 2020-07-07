@@ -8,7 +8,7 @@ import { OpzZoningComponent } from './pages/zoning.component';
 
 // Resources page component imports
 import { ApplicationsDataComponent } from './pages/sub-pages/applications/applications.component';
-import { BoardsDocsDataComponent } from './pages/sub-pages/boards-docs/boards-docs.component';
+import { DocsDataComponent } from './pages/sub-pages/boards-docs/boards-docs.component';
 
 import { DiagramsComponent } from './pages/diagrams/diagrams.component';
 import { LotComponent } from './pages/diagrams/lot.component';
@@ -36,7 +36,7 @@ export const planningComponents = [
 
 export const planningResComponents = [
   ApplicationsDataComponent,
-  BoardsDocsDataComponent
+  DocsDataComponent
 ];
 
 export const planningZonesComponents = [

@@ -1,6 +1,8 @@
 export class Hearing {
     id: string;
-    board: 'ZBA' | 'CPB' | 'EC' | 'LHPC';
+    agenda = '';
+    fof = '';
+    board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
     start: Date;
     link: string;
     timeUntil: number;
@@ -11,7 +13,7 @@ export class Hearing {
     constructor(
         options: {
             id: string,
-            board: 'ZBA' | 'CPB' | 'EC' | 'LHPC',
+            board: 'CPB' | 'EC' | 'LHPC' | 'ZBA',
             start: string | number,
             link: string,
             folderId?: string

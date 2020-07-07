@@ -74,9 +74,13 @@ export interface PageCompsFields {
   author?: string | [Array<Record['id']>];
 }
 export interface DocsFields {
-  name: string;
-  notes?: string;
-  attachments?: string | Array<Attachment>;
+  Name: string;
+  Published: string;
+  Uploaded: string;
+  Files: Array<Attachment>;
+  Type: string;
+  Tags: string | Array<string>;
+  Description: string;
 }
 export interface ArticleFields {
   name: string;
