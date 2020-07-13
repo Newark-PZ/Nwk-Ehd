@@ -25,6 +25,7 @@ import 'ol/style/IconOrigin';
 
 const _c0 = ["*"];
 class AttributionComponent {
+    // tslint:disable-next-line: prefer-readonly
     constructor(elementRef) {
         this.elementRef = elementRef;
     }
@@ -107,7 +108,8 @@ class SourceComponent {
     }
     ngOnDestroy() {
         if (this.host && this.host.instance) {
-            this.host.instance.setSource(undefined);
+            // tslint:disable-next-line: no-null-keyword
+            this.host.instance.setSource(null);
         }
     }
     _register(s) {
@@ -121,6 +123,7 @@ SourceComponent.ɵdir = ɵɵdefineDirective({ type: SourceComponent, inputs: { a
 
 const _c0$1 = ["*"];
 class AttributionsComponent {
+    // tslint:disable-next-line: prefer-readonly
     constructor(source) {
         this.source = source;
     }

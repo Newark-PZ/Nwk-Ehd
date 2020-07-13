@@ -171,7 +171,31 @@ $custom-typography: mat-typography-config(
         bottom: unset !important;
     }
   }
-  
+  .ol-attribution {
+    &.ol-collapsed {background-color: transparent !important;}
+    &:not(.ol-collapsed) {background-color: white !important;}
+      right: 1.5rem !important;
+      bottom: .75rem !important;
+    ul {
+        &::before {
+            content: "Attributions";
+            font-size: 1rem;
+            display: block;
+            font-weight: 700;
+            text-align: center;
+        }
+        max-width: 20rem;
+        list-style-type: circle;
+        text-align: center;
+        li {
+            font-size: .9rem;
+            &:not(:last-child)::after {
+                content: ", ";
+            }
+        }
+    }
+    button {background-color: rgba(0, 0, 0, 0.5) !important; border-radius: .2rem !important;}
+}
   .ol-scale-line-inner {
     border: .1rem solid white !important;
     border-top: none !important;

@@ -26,6 +26,7 @@ import 'ol/style/IconOrigin';
 
 var _c0 = ["*"];
 var AttributionComponent = /** @class */ (function () {
+    // tslint:disable-next-line: prefer-readonly
     function AttributionComponent(elementRef) {
         this.elementRef = elementRef;
     }
@@ -121,7 +122,8 @@ var SourceComponent = /** @class */ (function () {
     }
     SourceComponent.prototype.ngOnDestroy = function () {
         if (this.host && this.host.instance) {
-            this.host.instance.setSource(undefined);
+            // tslint:disable-next-line: no-null-keyword
+            this.host.instance.setSource(null);
         }
     };
     SourceComponent.prototype._register = function (s) {
@@ -136,6 +138,7 @@ var SourceComponent = /** @class */ (function () {
 
 var _c0$1 = ["*"];
 var AttributionsComponent = /** @class */ (function () {
+    // tslint:disable-next-line: prefer-readonly
     function AttributionsComponent(source) {
         this.source = source;
     }

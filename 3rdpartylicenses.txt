@@ -1649,6 +1649,7 @@ third-party archives.
 
 
 ng-maps
+MPL-2.0
 
 ol
 BSD-2-Clause
