@@ -1,4 +1,4 @@
-import { SearchItem, ZoningFields } from '../../shared/models';
+import { ArcFeature, SearchItem } from '../../shared/models';
 import * as PropPaneActions from './prop-pane.actions';
 
 export interface State {
@@ -6,7 +6,7 @@ export interface State {
   title: string;
   selectedProp: SearchItem;
   selectedGeo: any;
-  propInfo: ZoningFields;
+  propInfo: ArcFeature;
 }
 
 const initialState: State = {
@@ -18,21 +18,20 @@ const initialState: State = {
      geometry: [ 0, 0 ]
   },
   propInfo: {
-    cartodb_id: '',
-    the_geom: '',
-    the_geom_webmercator: '',
-    redevelopm: '',
-    historic_d: '',
-    blocklot: '',
-    lot: '',
-    block: '',
-    property_d: '',
-    code: '',
-    landmark: '',
-    primary_us: [''],
-    accessory: [''],
-    building_t: [''],
-    proploc: ''
+    attributes: {
+      AREA: 0,
+      ADDLOTS: '',
+      BLOCK_LOT: '00-00',
+      PROPLOC: '',
+      BUILDDESC: '',
+      PROPCLASS: '',
+      LANDVALUE: '',
+      IMPRVALUE: '',
+      REDEV_AREA: 'No',
+      ZONING: '',
+      HISTORIC: 'No'
+    },
+    centroid: { x: 0, y: 0 }
   },
   selectedGeo: undefined
 };

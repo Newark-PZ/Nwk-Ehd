@@ -62,16 +62,17 @@ export class EventComponent implements OnInit, OnChanges {
         if (!this.fofId) {
             this.fofId = '';
         }
-        this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= 0)[0];
+        this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
             this.data.push({ section: 'Find More Info', content: 'Applications & Documents', link: `/planningzoning/virtualhearing/${this.board.toLowerCase()}` });
         }
     }
     ngOnChanges(changes: SimpleChanges): void {
-        this.board = changes.board.currentValue;
-        this.agenda = changes.agenda.currentValue;
-        this.hearing = this.events.hearings.filter(h => h.board === changes.board.currentValue && h.timeUntil >= 0)[0];
+        this.board = changes.board ? changes.board.currentValue : this.board;
+        this.agenda = changes.agenda ? changes.agenda.currentValue : this.agenda;
+        this.fofId = changes.fofId ? changes.fofId.currentValue : this.fofId;
+        this.hearing = this.events.hearings.filter(h => h.board === changes.board.currentValue && h.timeUntil >= -10800000)[0];
         this.data = this.setData(changes.board.currentValue, this.hearing, this.agenda, this.fofId);
     }
     fixPhone(num: string): string {
@@ -92,13 +93,14 @@ export class EventComponent implements OnInit, OnChanges {
         }
     }
     setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
-    const idno = hearing.link.substring(hearing.link.lastIndexOf('/') + 1);
+    const idno = hearing ? hearing.link.substring(hearing.link.lastIndexOf('/') + 1) : '000 0000 0000';
     const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
 
     return board !== 'ZBA'  ? [
-        { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
+        { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
         { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
-        { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
+        { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+          link: hearing ? hearing.link : ''},
         { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
         { section: 'Or Other Telephone<br>' +
           '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
@@ -107,10 +109,11 @@ export class EventComponent implements OnInit, OnChanges {
           numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
         ]
     : [
-        { section: 'Next Hearing', content: `${hearing.start.toLocaleString()} Eastern Time (US and Canada)`},
+        { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
         { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
         { section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings of Fact' : 'Coming Soon', link: fofId },
-        { section: 'To Join Online', content: 'Go To Zoom Meeting', link: hearing.link},
+        { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+          link: hearing ? hearing.link : ''},
         { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
         { section: 'Or Other Telephone<br>' +
           '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',

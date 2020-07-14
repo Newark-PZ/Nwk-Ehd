@@ -18,24 +18,14 @@ export class OpzHomeComponent {
     buttonCategories: ['Boards & Commissions', 'Tools'],
     buttons: [
       {
-        icon: 'house', category: 'Boards & Commissions', title: 'Central Planning Board', subtext: 'Next Hearing: <b>July 7</b>',
-        isEvent: true, subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'cpb'
+        icon: 'house', category: 'Boards & Commissions', title: 'Central Planning Board', parent: '/planningzoning/boards', link: 'cpb'
       },
       {
-        icon: 'house', category: 'Boards & Commissions', title: 'Zoning Board of Adjustment', isEvent: true,
-        subtext: 'Next Hearing: <b>June 25</b>', subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'zba'
+        icon: 'house', category: 'Boards & Commissions', title: 'Zoning Board of Adjustment', parent: '/planningzoning/boards', link: 'zba'
       },
-      // {
-      //   icon: 'house', category: 'Boards & Commissions', title: 'Landmarks & Historic Preservation', isEvent: true,
-      //   subtext: 'Next Hearing: <b>May 20</b>', subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'lhpc'
-      // },
-      // {
-      //   icon: 'house', category: 'Boards & Commissions', title: 'Environmental Commission', isEvent: true,
-      //   subtext: 'Next Hearing: <b>May 13</b>', subtexticon: 'notification_important', parent: '/planningzoning/boards', link: 'ec'
-      // },
-      // {
-      //   icon: 'info', category: 'Tools', title: 'Application Submission & Status', parent: '/planningzoning/zoning', link: 'zba'
-      // },
+      {
+        icon: 'house', category: 'Boards & Commissions', title: 'Landmarks & Historic Preservation', parent: '/planningzoning/boards', link: 'lhpc'
+      },
       {
         icon: 'map', category: 'Tools', title: 'Interactive Zoning Map', parent: '/planningzoning', link: 'maps'
       },
@@ -45,12 +35,6 @@ export class OpzHomeComponent {
       {
         icon: 'attachment', category: 'Tools', title: 'Redevelopment Plans', parent: '/planningzoning/resources', link: 'documents'
       }
-      // {
-      //   icon: 'people', category: 'Our Office', title: 'Our Team', parent: '/planningzoning', link: 'team'
-      // },
-      // {
-      //   icon: 'info', category: 'Our Office', title: 'Contact Us', parent: '/planningzoning', link: 'contact'
-      // }
     ],
     contentIntro: {
       header: 'Upcoming Hearings',

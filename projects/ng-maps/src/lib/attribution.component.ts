@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { MapEvent } from 'ol';
 import { Attribution } from 'ol/control';
 
 @Component({
@@ -17,9 +16,9 @@ export class AttributionComponent implements OnInit {
   tipLabel?: string;
   label?: string | HTMLElement;
   collapseLabel?: string | HTMLElement;
-  render?: (p0: MapEvent) => void;
 
-  constructor(private readonly elementRef: ElementRef) {}
+  // tslint:disable-next-line: prefer-readonly
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
     this.html = this.elementRef.nativeElement.innerHTML;

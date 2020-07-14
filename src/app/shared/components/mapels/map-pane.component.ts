@@ -75,7 +75,7 @@ export class MapPaneComponent implements OnInit {
     setOpacity(e, type): void {
         switch (type) {
             case 'geo':
-                this.getLayers.updateLayer(e.name, type, {name: 'opacity', propVal: e.layer.opacity });
+                this.getLayers.updateLayer(e.name, type, {name: 'opacity', propVal: e.layer.opacity});
                 break;
             case 'parcels':
                 this.getLayers.updateLayer(e.name, type, {name: 'opacity', propVal: e.layer.opacity });

@@ -272,3 +272,35 @@ export interface GSheetsValuesResponse {
     majorDimension: 'ROWS' | 'COLUMNS';
     values: Array<any>;
 }
+export interface ArcFeature {
+    attributes: {
+        AREA: number;
+        ADDLOTS: string;
+        BLOCK_LOT: string;
+        PROPLOC: string;
+        BUILDDESC: string;
+        PROPCLASS: string;
+        LANDVALUE: string;
+        IMPRVALUE: string;
+        REDEV_AREA: 'Yes' | 'No';
+        ZONING: string;
+        HISTORIC: 'Yes' | 'No';
+    };
+    centroid: { x: number; y: number; };
+}
+export interface ArcPropResponse {
+    objectIdFieldName: 'FID' | string;
+    uniqueIdField: { name: 'FID' | string; isSystemMaintained: boolean; };
+    globalIdFieldName: any;
+    geometryType: 'esriGeometryPolygon';
+    spatialReference: { wkid: 102100 | number; latestWkid: 3857 | number; };
+    fields: Array<{
+            name: string;
+            type: 'esriFieldTypeDouble',
+            alias: string;
+            sqlType: string;
+            domain: any;
+            defaultValue: any;
+        }>;
+    features: Array<ArcFeature>;
+}

@@ -38,7 +38,7 @@ export class DashboardComponent {
     },
     {
       board: 'LHPC',
-      label: 'Landmarks & Historic Preservation'
+      label: 'Landmarks & Historic Pres.'
     },
     {
       board: 'ZBA',
@@ -68,7 +68,9 @@ export class DashboardComponent {
       });
     }
   goToUrl(url: string): void {
-    if (url.startsWith('http')) {
+    if (url === '') {
+      return;
+    } else if (url.startsWith('http')) {
       window.open(url);
     } else {
       location.href = url;

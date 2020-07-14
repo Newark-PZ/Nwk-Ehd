@@ -4,20 +4,21 @@
     matRippleColor="rgba(0, 255, 191, .5)"
     class="map-frame">
         <map-map #map [height]="'85vh'" [width]="'100%'">
-            <map-view [zoom]="13" maxZoom="18" enableRotation="false">
-                <map-interaction-default></map-interaction-default>
+            <map-view [zoom]="13" [maxZoom]="19" [enableRotation]="false">
+                <map-interaction-default [pinchRotate]="false"></map-interaction-default>
                 <map-control-scaleline [units]="'us'"></map-control-scaleline>
                 <map-coordinate [x]="-74.1723667" [y]="40.735657" [srid]="'EPSG:4326'"></map-coordinate>
+                <map-control-attribution></map-control-attribution>
             </map-view>
             <map-layer-group zIndex="0">
                 <map-layer-tile zIndex="0">
-                    <map-source-xyz [url]="(basemap$ | async) ? basemapUrls[1] : basemapUrls[0]"></map-source-xyz>
+                    <map-source-xyz [url]="(basemap$ | async) ? basemapUrls[1] : basemapUrls[0]" [attributions]="(basemap$ | async) ? basemapAttr[1] : basemapAttr[0]"></map-source-xyz>
                 </map-layer-tile>
-                <map-layer-tile zIndex="6" [visible]="!(basemap$ | async)">
-                    <map-source-xyz [url]="cartoLabelsUrl"></map-source-xyz>
+                <map-layer-tile zIndex="4">
+                    <map-source-xyz [url]="(basemap$ | async) ? cartoLabelsUrl[1] : cartoLabelsUrl[0]"></map-source-xyz>
                 </map-layer-tile>
             </map-layer-group>
-            <map-layer-vector #geoLayer zIndex="4"></map-layer-vector>
+            <map-layer-vector #geoLayer zIndex="5"></map-layer-vector>
             <map-overlay #overlay 
             id="selectionMarker"
             [insertFirst]="true"
@@ -62,7 +63,7 @@
                     <mat-icon>remove</mat-icon>
                 </button>
             </div>
-            <div class="general-button split">
+            <div class="general-button split" style="height:10.5rem">
                 <button
                 color="primary"
                 (click)="openBottomsheet(0)" 
@@ -86,6 +87,14 @@
                 matTooltipPosition="before">
                 <mat-icon>place</mat-icon>
                 </button>
+                <hr>
+                <button
+                color="primary"
+                (click)="openBottomsheet(3)" 
+                [matTooltip]="'Area Info'"
+                matTooltipPosition="before">
+                <mat-icon>info</mat-icon>
+                </button>
             </div>
         </div>
         <div class="legend" [ngClass]="!(basemap$ | async) ? 'map-buttons-top left' : 'map-buttons-top sat left'">
@@ -97,27 +106,29 @@
             <mat-icon>{{ showLegend ? 'close' : 'palette' }}</mat-icon>
             <span>Legend</span>
             </button>
-            <mat-table [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend" [dataSource]="legendEls | async">
-                <ng-container matColumnDef="layerName">
-                    <mat-header-cell *matHeaderCellDef>Newark Zoning Map</mat-header-cell>
-                </ng-container>
-                <ng-container matColumnDef="element">
-                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                    <mat-cell *matCellDef="let row"><div class="legend-symbol" [ngStyle]="{'border-color':row.borderColor}" [style.background]="row.background"></div></mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="label">
-                    <mat-header-cell *matHeaderCellDef>Layer</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="info">
-                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                    <mat-cell *matCellDef="let row"><mat-icon [matTooltip]="row.desc" matTooltipClass="legend-tooltip" matTooltipPosition="after">info</mat-icon></mat-cell>
-                </ng-container>
-                <mat-header-row *matHeaderRowDef="['layerName']; sticky: true"></mat-header-row>
-                <mat-header-row *matHeaderRowDef="legendCols; sticky: true"></mat-header-row>
-                <mat-row class="row" *matRowDef="let row; columns: legendCols;"
-                [class.expanded]="row.expanded === row"
-                (click)="row.expanded = !row.expanded"></mat-row>
-            </mat-table>              
+            <mat-accordion [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend">
+                <mat-expansion-panel *ngFor="let el of (layers$ | async)" class="legend-panel" >
+                    <mat-expansion-panel-header style="max-height: 2.5rem;">
+                        <mat-panel-title>
+                            {{ el.group | titlecase}}
+                        </mat-panel-title>
+                        <mat-panel-description *ngIf="showLegend">
+                            {{ el.layer | titlecase}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-table [dataSource]="el.items" class="legend-layer" *ngIf="showLegend">
+                        <ng-container matColumnDef="element">
+                            <mat-cell *matCellDef="let subrow"><div class="legend-symbol" [ngStyle]="{'border-color':subrow.borderColor}" [style.background]="subrow.background"></div></mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="label">
+                            <mat-cell *matCellDef="let subrow">{{subrow.name}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="info">
+                            <mat-cell *matCellDef="let subrow"><mat-icon [matTooltip]="subrow.desc" matTooltipClass="legend-tooltip" matTooltipPosition="after">info</mat-icon></mat-cell>
+                        </ng-container>
+                        <mat-row class="row" *matRowDef="let subrow; columns: legendCols;"></mat-row>
+                    </mat-table>  
+                </mat-expansion-panel>              
+            </mat-accordion>          
         </div>
 </section>

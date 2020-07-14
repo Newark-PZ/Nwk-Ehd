@@ -1,4 +1,4 @@
-<section class="flex-row" [ngSwitch]="(propSub | async) === undefined || (propSub | async).code === ''">
+<section class="flex-row" [ngSwitch]="(propSub | async) === undefined || (propSub | async).attributes.ZONING === ''">
   <ng-container *ngSwitchDefault>
     <mat-card class="sheet-card" >
       <mat-card-header>
@@ -15,23 +15,23 @@
   <mat-card class="sheet-card flex-cols-4">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image">        
-        <span class="zone {{ (propSub | async).code }}">
-        {{ (propSub | async).code }}
+        <span class="zone {{ (propSub | async).attributes.ZONING.replace('F','') }}">
+        {{ (propSub | async).attributes.ZONING }}
         </span>
       </div>
-      <mat-card-title (click)="copyVal(mapInput)" [innerHTML]="(propSub | async).proploc ? (propSub | async).proploc : (propSub | async).blocklot | titlecase">
+      <mat-card-title (click)="copyVal(mapInput)" [innerHTML]="(propSub | async).attributes.PROPLOC ? (propSub | async).attributes.PROPLOC : (propSub | async).attributes.BLOCK_LOT | titlecase">
       </mat-card-title>
       <mat-card-subtitle>
-        {{ (propSub | async).block }} | {{ (propSub | async).lot }}
+        Block {{ (propSub | async).attributes.BLOCK_LOT.split('-')[0] }} | Lot: {{ (propSub | async).attributes.BLOCK_LOT.split('-')[1] }}
       </mat-card-subtitle>
     </mat-card-header>
     <div class="card-content">
-        <p class="p-col-12" innerHTML="{{ (propSub | async).property_d }}"></p>
+        <p class="p-col-12" innerHTML="{{ (propSub | async).attributes | json }}"></p>
       </div>
     <mat-card-actions>
     </mat-card-actions>
   </mat-card>
-  <mat-card class="sheet-card" *ngIf="(propSub | async).redevelopm != 'N/A'">
+  <mat-card class="sheet-card" *ngIf="(propSub | async).attributes.REDEV_AREA !== 'N/A'">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
@@ -39,18 +39,18 @@
         </mat-card-title>
       </mat-card-header>
       <div class="card-content">
-        <p innerHTML="{{ (propSub | async).redevelopm}}"></p>
+        <p innerHTML="{{ (propSub | async).attributes.REDEV_AREA}}"></p>
       </div>
   </mat-card>
-  <mat-card class="sheet-card" *ngIf="((propSub | async).historic_d) != 'N/A' || ((propSub | async).landmark) != 'N/A'">
+  <!-- <mat-card class="sheet-card" *ngIf="(propSub | async).h && (propSub | async).historic_d !== 'N/A' || (propSub | async).landmark && (propSub | async).landmark !== 'N/A'">
     <mat-card-header>
         <mat-card-title>
           <span>Historic Designations</span>
         </mat-card-title>
       </mat-card-header>
       <div class="card-content">
-        <p *ngIf="(propSub | async).historic_d  != 'N/A'"><span innerHTML="{{ (propSub | async).historic_d }} Historic District"></span></p>
-        <p *ngIf="((propSub | async).landmark ) != 'N/A'"><span innerHTML="{{ (propSub | async).landmark }}"></span></p>
+        <p *ngIf="(propSub | async).historic_d !== 'N/A'"><span innerHTML="{{ (propSub | async).historic_d }} Historic District"></span></p>
+        <p *ngIf="(propSub | async).landmark !== 'N/A'"><span innerHTML="{{ (propSub | async).landmark }}"></span></p>
       </div>
   </mat-card>
   <mat-card class="sheet-card" *ngIf="((propSub | async).historic_d) != 'N/A' || ((propSub | async).landmark) != 'N/A'">
@@ -62,6 +62,6 @@
       <div class="card-content">
         <p innerHTML="{{ (propSub | async).building_t }}"></p>
       </div>
-  </mat-card>
+  </mat-card> -->
   </ng-container>
 </section>

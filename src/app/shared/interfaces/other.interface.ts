@@ -29,60 +29,6 @@ export interface SidebarLink extends Route {
   isChild?: boolean;
   viewName?: string;
 }
-export interface ProgramPage {
-  icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
-  title: string;
-  subtitle: string;
-  introText: string;
-  introPic?: string;
-  download?: boolean;
-  infoButtons?: Array<{
-    link?: string;
-    linkText?: string;
-    fullWidth?: boolean;
-  }>;
-  purposeHeader?: string;
-  purpose?: Array<{
-    header?: string;
-    body?: string;
-    rows?: '1' | string;
-  }>;
-  sections?: Array<{
-    header?: string;
-    buttons?: Array<{
-      link?: string;
-      linkText?: string;
-      fullWidth?: boolean;
-    }>;
-    text: string;
-    logos?: Array<string>;
-  }>;
-}
-export interface FaqPage {
-  type: 'tenants' | 'homeowners';
-  icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
-  title: string;
-}
-export interface ResourcePage {
-    title: string;
-    icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
-    introPic?: string;
-    introContent?: Array<{
-      header?: string;
-      link?: string;
-      linkText?: string;
-      text: string;
-    }>;
-    sectionHeader?: string;
-    programs?: Array<{
-        header?: string;
-        link?: string;
-        linkText?: string;
-        text: string;
-        footer?: string;
-      }>;
-    hideBottomBar?: boolean;
-}
 export interface DataRow {
   board: string;
   app: string;

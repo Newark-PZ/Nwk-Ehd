@@ -27,7 +27,7 @@ const initialState: State = {
         agenda: '',
         board: 'LHPC',
         data: [],
-        label: 'Landmark & Historic Preservation Committee',
+        label: 'Landmarks & Historic Pres.',
         prevHearings: []
     },
     zbaTab: {
@@ -71,7 +71,7 @@ export const hearingReducer = (
             board: 'LHPC',
             data: action.payload.data,
             event: action.payload.event,
-            label: 'Landmark & Historic Preservation Commission',
+            label: 'Landmarks & Historic Pres.',
             prevHearings: action.payload.prevHearings
         }
     };

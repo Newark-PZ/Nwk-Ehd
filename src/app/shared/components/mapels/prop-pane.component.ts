@@ -2,8 +2,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, HostBinding } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { MapInput, SearchItem, ZoningFields } from '../../models';
-import { CartoService } from '../../services/carto.service';
+import { ArcFeature, MapInput, SearchItem } from '../../models';
 
 import * as fromStore from '../../../store/store.reducers';
 
@@ -17,14 +16,13 @@ export class PropPaneComponent {
         hood: 'Click on a neighborhood to learn about it',
         zoneColor: 'black'
     };
-    propSub: Observable<ZoningFields>;
+    propSub: Observable<ArcFeature>;
     primaryUsesCols: Array<string> = ['Primary Use'];
     accessoryUsesCols: Array<string> = ['Accessory Use'];
     @HostBinding('class') class = 'map-prop-pane';
 
     prop: Observable<SearchItem>;
     constructor(
-        public carto: CartoService,
         public clipboard: Clipboard,
         readonly store: Store<fromStore.StoreState>
         ) {

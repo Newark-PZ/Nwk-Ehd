@@ -38,8 +38,8 @@ export class AppComponent implements OnDestroy, OnInit {
     this.sidebarRightOpened$ = this.store.select(state => state.sidebarRight.opened);
     this.sidebarRightMode$ = this.store.select(state => state.sidebarRight.mode);
     this.routesArray$ = this.store.select(state => state.routesArray.routesArray);
+    this.events.initHearings();
   }
-
   ngOnInit(): void {
     this.breakpointObserver
       .observe(['(max-width: 767px)'])
@@ -48,9 +48,7 @@ export class AppComponent implements OnDestroy, OnInit {
         } else {this.mayorDisplay = false; this.deptDisplay = false; }
     });
     this.store.dispatch(new fromStoreActions.ClearState());
-    this.events.initHearings();
   }
-
   toggleSidebar(): void {
     this.store.dispatch(new SidebarActions.Toggle());
   }

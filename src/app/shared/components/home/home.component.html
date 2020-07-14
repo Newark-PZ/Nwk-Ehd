@@ -68,7 +68,7 @@
               <h4 style="margin: auto">{{ card.title }}</h4>
               <mat-icon style="margin-left: .5rem">exit_to_app</mat-icon>
             </div>
-            <div class="card-content" [ngClass]="card.isEvent ? 'event' : ''">  
+            <div class="card-content">  
               <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
               <span [innerHtml]="card.subtext"></span>
             </div>

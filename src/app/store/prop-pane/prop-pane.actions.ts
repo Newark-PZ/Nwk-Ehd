@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { SearchItem, ZoningFields } from '../../shared/models';
+import { ArcFeature, SearchItem } from '../../shared/models';
 // tslint:disable: max-classes-per-file
 
 export const TOGGLE = '[Prop Pane] Toggle';
@@ -30,7 +30,7 @@ export class SetSelectedGeo implements Action {
 }
 export class SetPropInfo implements Action {
   readonly type = SET_PROP_INFO;
-  constructor(public payload: ZoningFields) { }
+  constructor(public payload: ArcFeature) { }
 }
 
 export type PropPaneActions =

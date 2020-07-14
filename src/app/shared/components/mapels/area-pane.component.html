@@ -20,7 +20,7 @@
       </mat-card-title> -->
     </mat-card-header>
     <div class="card-content">
-        <p class="p-col-12" *ngIf="(geo | async).ward_name" innerHTML="{{ (geo | async).ward_name }}"></p>
+        <p class="p-col-12" *ngIf="(geo | async).ward_name" innerHTML="{{ (geo | async).ward_name | titlecase}} {{ (geoLayer | async).name.replace('s','') | titlecase}}"></p>
         <p class="p-col-12" *ngIf="(geo | async).namelsad" innerHTML="{{ (geo | async).namelsad }}"></p>
         <p class="p-col-12" *ngIf="(geo | async).name" innerHTML="{{ (geo | async).name }}"></p>
       </div>

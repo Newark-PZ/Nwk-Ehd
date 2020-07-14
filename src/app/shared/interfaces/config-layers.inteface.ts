@@ -9,6 +9,9 @@ export interface MapLayerOptions {
   layer: Layer;
   expanded?: boolean;
   description?: string;
+  legendColor?: [number, number, number];
+  legendInfo?: LegendItem;
+  group: 'Parcels' | 'Geographies' | 'Overlays';
   opacity?: number;
   source?: Source;
   visible?: boolean;
@@ -23,8 +26,12 @@ export interface MapLayerGroupOptions {
   children: Array<MapLayer>;
 }
 export interface LegendItem {
-  name: string;
-  background: string;
-  desc: string;
-  borderColor?: string;
+  layer: string;
+  group: any;
+  items: Array<{
+    name: string;
+    background: string;
+    desc: string;
+    borderColor?: string;
+  }>;
 }

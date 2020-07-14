@@ -124,6 +124,7 @@ mat-form-field {
 .zone {
     padding: .5rem;
     border-radius: .25rem;
+    white-space: nowrap;
     &.R-1 {
         color: black !important;
         -webkit-text-fill-color: black !important;
@@ -193,7 +194,7 @@ mat-form-field {
     &.MX-3 {
         color: white !important;
         -webkit-text-fill-color: white !important;
-        background-color: #FF2900 !important;
+        background-color: #734C00 !important;
     }
 
     &.I-1 {
@@ -241,13 +242,13 @@ mat-form-field {
     &.PORT {
         color: white !important;
         -webkit-text-fill-color: white !important;
-        background-color: #B81609 !important;
+        background-color: #4C0073 !important;
     }
 
     &.EWR {
         color: white !important;
         -webkit-text-fill-color: white !important;
-        background-color: #820c0c !important;
+        background-color: #8400A8 !important;
     }
 }
 mat-row.expandable-row {
@@ -281,59 +282,52 @@ mat-row.expandable-row {
     button {
         width: 8rem !important;
     }
-    mat-table {
+    .legend-panel {
         min-width: 15rem;
         max-width: 33vw;
-        min-height: 15rem;
         max-height: 50vh;
-        overflow: auto;
         scrollbar-width: thin;
-        box-shadow: 0px 3px 10px lightgray;
-        border-radius: .35rem;
+        // box-shadow: 0px 3px 10px lightgray;
         margin-left: -1.2rem;
-        mat-row {
+        .legend-layer {
+            width: 100%;
             min-height: 2rem;
-        }
-        mat-header-row {
-            min-height: 2.25rem;
-            &:first-of-type .mat-header-cell {
-                background: black;
-                color: white;
-                justify-content: center;
-                font-size: 1.25rem;
+            max-height: 33vh;
+            overflow-y: auto;
+            margin: 0;
+            scrollbar-width: thin;
+            mat-cell {
+                padding: 0 !important;
             }
-            &:last-of-type {
-                background: whitesmoke;
-                color: black;
-                justify-content: center;
-                font-size: 1.25rem;
+            mat-row {
+                min-height: 1.5rem;
             }
-        }
-        .mat-column-element {
-            flex: 1 1 25%;
-            padding: .2rem 0 .2rem .5rem !important;
-        }
-        .mat-column-label {
-            flex: 1 1 60%;
-            padding: 0 1rem;
-            font-size: 1rem !important;
-        }
-        .mat-column-info {
-            flex: 1 1 15%;
-            font-size: 1.2rem !important;
-            color: grey;
-            cursor: pointer;
-            mat-icon {font-size: inherit !important;}
-        }
-        .legend-symbol {
-            background: grey none repeat scroll 0% 0%;
-            border: 1px solid;
-            width: 2rem;
-            height: 1rem;
-            display: block;
-            position: relative;
-            margin: auto;
-            content: "";
+            .mat-column-element {
+                flex: 1 1 25%;
+                padding: .2rem 0 .2rem .5rem !important;
+            }
+            .mat-column-label {
+                flex: 1 1 60%;
+                padding: 0 1rem;
+                font-size: 1rem !important;
+            }
+            .mat-column-info {
+                flex: 1 1 15%;
+                font-size: 1.2rem !important;
+                color: grey;
+                cursor: pointer;
+                mat-icon {font-size: inherit !important;}
+            }
+            .legend-symbol {
+                background: grey none repeat scroll 0% 0%;
+                border: 1px solid;
+                width: 2rem;
+                height: 1rem;
+                display: block;
+                position: relative;
+                margin: auto;
+                content: "";
+            }
         }
     }
 }

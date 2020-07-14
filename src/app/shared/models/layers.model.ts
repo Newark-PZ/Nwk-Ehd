@@ -49,7 +49,7 @@ export const noParcelCartoCSS = `
 export const baseParcelCartoCSS = `
   #zoning_2 {
     polygon-fill: rgba(0,0,0,0);
-    line-width: 0.5;
+    line-width: 0.3;
     line-color: rgb(200, 200, 200);
   }
 `;
@@ -68,13 +68,13 @@ export const zoningParcelCartoCSS = `
 #zoning_2[code='I-3'] {polygon-fill: #c0188c;}
 #zoning_2[code='MX-1'] {polygon-fill: #e4a024;}
 #zoning_2[code='MX-2'] {polygon-fill: #f37520;}
-#zoning_2[code='MX-3'] {polygon-fill: #FF2900;}
+#zoning_2[code='MX-3'] {polygon-fill: #734C00;}
 #zoning_2[code='INST'] {polygon-fill: #0063ff;}
 #zoning_2[code='PARK'] {polygon-fill: #229A00;}
 #zoning_2[code='CEM'] {polygon-fill: #561818;}
 #zoning_2[code='RDV'] {polygon-fill: #dddddd;}
-#zoning_2[code='EWR'] {polygon-fill: #820c0c;}
-#zoning_2[code='PORT'] {polygon-fill: #B81609;}
+#zoning_2[code='EWR'] {polygon-fill: #8400A8;}
+#zoning_2[code='PORT'] {polygon-fill: #4C0073;}
 #zoning_2 {
     polygon-opacity: 0.7;
     line-color: black;
@@ -85,16 +85,16 @@ export const landUseParcelCartoCSS = `
 #table_2017_zoning_layer[propclass='1'] {polygon-fill: #686868;}
 #table_2017_zoning_layer[propclass='2'] {polygon-fill: #FFEBAF;}
 #table_2017_zoning_layer[propclass='4A'] {polygon-fill: #FF7F7F;}
-#table_2017_zoning_layer[propclass='4B'] {polygon-fill: #E8BEFF;}
+#table_2017_zoning_layer[propclass='4B'] {polygon-fill: #C29ED7;}
 #table_2017_zoning_layer[propclass='4C'] {polygon-fill: #FFAA00;}
-#table_2017_zoning_layer[propclass='5A'] {polygon-fill: #B5E6B9;}
-#table_2017_zoning_layer[propclass='5B'] {polygon-fill: #B5E6B9;}
-#table_2017_zoning_layer[propclass='15A'] {polygon-fill: #BED2FF;}
-#table_2017_zoning_layer[propclass='15B'] {polygon-fill: #BED2FF;}
-#table_2017_zoning_layer[propclass='15C'] {polygon-fill: #BEFFE8;}
-#table_2017_zoning_layer[propclass='15D'] {polygon-fill: #73B2FF;}
-#table_2017_zoning_layer[propclass='15E'] {polygon-fill: #fff;}
-#table_2017_zoning_layer[propclass='15F'] {polygon-fill: #00C5FF;}
+#table_2017_zoning_layer[propclass='5A'] {polygon-fill: #FFFFFF;}
+#table_2017_zoning_layer[propclass='5B'] {polygon-fill: #FFFFFF;}
+#table_2017_zoning_layer[propclass='15A'] {polygon-fill: #BEE8FF;}
+#table_2017_zoning_layer[propclass='15B'] {polygon-fill: #BEE8FF;}
+#table_2017_zoning_layer[propclass='15C'] {polygon-fill: #73DFFF;}
+#table_2017_zoning_layer[propclass='15D'] {polygon-fill: #00C5FF;}
+#table_2017_zoning_layer[propclass='15E'] {polygon-fill: #D1FF73;}
+#table_2017_zoning_layer[propclass='15F'] {polygon-fill: #0084A8;}
 #table_2017_zoning_layer {
     polygon-opacity: 0.7;
     line-color: black;
@@ -107,7 +107,7 @@ export const cartoGrid = (z, x, y) => 'https://cartocdn-gusc-a.global.ssl.fastly
 export const layerCartoCSS = `
   #layer {
     polygon-fill: rgba(0,0,0,0);
-    line-width: 0.33;
+    line-width: 0.1;
     line-color: rgb(200, 0, 0);
   }
 `;
@@ -159,13 +159,13 @@ export const zoningColors = (zone: string) => {
        case 'I-3': return '#c0188c';
        case 'MX-1':  return '#e4a024';
        case 'MX-2':  return '#f37520';
-       case 'MX-3':  return '#FF2900';
+       case 'MX-3':  return '#734C00';
        case 'INST':  return '#0063ff';
        case 'PARK':  return '#229A00';
        case 'CEM':  return '#561818';
        case 'RDV':  return '#dddddd';
-       case 'EWR':  return '#820c0c';
-       case 'PORT': return  '#B81609';
+       case 'EWR':  return '#8400A8';
+       case 'PORT': return  '#4C0073';
        default: return 'rgba(0,0,0,.2)';
     }
 };

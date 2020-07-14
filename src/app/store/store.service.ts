@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Link } from '../shared/classes/link.class';
 import { MapLayer } from '../shared/classes/maplayer';
 import { LegendItem } from '../shared/interfaces/config-layers.inteface';
-import { HomeCard, SearchItem, ZoningFields } from '../shared/models';
+import { ArcFeature, HomeCard, SearchItem } from '../shared/models';
 import * as StoreActions from '../store/store.actions';
 import * as fromStore from '../store/store.reducers';
 import * as homePanelActions from './home-panels/home-panels.actions';
@@ -155,7 +155,7 @@ export class StoreService {
     setPropPanSelectedProp(selectedProp: SearchItem): void {
         this.store.dispatch(new PropPaneActions.SetSelectedProp(selectedProp));
     }
-    setPropPanPropInfo(propInfo: ZoningFields): void {
+    setPropPanPropInfo(propInfo: ArcFeature): void {
         this.store.dispatch(new PropPaneActions.SetPropInfo(propInfo));
     }
     /*

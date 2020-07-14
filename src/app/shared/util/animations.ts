@@ -100,12 +100,12 @@ export const rowExpandButtons = trigger(
     state('hidden', style({
         transform: 'translateX(-600px)'
     })),
-    transition('shown <=> hidden', [animate('300ms ease-out')]),
+    transition('shown <=> hidden', [animate('300ms ease-out')])
   ]
 );
 export const rowExpand = trigger('rowExpand', [
-    state('collapsed, void', style({ height: '0px', paddingRight: '50%', minHeight: '0', display: 'none' })),
-    state('expanded', style({ minHeight: '*', height: '*', paddingRight: '*'  })),
-    transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    transition('expanded <=> void', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+    state('collapsed, void', style({ height: '0px', paddingRight: '50%', minHeight: '0', display: 'none'})),
+    state('expanded', style({ minHeight: '*', height: '*', paddingRight: '*', display: '*'  })),
+    transition('expanded <=> collapsed', animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    transition('expanded <=> void', animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
   ]);

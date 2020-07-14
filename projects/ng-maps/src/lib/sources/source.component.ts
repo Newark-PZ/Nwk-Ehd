@@ -13,7 +13,8 @@ export abstract class SourceComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     if (this.host && this.host.instance) {
-      this.host.instance.setSource(undefined);
+      // tslint:disable-next-line: no-null-keyword
+      this.host.instance.setSource(null);
     }
   }
 

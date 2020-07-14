@@ -38,6 +38,7 @@ export class EhdHomeComponent {
     splashTitle: 'Welcome to EHD',
     officer: {
       name: 'Allison Ladd',
+      position: 'Director & Deputy Mayor',
       pic: 'Allison_Fitzgibbon.png'
     },
     splashBlurb: {

@@ -12,7 +12,8 @@ export class AttributionsComponent implements AfterViewInit {
 
   @ContentChildren(AttributionComponent) attributions: QueryList<AttributionComponent>;
 
-  constructor(@Host() private readonly source: SourceComponent) {}
+  // tslint:disable-next-line: prefer-readonly
+  constructor(@Host() private source: SourceComponent) {}
 
   /* we can do this at the very end */
   ngAfterViewInit(): void {

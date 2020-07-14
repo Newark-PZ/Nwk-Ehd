@@ -37,10 +37,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.slideshowIndex$ = this.store.select(state => state.imageIndex.currentIndex);
       this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
         setTimeout(() => {
-          if (this.events.hearings.filter(h => h.timeUntil >= 0).length < 0) {
+          if (this.events.hearings.filter(h => h.timeUntil >= -10800000).length < 0) {
             observer.next([]);
           } else {
-            observer.next(this.events.hearings.filter(h => h.timeUntil >= 0)
+            observer.next(this.events.hearings.filter(h => h.timeUntil >= -10800000)
             .slice(0, 2));
             observer.complete();
           }

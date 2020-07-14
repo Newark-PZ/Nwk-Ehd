@@ -32,21 +32,21 @@ export class LayersService {
     initOverlayLayers(): Array<MapLayer> {
         // tslint:disable: max-line-length newline-before-return
         this.overlays = [
-            new MapLayer({name: 'Historic Districts', cartoCols: 'name',
+            new MapLayer({name: 'Historic Districts', group: 'Overlays', cartoCols: 'name', legendColor: [128, 147, 241],
                           layer: new VectorLayer({className: 'landmarkdistricts_160203',  zIndex: 11, opacity: 1, visible: false,
                                                   style: feature => this.styleFunction(feature, 'name', [128, 147, 241])  })
             }),
-            new MapLayer({name: 'Redevelopment Plans', cartoCols: 'name',
+            new MapLayer({name: 'Redevelopment Plans', group: 'Overlays', cartoCols: 'name',
                           layer: new VectorLayer({
                               className: 'redevelopmentplanareas_170208', zIndex: 10, opacity: 1, visible: false, style: feature => this.styleFunction(feature) })
             }),
-            new MapLayer({name: 'Opportunity Zones', cartoCols: 'name',
+            new MapLayer({name: 'Opportunity Zones', group: 'Overlays', cartoCols: 'name', legendColor: [106, 88, 55],
                           layer: new VectorLayer({ className: 'opertunity_zones', zIndex: 9, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'name', [106, 88, 55]) })
             }),
-            new MapLayer({name: 'Urban Enterprise Zone', cartoCols: 'uez_name',
+            new MapLayer({name: 'Urban Enterprise Zone', group: 'Overlays', cartoCols: 'uez_name', legendColor: [226, 157, 227],
                           layer: new VectorLayer({ className: 'uez', zIndex: 8, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'uez_name', [226, 157, 227])  })
             }),
-            new MapLayer({name: 'West Ward MNI', cartoCols: 'column_1571935764873',
+            new MapLayer({name: 'West Ward MNI', group: 'Overlays', cartoCols: 'column_1571935764873', legendColor: [254, 95, 0],
                           layer: new VectorLayer({ className: 'west_wardmni_copy', zIndex: 7, opacity: 1, visible: false, style: feature => this.styleFunction(feature, 'column_1571935764873',  [254, 95, 0]) })
             })
         ];
@@ -55,7 +55,8 @@ export class LayersService {
                 ol.layer.setSource(
                     new VectorSource({
                         url: this.getCartoUrl(ol.cartoCols, ol.layer.getClassName()),
-                        format: new GeoJSON()
+                        format: new GeoJSON(),
+                        attributions: [`<div class="legend-graphic" style="border-color:rgb(${ol.legendColor.join(',')})"></div><span class="legend-item">${ol.name}</span>`]
                         })
                 );
         });

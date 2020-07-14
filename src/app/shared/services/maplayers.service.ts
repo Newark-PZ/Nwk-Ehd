@@ -48,15 +48,16 @@ export class MapLayersService {
     initGeoParcelLayers(): Array<Array<MapLayer>> {
         this.parcelLayers = [
             new MapLayer(
-                {name: 'zoning', layer: new TileLayer({className: 'parcels',  zIndex: 3, opacity: 1, visible: true})}
+                {name: 'zoning', group: 'Parcels', legendInfo: this.getLegendData('zoning'),
+                 layer: new TileLayer({className: 'parcels',  zIndex: 3, opacity: 1, visible: true})}
             ),
             new MapLayer(
-                {name: 'Parcel Grid', layer: new TileLayer({className: 'parcelgrid',  zIndex: 2, opacity: 1, visible: true})}
+                {name: 'Grid', group: 'Parcels', layer: new TileLayer({className: 'parcelgrid',  zIndex: 2, opacity: 1, visible: true})}
             )
         ];
         this.geoLayer = [
             new MapLayer(
-                {name: 'wards', layer: new VectorLayer({
+                {name: 'wards', group: 'Geographies', layer: new VectorLayer({
                     className: 'geo', zIndex: 4, opacity: 1, visible: true,
                     style: feature => this.styleFunction(feature, 'ward_name', [0, 0, 0])
                 })}
@@ -77,13 +78,16 @@ export class MapLayersService {
             const hackUrls = (x: any) => x.replace('layer0', '0');
             const baseJson = response.metadata.layers['0'].tilejson.raster;
             const cartoRasterTiles = baseJson.tiles.map(hackUrls);
-            this.parcelLayers[0].layer.setSource(new XYZ({ urls: cartoRasterTiles }));
             this.parcelLayers[0].name = layer;
+            this.parcelLayers[0].legendInfo = this.getLegendData(layer);
+            this.parcelLayers[0].layer.setSource(new XYZ({
+                urls: cartoRasterTiles,
+                attributions: ['<a href="https://njgin.nj.gov/njgin/about/ogis/">NJ OGIS</a>', '<a href="https://njgin.nj.gov/">NJ GIN</a>', 'City of Newark Office of Planning & Zoning']
+            }));
             this.parcelLayers[1].layer.setSource( new UTFGrid({
                     tileJSON: { version: '2.2.0', grids: baseJson.grids.map(hackUrls), tiles: baseJson.grids.map(hackUrls) }
                 }));
             this.storeService.setParcelLayers(this.parcelLayers);
-            this.getLegendData();
         })
         .catch(error => { console.error(error); });
         }
@@ -93,65 +97,15 @@ export class MapLayersService {
         type: 'geo' | 'parcels',
         propset: {name: 'opacity' | 'zIndex', propVal: number } | {name: 'visible', propVal: boolean}
         ): void {
-            // tslint:disable: no-non-null-assertion
             if (type === 'parcels') {
-                this.parcelLayers.find(ol => ol.name === layer)!.layer
+                this.parcelLayers.filter(ol => ol.name === layer)[0].layer
                     .set(propset.name, propset.propVal);
                 this.storeService.setParcelLayers(this.parcelLayers);
             } else if (type === 'geo') {
-                this.geoLayer.find(ol => ol.name === layer)!.layer
+                this.geoLayer.filter(ol => ol.name === layer)[0].layer
                     .set(propset.name, propset.propVal);
                 this.storeService.setGeoLayer(this.geoLayer);
             }
-    }
-    getLegendData(): void {
-        switch (this.parcelLayers[0].name) {
-            case 'landuse':
-                this.legendItems = [
-                    {name: '1', background: '#686868', desc: 'Vacant Land'},
-                    {name: '2', background: '#FFEBAF', desc: 'Residential: < 4 Units'},
-                    {name: '4A', background: '#FF7F7F', desc: 'Commercial'},
-                    {name: '4B', background: '#E8BEFF', desc: 'Industrial'},
-                    {name: '4C', background: '#FFAA00', desc: 'Apartments'},
-                    {name: '5A', background: '#B5E6B9', desc: 'Railroad: Class I'},
-                    {name: '5B', background: '#B5E6B9', desc: 'Railroad: Class II'},
-                    {name: '15A', background: '#BED2FF', desc: 'Exempt: Public School Property'},
-                    {name: '15B', background: '#BED2FF', desc: 'Exempt: Other School Property'},
-                    {name: '15C', background: '#BEFFE8', desc: 'Exempt: Public Property'},
-                    {name: '15D', background: '#73B2FF', desc: 'Exempt: Church & Charitable Property'},
-                    {name: '15E', background: '#fff', desc: 'Exempt: Cemeteries & Graveyards'},
-                    {name: '15F', background: '#00C5FF', desc: 'Exempt: Other'}
-                ];
-                break;
-            case 'zoning':
-                this.legendItems = [
-                    {name: 'R-1', background: '#fffaca', desc: 'Residential: 1 Family'},
-                    {name: 'R-2', background: '#fff68f', desc: 'Residential: 1-2 Family'},
-                    {name: 'R-3', background: '#fff100', desc: 'Residential: 1-3 Family'},
-                    {name: 'R-4', background: '#ebd417', desc: 'Residential: Low-Rise Multi-Family'},
-                    {name: 'R-5', background: '#b49d34', desc: 'Residential: Mid-Rise Multi-Family'},
-                    {name: 'R-6', background: '#998439', desc: 'Residential: High-Rise Multi-Family'},
-                    {name: 'C-1', background: '#fbc8b3', desc: 'Commercial: Neighborhood'},
-                    {name: 'C-2', background: '#da2028', desc: 'Commercial: Community'},
-                    {name: 'C-3', background: '#850204', desc: 'Commercial: Regional'},
-                    {name: 'I-1', background: '#e1c3dd', desc: 'Industrial: Light'},
-                    {name: 'I-2', background: '#A53ED5', desc: 'Industrial: Medium'},
-                    {name: 'I-3', background: '#c0188c', desc: 'Industrial: Heavy'},
-                    {name: 'MX-1', background: '#e4a024', desc: 'Mixed-Use: Low Intensity'},
-                    {name: 'MX-2', background: '#f37520', desc: 'Mixed-Use: Medium Intensity'},
-                    {name: 'MX-3', background: '#FF2900', desc: 'Mixed-Use: High Intensity'},
-                    {name: 'INST', background: '#0063ff', desc: 'Institutional'},
-                    {name: 'PARK', background: '#229A00', desc: 'Parks & Open Space'},
-                    {name: 'CEM', background: '#561818', desc: 'Cemeteries'},
-                    {name: 'RDV', background: '#dddddd', desc: 'Redevelopment Zone'},
-                    {name: 'EWR/EWR-S', background: '#820c0c', desc: 'Airport & Airport Support'},
-                    {name: 'PORT', background: '#B81609',  desc: 'Port Related Industrial'}
-                ];
-                break;
-            case undefined:
-            default: this.legendItems = [{name: 'Parcel', background: 'grey',  desc: 'City of Newark Parcel'}];
-        }
-        this.storeService.setLegend(this.legendItems);
     }
     getEsriLayer(
         layerRef: VectorLayer,
@@ -188,9 +142,13 @@ export class MapLayersService {
         this.geoLayer[0].layer.setSource(
             new VectorSource({
             url: `https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select%20the_geom,${columns}%20from%20public.${layerName}`,
-            format: new GeoJSON({geometryName: layerName})
+            format: new GeoJSON({
+                geometryName: layerName
+            }),
+            attributions: this.attributions(layerName)
         }));
         this.geoLayer[0].name = layerName;
+        this.geoLayer[0].setLegendInfo(this.geoNameFix(layerName));
         (this.geoLayer[0].layer as VectorLayer).setStyle(feat => this.styleFunction(feat, this.findCols(layerName), [0, 0, 0]));
         }
         this.storeService.setGeoLayer(this.geoLayer);
@@ -220,6 +178,20 @@ export class MapLayersService {
 
         return str.replace('Census Tract ', '');
       };
+    geoNameFix(layer): string {
+        switch (layer) {
+            case 'newarktractpolygon_1': return 'Census Tracts';
+            case 'nwkneighborhoods': return 'Neighborhoods';
+            default: return 'Wards';
+        }
+    }
+    attributions(layer): Array<string> {
+        switch (layer) {
+            case 'newarktractpolygon_1': return ['<a href="https://data.census.gov/">US Census</a>'];
+            case 'nwkneighborhoods': return ['<a href="https://newgin.maps.arcgis.com/home/index.html">NewGIN</a>'];
+            default: return ['<a href="https://newgin.maps.arcgis.com/home/index.html">NewGIN</a>'];
+        }
+    }
     geoStyle(rgb: [number, number, number] = [0, 0, 0]): Style {
         return new Style({
           stroke: new Stroke({color: `rgba(${rgb.join(',')})`, width: 3}),
@@ -245,6 +217,65 @@ export class MapLayersService {
               this.stringDivider(feature.get(labelProp), 20, '\n'));
 
           return newstyle;
+    }
+    getLegendData(name: string): LegendItem {
+        switch (name) {
+            case 'landuse':
+                return ({
+                    layer: 'Land Use',
+                    group: 'Parcels',
+                    items: [
+                        {name: '1', background: '#686868', desc: 'Vacant Land'},
+                        {name: '2', background: '#FFEBAF', desc: 'Residential: < 4 Units'},
+                        {name: '4A', background: '#FF7F7F', desc: 'Commercial'},
+                        {name: '4B', background: '#C29ED7', desc: 'Industrial'},
+                        {name: '4C', background: '#FFAA00', desc: 'Apartments'},
+                        {name: '5A', background: '#FFFFFF', desc: 'Railroad: Class I'},
+                        {name: '5B', background: '#FFFFFF', desc: 'Railroad: Class II'},
+                        {name: '15A', background: '#BEE8FF', desc: 'Exempt: Public School Property'},
+                        {name: '15B', background: '#BEE8FF', desc: 'Exempt: Other School Property'},
+                        {name: '15C', background: '#73DFFF', desc: 'Exempt: Public Property'},
+                        {name: '15D', background: '#00C5FF', desc: 'Exempt: Church & Charitable Property'},
+                        {name: '15E', background: '#D1FF73', desc: 'Exempt: Cemeteries & Graveyards'},
+                        {name: '15F', background: '#0084A8', desc: 'Exempt: Other'}
+                ]});
+            case 'zoning':
+                return ({
+                    layer: 'Zoning',
+                    group: 'Parcels',
+                    items: [
+                    {name: 'R-1', background: '#fffaca', desc: 'Residential: 1 Family'},
+                    {name: 'R-2', background: '#fff68f', desc: 'Residential: 1-2 Family'},
+                    {name: 'R-3', background: '#fff100', desc: 'Residential: 1-3 Family'},
+                    {name: 'R-4', background: '#ebd417', desc: 'Residential: Low-Rise Multi-Family'},
+                    {name: 'R-5', background: '#b49d34', desc: 'Residential: Mid-Rise Multi-Family'},
+                    {name: 'R-6', background: '#998439', desc: 'Residential: High-Rise Multi-Family'},
+                    {name: 'C-1', background: '#fbc8b3', desc: 'Commercial: Neighborhood'},
+                    {name: 'C-2', background: '#da2028', desc: 'Commercial: Community'},
+                    {name: 'C-3', background: '#850204', desc: 'Commercial: Regional'},
+                    {name: 'I-1', background: '#e1c3dd', desc: 'Industrial: Light'},
+                    {name: 'I-2', background: '#A53ED5', desc: 'Industrial: Medium'},
+                    {name: 'I-3', background: '#c0188c', desc: 'Industrial: Heavy'},
+                    {name: 'MX-1', background: '#e4a024', desc: 'Mixed-Use: Low Intensity'},
+                    {name: 'MX-2', background: '#f37520', desc: 'Mixed-Use: Medium Intensity'},
+                    {name: 'MX-3', background: '#734C00', desc: 'Mixed-Use: High Intensity'},
+                    {name: 'INST', background: '#0063ff', desc: 'Institutional'},
+                    {name: 'PARK', background: '#229A00', desc: 'Parks & Open Space'},
+                    {name: 'CEM', background: '#561818', desc: 'Cemeteries'},
+                    {name: 'RDV', background: '#dddddd', desc: 'Redevelopment Zone'},
+                    {name: 'EWR/EWR-S', background: '#8400A8', desc: 'Airport & Airport Support'},
+                    {name: 'PORT', background: '#4C0073',  desc: 'Port Related Industrial'}
+                    ]
+                });
+            case undefined:
+            default: return {
+                layer: 'Base',
+                group: 'Parcels',
+                items: [
+                    {name: 'Parcel', background: 'grey',  desc: 'City of Newark Parcel'}
+                ]
+            };
+        }
     }
     resetService(): void {
         this.storeService.setParcelLayers([]);

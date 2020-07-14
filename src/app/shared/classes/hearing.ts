@@ -1,3 +1,4 @@
+// tslint:disable: newline-per-chained-call
 export class Hearing {
     id: string;
     agenda = '';
@@ -19,10 +20,10 @@ export class Hearing {
             folderId?: string
         }) {
         this.board = options.board;
-        this.id = options.id || `${options.board}${(Math.random() * 10).toString()}`;
+        this.id = options.id || `${options.board}${Math.random().toString()}`;
         this.start = new Date(options.start);
         this.timeUntil = this.start.getTime() - new Date().getTime();
-        this.withinLegalNotice = this.timeUntil >= -3888000000 && this.timeUntil < 0;
+        this.withinLegalNotice = this.timeUntil >= -3888000000 && this.timeUntil < -10800000;
         this.folderId = options.folderId || '';
         this.link = options.link || '';
         this.title = this.getTitle(this.board);
