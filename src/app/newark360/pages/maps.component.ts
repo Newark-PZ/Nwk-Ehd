@@ -11,7 +11,7 @@ import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import { fromLonLat } from 'ol/proj';
 import { UTFGrid } from 'ol/source';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Observer, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { LayersService, MapLayersService } from '../../shared';
 import { MapLayer } from '../../shared/classes/maplayer';
@@ -37,7 +37,14 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     'https://d.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
     'http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'
   ];
-  cartoLabelsUrl = 'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png';
+  cartoLabelsUrl = [
+    'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png',
+    'http://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}'
+  ];
+  basemapAttr = [
+    '<span><a href="http://www.openstreetmap.org/copyright">© OpenStreetMap</a> contributors, <a href="https://carto.com/attribution">© CARTO</a></span>',
+    '<span>Imagery ©2020 Bluesky, Maxar Technologies, Sanborn, USDA Farm Service Agency, <a href="https://www.google.com/permissions/geoguidelines/attr-guide/">Google Streets & Satellite 2020</a></span>'
+  ];
   fullScreen = false;
   sideStatus = true;
   textHide = true;
@@ -51,7 +58,6 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   basemap$: Observable<boolean>;
   paneState$: Observable<boolean>;
   panesub: Subscription;
-  legendEls: Observable<Array<LegendItem>>;
   showLegend = false;
   legendCols = ['element', 'label', 'info'];
   @ViewChild(MatRipple) ripple: MatRipple;
@@ -60,6 +66,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   overlaylyrs: Array<MapLayer> = [];
   parcelLyrs: Array<MapLayer> = [];
   geoLyr: Array<MapLayer> = [];
+  layers$: Observable<Array<LegendItem>>;
 
   constructor(
     readonly store: Store<fromStore.StoreState>,
@@ -69,8 +76,22 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     readonly _bottomSheet: MatBottomSheet
   ) {
     this.basemap$ = this.store.select(state => state.layers.basemap);
-    this.legendEls = this.store.select(state => state.layers.legend);
     this.paneState$ = this.store.select(state => state.propPane.opened);
+    this.layers$ = new Observable((observer: Observer<Array<LegendItem>>) => {
+      setInterval(e => {
+        if (e) {
+          const mapLayers: Array<MapLayer> = [
+            this.parcelLyrs[0],
+            this.geoLyr[0]
+          ]
+          .concat(this.overlaylyrs)
+          .sort(l => l.layer.getZIndex());
+          observer.next(mapLayers.filter(lyr => lyr.layer.getVisible())
+          .map(
+            l => l.legendInfo
+          ));
+        }}, 500, this.showLegend);
+    });
   }
   convertRemToPixels(rem: number): number {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -103,7 +124,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
           }
           if (layers.length > 0) {
             layers.forEach(l => {
-              this.parcelLyrs.push(l);
+              this.parcelLyrs.unshift(l);
               this.map.instance.addLayer(l);
             });
           }
@@ -151,6 +172,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this.overlaylyrs = [];
     this.layerservice.resetService();
     this.getlayers.resetService();
+    this.showLegend = false;
   }
   openBottomsheet(page: number): void {
     this._bottomSheet.open(BottomSheetComponent,
@@ -162,7 +184,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   }
   zoomChange(type: 'in' | 'out'): void {
     type === 'in'
-    ? this.zoom = Math.min(this.zoom + 1, 18)
+    ? this.zoom = Math.min(this.zoom + 1, 19)
     : this.zoom = Math.max(this.zoom - 1, 8);
     this.map.instance.getView()
         .animate({ zoom: this.zoom, easing: easeOut, duration: 750});
@@ -183,6 +205,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this.store.dispatch(new LayersActions.ToggleBasemap());
   }
   handleSingleClick(e: MapBrowserEvent): void {
+    this.showLegend = false;
     this.ripple.launch(e.pixel[0] + this.convertRemToPixels(1), e.pixel[1] + this.convertRemToPixels(5.5));
     const viewResolution = this.map.instance.getView()
       .getResolution();

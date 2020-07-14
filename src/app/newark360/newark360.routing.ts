@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { PageComponent } from '../shared';
 import { N360HomeComponent } from './pages/home.component';
+import { MapsComponent } from './pages/maps.component';
 
 export const NEWARK360_ROUTES: Routes = [
   {
@@ -13,8 +13,8 @@ export const NEWARK360_ROUTES: Routes = [
     component: N360HomeComponent
   },
   {
-    path: ':id',
-    component: PageComponent
+    path: 'newark-today',
+    component: MapsComponent
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

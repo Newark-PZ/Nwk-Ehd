@@ -44,9 +44,17 @@ export class LinkService {
               children: this.planingzoningChildren.filter(v => v.parent === 'zoning')}),
     new Link({id: 'contact', title: 'Contact Us', office: 'planningzoning', icon: 'phone', isChild: false })
   ];
-  initRoutes(office: 'ehd' | 'planningzoning'): Array<Link> {
+  n360 = [
+    new Link({id: 'home', title: 'Newark 360 Home', office: '360', icon: 'home', isChild: false}),
+    new Link({id: 'newark-today', title: 'Newark Today', office: '360', icon: 'map', isChild: false})
+  ];
+  initRoutes(office: '360' | 'ehd' | 'planningzoning'): Array<Link> {
     let officeLinks: Array<Link>;
     switch (office) {
+      case '360':
+        officeLinks = this.n360;
+        this.currentOffice = office;
+        break;
       case 'planningzoning':
         officeLinks = this.planningzoning;
         this.currentOffice = office;

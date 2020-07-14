@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { LinkService } from '../shared/services/link.service';
 
 @Component({
@@ -10,10 +9,9 @@ import { LinkService } from '../shared/services/link.service';
 
 export class Newark360Component {
   constructor(
-    public linker: LinkService,
-    public dialog: MatDialog
+    public linker: LinkService
     ) {
-    this.linker.initRoutes('planningzoning');
+    this.linker.initRoutes('360');
   }
   @HostBinding('class.content-container') class = true;
 

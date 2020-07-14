@@ -4,7 +4,7 @@ export class Link {
   id: string;
   title: string;
   icon: string;
-  office: 'ehd' | 'planningzoning' | 'rentcontrol';
+  office: '360' | 'ehd' | 'planningzoning' | 'rentcontrol';
   parent: string;
   fullPath: string;
   children: Array<Link> | undefined;
@@ -16,7 +16,7 @@ export class Link {
     options: {
       id: string,
       title: string,
-      office: 'ehd' | 'planningzoning' | 'rentcontrol',
+      office: '360' | 'ehd' | 'planningzoning' | 'rentcontrol',
       parent?: string,
       icon?: string,
       children?: Array<Link>,
