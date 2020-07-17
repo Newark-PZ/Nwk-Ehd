@@ -1,12 +1,12 @@
-<nav class="menu" [ngClass]="changeNavPos ? 'side' : ''">
-    <a *ngIf="!changeNavPos" class="menu-open-button" (click)="menuOpen = !menuOpen">
+<nav class="menu" [@menuAnimate]  [ngClass]="changeNavPos ? 'side' : ''">
+    <a *ngIf="!changeNavPos" class="menu-open-button">
         <h4 class="menu-title">What is Newark 360?</h4>
     </a>
     <a class="menu-item" [style.display]="changeNavPos ? 'flex' : 'none'">
         <h5 class="menu-title">
             <mat-icon>home</mat-icon>Newark 360</h5>
     </a>
-    <a class="menu-item {{btn.color}}" *ngFor="let btn of navButtons" [ngClass]="menuOpen ? 'opened' : ''">
+    <a class="menu-item {{btn.color}}" *ngFor="let btn of navButtons">
         <h5 class="menu-title">
             <mat-icon>{{btn.icon}}</mat-icon>{{ btn.name }}</h5>
     </a>

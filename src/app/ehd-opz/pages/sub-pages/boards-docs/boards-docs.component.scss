@@ -1,8 +1,12 @@
 .mat-row:not(.detail) {
     margin: .5rem;
-    border: .02rem solid lightgrey;
-    border-radius: .3rem;
     max-height: unset !important;
+    border: none;
+    mat-card {
+        border: .02rem solid lightgrey;
+        border-radius: .3rem;
+        box-shadow: none;
+    }
 }
 
 .selected {

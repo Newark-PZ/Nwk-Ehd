@@ -1,7 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Scroll } from '@angular/router';
+import { menuAnim } from '../../shared/util/animations';
 
 @Component({
+  animations: [menuAnim],
   selector: 'app-360-home',
   styleUrls: ['./home.component.scss'],
   templateUrl: './home.component.html'
@@ -20,7 +22,7 @@ export class N360HomeComponent implements OnInit {
   ];
   ngOnInit(): void {
     setTimeout(() => {
-      this.menuOpen = false;
+      this.menuOpen = true;
     }, 1000);
   }
   @HostListener('window:scroll') onScroll(e: Scroll): void {

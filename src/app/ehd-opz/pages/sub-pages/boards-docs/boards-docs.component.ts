@@ -25,7 +25,9 @@ export class DocsDataComponent implements AfterViewInit {
   filterValue;
   group: DocGroup;
   boards: Array<{group: string; name: string; disabled: boolean, docs: Array<{type?: string; link: string; year?: number}>}> = [
-    {group: 'redev', name: 'Redevelopment Plans', disabled: false, docs: [{link: 'plans'}]},
+    {group: 'res', name: 'Resources', disabled: false, docs: [
+      {type: 'Redevelopment Plans', link: 'Resources'}, {type: 'Other Documents', link: 'Resources'}
+    ]},
     {group: 'cpb', name: 'Central Planning Board', disabled: false, docs: [
       {type: '2018 Minutes', link: 'CPB-Minutes', year: 2018}, {type: '2019 Minutes', link: 'CPB-Minutes', year: 2019}, {type: '2020 Minutes', link: 'CPB-Minutes', year: 2020},
       {type: '2018 Agendas', link: 'CPB-Agendas', year: 2018}, {type: '2019 Agendas', link: 'CPB-Agendas', year: 2019}, {type: '2020 Agendas', link: 'CPB-Agendas', year: 2020}
@@ -53,7 +55,7 @@ export class DocsDataComponent implements AfterViewInit {
     readonly airData: AirService,
     public dialog: MatDialog
   ) {
-    this.airData.getDocs('Plans', '')
+    this.airData.getDocs('Resources', 'view=Redevelopment Plans')
     .subscribe(doc => this.dataSource.data = doc.records);
   }
   ngAfterViewInit(): void {
@@ -72,13 +74,10 @@ export class DocsDataComponent implements AfterViewInit {
   groupSelect(group: DocGroup, optgroup: string): void {
     // tslint:disable: no-non-null-assertion
     if (group !== this.selectedGroup) { this.selectedGroup = group; }
-    this.airData.getDocs(group.link, `view=${group.year ? group.year : 'All'}`)
+    this.airData.getDocs(group.link, `view=${group.year ? group.year : group.type}`)
     .subscribe(
       doc => this.dataSource.data = doc.records
-        .filter(
-        file => group.year ? file.fields!['Published']!.toString()
-                .startsWith(group.year.toString()) : file )
-    );
+      );
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.groupChange.emit(`${optgroup} ${group.type ? group.type : ''}`);
@@ -90,14 +89,14 @@ export class DocsDataComponent implements AfterViewInit {
     this.sideStatus = !this.sideStatus;
     this.textHide = !this.textHide;
   }
-  openDoc(doc: DocsFields): void {
+  openDoc(doc: DocsFields, index: number): void {
     // tslint:disable-next-line: no-null-keyword
     this.selectedElement === doc ? this.selectedElement = null : this.selectedElement = doc;
     this.dialog.open(ModalComponent, {
       maxWidth: '100vw',
       data: {
-        header: `<b>${doc.Name}</b><br><span>${doc.Published}</span>`,
-        link: doc.Files[0].url
+        header: `<b>${doc.Name}${doc.Files.length > 1 ? [' | Document ', (index + 1).toString()].join(' ') : ''}</b><br><span>${doc.Published}</span>`,
+        link: doc.Files[index].url
       }
     });
   }

@@ -1,6 +1,8 @@
 import {
   animate,
   AnimationTriggerMetadata,
+  query,
+  stagger,
   state,
   style,
   transition,
@@ -109,3 +111,14 @@ export const rowExpand = trigger('rowExpand', [
     transition('expanded <=> collapsed', animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     transition('expanded <=> void', animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
   ]);
+
+export const menuAnim = trigger('menuAnimate', [
+    transition('expanded <=> collapsed, :enter', [
+      query('.menu-item', [
+        style({opacity: 0, transform: 'translate3d(0, 0, 0)'}),
+        stagger(100, [
+          animate('180ms 500ms cubic-bezier(0.935, 0, 0.34, 1.33)', style({ opacity: 1, transform: '*' }))
+        ])
+      ])
+    ])
+]);

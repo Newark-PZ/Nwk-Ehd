@@ -1,51 +1,49 @@
- .menu-item,
- .menu-open-button {
-     background: #0d47a1;
-     border-radius: 100%;
-     width: 10rem;
-     height: 8rem;
-     margin-left: -5rem;
-     position: absolute;
-     color: #FFFFFF;
-     text-align: center;
-     -webkit-transform: translate3d(0, 0, 0);
-     transition-delay: 500ms;
-     transform: translate3d(0, 0, 0);
-     -webkit-transition: -webkit-transform ease-out 200ms;
-     transition: -webkit-transform ease-out 200ms;
-     transition: transform ease-out 200ms;
-     transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
-     &:not(.side) h5 {
-         margin-top: 1.5rem;
-         display: flex;
-         flex-direction: column;
-         padding: 0.5rem;
-         justify-content: center;
-         align-items: center;
-         mat-icon {
-             font-size: 1rem !important;
-         }
-     }
-     &:hover {
-         background: #EEEEEE;
-         color: #3290B1;
-         cursor: pointer;
-     }
-     &:active {
-         background: black;
-         color: white;
-         cursor: pointer;
-     }
- }
- 
- .menu {
+.menu-item {
+    background: #0d47a1;
+    border-radius: 100%;
+    width: 10rem;
+    height: 8rem;
+    margin-left: -5rem;
+    position: absolute;
+    color: #FFFFFF;
+    text-align: center;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform ease-out 200ms;
+    transition: -webkit-transform ease-out 200ms;
+    transition: transform ease-out 200ms;
+    transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+    &:not(.side) h5 {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        mat-icon {
+            font-size: 1rem !important;
+        }
+    }
+    &:hover {
+        background: #EEEEEE;
+        color: #3290B1;
+        cursor: pointer;
+    }
+    &:active {
+        background: black;
+        color: white;
+        cursor: pointer;
+    }
+}
+.menu {
      margin: auto;
      position: fixed;
      top: 0;
      bottom: 0;
      left: 0;
      right: 0;
-     width: 10rem;
+     width: 20%;
      height: 8rem;
      text-align: center;
      box-sizing: border-box;
@@ -58,10 +56,10 @@
          transform: rotate(45deg);
          -webkit-transform: rotate(45deg);
          position: fixed;
-         bottom: 3rem;
+         bottom: 2rem;
          width: 2rem;
          height: 2rem;
-         right: 3rem;
+         right: 2rem;
          border-radius: .25rem;
          box-shadow: 8px 8px 0.5rem rgba(13, 71, 161, .35);
      }
@@ -85,179 +83,91 @@
          .menu-item {
              display: flex;
              position: relative;
-             margin: .5rem;
+             margin: 0.5rem auto;
              font-size: 1.15rem;
              line-height: normal;
-             width: 10rem;
              height: 3rem;
+             width: 90%;
              border-radius: .3rem;
-             box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
              text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
-             -webkit-transition: -webkit-transform ease-out 200ms;
-             transition: -webkit-transform ease-out 200ms;
-             transition: transform ease-out 200ms;
-             transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
          }
      }
  }
  
- .menu-item:nth-child(3),
- .menu-item:nth-child(4),
- .menu-item:nth-child(5),
- .menu-item:nth-child(6),
- .menu-item:nth-child(7),
- .menu-item:nth-child(8),
- .menu-item:nth-child(9) {
-     -webkit-transition-duration: 180ms;
-     transition-duration: 180ms;
- }
- 
  .menu-open-button {
      z-index: 2;
+     width: 10rem;
+     height: 8rem;
+     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+     margin-left: -5rem;
+     position: absolute;
+     text-align: center;
+     -webkit-transition: -webkit-transform ease-out 400ms;
+     transition: -webkit-transform ease-out 400ms;
+     transition: transform ease-out 400ms;
+     transition: transform ease-out 400ms, -webkit-transform ease-out 200ms;
      -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
      transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-     -webkit-transition-duration: 400ms;
-     transition-duration: 400ms;
      -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
      transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-     cursor: pointer;
-     box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
  }
- 
- .menu-open-button:hover {
-     -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-     transform: scale(1.2, 1.2) translate3d(0, 0, 0);
- }
- 
- .opened+.menu-open-button {
-     -webkit-transition-timing-function: linear;
-     transition-timing-function: linear;
-     -webkit-transition-duration: 200ms;
-     transition-duration: 200ms;
-     -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-     transform: scale(0.8, 0.8) translate3d(0, 0, 0);
- }
- 
- .opened~.menu-item {
-     box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
-     -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-     transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
- }
- 
- .menu:not(.side) .opened {
+ .menu:not(.side) .menu-item {
      &:nth-child(3) {
-         transition-duration: 180ms;
-         -webkit-transition-duration: 180ms;
          -webkit-transform: translate3d(0px, -11rem, 0);
          transform: translate3d(0px, -11rem, 0);
      }
      &:nth-child(4) {
-         transition-duration: 280ms;
-         -webkit-transition-duration: 280ms;
          -webkit-transform: translate3d(10rem, -5rem, 0);
          transform: translate3d(10rem, -5rem, 0);
      }
      &:nth-child(5) {
-         transition-duration: 380ms;
-         -webkit-transition-duration: 380ms;
          -webkit-transform: translate3d(10rem, 5rem, 0);
          transform: translate3d(10rem, 5rem, 0);
      }
      &:nth-child(6) {
-         transition-duration: 480ms;
-         -webkit-transition-duration: 480ms;
          -webkit-transform: translate3d(0px, 11rem, 0);
          transform: translate3d(0px, 11rem, 0);
      }
      &:nth-child(7) {
-         transition-duration: 580ms;
-         -webkit-transition-duration: 580ms;
          -webkit-transform: translate3d(-10rem, 5rem, 0);
          transform: translate3d(-10rem, 5rem, 0);
      }
      &:nth-child(8) {
-         transition-duration: 680ms;
-         -webkit-transition-duration: 680ms;
          -webkit-transform: translate3d(-10rem, -5rem, 0);
          transform: translate3d(-10rem, -5rem, 0);
      }
      &:nth-child(9) {
-         transition-duration: 780ms;
-         -webkit-transition-duration: 780ms;
          -webkit-transform: translate3d(0px, -11rem, 0);
          transform: translate3d(0px, -11rem, 0);
      }
  }
- 
- .blue {
-     background-color: #669AE1;
- }
- 
- .blue:hover {
-     color: #669AE1;
-     text-shadow: none;
- }
- 
- .green {
-     background-color: #70CC72;
- }
- 
- .green:hover {
-     color: #70CC72;
-     text-shadow: none;
- }
- 
- .red {
-     background-color: #FE4365;
- }
- 
- .red:hover {
-     color: #FE4365;
-     text-shadow: none;
- }
- 
- .purple {
-     background-color: #C49CDE;
- }
- 
- .purple:hover {
-     color: #C49CDE;
-     text-shadow: none;
- }
- 
- .orange {
-     background-color: #FC913A;
- }
- 
- .orange:hover {
-     color: #FC913A;
-     text-shadow: none;
- }
- 
- .lightblue {
-     background-color: #62C2E4;
- }
- 
- .lightblue:hover {
-     color: #62C2E4;
-     text-shadow: none;
- }
- 
- .credit {
-     margin: 24px 20px 120px 0;
-     text-align: right;
-     color: #EEEEEE;
- }
- 
+ $button-colors: (
+     "blue":#669AE1,
+     "green":#70CC72,
+     "red":#FE4365,
+     "purple":#C49CDE,
+     "orange":#FC913A,
+     "lightblue":#62C2E4
+     );
+ @each $name, $color in $button-colors { 
+    .#{$name} {
+        background-color: $color;
+        &:hover {
+         color: $color;
+         text-shadow: none;
+        }
+    }
+  }
+
  .page-block {
      height: 90vh;
      width: 100%;
-     display: inline-block;
+     display: flex;
      background-color: lightcyan;
      position: relative;
      z-index: -1;
      &:first-of-type {
-         background-color: white;
+         background-color: lightgoldenrodyellow;
      }
  }
  

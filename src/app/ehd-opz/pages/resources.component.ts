@@ -37,7 +37,7 @@ export class OpzResourcesComponent implements AfterViewInit {
         filter(params => params.group && params.type)
       )
       .subscribe(params => {
-        if (params.group !== 'redev') {
+        if (params.group !== 'res') {
           this.docsComp.groupSelect({
             group: params.group, type: params.type,
             link: `${params.group.toUpperCase()}-${params.type.charAt(0)
@@ -48,7 +48,7 @@ export class OpzResourcesComponent implements AfterViewInit {
           this.docsComp.groupSelect({
             group: params.group,
             type: params.type,
-            link: 'plans'
+            link: 'Resources'
           }, params.group);
         }
         this.setSubtitle(params.group);
