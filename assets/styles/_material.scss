@@ -1,59 +1,54 @@
 @use './variables' as *;
 @use '../../../node_modules/@angular/material/theming' as *;
-
 @include mat-core();
-
 $nwk-theme: mat-light-theme($nwk-primary-colors, $nwk-accent-colors, $nwk-warn-colors);
-
 @include angular-material-theme($nwk-theme);
-$custom-typography: mat-typography-config(
-  $font-family: 'Segoe UI, sans-serif',
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 24px, 500)
-);
+$custom-typography: mat-typography-config( $font-family: 'Segoe UI, sans-serif', $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500));
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
 @include mat-base-typography($custom-typography);
-
 // Override typography for a specific Angular Material components.
 @include mat-checkbox-typography($custom-typography);
-
 // Override typography for all Angular Material, including mat-base-typography and all components.
 @include angular-material-typography($custom-typography);
 .mat-drawer-container {
-  color: unset !important;
+    color: unset !important;
 }
+
 .map-buttons-top {
     &.right {
-        top:1rem;
-        right:2rem;
+        top: 1rem;
+        right: 2rem;
     }
     &.left {
         top: 3rem;
         left: 3rem;
-        @media screen and (max-width: 576px){
+        @media screen and (max-width: 576px) {
             top: 1rem;
             left: 2rem;
         }
     }
+    &.left-mini {
+        top: 1rem;
+        left: 2rem;
+    }
     position:absolute;
     &.sat {
-      .general-button:not(.split),
-      .split {
-        box-shadow: 0 3px 10px black;
-      }
+        .general-button:not(.split),
+        .split {
+            box-shadow: 0 3px 10px black;
+        }
     }
 }
+
 .general-button {
     span {
         display: flex;
         flex-direction: row;
         margin-left: .5rem;
     }
-
     mat-icon {
         font-size: 1.5rem;
     }
-
     background: white;
     font-family: 'Segoe UI',
     'Open Sans',
@@ -84,7 +79,7 @@ $custom-typography: mat-typography-config(
             width: 75%;
             margin: auto 0;
             border-width: .5px;
-            border-color: rgba(0,0,0,.2);
+            border-color: rgba(0, 0, 0, .2);
         }
         button {
             flex: 1 1 35%;
@@ -98,8 +93,10 @@ $custom-typography: mat-typography-config(
             }
             &:nth-of-type(2) {
                 flex: 1 1 30%;
-                mat-icon {font-size: 1.25rem !important}
-            }            
+                mat-icon {
+                    font-size: 1.25rem !important
+                }
+            }
             &:last-of-type {
                 border-bottom-left-radius: .25rem;
                 border-bottom-right-radius: .25rem;
@@ -114,7 +111,6 @@ $custom-typography: mat-typography-config(
     background: none;
     box-shadow: none;
     font-family: inherit;
-
     button {
         color: white;
         background-color: black;
@@ -124,14 +120,11 @@ $custom-typography: mat-typography-config(
         margin: .25rem auto;
         height: 2rem;
         cursor: pointer;
-
     }
-
     .toast-message {
         background: white;
         height: 10vh;
         font-size: unset;
-
         .toast-close-icon {
             color: black;
         }
@@ -148,7 +141,6 @@ $custom-typography: mat-typography-config(
     color: white;
 }
 
-
 .general-button:active:not(.split),
 .split button:active,
 .mat-snack-bar-container button:active,
@@ -158,24 +150,44 @@ $custom-typography: mat-typography-config(
     box-shadow: none;
     color: lightslategray;
 }
+
 .ol-scale-line {
-    background: rgba(0,0,0,.5) !important;
+    background: rgba(0, 0, 0, .5) !important;
     border-radius: .2rem !important;
     bottom: .5rem !important;
     left: .5rem !important;
     padding: .1rem !important;
-    @media screen and (max-width: 576px){
+    @media screen and (max-width: 576px) {
         left: 1.1rem !important;
         padding: 0.1rem !important;
         top: 4rem !important;
         bottom: unset !important;
     }
-  }
-  .ol-attribution {
-    &.ol-collapsed {background-color: transparent !important;}
-    &:not(.ol-collapsed) {background-color: white !important;}
-      right: 1.5rem !important;
-      bottom: .75rem !important;
+}
+
+.map-frame-mini .ol-scale-line {
+    background: rgba(0, 0, 0, .5) !important;
+    border-radius: .2rem !important;
+    bottom: .5rem !important;
+    left: .5rem !important;
+    padding: .1rem !important;
+    @media screen and (max-width: 769px) {
+        left: 1.1rem !important;
+        padding: 0.1rem !important;
+        top: 4rem !important;
+        bottom: unset !important;
+    }
+}
+
+.ol-attribution {
+    &.ol-collapsed {
+        background-color: transparent !important;
+    }
+    &:not(.ol-collapsed) {
+        background-color: white !important;
+    }
+    right: 1.5rem !important;
+    bottom: .75rem !important;
     ul {
         &::before {
             content: "Attributions";
@@ -194,38 +206,47 @@ $custom-typography: mat-typography-config(
             }
         }
     }
-    button {background-color: rgba(0, 0, 0, 0.5) !important; border-radius: .2rem !important;}
+    button {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        border-radius: .2rem !important;
+    }
 }
-  .ol-scale-line-inner {
+
+.ol-scale-line-inner {
     border: .1rem solid white !important;
     border-top: none !important;
     color: white !important;
     margin: .2rem !important;
     font: .85rem "Segoe UI" !important;
-  }
+}
+
 .mat-bottom-sheet-container {
     height: 66vh !important;
 }
+
 app-bottomsheet .mat-tab-body-wrapper {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
     .mat-tab-body-content {
         scrollbar-width: thin !important;
         scrollbar-color: #09306d whitesmoke;
     }
-
 }
-.mat-tooltip{ // making the font size on the mat-tooltip 1.5rem globally
+
+.mat-tooltip {
+    // making the font size on the mat-tooltip 1.5rem globally
     font-size: 1.1rem;
-    &.legend-tooltip {  // to modify the tooltip create a class like this
+    &.legend-tooltip {
+        // to modify the tooltip create a class like this
         font-size: 1.2rem;
     }
 }
+
 #appTabs .mat-tab-header {
-    box-shadow: inset .1rem .1rem 0.5rem rgba(0,0,0,.6);
+    box-shadow: inset .1rem .1rem 0.5rem rgba(0, 0, 0, .6);
     .mat-tab-label {
         opacity: 1;
-        color: rgba(0,0,0,.6);
-        -webkit-text-fill-color: rgba(0,0,0,.6);
+        color: rgba(0, 0, 0, .6);
+        -webkit-text-fill-color: rgba(0, 0, 0, .6);
         &-active {
             color: white;
             -webkit-text-fill-color: white;
@@ -234,11 +255,13 @@ app-bottomsheet .mat-tab-body-wrapper {
         }
     }
 }
+
 .mat-button-toggle-label-content {
     line-height: inherit !important;
     padding: .25rem !important;
     min-width: 3rem;
 }
+
 .mat-standard-chip {
     min-height: 1rem !important;
     padding: .66rem .5rem !important;
@@ -251,6 +274,7 @@ app-bottomsheet .mat-tab-body-wrapper {
         background-color: lightyellow !important;
     }
 }
+
 .mat-chip {
     font-size: .8rem !important;
 }
