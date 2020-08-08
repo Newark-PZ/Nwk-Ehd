@@ -1,4 +1,3 @@
-import { Clipboard } from '@angular/cdk/clipboard';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -10,7 +9,6 @@ import * as fromStore from '../../../store/store.reducers';
 import { StoreService } from '../../../store/store.service';
 import { MapLayer } from '../../classes/maplayer';
 import { LayersService } from '../../services/layers.service';
-import { MapLayersService } from '../../services/maplayers.service';
 import { rowExpand } from '../../util/animations';
 
 @Component({
@@ -27,9 +25,9 @@ export class MapPaneComponent implements OnInit {
     parcelsVis: boolean;
     overlayOpacity: number;
     geographies = [
-        {value: 'none', label: 'None'},
-        {value: 'newarktractpolygon_1', label: 'Census Tracts'},
-        {value: 'nwkneighborhoods', label: 'Neighborhoods'},
+        {value: 'newark_censustracts', label: 'Census Tracts'},
+        {value: 'newark_zipcodes', label: 'Zipcodes'},
+        {value: 'neighborhoods', label: 'Neighborhoods'},
         {value: 'wards', label: 'Wards'}
     ];
     parcelview = [
@@ -53,59 +51,44 @@ export class MapPaneComponent implements OnInit {
     parcelsControl = new FormControl();
     overlaysControl = new FormControl();
     constructor(
-        public clipboard: Clipboard,
-        readonly layers: LayersService,
-        readonly getLayers: MapLayersService,
+        readonly getLayers: LayersService,
         readonly storeService: StoreService,
         readonly store: Store<fromStore.StoreState>
         ) {
-            this.overlays = this.store.select(state => state.layers.overlays);
+            this.overlays = this.store.select(state => state.layers.overlays.filter(ol => ol.group === 'Overlays'));
+            this.geoLayer = this.store.select(state => state.layers.overlays.filter(ol => ol.group === 'Geographies'));
             this.parcelLayers = this.store.select(state => state.layers.parcelLayers);
-            this.geoLayer = this.store.select(state => state.layers.geoLayer);
-            this.geographiesControl.valueChanges.subscribe( v => { this.getLayers.getGeoLayer(v); });
+            this.geographiesControl.valueChanges.subscribe( v => { this.getLayers.setGeo(v); });
             this.parcelsControl.valueChanges.subscribe( v => { this.getLayers.setParcelViz(v); });
     }
     ngOnInit(): void {
         this.geoVis = true;
         this.parcelsVis = true;
         this.overlayOpacity = 1;
-        this.parcelsControl.setValue(this.getLayers.parcelLayers[0].name);
-        this.geographiesControl.setValue(this.getLayers.geoLayer[0].name);
+        this.parcelsControl.setValue(this.getLayers.parcelLayers[0].name.replace('Parcels: ', ''));
+        this.geographiesControl.setValue(this.getLayers.layers.filter(ol => ol.group === 'Geographies')[0].cartoName);
     }
-    setOpacity(e, type): void {
-        switch (type) {
-            case 'geo':
-                this.getLayers.updateLayer(e.name, type, {name: 'opacity', propVal: e.layer.opacity});
-                break;
-            case 'parcels':
-                this.getLayers.updateLayer(e.name, type, {name: 'opacity', propVal: e.layer.opacity });
-                break;
-            default:
-                this.layers.updateOverlayLayer(e.name, { name: 'opacity', propVal: e.layer.opacity });
-                break;
-        }
+    setOpacity(e): void {
+        this.getLayers.updateLayer(e.name, { name: 'opacity', propVal: e.layer.opacity });
     }
-    copyVal(mapInput: any): any {
-        this.clipboard.copy(`Block ${mapInput.block}, Lot ${mapInput.lot}`);
-    }
-    toggleVisible(type: string, layer: MapLayer, event?): void {
+    toggleVisible(type: string, layer: MapLayer): void {
         switch (type) {
             case 'geo':
                 const curgeovis = layer.layer.getVisible();
                 layer.layer.setVisible(!curgeovis);
-                this.getLayers.updateLayer(layer.name, type, {name: 'visible', propVal: layer.layer.getVisible()});
+                this.getLayers.updateLayer(layer.name, { name: 'visible', propVal: layer.layer.getVisible() });
                 break;
             case 'parcels': {
                 const curparcelvis = layer.layer.getVisible();
                 layer.layer.setVisible(!curparcelvis);
-                this.getLayers.updateLayer(layer.name, type, {name: 'visible', propVal: layer.layer.getVisible()});
+                this.getLayers.updateLayer(layer.name, { name: 'visible', propVal: layer.layer.getVisible() });
                 break;
             }
             default: {
                     this.selection.toggle(layer);
                     const curvis = layer.layer.getVisible();
                     layer.layer.setVisible(!curvis);
-                    this.layers.updateOverlayLayer(layer.name, { name: 'visible', propVal: layer.layer.getVisible() });
+                    this.getLayers.updateLayer(layer.name, { name: 'visible', propVal: layer.layer.getVisible() });
                     break;
                 }
         }

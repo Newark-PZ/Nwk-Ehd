@@ -61,6 +61,20 @@ export interface HomePage {
         footer?: string;
         events?: Array<CalEvent>
     };
+    contact?: {
+        officer?: string;
+        officerTitle?: string;
+        phone?: string;
+        fax?: string;
+        email?: string;
+        room: string;
+        buttons?: Array<{
+          link?: string;
+          linkText?: string;
+          fullWidth?: boolean;
+        }>;
+        text?: string;
+      };
     buttons?: Array<HomeCard>;
     buttonCategories: Array<string>;
     officer?: {
@@ -70,8 +84,18 @@ export interface HomePage {
         pic?: string;
     };
     searchDisplay?: boolean | false;
+    sections?: Array<{
+        header?: string;
+        buttons?: Array<{
+          link?: string;
+          linkText?: string;
+          fullWidth?: boolean;
+        }>;
+        text: string;
+        logos?: Array<string>;
+      }>;
     splashTitle?: Array<Record> | string;
-    splashImgs?: Array<{src: string; alt: string}>;
+    splashImg?: {src: string; alt: string};
     splashBlurb?: {
         text: string;
         buttons?: Array<{ text: string; link?: string;  extUrl?: string; parent?: string;  }>;

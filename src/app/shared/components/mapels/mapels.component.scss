@@ -15,8 +15,44 @@
             margin: auto;
         }
     }
+    &:hover {
+        cursor: pointer;
+    }
+    &:active {
+        cursor: grabbing;
+    }
 }
-
+.hoverFlag {
+    height: 3rem;
+    font-size: .7rem;
+    background: rgba(260, 260, 260, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1rem;
+    border-radius: .25rem;
+    padding: .5rem;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    transform: translate(-50%,-125%);
+    &::before {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: .25rem solid transparent;
+        border-right: .25rem solid transparent;
+        border-top: 1rem solid rgba(260, 260, 260, 0.8);
+        content: "";
+        position: absolute;
+        top: 100%;
+        transform: rotate(15deg);
+        left: 44%;
+        transform: translate(15%, -10%) rotate(15deg);
+    }
+}
 .mat-snack-bar-container {
     color: black;
     background: none;

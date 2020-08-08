@@ -1,0 +1,144 @@
+@use '../../../assets/styles/variables'as *;
+:host {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+}
+.item-info {
+    flex: 1 1 66%
+}
+.map-frame {
+    width: 100vw;
+    height: 88vh;
+    padding: 1rem;
+    &-mini {
+        width: 40vw;
+        height: 90vh;
+        padding: .5rem;
+        margin: auto;
+        margin-right: 0;
+        @media screen and (max-width: 769px) {
+            width: 100vw;
+            height: 50vh;
+            margin: auto;
+        }
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    &:active {
+        cursor: grabbing;
+    }
+}
+.hoverFlag {
+    height: 3rem;
+    font-size: .7rem;
+    background: rgba(260, 260, 260, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1rem;
+    border-radius: .25rem;
+    padding: .5rem;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    transform: translate(-50%,-125%);
+    &::before {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: .25rem solid transparent;
+        border-right: .25rem solid transparent;
+        border-top: 1rem solid rgba(260, 260, 260, 0.8);
+        content: "";
+        position: absolute;
+        top: 100%;
+        transform: rotate(15deg);
+        left: 44%;
+        transform: translate(15%, -10%) rotate(15deg);
+    }
+}
+.info-box{
+        max-height: 66vh;
+        width: 40vw;
+        font-weight: 600 !important;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        font-family: 'Segoe UI',
+        'Open Sans',
+        sans-serif;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.15rem;
+        border: none;
+        border-top: 2px solid !important;
+        border-radius: .25rem;
+        box-shadow: 0px 3px 10px lightgray;
+        cursor: default;
+        transition: width ease-out 200ms;
+        // hr {
+        //     width: 80%;
+        //     margin: 0% 10%;
+        //     border-width: .5px;
+        //     border-color: rgba(0, 0, 0, .2);
+        // }
+        // h3 {
+        //     margin: auto;
+        //     background: rgba(0,0,0,.5);
+        //     width: 90%;
+        //     color: white;
+        //     text-align: center;
+        //     border-radius: .15rem;
+        //     font-weight: 100;
+        // }
+        // button {
+        //         span {
+        //             flex-direction: row;
+        //             &:last-of-type {visibility: hidden;}
+        //         }
+        //         mat-icon {
+        //             font-size: 1.25rem !important;
+        //             margin-right: .85rem;
+        //         }
+        //         font: inherit;
+        //         display: flex;
+        //         flex-direction: row;
+        //         justify-content: space-between;
+        //         align-items: center;
+        //         height: 2.75rem;
+        //         text-align: center;
+        //         flex: 1 1 auto;
+        //         padding: 0% 10%;
+        //         cursor: pointer;
+        //         background: white;
+        //         border: none;
+        //         width: 100%;
+        //         border-radius: 0;
+        //         &:last-of-type {
+        //             border-bottom-left-radius: .25rem;
+        //             border-bottom-right-radius: .25rem;
+        //         }            
+        //     &:hover {
+        //         background-color: $primary-color !important;
+        //         box-shadow: none;
+        //         color: white;
+        //     }
+            
+        //     &:active {
+        //         background-color: yellow !important;
+        //         box-shadow: none;
+        //         color: lightslategray;
+        //     }
+        // }
+        // &:hover {
+        //     width: 10rem;
+        //     height: 14rem;
+        //     transition: width ease-out 200ms;
+        //    button span:last-of-type {visibility: visible;}
+        // }
+        
+}

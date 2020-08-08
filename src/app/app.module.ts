@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { EhdMainComponent } from './ehd-main/ehd-main.component';
 import { EhdOpzComponent } from './ehd-opz/ehd-opz.component';
+import { EhdOrcComponent } from './ehd-orc/ehd-orc.component';
 import { Newark360Component } from './newark360/newark360.component';
 import { clearState, storeReducers, StoreState } from './store/store.reducers';
 
@@ -20,7 +21,7 @@ export const metaReducers: Array<MetaReducer<StoreState>> = [clearState];
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, EhdMainComponent, EhdOpzComponent, Newark360Component],
+  declarations: [AppComponent, EhdMainComponent, EhdOpzComponent, EhdOrcComponent, Newark360Component],
   imports: [
     BrowserModule.withServerTransition({ appId: 'nwk-ehd' }),
     BrowserAnimationsModule,

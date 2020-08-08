@@ -5,6 +5,7 @@ import { DataRow } from '../../shared/interfaces/other.interface';
 export const SET_TAB_CPB = '[Hearing] Set Tab CPB';
 export const SET_TAB_EC = '[Hearing] Set Tab EC';
 export const SET_TAB_LHPC = '[Hearing] Set Tab LHPC';
+export const SET_TAB_RC = '[Hearing] Set Tab RC';
 export const SET_TAB_ZBA = '[Hearing] Set Tab ZBA';
 
 // tslint:disable: max-classes-per-file
@@ -26,6 +27,12 @@ export class SetTabLHPC implements Action {
     agenda: string | '', data: Array<DataRow> | [], event: Hearing, prevHearings: Array<{event: Hearing; data: Array<DataRow> | []}> | []
   }) {}
 }
+export class SetTabRC implements Action {
+  readonly type = SET_TAB_RC;
+  constructor(public payload: {
+    agenda: string | '', data: Array<DataRow> | [], event: Hearing, prevHearings: Array<{event: Hearing; data: Array<DataRow> | []}> | []
+  }) {}
+}
 export class SetTabZBA implements Action {
   readonly type = SET_TAB_ZBA;
   constructor(public payload: {
@@ -38,4 +45,5 @@ export type HearingActions =
   | SetTabCPB
   | SetTabEC
   | SetTabLHPC
+  | SetTabRC
   | SetTabZBA;

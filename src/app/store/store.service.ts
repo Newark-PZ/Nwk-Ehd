@@ -4,8 +4,8 @@ import { Map } from 'ol';
 import { Observable } from 'rxjs';
 import { Link } from '../shared/classes/link.class';
 import { MapLayer } from '../shared/classes/maplayer';
-import { LegendItem } from '../shared/interfaces/config-layers.inteface';
-import { ArcFeature, HomeCard, SearchItem } from '../shared/models';
+import { HomeCard, ParcelFields, SearchItem } from '../shared/models';
+import { LegendItem } from '../shared/models/layers.interface';
 import * as StoreActions from '../store/store.actions';
 import * as fromStore from '../store/store.reducers';
 import * as homePanelActions from './home-panels/home-panels.actions';
@@ -155,7 +155,7 @@ export class StoreService {
     setPropPanSelectedProp(selectedProp: SearchItem): void {
         this.store.dispatch(new PropPaneActions.SetSelectedProp(selectedProp));
     }
-    setPropPanPropInfo(propInfo: ArcFeature): void {
+    setPropPanPropInfo(propInfo: ParcelFields): void {
         this.store.dispatch(new PropPaneActions.SetPropInfo(propInfo));
     }
     /*

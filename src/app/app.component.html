@@ -34,8 +34,14 @@
       </mat-nested-tree-node>
      </mat-tree>
      <div style="width: 100%; display: flex; flex-direction: row;justify-content: space-around; margin-top: 2rem">
+      <button mat-flat-button color="accent" [routerLink]="['/ehd','home']" (click)="sidebar.close()">
+      <mat-icon style="line-height: 1.25rem">apps</mat-icon>
+       EHD Home
+      </button>
+    </div>
+     <div style="width: 100%; display: flex; flex-direction: row;justify-content: space-around; margin-top: 2rem">
       <button mat-flat-button color="accent" (click)="sidebar.close()">
-      <mat-icon>close</mat-icon>
+      <mat-icon style="line-height: 1.25rem">close</mat-icon>
       </button>
     </div>
 </mat-sidenav>

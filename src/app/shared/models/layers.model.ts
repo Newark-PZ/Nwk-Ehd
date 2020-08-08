@@ -51,6 +51,14 @@ export const baseParcelCartoCSS = `
     polygon-fill: rgba(0,0,0,0);
     line-width: 0.3;
     line-color: rgb(200, 200, 200);
+    [zoom > 18]::label {
+        text-name: [blocklot];
+        text-fill: white;
+        text-halo-fill: grey;
+        text-halo-radius: 1;
+        text-face-name: "Open Sans Bold";
+        text-size: 14;
+    }
   }
 `;
 export const zoningParcelCartoCSS = `
@@ -80,26 +88,42 @@ export const zoningParcelCartoCSS = `
     line-color: black;
     line-width: 0.1;
     line-opacity: 1;
+    [zoom > 18]::label {
+        text-name: [blocklot];
+        text-fill: white;
+        text-halo-fill: grey;
+        text-halo-radius: 1;
+        text-face-name: "Open Sans Bold";
+        text-size: 14;
+    }
 }`;
 export const landUseParcelCartoCSS = `
-#table_2017_zoning_layer[propclass='1'] {polygon-fill: #686868;}
-#table_2017_zoning_layer[propclass='2'] {polygon-fill: #FFEBAF;}
-#table_2017_zoning_layer[propclass='4A'] {polygon-fill: #FF7F7F;}
-#table_2017_zoning_layer[propclass='4B'] {polygon-fill: #C29ED7;}
-#table_2017_zoning_layer[propclass='4C'] {polygon-fill: #FFAA00;}
-#table_2017_zoning_layer[propclass='5A'] {polygon-fill: #FFFFFF;}
-#table_2017_zoning_layer[propclass='5B'] {polygon-fill: #FFFFFF;}
-#table_2017_zoning_layer[propclass='15A'] {polygon-fill: #BEE8FF;}
-#table_2017_zoning_layer[propclass='15B'] {polygon-fill: #BEE8FF;}
-#table_2017_zoning_layer[propclass='15C'] {polygon-fill: #73DFFF;}
-#table_2017_zoning_layer[propclass='15D'] {polygon-fill: #00C5FF;}
-#table_2017_zoning_layer[propclass='15E'] {polygon-fill: #D1FF73;}
-#table_2017_zoning_layer[propclass='15F'] {polygon-fill: #0084A8;}
-#table_2017_zoning_layer {
+#parcels[propclass='1'] {polygon-fill: #686868;}
+#parcels[propclass='2'] {polygon-fill: #FFEBAF;}
+#parcels[propclass='4A'] {polygon-fill: #FF7F7F;}
+#parcels[propclass='4B'] {polygon-fill: #C29ED7;}
+#parcels[propclass='4C'] {polygon-fill: #FFAA00;}
+#parcels[propclass='5A'] {polygon-fill: #FFFFFF;}
+#parcels[propclass='5B'] {polygon-fill: #FFFFFF;}
+#parcels[propclass='15A'] {polygon-fill: #BEE8FF;}
+#parcels[propclass='15B'] {polygon-fill: #BEE8FF;}
+#parcels[propclass='15C'] {polygon-fill: #73DFFF;}
+#parcels[propclass='15D'] {polygon-fill: #00C5FF;}
+#parcels[propclass='15E'] {polygon-fill: #D1FF73;}
+#parcels[propclass='15F'] {polygon-fill: #0084A8;}
+#parcels {
     polygon-opacity: 0.7;
     line-color: black;
     line-width: 0.1;
     line-opacity: 1;
+    [zoom > 18]::label {
+        text-name: [blocklot];
+        text-fill: white;
+        text-halo-fill: grey;
+        text-halo-radius: 1;
+        text-face-name: "Open Sans Bold";
+        text-size: 14;
+    }
 }`;
 export const cartoGrid = (z, x, y) => 'https://cartocdn-gusc-a.global.ssl.fastly.net/' +
     'nzlur/api/v1/map/828afba5071058f312755e751aea6b1d:1581093818059/' +
@@ -112,24 +136,24 @@ export const layerCartoCSS = `
   }
 `;
 // tslint:disable: no-parameter-reassignment
-export const apiConfig = (parcelStyle, layername: 'zoning_2' | 'table_2017_zoning_layer', interactivity?: Array<string>) => {
+export const apiConfig = (parcelStyle, layername: 'zoning_2' | 'parcels', interactivity?: Array<string>) => {
     let cartoCSS = '';
     switch (parcelStyle) {
         case 'None':
             cartoCSS = noParcelCartoCSS;
-            interactivity = ['cartodb_id', 'proploc', 'blocklot', 'code'];
+            interactivity = ['proploc', 'blocklot'];
             break;
         case 'zoning':
             cartoCSS = zoningParcelCartoCSS;
-            interactivity = ['proploc', 'blocklot'];
+            interactivity = ['proploc', 'blocklot', 'code'];
             break;
         case 'landuse':
             cartoCSS = landUseParcelCartoCSS;
-            interactivity = ['proploc', 'block_lot'];
+            interactivity = ['proploc', 'blocklot', 'propclass'];
             break;
         default:
             cartoCSS = baseParcelCartoCSS;
-            interactivity = ['cartodb_id', 'proploc', 'blocklot'];
+            interactivity = ['proploc', 'blocklot'];
             break;
     }
 

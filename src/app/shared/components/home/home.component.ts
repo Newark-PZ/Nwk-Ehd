@@ -15,7 +15,7 @@ import { ModalComponent } from '../elements/modal.component';
 
 @Component({
   animations: [slideshowAnimation],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-home',
   styleUrls: ['./home.component.scss'],
   templateUrl: './home.component.html'
@@ -23,6 +23,7 @@ import { ModalComponent } from '../elements/modal.component';
 
 export class HomeComponent implements OnInit, OnDestroy {
   @Input() homePage: HomePage;
+  @Input() office: '/planningzoning' | '/rentcontrol' | '/ehd';
   nextevents: Observable<Array<Hearing>>;
   constructor(
     readonly router: Router,
@@ -37,11 +38,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.slideshowIndex$ = this.store.select(state => state.imageIndex.currentIndex);
       this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
         setTimeout(() => {
-          if (this.events.hearings.filter(h => h.timeUntil >= -10800000).length < 0) {
+          if (this.events.hearings.filter(h => h.timeUntil >= -19800000).length < 0) {
             observer.next([]);
           } else {
-            observer.next(this.events.hearings.filter(h => h.timeUntil >= -10800000)
-            .slice(0, 2));
+            const evts = (office): Array<Hearing> => {switch (office) {
+              // tslint:disable: newline-per-chained-call
+              case '/planningzoning': return this.events.hearings.filter(h => h.timeUntil >= -19800000 && h.board !== 'RC').slice(0, 2);
+              case '/rentcontrol': return this.events.hearings.filter(h => h.timeUntil >= -19800000 && h.board === 'RC').slice(0, 2);
+              default: return this.events.hearings.filter(h => h.timeUntil >= -19800000).slice(0, 3);
+            }};
+            observer.next(evts(this.office));
             observer.complete();
           }
         }, 100);
@@ -54,7 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   slideshowIndex = 0;
   slideshowEnd = false;
   ngOnInit(): void {
-    if (this.homePage.splashImgs) { this.carouselStart(); }
     this.breakpointObserver
     .observe(['(max-width: 767px)'])
     .subscribe((state: BreakpointState) => {
@@ -77,18 +82,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   goTo(url?: string): void {
     if (url) {window.open(url, '_self'); }
-  }
-    // tslint:disable: no-non-null-assertion
-  carouselStart(): void {
-      setTimeout(() => {
-        this.slideshow(this.homePage.splashImgs!.length);
-        if (!this.slideshowEnd) {this.carouselStart(); }
-      }, 7000);
-  }
-  slideshow(imgsLength: number): void {
-    this.slideshowIndex++;
-    if (this.slideshowIndex > imgsLength - 1) { this.slideshowIndex = 0; }
-    this.store.dispatch(new ImageIndexActions.SetImageIndex(this.slideshowIndex));
   }
   openEvent(evt: Hearing): void {
     this.dialog.open(ModalComponent, {

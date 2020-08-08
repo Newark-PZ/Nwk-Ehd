@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { N360HomeComponent } from './pages/home.component';
-import { MapsComponent } from './pages/maps.component';
+import { NewarkTodayComponent } from './pages/newark-today.component';
 
 export const NEWARK360_ROUTES: Routes = [
   {
@@ -14,7 +14,7 @@ export const NEWARK360_ROUTES: Routes = [
   },
   {
     path: 'newark-today',
-    component: MapsComponent
+    component: NewarkTodayComponent
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

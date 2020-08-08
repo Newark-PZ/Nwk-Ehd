@@ -3,18 +3,18 @@ export class Hearing {
     id: string;
     agenda = '';
     fof = '';
-    board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
+    board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
     start: Date;
     link: string;
     timeUntil: number;
     withinLegalNotice: boolean;
     folderId: string;
-    data: Array<{board: 'CPB' | 'EC' | 'LHPC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>;
+    data: Array<{board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>;
     title: string;
     constructor(
         options: {
             id: string,
-            board: 'CPB' | 'EC' | 'LHPC' | 'ZBA',
+            board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA',
             start: string | number,
             link: string,
             folderId?: string
@@ -23,7 +23,7 @@ export class Hearing {
         this.id = options.id || `${options.board}${Math.random().toString()}`;
         this.start = new Date(options.start);
         this.timeUntil = this.start.getTime() - new Date().getTime();
-        this.withinLegalNotice = this.timeUntil >= -3888000000 && this.timeUntil < -10800000;
+        this.withinLegalNotice = this.timeUntil >= -3888000000 && this.timeUntil < -19800000;
         this.folderId = options.folderId || '';
         this.link = options.link || '';
         this.title = this.getTitle(this.board);
@@ -32,6 +32,7 @@ export class Hearing {
         switch (board) {
             case 'CPB': return 'Planning Board';
             case 'LHPC': return 'Historic Comm.';
+            case 'RC': return 'Rent Control';
             default: return 'Zoning Board';
         }
     }

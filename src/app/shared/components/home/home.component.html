@@ -1,8 +1,6 @@
 <section class="splash">
-    <div class="splash-image-carousel" *ngIf="homePage.splashImgs">
-      <div class="carousel-img-wrapper" [@slideInOut]="(slideshowIndex$ | async) === i ? 'shown' : 'hidden'" *ngFor="let img of homePage.splashImgs; let i = index" [id]="'carousel'+i">
-          <img src="{{img.src}}" alt="{{img.alt}}">
-      </div>
+    <div class="splash-image" *ngIf="homePage.splashImg">
+          <img src="{{homePage.splashImg.src}}" alt="{{homePage.splashImg.alt}}">
     </div>
     <div class="splash-header">
       <span class="toolbar-spacer left-space"></span>
@@ -38,7 +36,7 @@
         <button *ngFor="let button of (nextevents | async)" class="event" (click)="openEvent(button)">
           <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
         </button>
-        <button class="dashboard-btn" [routerLink]="['/planningzoning','virtualhearing']">
+        <button class="dashboard-btn" *ngIf="office !=='/ehd'" [routerLink]="[office,'virtualhearing']">
           <mat-icon>live_tv</mat-icon>
           <span>Virtual Hearing</span>
           <span>Dashboard</span>
@@ -76,6 +74,52 @@
         </div>
         </mat-expansion-panel>
       </mat-accordion>
+      <mat-card class="text-card" *ngFor="let card of homePage.sections">
+        <h3 *ngIf="card.header">{{ card.header }}</h3>
+        <div class="card-body" [innerHtml]="card.text"></div>
+        <div class="logos" *ngIf="card.logos">
+          <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
+        </div>
+        <mat-card-actions align="end" *ngIf="card.buttons">
+          <a mat-stroked-button *ngFor="let button of card.buttons"
+            [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
+            [href]="button.link">
+            <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+            <ng-template #standardText0>Apply</ng-template>
+            <mat-icon>double_arrow</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card class="text-card" *ngIf="homePage.contact">
+        <h3>How to Contact Us</h3>
+        <div class="card-body" style="text-align: center">
+          <div>
+            <h2 [innerHtml]="homePage.contact.officer"></h2>
+            <p style="line-height: .5rem; font-weight: 200; font-size: 1.5rem;" [innerHtml]="homePage.contact.officerTitle"></p>
+          </div>
+          <div class="flex-row justify-content-around">
+          <p>
+            <span>Room {{homePage.contact.room}}</span><br>
+            <span>902 Broad Street</span><br>
+            <span>Newark, NJ 07102</span>
+          </p>
+          <p>
+            <span>Tel: <a [href]="'tel:+1'+homePage.contact.phone">({{homePage.contact.phone.slice(0,3)}}) {{homePage.contact.phone.slice(3,6)}}-{{homePage.contact.phone.slice(6)}}</a></span><br>
+            <span>Fax: <a [href]="'tel:+1'+homePage.contact.fax">({{homePage.contact.fax.slice(0,3)}}) {{homePage.contact.fax.slice(3,6)}}-{{homePage.contact.fax.slice(6)}}</a></span><br>
+            <span>Email: <a [href]="'mailto:'+homePage.contact.email">{{homePage.contact.email}}</a></span>
+          </p>
+          </div>
+        </div>
+        <mat-card-actions align="end" *ngIf="homePage.contact.buttons">
+          <a mat-stroked-button *ngFor="let button of homePage.contact.buttons"
+            [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
+            [href]="button.link">
+            <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+            <ng-template #standardText0>Apply</ng-template>
+            <mat-icon>double_arrow</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
     </section>
   <span class="page-bottom"></span>
   

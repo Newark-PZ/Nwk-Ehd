@@ -13,11 +13,11 @@ import { fromLonLat } from 'ol/proj';
 import { UTFGrid } from 'ol/source';
 import { Observable, Observer, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { LayersService, MapLayersService } from '../../shared';
+import { LayersService } from '../../shared';
 import { MapLayer } from '../../shared/classes/maplayer';
 import { BottomSheetComponent } from '../../shared/components/elements/bottomsheet.component';
 import { PropSnackbarComponent } from '../../shared/components/mapels/prop-snackbar.component';
-import { LegendItem } from '../../shared/interfaces/config-layers.inteface';
+import { LegendItem } from '../../shared/models/layers.interface';
 import { rowExpand } from '../../shared/util/animations';
 import * as LayersActions from '../../store/layers/layers.actions';
 import * as MapPaneActions from '../../store/map-pane/map-pane.actions';
@@ -49,12 +49,10 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   sideStatus = true;
   textHide = true;
   zoom = 13;
-  coords;
   layersSubscription: Subscription;
   parcelsSubscription: Subscription;
-  geosSubscription: Subscription;
-  parcelsOpacity: number;
   clicked = {blocklot: '', block: '', lot: '', proploc: ''};
+  hovered: {blocklot?: string; proploc?: string; } = {blocklot: ''};
   basemap$: Observable<boolean>;
   paneState$: Observable<boolean>;
   panesub: Subscription;
@@ -63,26 +61,24 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatRipple) ripple: MatRipple;
   @ViewChild('map') map: MapComponent;
   @ViewChild('overlay') overlay: OverlayComponent;
+  @ViewChild('hover') hoverFlag: OverlayComponent;
   overlaylyrs: Array<MapLayer> = [];
   parcelLyrs: Array<MapLayer> = [];
-  geoLyr: Array<MapLayer> = [];
-  layers$: Observable<Array<LegendItem>>;
+  legendSub$: Observable<Array<LegendItem>>;
 
   constructor(
     readonly store: Store<fromStore.StoreState>,
     readonly snackBar: MatSnackBar,
     readonly layerservice: LayersService,
-    readonly getlayers: MapLayersService,
     readonly _bottomSheet: MatBottomSheet
   ) {
     this.basemap$ = this.store.select(state => state.layers.basemap);
     this.paneState$ = this.store.select(state => state.propPane.opened);
-    this.layers$ = new Observable((observer: Observer<Array<LegendItem>>) => {
+    this.legendSub$ = new Observable((observer: Observer<Array<LegendItem>>) => {
       setInterval(e => {
         if (e) {
           const mapLayers: Array<MapLayer> = [
-            this.parcelLyrs[0],
-            this.geoLyr[0]
+            this.parcelLyrs[0]
           ]
           .concat(this.overlaylyrs)
           .sort(l => l.layer.getZIndex());
@@ -100,12 +96,12 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this.map.instance.updateSize();
     this.map.instance.once('rendercomplete', () => {
       this.store.dispatch(new MapActions.SetMap(this.map.instance));
-      this.overlaylyrs = this.layerservice.initOverlayLayers();
+      this.layerservice.initLayers()
+        .forEach(
+          (g, i) => i === 0 ? this.overlaylyrs = g : this.parcelLyrs = g
+        );
       this.overlaylyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
-      this.getlayers.initGeoParcelLayers()
-        .forEach((g, i) => i === 0 ? this.parcelLyrs = g : this.geoLyr = g);
       this.parcelLyrs.forEach(l => {this.map.instance.addLayer(l.layer); });
-      this.geoLyr.forEach(l => {this.map.instance.addLayer(l.layer); });
       });
     this.map.instance.getView()
       .on('change', () =>
@@ -145,22 +141,6 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
             this.map.instance.addLayer(l);
           });
     });
-    this.geosSubscription = this.store
-    .select(state => state.layers.geoLayer)
-    .pipe(take(1))
-    .subscribe(layers => {
-      if (this.geoLyr.length > 0) {
-        this.geoLyr.forEach(l => {
-            this.map.instance.removeLayer(l.layer);
-            this.geoLyr.shift();
-          });
-      }
-      // Add all OL layers
-      layers.forEach(l => {
-        this.geoLyr.push(l);
-        this.map.instance.addLayer(l);
-      });
-    });
     this.map.instance.on('singleclick', e => { this.handleSingleClick(e); });
   }
   ngOnDestroy(): void {
@@ -168,10 +148,8 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     this._bottomSheet.dismiss();
     this.layersSubscription.unsubscribe();
     this.parcelsSubscription.unsubscribe();
-    this.geosSubscription.unsubscribe();
     this.overlaylyrs = [];
     this.layerservice.resetService();
-    this.getlayers.resetService();
     this.showLegend = false;
   }
   openBottomsheet(page: number): void {
@@ -210,7 +188,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     const viewResolution = this.map.instance.getView()
       .getResolution();
     this.map.instance.getLayers()
-      .forEach(l => {if (l.getClassName() === 'parcelgrid') { ((l as TileLayer).getSource() as UTFGrid)
+      .forEach(l => {if (l.getClassName() === 'Grid') { ((l as TileLayer).getSource() as UTFGrid)
         .forDataAtCoordinateAndResolution(e.coordinate, viewResolution, data => {
         this.clicked.blocklot = data.blocklot || data.block_lot || '__-__';
         this.clicked.proploc = data.proploc || 'No Address/Non-Parcel';
@@ -233,5 +211,21 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     });
     this.overlay.instance.setPosition(e.coordinate);
     this.snackBar.openFromComponent(PropSnackbarComponent, {data: {bottomsheet: () => { this.openBottomsheet(2); }}});
+  }
+  dispatchHover(e): void {
+    const viewResolution = this.map.instance.getView()
+    .getResolution() || 0;
+    this.map.instance.getLayers()
+      .forEach(l => {if (l.getClassName() === 'Grid') { ((l as TileLayer).getSource() as UTFGrid)
+        .forDataAtCoordinateAndResolution(e.coordinate, viewResolution, data => {
+          this.hoverFlag.instance.setPosition(e.coordinate);
+          if (data) {
+            this.hovered.blocklot = data.blocklot && data.blocklot.length > 0 ? data.blocklot : '__-__';
+            this.hovered.proploc = data.proploc && data.proploc.length > 1 ? data.proploc : undefined;
+          } else {
+            this.hovered = {blocklot: '', proploc: undefined};
+          }
+      });
+    }});
   }
 }

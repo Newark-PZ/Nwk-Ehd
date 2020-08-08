@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { MapLayer } from '../../shared/classes/maplayer';
-import { LegendItem } from '../../shared/interfaces/config-layers.inteface';
+import { LegendItem } from '../../shared/models/layers.interface';
 
 export const SET_GEOGRAPHY_LAYER = '[Layers] Set Geography Layer';
 export const SET_PARCEL_LAYERS = '[Layers] Set Parcels Layer';

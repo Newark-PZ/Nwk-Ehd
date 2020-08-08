@@ -229,4 +229,8 @@
 .disabled {
   color: whitesmoke !important;
   -webkit-text-fill-color: whitesmoke !important;
+  cursor: not-allowed;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
 }

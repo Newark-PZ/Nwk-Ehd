@@ -3,7 +3,7 @@
     matRippleRadius="12"
     matRippleColor="rgba(0, 255, 191, .5)"
     class="map-frame">
-        <map-map #map [height]="'85vh'" [width]="'100%'" (pointerMove)="dispatchHover($event)">
+        <map-map #map [height]="'85vh'" [width]="'100%'">
             <map-view [zoom]="13" [maxZoom]="19" [enableRotation]="false">
                 <map-interaction-default [pinchRotate]="false"></map-interaction-default>
                 <map-control-scaleline [units]="'us'"></map-control-scaleline>
@@ -18,24 +18,13 @@
                     <map-source-xyz [url]="(basemap$ | async) ? cartoLabelsUrl[1] : cartoLabelsUrl[0]"></map-source-xyz>
                 </map-layer-tile>
             </map-layer-group>
+            <map-layer-vector #geoLayer zIndex="5"></map-layer-vector>
             <map-overlay #overlay 
             id="selectionMarker"
             [insertFirst]="true"
             [stopEvent]="false" zIndex="13">
             <map-content>
                 <mat-icon class="overlayMarker">place</mat-icon>
-            </map-content>
-            </map-overlay>
-            <map-overlay #hover 
-            id="selectionMarker"
-            [style.display]="hovered && hovered.proploc ? 'flex' : 'none'"
-            [insertFirst]="true"
-            [stopEvent]="false" zIndex="14">
-            <map-content>
-                <div class="hoverFlag" [style.display]="hovered && hovered.proploc ? 'flex' : 'none'">
-                    <span>{{ hovered.proploc }}</span>
-                    <span>{{ hovered.blocklot }}</span>
-                </div>
             </map-content>
             </map-overlay>
         </map-map>
@@ -118,7 +107,7 @@
             <span>Legend</span>
             </button>
             <mat-accordion [@rowExpand]="showLegend ? 'expanded' : 'collapsed'" *ngIf="showLegend">
-                <mat-expansion-panel *ngFor="let el of (legendSub$ | async)" class="legend-panel" >
+                <mat-expansion-panel *ngFor="let el of (layers$ | async)" class="legend-panel" >
                     <mat-expansion-panel-header style="max-height: 2.5rem;">
                         <mat-panel-title>
                             {{ el.group | titlecase}}

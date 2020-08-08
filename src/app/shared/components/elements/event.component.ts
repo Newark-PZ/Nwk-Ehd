@@ -46,7 +46,7 @@ export interface EventTableRow {
     `
 })
 export class EventComponent implements OnInit, OnChanges {
-    @Input() board: 'CPB' | 'EC' | 'LHPC' | 'ZBA';
+    @Input() board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
     @Input() agenda: string;
     @Input() fofId: string;
     @Input() type: 'popup' | undefined;
@@ -65,7 +65,7 @@ export class EventComponent implements OnInit, OnChanges {
         this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
-            this.data.push({ section: 'Find More Info', content: 'Applications & Documents', link: `/planningzoning/virtualhearing/${this.board.toLowerCase()}` });
+            this.data.push({ section: 'Find More Info', content: 'Applications & Documents', link: `/${this.board === 'RC' ? 'rentcontrol' : 'planningzoning'}/virtualhearing/${this.board === 'RC' ? '' : this.board.toLowerCase()}` });
         }
     }
     ngOnChanges(changes: SimpleChanges): void {
@@ -92,34 +92,51 @@ export class EventComponent implements OnInit, OnChanges {
             this.eventClicked.emit(true);
         }
     }
-    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
-    const idno = hearing ? hearing.link.substring(hearing.link.lastIndexOf('/') + 1) : '000 0000 0000';
-    const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
+    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC' | 'RC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
+        const idno = hearing ? (board === 'RC' ? '99035522770' : hearing.link.substring(hearing.link.lastIndexOf('/') + 1)) : '000 0000 0000';
+        const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
+        const setRows = (idnum, id): Array<EventTableRow> => {
+            switch (board) {
+                case 'RC': return [
+                    { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
+                    { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
+                    { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                      link: hearing ? hearing.link : ''},
+                    { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`6465588656,,${idno}#`, `3017158592,,${idno}#`]},
+                    { section: 'Or Other Telephone<br>' +
+                      '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
+                      content: 'US',
+                      extra: [`<b>Webinar ID</b>: ${hearingid}&ensp;&vert;&ensp;<b>Passcode</b>: 090029`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
+                      numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
+                ];
+                case 'ZBA': return [
+                    { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
+                    { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
+                    { section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings' : 'Coming Soon', link: fofId },
+                    { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                      link: hearing ? hearing.link : ''},
+                    { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
+                    { section: 'Or Other Telephone<br>' +
+                      '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
+                      content: 'US',
+                      extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
+                      numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
+                ];
+                default: return [
+                        { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
+                        { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
+                        { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                          link: hearing ? hearing.link : ''},
+                        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
+                        { section: 'Or Other Telephone<br>' +
+                          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
+                          content: 'US',
+                          extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://newarknj.zoom.us/u/adVk4AnkaC">International Numbers Here<a>'],
+                          numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
+                ];
+            }
+        };
 
-    return board !== 'ZBA'  ? [
-        { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
-        { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
-        { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
-          link: hearing ? hearing.link : ''},
-        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
-        { section: 'Or Other Telephone<br>' +
-          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-          content: 'US',
-          extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
-          numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
-        ]
-    : [
-        { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
-        { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
-        { section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings of Fact' : 'Coming Soon', link: fofId },
-        { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
-          link: hearing ? hearing.link : ''},
-        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
-        { section: 'Or Other Telephone<br>' +
-          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-          content: 'US',
-          extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
-          numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
-    ];
+        return setRows(idno, hearingid);
     }
 }

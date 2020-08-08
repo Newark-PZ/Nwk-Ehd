@@ -70,91 +70,10 @@ export interface MapInput {
  */
 export interface CartoSQLResp {
     rows: [
-        | ZoningFields
+        | ParcelFields
     ];
     time?: number;
-    fields?: {
-        cartodb_id?: {
-            type?: string;
-            pgtype?: string;
-        };
-        the_geom?: {
-            type?: string;
-            wkbtype?: string;
-            dims?: number;
-            srid?: number;
-        };
-        the_geom_webmercator?: {
-            type?: string;
-            wkbtype?: string;
-            dims?: number;
-            srid?: number;
-        };
-        redevelopment_plan?: {
-            type?: string;
-            pgtype?: string;
-        };
-        historic_district?: {
-            type?: string;
-            pgtype?: string;
-        };
-        blocklot?: {
-            type?: string;
-            pgtype?: string;
-        };
-        lot?: {
-            type?: string;
-            pgtype?: string;
-         };
-        block?: {
-            type?: string;
-            pgtype?: string;
-        };
-        permbt?: {
-            type?: string;
-            pgtype?: string;
-        };
-        permuse?: {
-            type?: string;
-            pgtype?: string;
-        };
-        property_description?: {
-            type?: string;
-            pgtype?: string;
-        };
-        pdf?: {
-            type?: string;
-            pgtype?: string;
-        };
-        code?: {
-            type?: string;
-            pgtype?: string;
-        };
-        landmark?: {
-            type?: string;
-            pgtype?: string
-        };
-        proploc?: {
-            type?: string;
-            pgtype?: string;
-        };
-        y?: {
-            type?: number;
-            pgtype?: string;
-        };
-        x?: {
-            type?: number;
-            pgtype?: string;
-        };
-        updated_at?: {
-            type?: string;
-            pgtype?: string;
-        };
-        created_at?: {
-            type?: string;
-            pgtype?: string;
-        };
-    };
+    fields?: any;
     total_rows?: number;
 }
 /**
@@ -180,6 +99,33 @@ export interface ZoningFields {
     x?: number;
     updated_at?: string;
     created_at?: string;
+}
+export interface ParcelFields {
+    cartodb_id?: string;
+    the_geom?: string;
+    the_geom_webmercator?: string;
+    objectid: number;
+    proploc: string;
+    blocklot: string;
+    addlots: string;
+    ward: string;
+    zipcode: string;
+    propclass: string;
+    zone: string;
+    property_t: string;
+    acreage: number;
+    landvalue: number;
+    imprvalue: number;
+    lstyrtax: number;
+    historicdi: string;
+    opportunit: string;
+    inuez: boolean | string;
+    redevcode: string;
+    redevarea: string;
+    cop_use: string;
+    cop_rda: string;
+    shape_length: number;
+    shape_area: number;
 }
 export interface SearchFeature {
     _id: {
@@ -218,7 +164,7 @@ export interface BoardHearing {
 id: string;
 groupId: string;
 allDay: boolean;
-title: 'CPB' | 'EC' | 'ZBA' | 'LHPC';
+title: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
 start: string;
 end: string;
 backgroundColor: string;
@@ -303,4 +249,55 @@ export interface ArcPropResponse {
             defaultValue: any;
         }>;
     features: Array<ArcFeature>;
+}
+export interface RedevCodeRecord {
+    _id: number;
+    RedevCode: string;
+    RedevPlan: string;
+    RedevZone: string;
+    'rank RedevCode': number;
+}
+export interface AppData {
+    AddBlockLot: string;
+    'Affordable Housing Trust Contibution': string;
+    'Amount of Contribution': string;
+    AppNo: string;
+    'BOARD APPROVAL DATE': string;
+    'C of O STATUS': string;
+    'Commercial Bldg Area': string;
+    'Commercial Units': string;
+    EJCIO: string;
+    Escrow: string;
+    'Existing Res Bldg. Area': string | number;
+    'Existing Res Units': string | number;
+    HistoricDistrict: string;
+    'IZO Minimum': string | number;
+    'Industrial Bldg Area': string;
+    LegalAddress: string;
+    NOTES_COMMENTS: string;
+    'Other Bldg Area': string | number;
+    'PROJECT STATUS': string;
+    PrimaryBlockLot: string;
+    'Proposed Res Bldg. Area': string | number;
+    'Proposed Res Units': string | number;
+    'Total Amount Received': string;
+    Ward: string;
+    Zone: string;
+}
+export interface CKANResponse {
+    help: string;
+    success: boolean;
+    result: {
+        include_total: boolean;
+        resource_id: string;
+        fields: Array<{type: 'int' | 'text' | string; id: string}>;
+        records_format: string;
+        q: string | object;
+        records: Array<RedevCodeRecord | any>;
+        _links: {
+            start: string;
+            next: string;
+        };
+        total: number;
+    };
 }

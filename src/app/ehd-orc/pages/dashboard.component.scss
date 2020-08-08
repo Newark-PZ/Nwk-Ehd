@@ -1,0 +1,79 @@
+:host {
+  display: block;
+}
+.mat-toolbar {
+  h2 {font-weight: 600 !important; white-space: pre-line; font-size: 2rem !important;}
+  .mat-icon {margin-top: .25rem; margin-right: 1rem !important; font-size: 2rem !important;}
+  .title {display: flex; height: 2.5rem;}
+  padding: .5rem 0 .5rem 13rem !important;
+  align-items: flex-start;
+  background: linear-gradient(rgba(183, 28, 28, 0.15) 0%, white 100%);
+  @media screen and (max-width: 769px) {
+    padding: .5rem 1rem !important;
+    height: unset !important;
+    flex-direction: row;
+    white-space: normal !important;
+    line-height: normal !important;
+    h2 {font-size: 1.15rem;}
+  }
+}
+h4 {
+  text-align: center;
+  margin: auto;
+  font-size: 1.1rem;
+}
+.folderview {
+margin: 1rem 17vw;
+min-width: 55vw;
+height: 17rem;
+overflow: hidden;
+  @media screen and (max-width: 576px) {
+    height: 500px !important;
+  }
+}
+.pic {
+display: flex;
+width: 75vw;
+margin: auto;
+margin-top: 0px;
+border-radius: 0.2rem;
+box-shadow: 0.1rem 0.1rem 0.15rem gray;
+margin-bottom: 3rem;
+cursor: pointer;
+}
+.card-table {
+  mat-table {
+      width: 85%;
+      margin: 1rem auto;
+      border-radius: .35rem;
+      mat-row {
+          min-height: 2rem;
+          &:hover {cursor: pointer; background-color:  rgba(127, 255, 212, .25);}
+          &:active {box-shadow: inset 1px 1px 5px lightyellow; background-color: rgba(255, 255, 224, .25)}
+      }
+      mat-cell {
+        justify-content: center;
+        &:nth-of-type(2) {
+          justify-content: flex-start;
+        }
+      }
+      .mat-column-application {
+        flex: 1 1 20%;
+        padding-left: .25rem;
+      }
+      .mat-column-icon {
+          flex: 1 1 15%;
+          padding-right: .25rem;
+      }
+      .mat-column-address {
+          flex: 1 1 70%;
+          padding: 0 1rem;
+          font-size: 1rem !important;
+      }
+  }
+}
+.docs-accordion {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  mat-expansion-panel {margin: 1.5rem;}
+}

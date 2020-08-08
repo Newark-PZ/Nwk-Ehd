@@ -48,7 +48,14 @@ export class LinkService {
     new Link({id: 'home', title: 'Newark 360 Home', office: '360', icon: 'home', isChild: false}),
     new Link({id: 'newark-today', title: 'Newark Today', office: '360', icon: 'map', isChild: false})
   ];
-  initRoutes(office: '360' | 'ehd' | 'planningzoning'): Array<Link> {
+  rentcontrol = [
+    new Link({id: 'virtualhearing', title: 'Virtual Hearing Dashboard', office: 'rentcontrol', icon: 'live_tv', isChild: false}),
+    new Link({id: 'home', title: 'Rent Control Home', office: 'rentcontrol', icon: 'home', isChild: false}),
+    new Link({id: 'maps', title: 'Maps', office: 'rentcontrol', icon: 'map', isChild: false, disabled: true}),
+    new Link({id: 'board', title: 'Rent Control Board', office: 'rentcontrol', icon: 'people', isChild: false, disabled: true}),
+    new Link({id: 'resources', title: 'Resources', office: 'rentcontrol', icon: 'file', isChild: false, disabled: true})
+  ];
+  initRoutes(office: '360' | 'ehd' | 'planningzoning' | 'rentcontrol'): Array<Link> {
     let officeLinks: Array<Link>;
     switch (office) {
       case '360':
@@ -57,6 +64,10 @@ export class LinkService {
         break;
       case 'planningzoning':
         officeLinks = this.planningzoning;
+        this.currentOffice = office;
+        break;
+      case 'rentcontrol':
+        officeLinks = this.rentcontrol;
         this.currentOffice = office;
         break;
       default:

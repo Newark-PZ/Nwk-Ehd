@@ -18,7 +18,7 @@ import { DriveSearch, GSheetsValuesResponse } from '../models';
 export class EventsService {
     hearings: Array<Hearing> = [];
     hearing$: Observable<Array<Hearing>>;
-    folderLinks: Array<{id: string; board: 'CPB' | 'EC' | 'LHPC' | 'ZBA'; currenthearingid: string }> = [
+    folderLinks: Array<{id: string; board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA'; currenthearingid: string }> = [
         { id: '1VUq_Se2Kk2DcaD4S2qBUeaE_gRlINjuT', board: 'CPB', currenthearingid: '' },
         { id: '1zP3q4h5r7BJ249KAimygdgW_-5M29J0g', board: 'LHPC', currenthearingid: '' },
         { id: '15bRMsQ7N8nEbXPp6lakD4o0e9QeWRncy', board: 'ZBA', currenthearingid: '' }
@@ -53,12 +53,12 @@ export class EventsService {
             .then(() => {
                 this.getHearingFolder('CPB')
                     .then( r => {
-                            this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -10800000)[0].agenda =
+                            this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0].agenda =
                             r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
                             this.store.dispatch(new HearingActions.SetTabCPB({
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                                 data: r.length > 0 ? r : [],
-                                event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -10800000)[0],
+                                event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0],
                                 prevHearings:  this.hearings.filter(h => h.board === 'CPB' && h.withinLegalNotice)
                                     .map(h => ({event: h, data: h.data}))
                             }));
@@ -66,12 +66,12 @@ export class EventsService {
                     .catch(err => { console.error(err); });
                 this.getHearingFolder('LHPC')
                     .then( r => {
-                            this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -10800000)[0].agenda =
+                            this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -19800000)[0].agenda =
                                 r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
                             this.store.dispatch(new HearingActions.SetTabLHPC({
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                                 data: r.length > 0 ? r : [],
-                                event: this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -10800000)[0],
+                                event: this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -19800000)[0],
                                 prevHearings:  this.hearings.filter(h => h.board === 'LHPC' && h.withinLegalNotice)
                                     .map(h => ({event: h, data: h.data}))
                             }));
@@ -79,18 +79,31 @@ export class EventsService {
                     .catch(err => { console.error(err); });
                 this.getHearingFolder('ZBA')
                     .then(r => {
-                        this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -10800000)[0].agenda =
+                        this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000)[0].agenda =
                             r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
-                        this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -10800000)[0].fof =
+                        this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000)[0].fof =
                             r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0] ? r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0].link : '';
                         this.store.dispatch(new HearingActions.SetTabZBA({
                             agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                             data: r.length > 0 ? r : [],
-                            event: this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -10800000)[0],
+                            event: this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000)[0],
                             fofId: r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0] ? r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0].link : '',
                             prevHearings: this.hearings.filter(h => h.board === 'ZBA' && h.withinLegalNotice)
                                 .map(h => ({event: h, data: h.data}))
                         }));
+                    })
+                    .catch(err => { console.error(err); });
+                this.getHearingFolder('RC')
+                    .then( r => {
+                            this.hearings.filter(h => h.board === 'RC' && h.timeUntil >= -19800000)[0].agenda =
+                                r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
+                            this.store.dispatch(new HearingActions.SetTabRC({
+                                agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
+                                data: r.length > 0 ? r : [],
+                                event: this.hearings.filter(h => h.board === 'RC' && h.timeUntil >= -19800000)[0],
+                                prevHearings:  this.hearings.filter(h => h.board === 'RC' && h.withinLegalNotice)
+                                    .map(h => ({event: h, data: h.data}))
+                            }));
                     })
                     .catch(err => { console.error(err); });
             })
@@ -114,10 +127,10 @@ export class EventsService {
             );
     }
     async getHearingFolder(
-        boardName: 'CPB' | 'EC' | 'LHPC' | 'ZBA',
+        boardName: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA',
         hearingID?: string
-    ): Promise<Array<{board: 'CPB' | 'EC' | 'LHPC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>> {
-        const currentHearingID = hearingID ? hearingID : this.hearings.filter(h => h.board === boardName && h.timeUntil >= -10800000)[0].id;
+    ): Promise<Array<{board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>> {
+        const currentHearingID = hearingID ? hearingID : this.hearings.filter(h => h.board === boardName && h.timeUntil >= -19800000)[0].id;
         const baseUrl = `https://www.googleapis.com/drive/v3/files?q="${
             this.folderLinks.filter(l => l.board === boardName)[0].id
         }"%20in%20parents&key=${environment.config.GDRIVE_API_KEY}`;
@@ -128,9 +141,9 @@ export class EventsService {
             .then(v => v ? this.getDriveFolderList(boardName, v) : [{board: boardName, app: '000', address: 'Coming Soon', link: '', type: 'folders'}]);
     }
     async getDriveFolderList(
-        boardName: 'CPB' | 'EC' | 'LHPC' | 'ZBA',
+        boardName: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA',
         folderId: string
-        ): Promise<Array<{board: 'CPB' | 'EC' | 'LHPC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>> {
+        ): Promise<Array<{board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA'; app: string; address: string; link: string; type: string | 'folders'}>> {
         const baseUrl = `https://www.googleapis.com/drive/v3/files?q="${folderId}"%20in%20parents&key=${environment.config.GDRIVE_API_KEY}`;
 
         return this.http.get<DriveSearch>(`${baseUrl}`)

@@ -71,4 +71,3 @@ export * from './services/getregs.service';
 export * from './services/google.service';
 export * from './services/layers.service';
 export * from './services/link.service';
-export * from './services/maplayers.service';

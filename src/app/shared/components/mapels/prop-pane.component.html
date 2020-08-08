@@ -1,4 +1,4 @@
-<section class="flex-row" [ngSwitch]="(propSub | async) === undefined || (propSub | async).attributes.ZONING === ''">
+<section class="flex-row" [ngSwitch]="(propSub | async) === undefined || (propSub | async).zone === ''">
   <ng-container *ngSwitchDefault>
     <mat-card class="sheet-card" >
       <mat-card-header>
@@ -15,31 +15,117 @@
   <mat-card class="sheet-card flex-cols-4">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image">        
-        <span class="zone {{ (propSub | async).attributes.ZONING.replace('F','') }}">
-        {{ (propSub | async).attributes.ZONING }}
+        <span class="zone {{ (propSub | async).zone.replace('F','') }}">
+        {{ (propSub | async).zone }}
         </span>
       </div>
-      <mat-card-title (click)="copyVal(mapInput)" [innerHTML]="(propSub | async).attributes.PROPLOC ? (propSub | async).attributes.PROPLOC : (propSub | async).attributes.BLOCK_LOT | titlecase">
+      <mat-card-title (click)="copyVal(mapInput)" [innerHTML]="(propSub | async).proploc ? (propSub | async).proploc : (propSub | async).blocklot | titlecase">
       </mat-card-title>
       <mat-card-subtitle>
-        Block {{ (propSub | async).attributes.BLOCK_LOT.split('-')[0] }} | Lot: {{ (propSub | async).attributes.BLOCK_LOT.split('-')[1] }}
+        Block {{ (propSub | async).blocklot.split('-')[0] }} | Lot: {{ (propSub | async).blocklot.split('-')[1] }}
       </mat-card-subtitle>
     </mat-card-header>
     <div class="card-content">
-        <p class="p-col-12" innerHTML="{{ (propSub | async).attributes | json }}"></p>
+      <mat-table [dataSource]="propFields.slice(2,6)" multiTemplateDataRows>
+          <ng-container matColumnDef="prop">
+              <mat-cell *matCellDef="let row">{{ row.name | titlecase}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="row.prop !== 'propclass'; else propt">
+              {{ (propSub | async)[row.prop] }}
+              </ng-container>
+              <ng-template #propt>
+                <div style="display:flex;flex-direction:column">
+                  {{ (propSub | async)[row.prop] }} | {{ propClassFilter( (propSub | async)[row.prop]) }}
+                </div>
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+          <mat-row class="row" *matRowDef="let row; columns: ['prop','value'];" ></mat-row>
+        </mat-table>
       </div>
     <mat-card-actions>
     </mat-card-actions>
   </mat-card>
-  <mat-card class="sheet-card" *ngIf="(propSub | async).attributes.REDEV_AREA !== 'N/A'">
+  <mat-card class="sheet-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          <span>More Info</span>
+        </mat-card-title>
+      </mat-card-header>
+      <div class="card-content">
+        <mat-table [dataSource]="propFields.slice(7,12)" multiTemplateDataRows>
+          <ng-container matColumnDef="prop">
+              <mat-cell *matCellDef="let row">{{ row.name | titlecase}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let row">  
+              <ng-container *ngIf="row.prop !== 'property_t'; else propt">
+              {{ (propSub | async)[row.prop] }}
+              </ng-container>
+              <ng-template #propt>
+                <div style="display:flex;flex-direction:column">
+                  <span *ngFor="let desc of propT((propSub | async).property_t)">{{desc}}</span>
+                </div>
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+          <mat-row class="row" *matRowDef="let row; columns: ['prop','value'];" ></mat-row>
+        </mat-table>
+      </div>
+  </mat-card>
+  <mat-card class="sheet-card">
+    <mat-card-header>
+        <mat-card-title>
+          <span>Special District Info</span>
+        </mat-card-title>
+      </mat-card-header>
+      <div class="card-content">
+        <mat-table [dataSource]="propFields.slice(12,17)" multiTemplateDataRows>
+          <ng-container matColumnDef="prop">
+              <mat-cell *matCellDef="let row">{{ row.name | titlecase}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let row">  
+              <ng-container *ngIf="row.prop !== 'cop_rda'; else rda">
+              {{ (propSub | async)[row.prop] && (propSub | async)[row.prop].length > 1 ? ((propSub | async)[row.prop] | titlecase) : 'n/a'}}
+              </ng-container>
+              <ng-template #rda>
+                {{ (propSub | async)[row.prop] ? ((propSub | async)[row.prop].length > 0 | titlecase) : 'n/a'}}
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+          <mat-row class="row" *matRowDef="let row; columns: ['prop','value'];" ></mat-row>
+        </mat-table>
+      </div>
+  </mat-card>
+  <mat-card class="sheet-card" *ngIf="(propSub | async).redevcode">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image">        
+          <span class="zone">
+          {{ (propSub | async).redevcode.split('-')[0] }}
+          </span>
+        </div>
         <mat-card-title>
           <span>Redevelopment Area</span>
         </mat-card-title>
       </mat-card-header>
       <div class="card-content">
-        <p innerHTML="{{ (propSub | async).attributes.REDEV_AREA}}"></p>
+        <mat-table [dataSource]="propFields.slice(17)" multiTemplateDataRows>
+          <ng-container matColumnDef="prop">
+              <mat-cell *matCellDef="let row">{{ row.name | titlecase}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="value">
+            <mat-cell *matCellDef="let row">
+              <ng-container *ngIf="row.prop === 'redevarea'; else code">
+              {{ (propSub | async)[row.prop] }}
+              </ng-container>
+              <ng-template #code>{{ redevCode((propSub | async).redevcode, '') }}</ng-template>
+            </mat-cell>
+          </ng-container>
+          <mat-row class="row" *matRowDef="let row; columns: ['prop','value'];" ></mat-row>
+        </mat-table>
       </div>
   </mat-card>
   <!-- <mat-card class="sheet-card" *ngIf="(propSub | async).h && (propSub | async).historic_d !== 'N/A' || (propSub | async).landmark && (propSub | async).landmark !== 'N/A'">

@@ -1,5 +1,5 @@
 import { MapLayer } from '../../shared/classes/maplayer';
-import { LegendItem } from '../../shared/interfaces/config-layers.inteface';
+import { LegendItem } from '../../shared/models/layers.interface';
 import * as LayersActions from './layers.actions';
 
 export interface State {

@@ -6,6 +6,7 @@ export interface MapLayerOptions {
   attributions?: Array<string>;
   name?: string;
   cartoCols?: string;
+  cartoName?: string;
   layer: Layer;
   expanded?: boolean;
   description?: string;

@@ -20,7 +20,7 @@ export class CartoService {
  */
   getZoning(API_SELECT: string, API_WHERE_BLOCK: string, API_WHERE_LOT: string): Observable<any> {
     const SQL_QUERY =
-      `select ${API_SELECT} from public.zoning_2 where blocklot = '${API_WHERE_BLOCK}-${API_WHERE_LOT}'`;
+      `select ${API_SELECT} from public.parcels where blocklot = '${API_WHERE_BLOCK}-${API_WHERE_LOT}'`;
 
     return this.http.get<CartoSQLResp>(
       `${this.API_BASE_URL}${SQL_QUERY}`

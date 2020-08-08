@@ -5,6 +5,7 @@ export interface State {
     cpbTab: VirtualHearingTab;
     ecTab: VirtualHearingTab;
     lhpcTab: VirtualHearingTab;
+    rcTab: VirtualHearingTab;
     zbaTab: VirtualHearingTab;
 }
 
@@ -28,6 +29,14 @@ const initialState: State = {
         board: 'LHPC',
         data: [],
         label: 'Landmarks & Historic Pres.',
+        prevHearings: []
+    },
+    rcTab: {
+        agenda: '',
+        board: 'RC',
+        data: [],
+        fofId: '',
+        label: 'Rent Control Board',
         prevHearings: []
     },
     zbaTab: {
@@ -72,6 +81,16 @@ export const hearingReducer = (
             data: action.payload.data,
             event: action.payload.event,
             label: 'Landmarks & Historic Pres.',
+            prevHearings: action.payload.prevHearings
+        }
+    };
+    case HearingActions.SET_TAB_RC:
+        return { ...state, rcTab: {
+            agenda: action.payload.agenda,
+            board: 'RC',
+            data: action.payload.data,
+            event: action.payload.event,
+            label: 'Rent Control Board',
             prevHearings: action.payload.prevHearings
         }
     };

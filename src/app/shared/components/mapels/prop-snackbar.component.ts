@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as PropPaneActions from '../../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../../store/store.reducers';
-import { ArcFeature, ArcPropResponse, SearchItem } from '../../models';
-import { JsonDataService } from '../../services/get-json-data.service';
+import { CartoSQLResp, ParcelFields, SearchItem } from '../../models';
+import { CartoService } from '../../services/carto.service';
 import { GoogleService } from '../../services/google.service';
 
 /**
@@ -46,13 +46,14 @@ export class PropSnackbarComponent {
     sidebarOpened$: Observable<boolean>;
     prop: Observable<SearchItem>;
     coords;
-    propInfo: Observable<ArcFeature>;
+    propInfo: Observable<ParcelFields>;
     basemap$: Observable<boolean>;
 
     constructor(
         public google: GoogleService,
         private readonly store: Store<fromStore.StoreState>,
-        private readonly getData: JsonDataService,
+        // private readonly getData: JsonDataService,
+        private readonly getCarto: CartoService,
         @Inject(MAT_SNACK_BAR_DATA) public data: {bottomsheet(): void; }
     ) {
         this.basemap$ = this.store.select(state => state.layers.basemap);
@@ -86,10 +87,10 @@ export class PropSnackbarComponent {
         );
     }
     getPropInfo(block, lot): void {
-        this.getData.getPropByBlockLot(block, lot)
+        this.getCarto.getZoning('*', block, lot)
             .subscribe(
-                (data: ArcPropResponse) => {
-                    this.store.dispatch(new PropPaneActions.SetPropInfo(data.features[0]));
+                (data: CartoSQLResp) => {
+                    this.store.dispatch(new PropPaneActions.SetPropInfo(data.rows[0]));
                 });
     }
 }

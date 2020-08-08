@@ -1,4 +1,4 @@
-import { ArcFeature, SearchItem } from '../../shared/models';
+import { ParcelFields, SearchItem } from '../../shared/models';
 import * as PropPaneActions from './prop-pane.actions';
 
 export interface State {
@@ -6,7 +6,7 @@ export interface State {
   title: string;
   selectedProp: SearchItem;
   selectedGeo: any;
-  propInfo: ArcFeature;
+  propInfo: ParcelFields;
 }
 
 const initialState: State = {
@@ -18,20 +18,31 @@ const initialState: State = {
      geometry: [ 0, 0 ]
   },
   propInfo: {
-    attributes: {
-      AREA: 0,
-      ADDLOTS: '',
-      BLOCK_LOT: '00-00',
-      PROPLOC: '',
-      BUILDDESC: '',
-      PROPCLASS: '',
-      LANDVALUE: '',
-      IMPRVALUE: '',
-      REDEV_AREA: 'No',
-      ZONING: '',
-      HISTORIC: 'No'
-    },
-    centroid: { x: 0, y: 0 }
+    cartodb_id: '',
+    the_geom: '',
+    the_geom_webmercator: '',
+    objectid: 0,
+    ward: 'CENTRAL',
+    zipcode: '',
+    blocklot: '000-00',
+    addlots: '000-00',
+    proploc: '',
+    propclass: '',
+    acreage: 0,
+    landvalue: 0,
+    imprvalue: 0,
+    lstyrtax: 0,
+    zone: 'R-6',
+    property_t: '',
+    historicdi: '',
+    opportunit: '',
+    inuez: false,
+    redevcode: '',
+    redevarea: '',
+    cop_use: '',
+    cop_rda: '',
+    shape_length: 0,
+    shape_area: 0
   },
   selectedGeo: undefined
 };

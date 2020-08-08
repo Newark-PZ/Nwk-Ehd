@@ -4,17 +4,14 @@ import { HomePage } from '../../shared/models';
 @Component({
   selector: 'app-opz-home',
   template: `
-      <app-home [homePage]="homePageDetails"></app-home>
+      <app-home [homePage]="homePageDetails" [office]="'/planningzoning'"></app-home>
   `
 })
 
 export class OpzHomeComponent {
   homePageDetails: HomePage = {
     id: 'home',
-    splashImgs: [
-      {src: 'assets/img/HalseyStreet_image7.png', alt: 'Halsey Street'},
-      {src: 'assets/img/headerPhotos/newarkfall.jpg', alt: 'Newark Skyline'}
-    ],
+    splashImg: {src: 'assets/img/HalseyStreet_image7.png', alt: 'Halsey Street'},
     buttonCategories: ['Boards & Commissions', 'Tools'],
     buttons: [
       {
@@ -42,11 +39,11 @@ export class OpzHomeComponent {
     },
     splashTitle: 'Welcome to the Office of Planning & Zoning',
     officer: {
-      name: 'Christopher A. Watson',
-      position: 'City Planning Officer'
+      name: 'Ras J. Baraka',
+      position: 'Mayor'
     },
     splashBlurb: {
-      text: "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below. Look below to find information and agendas for an upcoming hearing."
+      text: "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. Advising developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below. Look below to find information and agendas for an upcoming hearing."
     }
   };
 }

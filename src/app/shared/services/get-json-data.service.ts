@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArcPropResponse, BoardHearing, BoardsFields, DocData, SearchFeature, SearchResult, Staff } from '../models';
+import { ArcPropResponse, BoardHearing, BoardsFields, CKANResponse, DocData, RedevCodeRecord, SearchFeature, SearchResult, Staff } from '../models';
 
 @Injectable()
 export class JsonDataService {
@@ -57,4 +57,27 @@ export class JsonDataService {
         )
         .pipe(resp => resp);
       }
+    async getCKANData(query: string, resource: string): Promise<RedevCodeRecord> {
+        const ckanUrl = (field, resourceId): string => `https://data.newarkehd.com/api/3/action/datastore_search?q={"${field}":"${query}"}&resource_id=${resourceId}`;
+        const params = (): string => {
+            switch (resource) {default: return ckanUrl('RedevCode', '7e82d536-33a8-47d4-85e8-9b74295a8dcd'); }
+        };
+
+        return this.http.get<CKANResponse>(
+          `${params()}`
+        )
+        .toPromise()
+        .then(res => res.result.records[0]);
+    }
+    getDash(query: string, resource: string): Observable<CKANResponse> {
+        const ckanUrl = (field, resourceId): string => `https://data.newarkehd.com/api/3/action/datastore_search?q={"${field}":"${query}"}&plain=false&include_total=false&resource_id=${resourceId}`;
+        const params = (): string => {
+            switch (resource) {default: return ckanUrl('AppNo', '4d2bf499-1c1a-4f3a-95f4-89e11d8cbd4e'); }
+        };
+
+        return this.http.get<CKANResponse>(
+            `${params()}`
+        )
+        .pipe(resp => resp);
+    }
 }

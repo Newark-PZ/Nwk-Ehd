@@ -8,7 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import * as MapPaneActions from '../../../store/map-pane/map-pane.actions';
 import * as PropPaneActions from '../../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../../store/store.reducers';
-import { ArcFeature, ArcPropResponse, SearchFeature } from '../../models';
+import { CartoSQLResp, ParcelFields, SearchFeature } from '../../models';
 import { CartoService } from '../../services/carto.service';
 import { MongodbService } from '../../services/mongodb.service';
 
@@ -22,7 +22,7 @@ export class IntroPaneComponent implements OnInit {
     results: Array<SearchFeature> = [];
     searchControl = new FormControl();
     filteredOptions: Observable<Array<SearchFeature>>;
-    propInfo: Observable<ArcFeature>;
+    propInfo: Observable<ParcelFields>;
     searchType = 'STREET_ADD';
     @Input() map: MapComponent;
     @Input() overlay: OverlayComponent;
@@ -78,7 +78,7 @@ export class IntroPaneComponent implements OnInit {
     }
     updatePropInfo(block, lot): void {
         this.carto.getZoning('*', block, lot)
-            .subscribe((data: ArcPropResponse) => {this.store.dispatch(new PropPaneActions.SetPropInfo(data.features[0])); });
+            .subscribe((data: CartoSQLResp) => {this.store.dispatch(new PropPaneActions.SetPropInfo(data.rows[0])); });
     }
     switchSearchType(val: string): void {
       this.searchType = val;
