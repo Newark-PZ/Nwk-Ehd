@@ -11,7 +11,8 @@ export const environment = {
     MONGO_API_KEY: 'IwgVRWO4eDXC563cIusNxtvNo3Ba1Xn8zWyV7xcWKfD77GcD6yo4qe7kpr6UlTJl',
     GDRIVE_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
     GCAL_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
-    GSHEETS_API_KEY: 'AIzaSyC-c-K76swQTFo9LLbDXzxnlcQ3ib96ums'
+    GSHEETS_API_KEY: 'AIzaSyC-c-K76swQTFo9LLbDXzxnlcQ3ib96ums',
+    QBUserToken: 'QB-USER-TOKEN b5ebsf_catb_bnpy2y8dwh2db2dktwfd3d2vaq3t'
   },
   production: false
 };

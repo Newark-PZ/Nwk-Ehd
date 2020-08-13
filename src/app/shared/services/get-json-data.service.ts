@@ -70,9 +70,11 @@ export class JsonDataService {
         .then(res => res.result.records[0]);
     }
     getDash(query: string, resource: string): Observable<CKANResponse> {
-        const ckanUrl = (field, resourceId): string => `https://data.newarkehd.com/api/3/action/datastore_search?q={"${field}":"${query}"}&plain=false&include_total=false&resource_id=${resourceId}`;
+        const ckanUrl = (field: string, resourceId: string): string => `https://data.newarkehd.com/api/3/action/datastore_search?q={${field && field.length > 0 ? '"' + field + '":"' + query + '"' : ''}}&plain=false&limit=500&include_total=false&resource_id=${resourceId}`;
         const params = (): string => {
-            switch (resource) {default: return ckanUrl('AppNo', '4d2bf499-1c1a-4f3a-95f4-89e11d8cbd4e'); }
+            switch (resource) {
+                case 'ORC': return ckanUrl('', '8853a776-4ec2-49e8-9b37-4ac549fe9946');
+                default: return ckanUrl('AppNo', '4d2bf499-1c1a-4f3a-95f4-89e11d8cbd4e'); }
         };
 
         return this.http.get<CKANResponse>(

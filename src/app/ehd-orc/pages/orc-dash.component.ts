@@ -2,48 +2,38 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, V
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { MapComponent, OverlayComponent } from 'ng-maps';
-import { easeOut } from 'ol/easing';
 import { getCenter } from 'ol/extent';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Point } from 'ol/geom';
-import { fromExtent } from 'ol/geom/Polygon';
 import VectorLayer from 'ol/layer/Vector';
-import { fromLonLat } from 'ol/proj';
 import VectorSource from 'ol/source/Vector';
-import { Fill, Icon, Stroke, Style } from 'ol/style';
+import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { take } from 'rxjs/operators';
 import { JsonDataService, LayersService } from '../../shared';
 import { MapLayer } from '../../shared/classes/maplayer';
-import { AppData } from '../../shared/models';
+import { RentControlData } from '../../shared/models';
 import { MongodbService } from '../../shared/services/mongodb.service';
 import * as fromStore from '../../store/store.reducers';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.Default,
-    selector: 'app-data-dash',
-    styleUrls: ['data-dash.component.scss'],
-    templateUrl: './data-dash.component.html'
+    selector: 'app-orc-dash',
+    styleUrls: ['orc-dash.component.scss'],
+    templateUrl: './orc-dash.component.html'
 })
-export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
+export class OrcDashComponent implements AfterViewInit, OnDestroy, OnInit {
     basemapUrl = 'https://d.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png';
     cartoLabelsUrl = 'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png';
     basemapAttr = '<span><a href="http://www.openstreetmap.org/copyright">© OpenStreetMap</a> contributors, <a href="https://carto.com/attribution">© CARTO</a></span>';
-    wardExtents = [
-        {ward: 'Central', min: [-74.20665195379563, 40.72323700151655], max: [-74.16139072367717, 40.76205752393302]},
-        {ward: 'South', min: [-74.22888768271345, 40.68658364265579], max: [-74.16594416077261, 40.7339560522728]},
-        {ward: 'East', min: [-74.18221757349376, 40.742476612471506], max: [-74.12191579438063, 40.70133158132805]},
-        {ward: 'North', min: [-74.1925256887145, 40.7538447314112], max: [-74.1482839995625, 40.78833290822526]},
-        {ward: 'West', min: [-74.25143759565441, 40.73044194208102], max: [-74.18184724229062, 40.764862407965005]}
-    ];
     cardOpened = true;
     extentNo = 0;
     fullScreen = false;
     sideStatus = true;
     textHide = true;
     clicked: {blocklot?: string; data: Array<{prop: string; value: any}>} = {blocklot: '', data: []};
-    hovered: {blocklot?: string; appNo?: string; } = {blocklot: '', appNo: ''};
+    hovered: {blocklot?: string; proploc?: string; } = {blocklot: '', proploc: ''};
     itemSelected = false;
-    cpbData: Array<AppData>;
+    orcData: Array<RentControlData>;
     @ViewChild('map') map: MapComponent;
     @ViewChild('hover') hoverFlag: OverlayComponent;
     overlaylyrs: Array<MapLayer> = [];
@@ -55,17 +45,13 @@ export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
         readonly _bottomSheet: MatBottomSheet
     ) {}
     ngOnInit(): void {
-        this.jsondata.getDash('CPB:*|ZBA:*', '')
+        this.jsondata.getDash('', 'ORC')
             .pipe(take(1))
             .subscribe(
-                v => this.cpbData = v.result.records
+                v => this.orcData = v.result.records
             );
     }
     ngAfterViewInit(): void {
-        // document.addEventListener('wheel', (e: WheelEvent) => {
-        //         e.stopPropagation();
-        //         e.deltaY > 0 ? this.changeView('up') : this.changeView('down');
-        // });
         this.map.instance.updateSize();
         this.map.instance.once('rendercomplete', () => {
             this.layerservice.initLayers([], 'wards', 'base')
@@ -81,34 +67,13 @@ export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
         this.overlaylyrs = [];
         this.layerservice.resetService();
     }
-    changeView(dir?: 'up' | 'down', num?: number): void {
-        if (dir === 'up') {
-            this.extentNo = this.extentNo + 1;
-        } else if (dir === 'down') {
-            this.extentNo = this.extentNo - 1;
-        }
-        // tslint:disable-next-line: no-unused-expression
-        num ? this.extentNo = Math.max(num, 0) : undefined;
-        if (this.extentNo > 4 ) { this.extentNo = 4; }
-        if (this.extentNo < 0 ) { this.extentNo = 0; }
-        this.map.instance.getView()
-        .fit(
-            fromExtent([
-                fromLonLat(this.wardExtents[this.extentNo].max)[0],
-                fromLonLat(this.wardExtents[this.extentNo].max)[1],
-                fromLonLat(this.wardExtents[this.extentNo].min)[0],
-                fromLonLat(this.wardExtents[this.extentNo].min)[1]
-            ]),
-            {size: this.map.instance.getSize(), easing: easeOut, duration: 750}
-        );
-    }
     dispatchHover(e): void {
         this.map.instance.forEachFeatureAtPixel(e.pixel, feat => {
             if (feat.get('blocklot')) {
             this.hoverFlag.instance.setPosition(getCenter(feat.getGeometry()
                 .getExtent()));
             this.hovered.blocklot = feat.get('blocklot');
-            this.hovered.appNo = this.cpbData.filter(d => d.PrimaryBlockLot === feat.get('blocklot'))[0].AppNo;
+            this.hovered.proploc = this.orcData.filter(d => d.BlockLot === feat.get('blocklot'))[0]['BLQ - PropLoc2'];
             }
         });
     }
@@ -116,7 +81,7 @@ export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
         this.map.instance.forEachFeatureAtPixel(e.pixel, feat => {
             this.clicked.blocklot = feat.get('blocklot');
             this.clicked.data = [];
-            Object.entries(this.cpbData.filter(d => d.PrimaryBlockLot === feat.get('blocklot'))[0])
+            Object.entries(this.orcData.filter(d => d.BlockLot === feat.get('blocklot'))[0])
                 .slice(1, -1)
                 .forEach(
                 d => this.clicked.data.push({prop: d[0], value: d[1]})
@@ -126,13 +91,13 @@ export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
     }
     makeLayer(): void {
         const blocklots: Array<string> = [];
+        this.orcData.forEach(
+            d => blocklots.push(`'${d.BlockLot}'`)
+        );
         const vsource = new VectorSource({
             url: `https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select the_geom,blocklot from public.parcels where blocklot in (${blocklots.join(',')})`,
             format: new GeoJSON()
         });
-        this.cpbData.forEach(
-            d => blocklots.push(`'${d.PrimaryBlockLot}'`)
-        );
         this.map.instance.addLayer(
             new VectorLayer({
                 className: 'CPB',
@@ -163,11 +128,13 @@ export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
                 // })
             }),
             new Style({
-                image: new Icon({
-                    anchor: [0.5, 0.85],
-                    src:  this.cpbData.filter(d => d.PrimaryBlockLot === feature.get('blocklot'))[0].AppNo
-                        .startsWith('CPB') ? './assets/img/svg/place-CPB_blue.svg' : './assets/img/svg/place-ZBA.svg',
-                    size: [26, 26]
+                image: new Circle({
+                    radius: Math.max(this.orcData.filter(d => d.BlockLot === feature.get('blocklot'))[0].ResidentialUnits / 25, 8),
+                    fill: new Fill({color: this.orcData.filter(d => d.BlockLot === feature.get('blocklot'))[0].ExemptFromRentControl
+                    === 'yes' ? 'green' : 'orange'}),
+                    stroke: new Stroke({
+                      color: [60, 60, 60], width: 2
+                    })
                 }),
                 geometry: ft => {
                     // return the coordinates of the first ring of the polygon
@@ -178,9 +145,6 @@ export class DataDashComponent implements AfterViewInit, OnDestroy, OnInit {
                 }
             })
         ];
-        // newstyle[0].getText()
-        //     .setText(this.cpbData.filter(d => d.PrimaryBlockLot === feature.get(labelProp))[0].AppNo
-        //         .slice(6, 9));
 
         return newstyle;
     }

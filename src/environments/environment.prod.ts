@@ -8,6 +8,7 @@ export const environment = {
     GDRIVE_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
     GCAL_API_KEY: 'AIzaSyCNafLOpxgncT4nXe9JCgWnn5cHXzf4juo',
     GSHEETS_API_KEY: 'AIzaSyC-c-K76swQTFo9LLbDXzxnlcQ3ib96ums',
+    QBUserToken: 'QB-USER-TOKEN b5ebsf_catb_bnpy2y8dwh2db2dktwfd3d2vaq3t',
     // GDRIVE_API_KEY: 'AIzaSyDL58hGXLIi69tpowrlqXjoWzde-_CS7JI',
     // GCAL_API_KEY: 'AIzaSyCN96OiB7kDEpTfX0LsRPISn9RvdMUdZ5g',
     api: false,
