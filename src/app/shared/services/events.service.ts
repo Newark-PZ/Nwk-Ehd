@@ -32,8 +32,6 @@ export class EventsService {
                 this.hearings.length > 0
                 ? observer.next([])
                 : observer.next(this.initHearings());
-                // tslint:disable-next-line: no-console
-                console.log(this.hearings);
             }, 1000);
           });
     }

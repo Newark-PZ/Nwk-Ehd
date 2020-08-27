@@ -1,45 +1,29 @@
 <mat-toolbar>
   <div class="title">
     <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
-    <h2>{{ page.title }}</h2>
-  </div>
-  <div class="subtitle">
-    <h3>{{ page.subtitle }}</h3>
+    <h2>{{ page.title }}</h2>    
   </div>
 </mat-toolbar>
-<section class="content-intro" *ngIf="page.contentIntro">
-  <div [ngClass]="page.contentIntro.right ? 'content-intro left' : 'content-intro'">
-    <h4 *ngIf="page.contentIntro.header">{{ page.contentIntro.header }}</h4>
-    <p *ngIf="page.contentIntro.text">{{ page.contentIntro.text }}</p>
-    <div class="content-intro-btns" *ngIf="page.contentIntro.events">
-      <button *ngFor="let button of page.contentIntro.events" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
-        <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
-        <b>{{ button.event }}</b><br>{{ button.date }}
-        <ng-template #icon><mat-icon>exit_to_app</mat-icon></ng-template>
-      </button>
-    </div>
-    <h4 *ngIf="page.contentIntro.footer">{{ page.contentIntro.footer }}</h4>
-  </div>
-  <div class="content-intro right" *ngIf="page.contentIntro.right">
-      <h3>{{ page.contentIntro.right.text }}</h3>
-      <mat-icon>arrow_downward</mat-icon>
-  </div>
+<section class="intro-text">
+<div>
+  See below to find forms, applications, our payment portal and instructions/faqs. Contact us if you have questions.
+</div>
+<div> 
+  <a class="general-button" href="mailto:newarkpzo@ci.newark.nj.us"><mat-icon style="margin-right: .5rem">mail_outline</mat-icon>newarkpzo@ci.newark.nj.us</a>
+  <a class="general-button" href="tel:+19737336333"><mat-icon style="margin-right: .5rem">phone</mat-icon>(973) 733-6333</a>
+</div>
 </section>
-<mat-list class="program-cats">
-  <mat-list-item>
-    <div class="starting-cards">
-        <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined"
-        *ngFor="let card of page.startingButtons" class="starting-card">
-          <div class="button-card">
-            <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
-            <h4 style="margin: auto">{{ card.title }}</h4>
-          </div>
-          <div class="card-content" *ngIf="card.subtext">  
-            <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
-            <span [innerHtml]="card.subtext"></span>
-          </div>
-        </mat-card>
+<section class="starting-cards">
+  <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined"
+  *ngFor="let card of page.startingButtons" class="starting-card">
+    <div class="card-title">
+      <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
+      <h4 style="margin: auto">{{ card.title }}</h4>
     </div>
-  </mat-list-item>
-</mat-list>
+    <div class="card-content" *ngIf="card.subtext">  
+      <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
+      <span [innerHtml]="card.subtext"></span>
+    </div>
+  </mat-card>
+</section>
 <span class="page-bottom" *ngIf="!page.hideBottomBar"></span>

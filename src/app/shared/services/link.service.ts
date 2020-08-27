@@ -33,7 +33,7 @@ export class LinkService {
   planningzoning = [
     new Link({id: 'virtualhearing', title: 'Virtual Hearing Dashboard', office: 'planningzoning', icon: 'live_tv', isChild: false}),
     new Link({id: 'home', title: 'OPZ Home', office: 'planningzoning', icon: 'home', isChild: false}),
-    // new Link({id: 'applications', title: 'Applications & Payment', office: 'planningzoning', icon: 'assignment', isChild: false}),
+    new Link({id: 'applying', title: 'Applications & Payment', office: 'planningzoning', icon: 'assignment', isChild: false}),
     // new Link({id: 'team', title: 'Our Team', office: 'planningzoning', icon: 'people', isChild: false}),
     new Link({id: 'maps', title: 'Maps', office: 'planningzoning', icon: 'map', isChild: false}),
     new Link({id: 'boards', title: 'Boards & Commissions', office: 'planningzoning',
@@ -51,7 +51,7 @@ export class LinkService {
   rentcontrol = [
     new Link({id: 'virtualhearing', title: 'Virtual Hearing Dashboard', office: 'rentcontrol', icon: 'live_tv', isChild: false}),
     new Link({id: 'home', title: 'Rent Control Home', office: 'rentcontrol', icon: 'home', isChild: false}),
-    new Link({id: 'dash', title: 'Maps', office: 'rentcontrol', icon: 'map', isChild: false, disabled: false}),
+    // new Link({id: 'dash', title: 'Maps', office: 'rentcontrol', icon: 'map', isChild: false, disabled: false}),
     new Link({id: 'board', title: 'Rent Control Board', office: 'rentcontrol', icon: 'people', isChild: false, disabled: true}),
     new Link({id: 'resources', title: 'Resources', office: 'rentcontrol', icon: 'file', isChild: false, disabled: true})
   ];

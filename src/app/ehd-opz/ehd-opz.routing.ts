@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { BoardPageComponent, PageComponent, StaffComponent } from '../shared';
+import { OpzApplicationsComponent } from './pages/applications.component';
 import { OpzContactComponent } from './pages/contact.component';
 import { DashboardComponent } from './pages/dashboard.component';
 import { OpzHomeComponent } from './pages/home.component';
@@ -24,6 +25,10 @@ export const PLANNING_ROUTES: Routes = [
   {
     path: 'contact',
     component: OpzContactComponent
+  },
+  {
+    path: 'applying',
+    component: OpzApplicationsComponent
   },
   {
     path: 'boards/:id',

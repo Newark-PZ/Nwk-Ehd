@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Store } from '@ngrx/store';
 import { MapComponent, OverlayComponent } from 'ng-maps';
+import { fromLonLat } from 'ol/proj';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import * as MapPaneActions from '../../../store/map-pane/map-pane.actions';
@@ -56,9 +57,9 @@ export class IntroPaneComponent implements OnInit {
     displayFn(opt: SearchFeature): string {
       switch (this.searchType) {
         case 'BLOCK_LOT':
-          return opt && opt.attributes.BLOCK_LOT ? opt.attributes.BLOCK_LOT : '';
+          return opt && opt.BlockLot ? opt.BlockLot : '';
         default:
-          return opt && opt.attributes.STREET_ADD ? opt.attributes.STREET_ADD : '';
+          return opt && opt.Address ? opt.Address : '';
       }
     }
     goTo(value: MatAutocompleteSelectedEvent): any {
@@ -67,14 +68,14 @@ export class IntroPaneComponent implements OnInit {
     }
     handleClick(result: SearchFeature): void {
         this.store.dispatch(new PropPaneActions.SetSelectedProp({
-          STREET_ADD: result.attributes.STREET_ADD,
-          BLOCK_LOT: result.attributes.BLOCK_LOT,
-          geometry: [result.geometry.x, result.geometry.y]
+          STREET_ADD: result.Address,
+          BLOCK_LOT: result.BlockLot,
+          geometry: [fromLonLat([result.X, result.Y])[0], fromLonLat([result.X, result.Y])[1]]
         }));
         this.overlay.instance.setPosition(
-          [result.geometry.x, result.geometry.y]
-        );
-        this.updatePropInfo(result.attributes.BLOCK_LOT.split('-')[0], result.attributes.BLOCK_LOT.split('-')[1]);
+          [fromLonLat([result.X, result.Y])[0], fromLonLat([result.X, result.Y])[1]]
+          );
+        this.updatePropInfo(result.BlockLot.split('-')[0], result.BlockLot.split('-')[1]);
     }
     updatePropInfo(block, lot): void {
         this.carto.getZoning('*', block, lot)

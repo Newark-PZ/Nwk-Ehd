@@ -12,7 +12,7 @@ import * as fromStoreActions from './store/store.actions';
 import * as fromStore from './store/store.reducers';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -38,7 +38,6 @@ export class AppComponent implements OnDestroy, OnInit {
     this.sidebarRightOpened$ = this.store.select(state => state.sidebarRight.opened);
     this.sidebarRightMode$ = this.store.select(state => state.sidebarRight.mode);
     this.routesArray$ = this.store.select(state => state.routesArray.routesArray);
-    this.events.initHearings();
   }
   ngOnInit(): void {
     this.breakpointObserver
@@ -48,6 +47,7 @@ export class AppComponent implements OnDestroy, OnInit {
         } else {this.mayorDisplay = false; this.deptDisplay = false; }
     });
     this.store.dispatch(new fromStoreActions.ClearState());
+    this.events.initHearings();
   }
   toggleSidebar(): void {
     this.store.dispatch(new SidebarActions.Toggle());

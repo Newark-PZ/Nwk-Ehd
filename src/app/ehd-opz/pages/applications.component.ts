@@ -1,8 +1,5 @@
-import { Clipboard } from '@angular/cdk/clipboard';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SnackbarComponent } from '../../shared';
 import { AppPage } from '../../shared/models';
 
 @Component({
@@ -44,7 +41,7 @@ export class OpzApplicationsComponent implements OnInit {
       {
         icon: 'edit',
         title: 'Other Forms',
-        subtext: 'Fill out and submit other forms owed to the Office of Planning & Zoning: including...',
+        subtext: 'Fill out and submit other forms owed to the Office of Planning & Zoning: including Zoning Determination, Zoning Certification, etc.',
         link: '',
         category: 'AppButtons'
       },
@@ -66,27 +63,11 @@ export class OpzApplicationsComponent implements OnInit {
   data = [];
   constructor(
     readonly route: ActivatedRoute,
-    readonly router: Router,
-    public clipboard: Clipboard,
-    public _snackBar: MatSnackBar
+    readonly router: Router
     ) {
     }
 
   ngOnInit(): void {
     this.activeFragment = this.router.url.slice(this.router.url.lastIndexOf('/') + 1);
-    this.getTab(this.activeFragment);
-  }
-  copySuccess(object): any {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
-      data: { message: 'Copied!', detail: object }
-    });
-  }
-  getTab(view): any {
-    this.activeViewName = view;
-  }
-  copyVal(val, object): any {
-    this.clipboard.copy(val);
-    this.copySuccess(object);
   }
 }

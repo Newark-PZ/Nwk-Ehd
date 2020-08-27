@@ -37,20 +37,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.expansionDisabled$ = this.store.select(state => state.homePanel.toggleDisabled);
       this.slideshowIndex$ = this.store.select(state => state.imageIndex.currentIndex);
       this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
-        setTimeout(() => {
-          if (this.events.hearings.filter(h => h.timeUntil >= -19800000).length < 0) {
+        setInterval(() => {
+          if (this.events.hearings.filter(h => h.timeUntil >= -19800000).length < 1) {
             observer.next([]);
           } else {
-            const evts = (office): Array<Hearing> => {switch (office) {
-              // tslint:disable: newline-per-chained-call
-              case '/planningzoning': return this.events.hearings.filter(h => h.timeUntil >= -19800000 && h.board !== 'RC').slice(0, 2);
-              case '/rentcontrol': return this.events.hearings.filter(h => h.timeUntil >= -19800000 && h.board === 'RC').slice(0, 2);
-              default: return this.events.hearings.filter(h => h.timeUntil >= -19800000).slice(0, 3);
-            }};
-            observer.next(evts(this.office));
+            observer.next(this.getEvts(this.office));
             observer.complete();
           }
-        }, 100);
+        }, 1000);
       });
     }
   expansionOpen$: Observable<boolean>;
@@ -82,6 +76,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   goTo(url?: string): void {
     if (url) {window.open(url, '_self'); }
+  }
+  getEvts(office): Array<Hearing> {
+    switch (office) {
+      // tslint:disable: newline-per-chained-call
+      case '/planningzoning': return this.events.hearings.filter(h => h.timeUntil >= -19800000 && h.board !== 'RC').slice(0, 2);
+      case '/rentcontrol': return this.events.hearings.filter(h => h.timeUntil >= -19800000 && h.board === 'RC').slice(0, 2);
+      default: return this.events.hearings.filter(h => h.timeUntil >= -19800000).slice(0, 3);
+    }
   }
   openEvent(evt: Hearing): void {
     this.dialog.open(ModalComponent, {

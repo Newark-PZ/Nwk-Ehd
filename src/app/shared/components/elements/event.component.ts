@@ -93,7 +93,7 @@ export class EventComponent implements OnInit, OnChanges {
         }
     }
     setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC' | 'RC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
-        const idno = hearing ? (board === 'RC' ? '99035522770' : hearing.link.substring(hearing.link.lastIndexOf('/') + 1)) : '000 0000 0000';
+        const idno = hearing ? hearing.link.substring(hearing.link.lastIndexOf('/') + 1) : '000 0000 0000';
         const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
         const setRows = (idnum, id): Array<EventTableRow> => {
             switch (board) {
@@ -106,7 +106,7 @@ export class EventComponent implements OnInit, OnChanges {
                     { section: 'Or Other Telephone<br>' +
                       '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                       content: 'US',
-                      extra: [`<b>Webinar ID</b>: ${hearingid}&ensp;&vert;&ensp;<b>Passcode</b>: 090029`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
+                      extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
                       numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
                 ];
                 case 'ZBA': return [
@@ -140,3 +140,4 @@ export class EventComponent implements OnInit, OnChanges {
         return setRows(idno, hearingid);
     }
 }
+// &ensp;&vert;&ensp;<b>Passcode</b>: 090029

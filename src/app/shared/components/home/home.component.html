@@ -32,8 +32,8 @@
     <div [ngClass]="homePage.contentIntro.right ? 'content-intro left' : 'content-intro'">
       <h4 *ngIf="homePage.contentIntro.header"><mat-icon style="margin: 0 .5rem;vertical-align: bottom;">event</mat-icon>{{ homePage.contentIntro.header }}</h4>
       <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
-      <div class="content-intro-btns" *ngIf="nextevents | async">
-        <button *ngFor="let button of (nextevents | async)" class="event" (click)="openEvent(button)">
+      <div class="content-intro-btns">
+        <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
           <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
         </button>
         <button class="dashboard-btn" *ngIf="office !=='/ehd'" [routerLink]="[office,'virtualhearing']">
