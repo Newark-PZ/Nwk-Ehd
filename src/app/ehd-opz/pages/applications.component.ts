@@ -19,30 +19,34 @@ export class OpzApplicationsComponent implements OnInit {
     startingButtons: [
       {
         icon: 'ballot',
-        title: 'Applications',
+        title: 'Board Application',
         subtext: 'Fill out and submit an application to the Central Planning Board or Zoning Board of Adjustment',
-        link: '',
+        extUrl: 'https://dl.airtable.com/.attachments/99a7eb789049f71e524678c58237d3ae/06eca401/feb2020.pdf',
         category: 'AppButtons'
       },
       {
         icon: 'developer_board',
-        title: 'Application Status',
+        title: 'Coming Soon: Application Status',
         subtext: 'Check the status of a submitted application, where it is in the overall process, and what documents have or have not been recieved',
         link: '',
-        category: 'AppButtons'
+        category: 'AppButtons',
+        disabled: true
       },
       {
         icon: 'payment',
-        title: 'Payments',
+        title: 'Coming Soon: Payment Portal',
         subtext: 'One stop payment portal for any fees owed to the Office of Planning & Zoning',
         link: '',
-        category: 'AppButtons'
+        category: 'AppButtons',
+        disabled: true
       },
       {
         icon: 'edit',
         title: 'Other Forms',
         subtext: 'Fill out and submit other forms owed to the Office of Planning & Zoning: including Zoning Determination, Zoning Certification, etc.',
-        link: '',
+        parent: '/planningzoning/resources',
+        link: 'documents',
+        params: {group: 'res', type: 'Other Documents'},
         category: 'AppButtons'
       },
       {
@@ -53,8 +57,8 @@ export class OpzApplicationsComponent implements OnInit {
       },
       {
         icon: 'info',
-        title: 'More Info on Process, Legal Requirements, etc.',
-        link: '',
+        title: 'Application Instructions',
+        extUrl: 'https://dl.airtable.com/.attachments/e20291159fd3765b4b6908e52564ba3f/452bd251/Instructions.pdf',
         category: 'AppButtons'
       }
     ],

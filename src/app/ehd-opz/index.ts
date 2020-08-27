@@ -21,6 +21,7 @@ import { EcComponent } from './pages/boards-ec.component';
 import { LhpcComponent } from './pages/boards-lhpc.component';
 import { ZbaComponent } from './pages/boards-zba.component';
 import { DashboardComponent } from './pages/dashboard.component';
+import { PlanningFAQComponent } from './pages/faqs.component';
 
 export const planningComponents = [
   OpzHomeComponent,
@@ -30,7 +31,8 @@ export const planningComponents = [
   OpzResourcesComponent,
   OpzZoningComponent,
   OpzContactComponent,
-  DashboardComponent
+  DashboardComponent,
+  PlanningFAQComponent
 ];
 
 export const planningResComponents = [
@@ -53,6 +55,7 @@ export const boardsComponents = [
 
 export * from './pages/applications.component';
 export * from './pages/contact.component';
+export * from './pages/faqs.component';
 export * from './pages/home.component';
 export * from './pages/maps.component';
 export * from './pages/resources.component';

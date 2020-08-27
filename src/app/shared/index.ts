@@ -15,6 +15,7 @@ import { JsonDataService } from './services/get-json-data.service';
 import { GetRegsService } from './services/getregs.service';
 import { GoogleService } from './services/google.service';
 
+import { FaqComponent } from './components/faq/faq.component';
 import { AreaPaneComponent } from './components/mapels/area-pane.component';
 import { IntroPaneComponent } from './components/mapels/intro-pane.component';
 import { MapPaneComponent } from './components/mapels/map-pane.component';
@@ -37,7 +38,8 @@ export const components = [
     MapPaneComponent,
     IntroPaneComponent,
     AreaPaneComponent,
-    EventComponent
+    EventComponent,
+    FaqComponent
 ];
 
 export const services = [
@@ -53,6 +55,7 @@ export * from './components/boardpage/board-page.component';
 export * from './components/elements/modal.component';
 export * from './components/elements/snackbar.component';
 export * from './components/elements/event.component';
+export * from './components/faq/faq.component';
 export * from './components/home/home.component';
 export * from './components/mapels/area-pane.component';
 export * from './components/mapels/intro-pane.component';

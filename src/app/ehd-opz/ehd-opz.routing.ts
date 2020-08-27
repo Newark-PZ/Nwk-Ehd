@@ -3,6 +3,7 @@ import { BoardPageComponent, PageComponent, StaffComponent } from '../shared';
 import { OpzApplicationsComponent } from './pages/applications.component';
 import { OpzContactComponent } from './pages/contact.component';
 import { DashboardComponent } from './pages/dashboard.component';
+import { PlanningFAQComponent } from './pages/faqs.component';
 import { OpzHomeComponent } from './pages/home.component';
 import { MapsComponent } from './pages/maps.component';
 import { OpzResourcesComponent } from './pages/resources.component';
@@ -39,8 +40,17 @@ export const PLANNING_ROUTES: Routes = [
     component: OpzZoningComponent
   },
   {
-    path: 'resources/:id',
-    component: OpzResourcesComponent
+    path: 'resources',
+    children: [
+      {
+        path: 'faqs',
+        component: PlanningFAQComponent
+      },
+      {
+        path: ':id',
+        component: OpzResourcesComponent
+      }
+    ]
   },
   {
     path: 'maps',

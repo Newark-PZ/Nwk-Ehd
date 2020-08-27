@@ -24,7 +24,7 @@ export class LinkService {
     // new Link({id: 'diagrams', title: 'Zoning Diagrams', office: 'planningzoning', parent: 'zoning', disabled: true }),
     new Link({id: 'regulations', title: 'Zoning Regulations', office: 'planningzoning', parent: 'zoning' }),
     new Link({id: 'documents', title: 'Resources: Documents', office: 'planningzoning', parent: 'resources' }),
-    // new Link({id: 'faqs', title: 'Resources: FAQs', office: 'planningzoning', parent: 'resources', disabled: true }),
+    new Link({id: 'faqs', title: 'Resources: FAQs', office: 'planningzoning', parent: 'resources' }),
     new Link({id: 'cpb', title: 'Central Planning Board', office: 'planningzoning', parent: 'boards'}),
     // new Link({id: 'ec', title: 'Environmental Commission', office: 'planningzoning', parent: 'boards'}),
     new Link({id: 'lhpc', title: 'Landmarks & Historic Preservation', office: 'planningzoning', parent: 'boards'}),

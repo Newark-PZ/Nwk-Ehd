@@ -1,29 +1,30 @@
 <mat-toolbar>
-  <div class="title">
-    <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
-    <h2>{{ page.title }}</h2>    
-  </div>
+    <div class="title">
+        <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
+        <h2>{{ page.title }}</h2>
+    </div>
 </mat-toolbar>
 <section class="intro-text">
-<div>
-  See below to find forms, applications, our payment portal and instructions/faqs. Contact us if you have questions.
-</div>
-<div> 
-  <a class="general-button" href="mailto:newarkpzo@ci.newark.nj.us"><mat-icon style="margin-right: .5rem">mail_outline</mat-icon>newarkpzo@ci.newark.nj.us</a>
-  <a class="general-button" href="tel:+19737336333"><mat-icon style="margin-right: .5rem">phone</mat-icon>(973) 733-6333</a>
-</div>
+    <div>
+        See below to find forms, applications, our payment portal and instructions/faqs. Contact us if you have questions.
+    </div>
+    <div>
+        <a class="general-button" href="mailto:newarkpzo@ci.newark.nj.us">
+            <mat-icon style="margin-right: .5rem">mail_outline</mat-icon>newarkpzo@ci.newark.nj.us</a>
+        <a class="general-button" href="tel:+19737336333">
+            <mat-icon style="margin-right: .5rem">phone</mat-icon>(973) 733-6333</a>
+    </div>
 </section>
 <section class="starting-cards">
-  <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined"
-  *ngFor="let card of page.startingButtons" class="starting-card">
-    <div class="card-title">
-      <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
-      <h4 style="margin: auto">{{ card.title }}</h4>
-    </div>
-    <div class="card-content" *ngIf="card.subtext">  
-      <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
-      <span [innerHtml]="card.subtext"></span>
-    </div>
-  </mat-card>
+    <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined" [queryParams]="card.params" (click)="goTo(card.extUrl ? card.extUrl : undefined)" *ngFor="let card of page.startingButtons" class="starting-card" [ngClass]="card.disabled ? 'disabled': ''">
+        <div class="card-title">
+            <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
+            <h4 style="margin: auto">{{ card.title }}</h4>
+        </div>
+        <div class="card-content" *ngIf="card.subtext">
+            <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
+            <span [innerHtml]="card.subtext"></span>
+        </div>
+    </mat-card>
 </section>
 <span class="page-bottom" *ngIf="!page.hideBottomBar"></span>

@@ -260,3 +260,44 @@ export interface AppPage {
       }>;
     hideBottomBar?: boolean | false;
 }
+export interface FaqPage {
+    type: 'Tenant' | 'Homeowners' | 'RentControl';
+    icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
+    contentIntro?: {
+      right?: {text: string; };
+      header?: string;
+      paragraphs?: Array<string>;
+      footer?: string;
+      buttons?: Array<{
+          title: string;
+          date?: string;
+          icon?: string;
+          link?: string;
+          extUrl?: string;
+          parent?: string;
+      }>
+    };
+    title: string;
+  }
+export interface FaqCategory {
+    name: string;
+    children?: Array<Faq>;
+  }
+export interface Faq {
+    Answer: string;
+    Categories: string;
+    Postscript?: string;
+    Question: string;
+    tableRows?: Array<Array<string>>;
+    Type: 'Tenant' | 'Homeowner' | 'RentControl';
+    __v?: number;
+    _id?: {
+      id: any
+    };
+    createdAt?: {
+      $date: string;
+    };
+    updatedAt?: {
+      $date: string;
+    };
+  }
