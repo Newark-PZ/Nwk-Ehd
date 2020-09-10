@@ -46,7 +46,7 @@ export class OpzApplicationsComponent implements OnInit {
         subtext: 'Fill out and submit other forms owed to the Office of Planning & Zoning: including Zoning Determination, Zoning Certification, etc.',
         parent: '/planningzoning/resources',
         link: 'documents',
-        params: {group: 'res', type: 'Other Documents'},
+        params: {group: 'res', type: 'Other_Documents'},
         category: 'AppButtons'
       },
       {

@@ -27,8 +27,15 @@ export interface TreeDataItem extends DataItem {
 }
 export interface DocGroup {
     group: string;
+    name: string;
+    disabled?: boolean;
+    type?: string;
+    year?: number;
+    docs?: Array<DocGroup>;
+}
+export interface DocSubGroup {
+    group: string;
     type: string;
-    link: string;
     year?: number;
 }
 export interface DocData {
@@ -140,24 +147,24 @@ export interface SearchFeature {
 export interface SearchItem {
     STREET_ADD: string;
     BLOCK_LOT: string;
-    geometry: [ number, number ];
+    geometry: [number, number];
 }
 export interface SearchResult {
     type: 'FeatureCollection';
     properties: {
-      exceededTransferLimit: boolean;
+        exceededTransferLimit: boolean;
     };
     features: Array<SearchFeature>;
 }
 
 export interface BoardHearing {
-id: string;
-groupId: string;
-allDay: boolean;
-title: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
-start: string;
-end: string;
-backgroundColor: string;
+    id: string;
+    groupId: string;
+    allDay: boolean;
+    title: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
+    start: string;
+    end: string;
+    backgroundColor: string;
 }
 export interface DriveSearch {
     kind: 'drive#fileList';
@@ -181,17 +188,17 @@ export interface GCalEvent {
     updated: '2020-06-05T19:33:47.991Z' | string;
     summary: string;
     description: string;
-    creator: { email: 'nterwin714@gmail.com' | string};
+    creator: { email: 'nterwin714@gmail.com' | string };
     organizer: {
-      email: '6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com' | string;
-      displayName: 'Newark Board Hearings' | string;
-      self: boolean
+        email: '6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com' | string;
+        displayName: 'Newark Board Hearings' | string;
+        self: boolean
     };
-    start: {dateTime: string; };
-    end: {dateTime: string; };
+    start: { dateTime: string; };
+    end: { dateTime: string; };
     iCalUID: string;
     sequence: number;
-  }
+}
 export interface GCalResponse {
     kind: 'calendar#events' | string;
     etag: string;
@@ -231,13 +238,13 @@ export interface ArcPropResponse {
     geometryType: 'esriGeometryPolygon';
     spatialReference: { wkid: 102100 | number; latestWkid: 3857 | number; };
     fields: Array<{
-            name: string;
-            type: 'esriFieldTypeDouble',
-            alias: string;
-            sqlType: string;
-            domain: any;
-            defaultValue: any;
-        }>;
+        name: string;
+        type: 'esriFieldTypeDouble',
+        alias: string;
+        sqlType: string;
+        domain: any;
+        defaultValue: any;
+    }>;
     features: Array<ArcFeature>;
 }
 export interface RedevCodeRecord {
@@ -320,7 +327,7 @@ export interface CKANResponse {
     result: {
         include_total: boolean;
         resource_id: string;
-        fields: Array<{type: 'int' | 'text' | string; id: string}>;
+        fields: Array<{ type: 'int' | 'text' | string; id: string }>;
         records_format: string;
         q: string | object;
         records: Array<RedevCodeRecord | RentControlData | any>;

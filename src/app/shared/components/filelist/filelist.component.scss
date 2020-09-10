@@ -1,0 +1,68 @@
+.file-list-control {
+    flex: 1 1 28%;
+    max-width: 350px;
+    margin: 0rem auto auto .5rem;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    border-radius: .25rem;
+    border: .02rem solid lightgrey;
+}
+.searchbar {
+    background: lightgrey;
+}
+
+.filterLabel {
+    color: white;
+    -webkit-text-fill-color: white;
+    margin: .5rem 1.5rem;
+}
+
+.filterTagList {
+    flex: 1 1 45%;
+    background-color: white;
+    margin: .5rem;
+    border-radius: .25rem;
+    overflow-y: auto;
+    max-height: 15rem;
+    scrollbar-width: thin !important;
+
+    mat-list-option {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+.tree-invisible {
+    display: none;
+  }
+  
+  .files-tree ul,
+  .files-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+    cursor: pointer;
+  }
+  .mat-tree-node {
+      height: 2rem;
+      font-size: 1rem;
+      &:hover {
+        background: rgba(50,200,250,.1);
+        border-radius: .25rem;
+        box-shadow: 0.1rem 0.1rem 0.5rem rgba(0,0,0,.1);
+      }
+  }
+.mat-row {
+    max-height: unset !important;
+    border: none;
+    width: 100%;
+}
+.table-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 55%;
+}
+.selected {
+    font-weight: 600;
+    background: rgba(194, 249, 230, 0.1)
+}

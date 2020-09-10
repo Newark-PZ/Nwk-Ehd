@@ -1,74 +1,85 @@
-import { Clipboard } from '@angular/cdk/clipboard';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { SnackbarComponent } from '../../shared/';
-import { DataItem, Page } from '../../shared/models';
-import { DocsDataComponent } from './sub-pages/boards-docs/boards-docs.component';
+import { FileListComponent } from '../../shared/components/filelist/filelist.component';
+import { DocGroup, Page } from '../../shared/models';
 
 @Component({
   selector: 'app-opz-resources',
-  template: `<app-page [page]="pageDetails">
-      <app-res-docs (groupChange)="setSubtitle($event)" childComponent></app-res-docs></app-page>
+  template: `
+  <app-page [page]="pageDetails">
+      <app-file-list  [docGroups]="data" (groupChange)="setSubtitle($event)" childComponent></app-file-list>
+    </app-page>
     `
 })
 
 export class OpzResourcesComponent implements AfterViewInit {
-  @ViewChild(DocsDataComponent) docsComp: DocsDataComponent;
-  pageDetails: Page = {
+  @ViewChild(FileListComponent) fileList: FileListComponent;
+  @Input() pageDetails: Page = {
     id: 'documents',
     title: 'Resources',
     hideBottomBar: true
   };
-  selectedGroup: DataItem = {label: ''};
-  setDocsControl: FormControl = new FormControl('Redevelopment Plans');
+  data: Array<DocGroup> = [
+    {
+      group: 'res', name: 'Resources', disabled: false, docs: [
+        { name: 'Master Plan', group: 'res', type: 'Master_Plan'},
+        { name: 'Redevelopment Plans', group: 'res', type: 'Redevelopment_Plans'},
+        { name: 'Other Documents', group: 'res', type: 'Other'}
+      ]
+    },
+    {
+      group: 'cpb', name: 'Central Planning Board', disabled: false, docs: [
+        { name: '2018 Minutes', group: 'cpb', type: 'Minutes', year: 2018 },
+        { name: '2019 Minutes', group: 'cpb', type: 'Minutes', year: 2019 },
+        { name: '2020 Minutes', group: 'cpb', type: 'Minutes', year: 2020 },
+        { name: '2018 Agendas', group: 'cpb', type: 'Agendas', year: 2018 },
+        { name: '2019 Agendas', group: 'cpb', type: 'Agendas', year: 2019 },
+        { name: '2020 Agendas', group: 'cpb', type: 'Agendas', year: 2020 }
+      ]
+    },
+    {
+      group: 'zba', name: 'Zoning Board of Adjustment', disabled: false, docs: [
+        { name: '2018 Minutes', group: 'zba', type: 'Minutes', year: 2018 },
+        { name: '2019 Minutes', group: 'zba', type: 'Minutes', year: 2019 },
+        { name: '2020 Minutes', group: 'zba', type: 'Minutes', year: 2020 },
+        { name: '2018 Agendas', group: 'zba', type: 'Agendas', year: 2018 },
+        { name: '2019 Agendas', group: 'zba', type: 'Agendas', year: 2019 },
+        { name: '2020 Agendas', group: 'zba', type: 'Agendas', year: 2020 }
+      ]
+    }
+  ];
+  selectedGroup: DocGroup;
   constructor(
     readonly route: ActivatedRoute,
-    readonly router: Router,
-    public clipboard: Clipboard,
-    public _snackBar: MatSnackBar
-    ) { }
+    readonly router: Router
+  ) { }
   ngAfterViewInit(): void {
-      this.setDocsControl = this.docsComp.setDocsControl;
-      this.selectedGroup = this.docsComp.selectedGroup;
-      this.route.queryParams.pipe(
-        filter(params => params.group && params.type)
-      )
+    this.selectedGroup = this.fileList.selectedGroup;
+    this.fileList.groupSelected({group: 'res', type: 'Redevelopment_Plans'});
+    this.route.queryParams.pipe(
+      filter(params => params.group && params.type)
+    )
       .subscribe(params => {
-        if (params.group !== 'res') {
-          this.docsComp.groupSelect({
-            group: params.group, type: params.type,
-            link: `${params.group.toUpperCase()}-${params.type.charAt(0)
-              .toUpperCase()}${params.type.slice(1)}`,
-            year: params.year},
-            params.group);
-        } else {
-          this.docsComp.groupSelect({
+          this.fileList.groupSelected({
             group: params.group,
             type: params.type,
-            link: 'Resources'
-          }, params.group);
-        }
-        this.setSubtitle(params.group);
-        this.setDocsControl = this.docsComp.setDocsControl;
-        this.selectedGroup = this.docsComp.selectedGroup;
+            year: params.year ? params.year : undefined
+          });
+          this.setSubtitle({name: '', group: params.group, type: params.type, year: params.year});
+          this.selectedGroup = this.fileList.selectedGroup;
       });
   }
-  copySuccess(object): any {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
-      data: { message: 'Copied!', detail: object }
-    });
-  }
-  copyVal(val, object): any {
-    this.clipboard.copy(val);
-    this.copySuccess(object);
-  }
-  setSubtitle(group: string): void {
-    // tslint:disable-next-line: no-non-null-assertion
-    const curboard = this.docsComp.boards.find(b => b.group === group) ? this.docsComp.boards.find(b => b.group === group)!.name : group;
-    this.pageDetails.title = `Documents: ${curboard}`;
+  setSubtitle(docsubgroup: DocGroup): void {
+    this.pageDetails.title = `Documents: ${
+      docsubgroup && docsubgroup.group === 'res' ? '' : docsubgroup.group.toUpperCase()
+    }${
+      docsubgroup.year ? ' ' : ''
+    }${
+      docsubgroup.year ? docsubgroup.year.toString() : ''
+    }${
+      docsubgroup.year ? ' ' : ''
+    }${
+      docsubgroup.type ? docsubgroup.type.replace('_', ' ') : ''}`;
   }
 }
