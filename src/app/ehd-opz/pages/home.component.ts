@@ -30,7 +30,15 @@ export class OpzHomeComponent {
         icon: 'info', category: 'Tools', title: 'Our Zoning Code', parent: '/planningzoning/zoning', link: 'regs'
       },
       {
+        icon: 'attachment', category: 'Tools', title: 'Master Plan', parent: '/planningzoning/resources', link: 'documents',
+        params: {group: 'res', type: 'Master_Plan'}
+      },
+      {
         icon: 'attachment', category: 'Tools', title: 'Redevelopment Plans', parent: '/planningzoning/resources', link: 'documents'
+      },
+      {
+        icon: 'attachment', category: 'Tools', title: 'Other Documents/Forms', parent: '/planningzoning/resources', link: 'documents',
+        params: {group: 'res', type: 'Other'}
       }
     ],
     contentIntro: {

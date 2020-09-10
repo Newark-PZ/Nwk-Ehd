@@ -55,13 +55,12 @@ export class OpzResourcesComponent implements AfterViewInit {
     readonly router: Router
   ) { }
   ngAfterViewInit(): void {
-    this.selectedGroup = this.fileList.selectedGroup;
-    this.fileList.groupSelected({group: 'res', type: 'Redevelopment_Plans'});
     this.route.queryParams.pipe(
       filter(params => params.group && params.type)
     )
       .subscribe(params => {
           this.fileList.groupSelected({
+            name: '',
             group: params.group,
             type: params.type,
             year: params.year ? params.year : undefined
@@ -69,6 +68,7 @@ export class OpzResourcesComponent implements AfterViewInit {
           this.setSubtitle({name: '', group: params.group, type: params.type, year: params.year});
           this.selectedGroup = this.fileList.selectedGroup;
       });
+    this.selectedGroup ? this.selectedGroup = this.selectedGroup : this.fileList.groupSelected({name: '', group: 'res', type: 'Redevelopment_Plans'});
   }
   setSubtitle(docsubgroup: DocGroup): void {
     this.pageDetails.title = `Documents: ${

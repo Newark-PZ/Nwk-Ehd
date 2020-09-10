@@ -6,9 +6,6 @@ import { OpzResourcesComponent } from './pages/resources.component';
 import { OpzStaffComponent } from './pages/staff.component';
 import { OpzZoningComponent } from './pages/zoning.component';
 
-// Resources page component imports
-import { DocsDataComponent } from './pages/sub-pages/boards-docs/boards-docs.component';
-
 import { DiagramsComponent } from './pages/diagrams/diagrams.component';
 import { LotComponent } from './pages/diagrams/lot.component';
 import { OpzZoningInfoComponent } from './pages/sub-pages/info/info.component';
@@ -35,10 +32,6 @@ export const planningComponents = [
   PlanningFAQComponent
 ];
 
-export const planningResComponents = [
-  DocsDataComponent
-];
-
 export const planningZonesComponents = [
   DiagramsComponent,
   OpzZoningInfoComponent,
@@ -62,7 +55,6 @@ export * from './pages/resources.component';
 export * from './pages/staff.component';
 export * from './pages/zoning.component';
 
-export * from './pages/sub-pages/boards-docs/boards-docs.component';
 export * from './pages/diagrams/diagrams.component';
 export * from './pages/diagrams/lot.component';
 export * from './pages/sub-pages/info/info.component';

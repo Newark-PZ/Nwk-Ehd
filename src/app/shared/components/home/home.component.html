@@ -1,11 +1,11 @@
 <section class="splash">
     <div class="splash-image" *ngIf="homePage.splashImg">
-          <img src="{{homePage.splashImg.src}}" alt="{{homePage.splashImg.alt}}">
+        <img src="{{homePage.splashImg.src}}" alt="{{homePage.splashImg.alt}}">
     </div>
     <div class="splash-header">
-      <span class="toolbar-spacer left-space"></span>
-      <span class="splash-title"><h2>{{ homePage.splashTitle }}</h2></span>
-      <span class="toolbar-spacer right-space"></span>
+        <span class="toolbar-spacer left-space"></span>
+        <span class="splash-title"><h2>{{ homePage.splashTitle }}</h2></span>
+        <span class="toolbar-spacer right-space"></span>
     </div>
     <div class="splash-body">
         <span class="toolbar-spacer left-space"></span>
@@ -20,106 +20,102 @@
             </div>
             <span *ngIf="homePage.officer">{{ homePage.officer.name }}
               <span class="officer-position" *ngIf="homePage.officer.position">{{ homePage.officer.position }}</span>
-              <img *ngIf="homePage.officer.flair" [src]="'assets/img/' + homePage.officer.flair" class="officer-flair">
-            </span>
-        </div>
-          <img *ngIf="homePage.officer && homePage.officer.pic" [src]="'assets/img/' + homePage.officer.pic" class="officer-pic">
+        <img *ngIf="homePage.officer.flair" [src]="'assets/img/' + homePage.officer.flair" class="officer-flair">
         </span>
-        <span class="toolbar-spacer right-space"></span>
     </div>
-  </section>
-  <section class="content-intro" *ngIf="homePage.contentIntro">
+    <img *ngIf="homePage.officer && homePage.officer.pic" [src]="'assets/img/' + homePage.officer.pic" class="officer-pic">
+    </span>
+    <span class="toolbar-spacer right-space"></span>
+    </div>
+</section>
+<section class="content-intro" *ngIf="homePage.contentIntro">
     <div [ngClass]="homePage.contentIntro.right ? 'content-intro left' : 'content-intro'">
-      <h4 *ngIf="homePage.contentIntro.header"><mat-icon style="margin: 0 .5rem;vertical-align: bottom;">event</mat-icon>{{ homePage.contentIntro.header }}</h4>
-      <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
-      <div class="content-intro-btns">
-        <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
+        <h4 *ngIf="homePage.contentIntro.header">
+            <mat-icon style="margin: 0 .5rem;vertical-align: bottom;">event</mat-icon>{{ homePage.contentIntro.header }}</h4>
+        <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
+        <div class="content-intro-btns">
+            <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
           <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
         </button>
-        <button class="dashboard-btn" *ngIf="office !=='/ehd'" [routerLink]="[office,'virtualhearing']">
+            <button class="dashboard-btn" *ngIf="office !=='/ehd'" [routerLink]="[office,'virtualhearing']">
           <mat-icon>live_tv</mat-icon>
           <span>Virtual Hearing</span>
           <span>Dashboard</span>
         </button>
-      </div>
-      <h4 *ngIf="homePage.contentIntro.footer">{{ homePage.contentIntro.footer }}</h4>
+        </div>
+        <h4 *ngIf="homePage.contentIntro.footer">{{ homePage.contentIntro.footer }}</h4>
     </div>
     <div class="content-intro right" *ngIf="homePage.contentIntro.right">
         <h3>{{ homePage.contentIntro.right.text }}</h3>
         <mat-icon>arrow_downward</mat-icon>
     </div>
-  </section>
-    <section class="program-cats">
-      <mat-accordion [multi]="expansionMulti$ | async" >
+</section>
+<section class="program-cats">
+    <mat-accordion [multi]="expansionMulti$ | async">
         <mat-expansion-panel *ngFor="let cat of homePage.buttonCategories" [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h3>
-                {{ cat }}
-              </h3>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div class="program-cards">
-          <mat-card [ngClass]="card.disabled ? 'disabled' : ''" [routerLink]="card.disabled ? undefined : [card.parent, card.link]" (click)="card.disabled ? '' : goTo(card.extUrl)" class="program-card" *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
-            <div class="button-card">
-              <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
-              <h4 style="margin: auto">{{ card.title }}</h4>
-              <mat-icon style="margin-left: .5rem">exit_to_app</mat-icon>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h3>
+                        {{ cat }}
+                    </h3>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="program-cards">
+                <mat-card [ngClass]="card.disabled ? 'disabled' : ''" [routerLink]="card.disabled ? undefined : [card.parent, card.link]" [queryParams]="card.params" (click)="card.disabled ? '' : goTo(card.extUrl)" class="program-card" *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
+                    <div class="button-card">
+                        <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
+                        <h4 style="margin: auto">{{ card.title }}</h4>
+                        <mat-icon style="margin-left: .5rem">exit_to_app</mat-icon>
+                    </div>
+                    <div class="card-content">
+                        <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
+                        <span [innerHtml]="card.subtext"></span>
+                    </div>
+                </mat-card>
             </div>
-            <div class="card-content">  
-              <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>
-              <span [innerHtml]="card.subtext"></span>
-            </div>
-          </mat-card>
-        </div>
         </mat-expansion-panel>
-      </mat-accordion>
-      <mat-card class="text-card" *ngFor="let card of homePage.sections">
+    </mat-accordion>
+    <mat-card class="text-card" *ngFor="let card of homePage.sections">
         <h3 *ngIf="card.header">{{ card.header }}</h3>
         <div class="card-body" [innerHtml]="card.text"></div>
         <div class="logos" *ngIf="card.logos">
-          <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
+            <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
         </div>
         <mat-card-actions align="end" *ngIf="card.buttons">
-          <a mat-stroked-button *ngFor="let button of card.buttons"
-            [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
-            [href]="button.link">
-            <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
-            <ng-template #standardText0>Apply</ng-template>
-            <mat-icon>double_arrow</mat-icon>
-          </a>
+            <a mat-stroked-button *ngFor="let button of card.buttons" [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+                <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+                <ng-template #standardText0>Apply</ng-template>
+                <mat-icon>double_arrow</mat-icon>
+            </a>
         </mat-card-actions>
-      </mat-card>
-      <mat-card class="text-card" *ngIf="homePage.contact">
+    </mat-card>
+    <mat-card class="text-card" *ngIf="homePage.contact">
         <h3>How to Contact Us</h3>
         <div class="card-body" style="text-align: center">
-          <div>
-            <h2 [innerHtml]="homePage.contact.officer"></h2>
-            <p style="line-height: .5rem; font-weight: 200; font-size: 1.5rem;" [innerHtml]="homePage.contact.officerTitle"></p>
-          </div>
-          <div class="flex-row justify-content-around">
-          <p>
-            <span>Room {{homePage.contact.room}}</span><br>
-            <span>902 Broad Street</span><br>
-            <span>Newark, NJ 07102</span>
-          </p>
-          <p>
-            <span>Tel: <a [href]="'tel:+1'+homePage.contact.phone">({{homePage.contact.phone.slice(0,3)}}) {{homePage.contact.phone.slice(3,6)}}-{{homePage.contact.phone.slice(6)}}</a></span><br>
-            <span>Fax: <a [href]="'tel:+1'+homePage.contact.fax">({{homePage.contact.fax.slice(0,3)}}) {{homePage.contact.fax.slice(3,6)}}-{{homePage.contact.fax.slice(6)}}</a></span><br>
-            <span>Email: <a [href]="'mailto:'+homePage.contact.email">{{homePage.contact.email}}</a></span>
-          </p>
-          </div>
+            <div>
+                <h2 [innerHtml]="homePage.contact.officer"></h2>
+                <p style="line-height: .5rem; font-weight: 200; font-size: 1.5rem;" [innerHtml]="homePage.contact.officerTitle"></p>
+            </div>
+            <div class="flex-row justify-content-around">
+                <p>
+                    <span>Room {{homePage.contact.room}}</span><br>
+                    <span>902 Broad Street</span><br>
+                    <span>Newark, NJ 07102</span>
+                </p>
+                <p>
+                    <span>Tel: <a [href]="'tel:+1'+homePage.contact.phone">({{homePage.contact.phone.slice(0,3)}}) {{homePage.contact.phone.slice(3,6)}}-{{homePage.contact.phone.slice(6)}}</a></span><br>
+                    <span>Fax: <a [href]="'tel:+1'+homePage.contact.fax">({{homePage.contact.fax.slice(0,3)}}) {{homePage.contact.fax.slice(3,6)}}-{{homePage.contact.fax.slice(6)}}</a></span><br>
+                    <span>Email: <a [href]="'mailto:'+homePage.contact.email">{{homePage.contact.email}}</a></span>
+                </p>
+            </div>
         </div>
         <mat-card-actions align="end" *ngIf="homePage.contact.buttons">
-          <a mat-stroked-button *ngFor="let button of homePage.contact.buttons"
-            [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
-            [href]="button.link">
-            <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
-            <ng-template #standardText0>Apply</ng-template>
-            <mat-icon>double_arrow</mat-icon>
-          </a>
+            <a mat-stroked-button *ngFor="let button of homePage.contact.buttons" [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+                <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+                <ng-template #standardText0>Apply</ng-template>
+                <mat-icon>double_arrow</mat-icon>
+            </a>
         </mat-card-actions>
-      </mat-card>
-    </section>
-  <span class="page-bottom"></span>
-  
+    </mat-card>
+</section>
+<span class="page-bottom"></span>
