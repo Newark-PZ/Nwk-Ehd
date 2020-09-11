@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { VirtualHearingTab } from '../../shared/interfaces/other.interface';
 import * as HearingActions from './hearing.actions';
 
@@ -49,63 +50,52 @@ const initialState: State = {
     }
 };
 
-export const hearingReducer = (
-  state = initialState,
-  action: HearingActions.HearingActions
-) => {
-  switch (action.type) {
-    case HearingActions.SET_TAB_CPB:
-      return { ...state, cpbTab: {
-            agenda: action.payload.agenda,
+export const hearingReducer = createReducer(
+  initialState,
+    on(HearingActions.setTabCPB, (state, action) => ({ ...state, cpbTab: {
+            agenda: action.agenda,
             board: 'CPB',
-            data: action.payload.data,
-            event: action.payload.event,
+            data: action.data,
+            event: action.event,
             label: 'Central Planning Board',
-            prevHearings: action.payload.prevHearings
+            prevHearings: action.prevHearings
         }
-    };
-    case HearingActions.SET_TAB_EC:
-        return { ...state, ecTab: {
-            agenda: action.payload.agenda,
+    })),
+    on(HearingActions.setTabEC, (state, action) => ({ ...state, ecTab: {
+            agenda: action.agenda,
             board: 'EC',
-            data: action.payload.data,
-            event: action.payload.event,
+            data: action.data,
+            event: action.event,
             label: 'Environmental Commission',
-            prevHearings: action.payload.prevHearings
+            prevHearings: action.prevHearings
         }
-    };
-    case HearingActions.SET_TAB_LHPC:
-        return { ...state, lhpcTab: {
-            agenda: action.payload.agenda,
+    })),
+    on(HearingActions.setTabLHPC, (state, action) => ({ ...state, lhpcTab: {
+            agenda: action.agenda,
             board: 'LHPC',
-            data: action.payload.data,
-            event: action.payload.event,
+            data: action.data,
+            event: action.event,
             label: 'Landmarks & Historic Pres.',
-            prevHearings: action.payload.prevHearings
+            prevHearings: action.prevHearings
         }
-    };
-    case HearingActions.SET_TAB_RC:
-        return { ...state, rcTab: {
-            agenda: action.payload.agenda,
+    })),
+    on(HearingActions.setTabRC, (state, action) => ({ ...state, rcTab: {
+            agenda: action.agenda,
             board: 'RC',
-            data: action.payload.data,
-            event: action.payload.event,
+            data: action.data,
+            event: action.event,
             label: 'Rent Control Board',
-            prevHearings: action.payload.prevHearings
+            prevHearings: action.prevHearings
         }
-    };
-    case HearingActions.SET_TAB_ZBA:
-        return { ...state, zbaTab: {
-            agenda: action.payload.agenda,
+    })),
+    on(HearingActions.setTabZBA, (state, action) => ({ ...state, zbaTab: {
+            agenda: action.agenda,
             board: 'ZBA',
-            data: action.payload.data,
-            event: action.payload.event,
-            fofId: action.payload.fofId,
+            data: action.data,
+            event: action.event,
+            fofId: action.fofId,
             label: 'Zoning Board of Adjustment',
-            prevHearings: action.payload.prevHearings
+            prevHearings: action.prevHearings
         }
-    };
-    default:
-      return state;
-  }
-};
+    }))
+);

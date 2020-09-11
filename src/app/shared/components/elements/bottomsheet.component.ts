@@ -3,8 +3,8 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bott
 import { Store } from '@ngrx/store';
 import { MapComponent, OverlayComponent } from 'ng-maps';
 import { Observable } from 'rxjs';
-import * as PropPaneActions from '../../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../../store/store.reducers';
+import { StoreService } from '../../../store/store.service';
 
 @Component({
   selector: 'app-bottomsheet',
@@ -29,12 +29,13 @@ export class BottomSheetComponent {
       map: MapComponent;
       overlay: OverlayComponent;
     },
-    readonly store: Store<fromStore.StoreState>
+    readonly store: Store<fromStore.StoreState>,
+    public storeService: StoreService
     ) {
         this.mapPane$ = this.store.select(state => state.mapPane.selectedModule);
         this._bottomSheetRef.afterDismissed()
         .subscribe(e => {
-            this.store.dispatch(new PropPaneActions.SetOpened(false));
+            this.storeService.setPropPaneOpened(false);
             }
         );
     }

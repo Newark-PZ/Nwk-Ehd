@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { Link } from '../../shared/classes/link.class';
 import * as RouteActions from './routes.actions';
 
@@ -11,16 +12,8 @@ const initialState: State = {
   routesArray: undefined
 };
 
-export const routesReducer = (
-  state = initialState,
-  action: RouteActions.routesActions
-) => {
-  switch (action.type) {
-    case RouteActions.SET_OFFICE:
-      return { ...state, office: action.payload };
-    case RouteActions.SET_ROUTE_ARRAY:
-      return { ...state, routesArray: action.payload };
-    default:
-      return state;
-  }
-};
+export const routesReducer = createReducer(
+  initialState,
+  on(RouteActions.setCurrentOffice, (state, action) => ({ ...state, office: action.payload })),
+  on(RouteActions.setRouteArray, (state, action) => ({ ...state, routesArray: action.payload }))
+);

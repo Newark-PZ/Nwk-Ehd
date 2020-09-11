@@ -3,8 +3,8 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import * as PropPaneActions from '../../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../../store/store.reducers';
+import { StoreService } from '../../../store/store.service';
 import { CartoSQLResp, ParcelFields, SearchItem } from '../../models';
 import { CartoService } from '../../services/carto.service';
 import { GoogleService } from '../../services/google.service';
@@ -52,11 +52,11 @@ export class PropSnackbarComponent {
     constructor(
         public google: GoogleService,
         private readonly store: Store<fromStore.StoreState>,
-        // private readonly getData: JsonDataService,
+        public storeService: StoreService,
         private readonly getCarto: CartoService,
         @Inject(MAT_SNACK_BAR_DATA) public data: {bottomsheet(): void; }
     ) {
-        this.basemap$ = this.store.select(state => state.layers.basemap);
+        this.basemap$ = this.store.select(state => state.map.basemap);
         this.sidebarOpened$ = this.store.select(state => state.propPane.opened);
         this.prop = this.store.select(state => state.propPane.selectedProp);
         this.propInfo = this.store.select(state => state.propPane.propInfo);
@@ -72,7 +72,7 @@ export class PropSnackbarComponent {
             .subscribe(p => blocklot = p.BLOCK_LOT);
         this.getPropInfo(blocklot.split('-')[0], blocklot.split('-')[1]);
         this.data.bottomsheet();
-        this.store.dispatch(new PropPaneActions.SetOpened(true));
+        this.storeService.setPropPaneOpened(true);
     }
     zoomToLoc(coords): void {
         this.store
@@ -90,7 +90,7 @@ export class PropSnackbarComponent {
         this.getCarto.getZoning('*', block, lot)
             .subscribe(
                 (data: CartoSQLResp) => {
-                    this.store.dispatch(new PropPaneActions.SetPropInfo(data.rows[0]));
+                    this.storeService.setPropPanePropInfo(data.rows[0]);
                 });
     }
 }

@@ -25,6 +25,6 @@ export class AreaPaneComponent {
         readonly store: Store<fromStore.StoreState>
         ) {
         this.geo = this.store.select(state => state.propPane.selectedGeo);
-        this.geoLayer = this.store.select(state => state.layers.geoLayer[0]);
+        this.geoLayer = this.store.select(state => state.map.geoLayer[0]);
     }
 }

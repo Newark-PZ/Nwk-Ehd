@@ -1,26 +1,20 @@
 import { Injectable } from '@angular/core';
-import {
-  RemoteMongoClient,
-  RemoteMongoDatabase,
-  Stitch,
-  StitchAppClient
-} from 'mongodb-stitch-browser-sdk';
+import { App, Credentials } from 'realm-web';
 import { SearchFeature } from '../models';
-// tslint:disable: object-literal-key-quotes
+
 @Injectable({
   providedIn: 'root'
 })
 export class MongodbService {
-  client: StitchAppClient = Stitch.initializeDefaultAppClient('covid19web-uwtgc');
-  db: RemoteMongoDatabase;
+  app: App = new App('covid19web-uwtgc');
   constructor() {
-    this.db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas')
-    .db('geos');
+    this.app.logIn(Credentials.anonymous())
+      .catch(err => { console.error('Authentiction Unsuccesful', err); });
   }
 
   async searchAddr(input: string, field = 'STREET_ADD'): Promise<Array<SearchFeature>> {
     const query = typeof input === 'string' ? input : '';
 
-    return  this.client.callFunction('Search', [query]) as Promise<Array<SearchFeature>>;
+    return  this.app.functions.callFunction('Search', query) as Promise<Array<SearchFeature>>;
   }
 }

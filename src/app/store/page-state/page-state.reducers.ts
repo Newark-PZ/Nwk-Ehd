@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { Hearing } from '../../shared/classes/hearing';
 import { BoardPage, FooterList, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
 import * as PageStateActions from './page-state.actions';
@@ -43,38 +44,19 @@ const initialState: State = {
   }
 };
 
-export const pageStateReducer = (
-  state = initialState,
-  action: PageStateActions.PageStateActions
-) => {
-  switch (action.type) {
-    case PageStateActions.SET_PAGE_HOME:
-      return { ...state, home: action.payload };
-    case PageStateActions.SET_PAGE_CURRENT:
-      return { ...state, currentPage: action.payload };
-    case PageStateActions.SET_PAGE_BOARD:
-      return { ...state, boardPage: action.payload };
-    case PageStateActions.SET_PAGE_STAFF:
-      return { ...state, staffPage: action.payload };
-    case PageStateActions.SET_BOARD_CPB:
-      return { ...state, boardCPB: action.payload };
-    case PageStateActions.SET_BOARD_EC:
-      return { ...state, boardEC: action.payload };
-    case PageStateActions.SET_BOARD_LHPC:
-      return { ...state, boardLHPC: action.payload };
-    case PageStateActions.SET_BOARD_ZBA:
-      return { ...state, boardZBA: action.payload };
-    case PageStateActions.SET_CPB_HEARINGS:
-      return { ...state, hearingsCPB: action.payload };
-    case PageStateActions.SET_EC_HEARINGS:
-      return { ...state, hearingsEC: action.payload };
-    case PageStateActions.SET_LHCP_HEARINGS:
-      return { ...state, hearingsLHPC: action.payload };
-    case PageStateActions.SET_ZBA_HEARINGS:
-      return { ...state, hearingsZBA: action.payload };
-    case PageStateActions.SET_FOOTER:
-      return { ...state, footer: action.payload };
-    default:
-      return state;
-  }
-};
+export const pageStateReducer = createReducer(
+  initialState,
+    on(PageStateActions.setPageHome, (state, action) => ({...state, home: action.payload })),
+    on(PageStateActions.setPageCurrent, (state, action) => ({...state, currentPage: action.payload  })),
+    on(PageStateActions.setPageBoard, (state, action) => ({...state, boardPage: action.payload  })),
+    on(PageStateActions.setPageStaff, (state, action) => ({...state, staffPage: action.payload  })),
+    on(PageStateActions.setBoardCPB, (state, action) => ({...state, boardCPB: action.payload  })),
+    on(PageStateActions.setBoardEC, (state, action) => ({...state, boardEC: action.payload  })),
+    on(PageStateActions.setBoardLHPC, (state, action) => ({...state, boardLHPC: action.payload  })),
+    on(PageStateActions.setBoardZBA, (state, action) => ({...state, boardZBA: action.payload  })),
+    on(PageStateActions.setCPBHearings, (state, action) => ({...state, hearingsCPB: action.payload  })),
+    on(PageStateActions.setECHearings, (state, action) => ({...state, hearingsEC: action.payload  })),
+    on(PageStateActions.setLHCPHearings, (state, action) => ({...state, hearingsLHPC: action.payload  })),
+    on(PageStateActions.setZBAHearings, (state, action) => ({...state, hearingsZBA: action.payload  })),
+    on(PageStateActions.setFooter, (state, action) => ({...state, footer: action.payload }))
+);

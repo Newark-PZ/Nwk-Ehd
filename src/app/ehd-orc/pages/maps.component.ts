@@ -19,11 +19,8 @@ import { BottomSheetComponent } from '../../shared/components/elements/bottomshe
 import { PropSnackbarComponent } from '../../shared/components/mapels/prop-snackbar.component';
 import { LegendItem } from '../../shared/models/layers.interface';
 import { rowExpand } from '../../shared/util/animations';
-import * as LayersActions from '../../store/layers/layers.actions';
-import * as MapPaneActions from '../../store/map-pane/map-pane.actions';
-import * as MapActions from '../../store/map/map.actions';
-import * as PropPaneActions from '../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../store/store.reducers';
+import { StoreService } from '../../store/store.service';
 
 @Component({
   animations: [rowExpand],
@@ -67,12 +64,13 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   legendSub$: Observable<Array<LegendItem>>;
 
   constructor(
+    public storeService: StoreService,
     readonly store: Store<fromStore.StoreState>,
     readonly snackBar: MatSnackBar,
     readonly layerservice: LayersService,
     readonly _bottomSheet: MatBottomSheet
   ) {
-    this.basemap$ = this.store.select(state => state.layers.basemap);
+    this.basemap$ = this.store.select(state => state.map.basemap);
     this.paneState$ = this.store.select(state => state.propPane.opened);
     this.legendSub$ = new Observable((observer: Observer<Array<LegendItem>>) => {
       setInterval(e => {
@@ -95,7 +93,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.map.instance.updateSize();
     this.map.instance.once('rendercomplete', () => {
-      this.store.dispatch(new MapActions.SetMap(this.map.instance));
+      this.storeService.setMap(this.map.instance);
       this.layerservice.initLayers()
         .forEach(
           (g, i) => i === 0 ? this.overlaylyrs = g : this.parcelLyrs = g
@@ -109,7 +107,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
         .getZoom()
         );
     this.parcelsSubscription = this.store
-      .select(state => state.layers.parcelLayers)
+      .select(state => state.map.parcelLayers)
       .pipe(take(1))
       .subscribe(layers => {
           if (this.parcelLyrs.length > 0) {
@@ -126,7 +124,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
           }
     });
     this.layersSubscription = this.store
-        .select(state => state.layers.overlays)
+        .select(state => state.map.overlays)
         .pipe(take(1))
         .subscribe(layers => {
           if (this.overlaylyrs.length > 0) {
@@ -157,7 +155,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
       { data: { map: this.map, overlay: this.overlay } })
       .afterOpened()
       .subscribe(() => {
-        this.store.dispatch(new MapPaneActions.SetSelectedModule(page));
+        this.storeService.setMapPaneSelectedModule(page);
       });
   }
   zoomChange(type: 'in' | 'out'): void {
@@ -180,7 +178,7 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
     );
   }
   setBasemap(): void {
-    this.store.dispatch(new LayersActions.ToggleBasemap());
+    this.storeService.toggleBasemap();
   }
   handleSingleClick(e: MapBrowserEvent): void {
     this.showLegend = false;
@@ -192,21 +190,21 @@ export class MapsComponent implements AfterViewInit, OnDestroy {
         .forDataAtCoordinateAndResolution(e.coordinate, viewResolution, data => {
         this.clicked.blocklot = data.blocklot || data.block_lot || '__-__';
         this.clicked.proploc = data.proploc || 'No Address/Non-Parcel';
-        this.store.dispatch(new PropPaneActions.SetSelectedProp(
+        this.storeService.setPropPaneSelectedProp(
           {
             BLOCK_LOT: this.clicked.blocklot,
             STREET_ADD: this.clicked.proploc,
             geometry: [e.coordinate[0], e.coordinate[1]]
           }
-          ));
+          );
       });
       } else if (l.getClassName() === 'geo') {
         const geofeat = (l as VectorLayer).getSource()
           .getFeaturesAtCoordinate(e.coordinate)[0]
           .getProperties();
-        this.store.dispatch(new PropPaneActions.SetSelectedGeo(
+        this.storeService.setPropPaneSelectedGeo(
           geofeat ? geofeat : ''
-        ));
+        );
       }
     });
     this.overlay.instance.setPosition(e.coordinate);

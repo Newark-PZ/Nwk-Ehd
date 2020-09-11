@@ -7,8 +7,8 @@ import { Link } from '../../shared/classes/link.class';
 import { VirtualHearingTab } from '../../shared/interfaces/other.interface';
 import { EventsService } from '../../shared/services/events.service';
 import { LinkService } from '../../shared/services/link.service';
-import * as PageStateActions from '../../store/page-state/page-state.actions';
 import * as fromStore from '../../store/store.reducers';
+import { StoreService } from '../../store/store.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -30,6 +30,7 @@ export class DashboardComponent {
   constructor(
     public sanitizer: DomSanitizer,
     readonly store: Store<fromStore.StoreState>,
+    public storeService: StoreService,
     readonly getEvents: EventsService,
     readonly route: ActivatedRoute,
     readonly linker: LinkService
@@ -38,12 +39,12 @@ export class DashboardComponent {
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.link = 'RC';
         this.currentLink = this.linker.rentcontrol[0];
-        this.store.dispatch(new PageStateActions.SetPageCurrent({
+        this.storeService.setPageCurrent({
           title: this.currentLink.title,
           icon: this.currentLink.icon,
           id: this.link,
           hideBottomBar: true
-        }));
+        });
       });
     }
   goToUrl(url: string): void {

@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
 import { take } from 'rxjs/operators';
-import * as ImageIndexActions from '../../../store/image-index/image-index.actions';
-import * as PageStateActions from '../../../store/page-state/page-state.actions';
 import * as fromStore from '../../../store/store.reducers';
+import { StoreService } from '../../../store/store.service';
 import { Hearing } from '../../classes/hearing';
 import { BoardPage } from '../../models/pages.model';
 import { EventsService } from '../../services/events.service';
@@ -22,7 +21,7 @@ import { ModalComponent } from '../elements/modal.component';
   templateUrl: './board-page.component.html'
 })
 
-export class BoardPageComponent implements OnDestroy {
+export class BoardPageComponent {
   link: string;
   boardPage$: Observable<BoardPage>;
   currentLanguage$: Observable<string>;
@@ -33,10 +32,10 @@ export class BoardPageComponent implements OnDestroy {
   boardPageButtons: Array<any> = [];
   nextevents: Observable<Array<Hearing>>;
   constructor(
-    readonly router: Router,
     readonly store: Store<fromStore.StoreState>,
     readonly route: ActivatedRoute,
     readonly linker: LinkService,
+    public storeService: StoreService,
     public dialog: MatDialog,
     readonly events: EventsService
   ) {
@@ -49,10 +48,10 @@ export class BoardPageComponent implements OnDestroy {
       this.link = params.get('id') || 'zba';
       this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
         setTimeout(() => {
-          if (this.events.hearings.filter(h => h.board === params.get('id')!.toUpperCase() && h.timeUntil >= 0).length < 0) {
+          if (this.events.hearings.filter(h => h.board === this.link.toUpperCase() && h.timeUntil >= 0).length < 0) {
             observer.next([]);
           } else {
-            observer.next(this.events.hearings.filter(h =>  h.board === params.get('id')!.toUpperCase() && h.timeUntil >= 0)
+            observer.next(this.events.hearings.filter(h =>  h.board === this.link.toUpperCase() && h.timeUntil >= 0)
             .slice(0, 2));
             observer.complete();
           }
@@ -72,14 +71,11 @@ export class BoardPageComponent implements OnDestroy {
         if (currentLang) {
           this.linker.getPage(this.link, currentLang)
           .subscribe(p => {
-            this.store.dispatch(new PageStateActions.SetPageBoard(p));
+            this.storeService.setPageBoard(p);
           });
         }
       });
     });
-  }
-  ngOnDestroy(): void {
-    this.store.dispatch(new ImageIndexActions.ResetImageIndex(0));
   }
   goTo(url?: string): void {
     if (url) {window.open(url, '_self'); }

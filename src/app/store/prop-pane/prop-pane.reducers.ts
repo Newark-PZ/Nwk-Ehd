@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { ParcelFields, SearchItem } from '../../shared/models';
 import * as PropPaneActions from './prop-pane.actions';
 
@@ -47,24 +48,12 @@ const initialState: State = {
   selectedGeo: undefined
 };
 
-export const propPaneReducer = (
-  state = initialState,
-  action: PropPaneActions.PropPaneActions
-) => {
-  switch (action.type) {
-    case PropPaneActions.TOGGLE:
-      return { ...state, opened: !state.opened };
-    case PropPaneActions.SET_OPENED:
-      return { ...state, opened: action.payload };
-    case PropPaneActions.SET_TITLE:
-      return { ...state, title: action.payload };
-    case PropPaneActions.SET_SELECTED_PROP:
-      return { ...state, selectedProp: action.payload };
-    case PropPaneActions.SET_SELECTED_GEO:
-      return { ...state, selectedGeo: action.payload };
-    case PropPaneActions.SET_PROP_INFO:
-      return { ...state, propInfo: action.payload };
-    default:
-      return state;
-  }
-};
+export const propPaneReducer = createReducer(
+  initialState,
+    on(PropPaneActions.toggle, state => ({ ...state, opened: !state.opened })),
+    on(PropPaneActions.setOpened, (state, action) => ({ ...state, opened: action.payload })),
+    on(PropPaneActions.setTitle, (state, action) => ({ ...state, title: action.payload })),
+    on(PropPaneActions.setSelectedProp, (state, action) => ({ ...state, selectedProp: action.payload })),
+    on(PropPaneActions.setSelectedGeo, (state, action) => ({ ...state, selectedGeo: action.payload })),
+    on(PropPaneActions.setPropInfo, (state, action) => ({ ...state, propInfo: action.payload }))
+);

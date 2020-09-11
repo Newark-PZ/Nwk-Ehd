@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import * as SidebarActions from './sidebar.actions';
 
 export interface State {
@@ -18,26 +19,13 @@ const initialState: State = {
   selectedModule: undefined
 };
 
-export const sidebarReducer = (
-  state = initialState,
-  action: SidebarActions.SidebarActions
-) => {
-  switch (action.type) {
-    case SidebarActions.TOGGLE:
-      return { ...state, opened: !state.opened };
-    case SidebarActions.SET_HAS_SIDEBAR:
-      return { ...state, hasSidebar: action.payload };
-    case SidebarActions.SET_MODE:
-      return { ...state, mode: action.payload };
-    case SidebarActions.SET_COLLAPSIBLE:
-      return { ...state, collapsible: action.payload };
-    case SidebarActions.SET_OPENED:
-      return { ...state, opened: action.payload };
-    case SidebarActions.SET_TITLE:
-      return { ...state, title: action.payload };
-    case SidebarActions.SET_SELECTED_MODULE:
-      return { ...state, selectedModule: action.payload };
-    default:
-      return state;
-  }
-};
+export const sidebarReducer = createReducer(
+  initialState,
+  on(SidebarActions.toggle, (state, action) => ({ ...state, opened: !state.opened })),
+  on(SidebarActions.setHasSidebar, (state, action) => ({ ...state, hasSidebar: action.payload })),
+  on(SidebarActions.setMode, (state, action) => ({ ...state, mode: action.payload })),
+  on(SidebarActions.setCollapsible, (state, action) => ({ ...state, collapsible: action.payload })),
+  on(SidebarActions.setOpened, (state, action) => ({ ...state, opened: action.payload })),
+  on(SidebarActions.setTitle, (state, action) => ({ ...state, title: action.payload })),
+  on(SidebarActions.setSelectedModule, (state, action) => ({ ...state, selectedModule: action.payload }))
+);

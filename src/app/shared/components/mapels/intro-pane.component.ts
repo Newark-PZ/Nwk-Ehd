@@ -6,9 +6,8 @@ import { MapComponent, OverlayComponent } from 'ng-maps';
 import { fromLonLat } from 'ol/proj';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import * as MapPaneActions from '../../../store/map-pane/map-pane.actions';
-import * as PropPaneActions from '../../../store/prop-pane/prop-pane.actions';
 import * as fromStore from '../../../store/store.reducers';
+import { StoreService } from '../../../store/store.service';
 import { CartoSQLResp, ParcelFields, SearchFeature } from '../../models';
 import { CartoService } from '../../services/carto.service';
 import { MongodbService } from '../../services/mongodb.service';
@@ -29,6 +28,7 @@ export class IntroPaneComponent implements OnInit {
     @Input() overlay: OverlayComponent;
     constructor(
       readonly searchData: MongodbService,
+      public storeService: StoreService,
       readonly store: Store<fromStore.StoreState>,
       readonly carto: CartoService
     ) {
@@ -63,23 +63,23 @@ export class IntroPaneComponent implements OnInit {
       }
     }
     goTo(value: MatAutocompleteSelectedEvent): any {
-        this.store.dispatch(new MapPaneActions.SetSelectedModule(2));
+        this.storeService.setMapPaneSelectedModule(2);
         this.handleClick(value.option.value);
     }
     handleClick(result: SearchFeature): void {
-        this.store.dispatch(new PropPaneActions.SetSelectedProp({
+        this.storeService.setPropPaneSelectedProp({
           STREET_ADD: result.Address,
           BLOCK_LOT: result.BlockLot,
           geometry: [fromLonLat([result.X, result.Y])[0], fromLonLat([result.X, result.Y])[1]]
-        }));
+        });
         this.overlay.instance.setPosition(
           [fromLonLat([result.X, result.Y])[0], fromLonLat([result.X, result.Y])[1]]
           );
         this.updatePropInfo(result.BlockLot.split('-')[0], result.BlockLot.split('-')[1]);
     }
-    updatePropInfo(block, lot): void {
+    updatePropInfo(block: string, lot: string): void {
         this.carto.getZoning('*', block, lot)
-            .subscribe((data: CartoSQLResp) => {this.store.dispatch(new PropPaneActions.SetPropInfo(data.rows[0])); });
+            .subscribe((data: CartoSQLResp) => {this.storeService.setPropPanePropInfo(data.rows[0]); });
     }
     switchSearchType(val: string): void {
       this.searchType = val;

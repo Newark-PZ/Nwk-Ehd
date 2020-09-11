@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import * as I18nActions from './i18n.actions';
 
 export interface State {
@@ -8,14 +9,7 @@ const initialState: State = {
   currentLanguage: 'en'
 };
 
-export const i18nReducer = (
-  state = initialState,
-  action: I18nActions.I18nActions
-) => {
-  switch (action.type) {
-    case I18nActions.SET_LANGUAGE:
-      return { ...state, currentLanguage: action.payload };
-    default:
-      return state;
-  }
-};
+export const i18nReducer = createReducer(
+  initialState,
+  on(I18nActions.setLanguage, (state, action) => ({ ...state, currentLanguage: action.payload }))
+);

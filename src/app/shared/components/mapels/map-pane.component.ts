@@ -55,9 +55,9 @@ export class MapPaneComponent implements OnInit {
         readonly storeService: StoreService,
         readonly store: Store<fromStore.StoreState>
         ) {
-            this.overlays = this.store.select(state => state.layers.overlays.filter(ol => ol.group === 'Overlays'));
-            this.geoLayer = this.store.select(state => state.layers.overlays.filter(ol => ol.group === 'Geographies'));
-            this.parcelLayers = this.store.select(state => state.layers.parcelLayers);
+            this.overlays = this.store.select(state => state.map.overlays.filter(ol => ol.group === 'Overlays'));
+            this.geoLayer = this.store.select(state => state.map.overlays.filter(ol => ol.group === 'Geographies'));
+            this.parcelLayers = this.store.select(state => state.map.parcelLayers);
             this.geographiesControl.valueChanges.subscribe( v => { this.getLayers.setGeo(v); });
             this.parcelsControl.valueChanges.subscribe( v => { this.getLayers.setParcelViz(v); });
     }

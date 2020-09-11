@@ -1,12 +1,11 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
-import * as HomePanelActions from '../../../store/home-panels/home-panels.actions';
-import * as ImageIndexActions from '../../../store/image-index/image-index.actions';
 import * as fromStore from '../../../store/store.reducers';
+import { StoreService } from '../../../store/store.service';
 import { Hearing } from '../../classes/hearing';
 import { HomePage } from '../../models';
 import { EventsService } from '../../services/events.service';
@@ -21,7 +20,7 @@ import { ModalComponent } from '../elements/modal.component';
   templateUrl: './home.component.html'
 })
 
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   @Input() homePage: HomePage;
   @Input() office: '/planningzoning' | '/rentcontrol' | '/ehd';
   nextevents: Observable<Array<Hearing>>;
@@ -29,13 +28,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     readonly router: Router,
     public breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
+    public storeService: StoreService,
     readonly store: Store<fromStore.StoreState>,
     readonly events: EventsService
     ) {
       this.expansionOpen$ = this.store.select(state => state.homePanel.open);
       this.expansionMulti$ = this.store.select(state => state.homePanel.multi);
       this.expansionDisabled$ = this.store.select(state => state.homePanel.toggleDisabled);
-      this.slideshowIndex$ = this.store.select(state => state.imageIndex.currentIndex);
       this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
         setInterval(() => {
           if (this.events.hearings.filter(h => h.timeUntil >= -19800000).length < 1) {
@@ -50,26 +49,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   expansionOpen$: Observable<boolean>;
   expansionMulti$: Observable<boolean>;
   expansionDisabled$: Observable<boolean>;
-  slideshowIndex$: Observable<number>;
-  slideshowIndex = 0;
-  slideshowEnd = false;
   ngOnInit(): void {
     this.breakpointObserver
     .observe(['(max-width: 767px)'])
     .subscribe((state: BreakpointState) => {
       if (state.matches) {
-        this.store.dispatch(new HomePanelActions.SetMulti(false));
-        this.store.dispatch(new HomePanelActions.SetOpen(false));
-        this.store.dispatch(new HomePanelActions.SetToggle(false));
+        this.storeService.setHomePanelMulti(false);
+        this.storeService.setHomePanelOpen(false);
+        this.storeService.setHomePanelToggle(false);
       } else {
-        this.store.dispatch(new HomePanelActions.SetMulti(true));
-        this.store.dispatch(new HomePanelActions.SetOpen(true));
-        this.store.dispatch(new HomePanelActions.SetToggle(true));
+        this.storeService.setHomePanelMulti(true);
+        this.storeService.setHomePanelOpen(true);
+        this.storeService.setHomePanelToggle(true);
       }
     });
-  }
-  ngOnDestroy(): void {
-    this.store.dispatch(new ImageIndexActions.ResetImageIndex(0));
   }
   filterCat(category): void {
     return category;

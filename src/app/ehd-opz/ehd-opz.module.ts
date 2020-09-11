@@ -11,8 +11,7 @@ import * as components from './index';
 @NgModule({
   declarations: [
     components.planningComponents,
-    components.planningZonesComponents,
-    components.boardsComponents
+    components.planningZonesComponents
   ],
   imports: [
     CommonModule,

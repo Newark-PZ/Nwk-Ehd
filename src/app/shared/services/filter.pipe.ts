@@ -16,7 +16,7 @@ export class FilterCatPipe implements PipeTransform {
     // kept, false will be filtered out
     return items.filter(
         item => {
-            let filterRule;
+            let filterRule: any;
             // tslint:disable-next-line: prefer-conditional-expression
             if ((item as Staff).Class) { filterRule = (item as Staff).Class.indexOf(filter) !== -1;
             } else if ((item as HomeCard).category) { filterRule = (item as HomeCard).category.indexOf(filter) !== -1;

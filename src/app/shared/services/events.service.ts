@@ -8,7 +8,7 @@ import * as fromStore from '../../store/store.reducers';
 import { Hearing } from '../classes/hearing';
 import { DriveSearch, GSheetsValuesResponse } from '../models';
 /**
- * Service to query data from NZLUR Carto
+ * Service to dynamically get Hearing Information
  * @method initHearings() Set the initial hearings
  */
 @Injectable({
@@ -53,7 +53,7 @@ export class EventsService {
                     .then( r => {
                             this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0].agenda =
                             r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
-                            this.store.dispatch(new HearingActions.SetTabCPB({
+                            this.store.dispatch(HearingActions.setTabCPB({
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                                 data: r.length > 0 ? r : [],
                                 event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0],
@@ -66,7 +66,7 @@ export class EventsService {
                     .then( r => {
                             this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -19800000)[0].agenda =
                                 r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
-                            this.store.dispatch(new HearingActions.SetTabLHPC({
+                            this.store.dispatch(HearingActions.setTabLHPC({
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                                 data: r.length > 0 ? r : [],
                                 event: this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -19800000)[0],
@@ -81,7 +81,7 @@ export class EventsService {
                             r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
                         this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000)[0].fof =
                             r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0] ? r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0].link : '';
-                        this.store.dispatch(new HearingActions.SetTabZBA({
+                        this.store.dispatch(HearingActions.setTabZBA({
                             agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                             data: r.length > 0 ? r : [],
                             event: this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000)[0],
@@ -95,7 +95,7 @@ export class EventsService {
                     .then( r => {
                             this.hearings.filter(h => h.board === 'RC' && h.timeUntil >= -19800000)[0].agenda =
                                 r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
-                            this.store.dispatch(new HearingActions.SetTabRC({
+                            this.store.dispatch(HearingActions.setTabRC({
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
                                 data: r.length > 0 ? r : [],
                                 event: this.hearings.filter(h => h.board === 'RC' && h.timeUntil >= -19800000)[0],

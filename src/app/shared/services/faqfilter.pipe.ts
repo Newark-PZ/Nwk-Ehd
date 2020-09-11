@@ -1,8 +1,9 @@
-import { PipeTransform, Pipe } from '@angular/core';
-import { HomeCard, Faq } from '../interfaces/other.interface';
+import { Pipe, PipeTransform } from '@angular/core';
+import { Faq, HomeCard } from '../models/pages.model';
 
 @Pipe({
     name: 'FaqCat',
+    // tslint:disable-next-line: no-pipe-impure
     pure: false
 })
 export class FaqCatPipe implements PipeTransform {

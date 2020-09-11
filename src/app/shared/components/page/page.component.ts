@@ -1,15 +1,12 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as HomePanelActions from '../../../store/home-panels/home-panels.actions';
 import * as fromStore from '../../../store/store.reducers';
+import { StoreService } from '../../../store/store.service';
 import { Page } from '../../models/pages.model';
-import { AirService } from '../../services/air.service';
 import { SnackbarComponent } from '../elements/snackbar.component';
-
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-page',
@@ -23,9 +20,8 @@ export class PageComponent implements OnInit, OnChanges {
   expansionMulti$: Observable<boolean>;
   expansionDisabled$: Observable<boolean>;
   constructor(
-    public airData: AirService,
-    readonly router: Router,
     public breakpointObserver: BreakpointObserver,
+    public storeService: StoreService,
     readonly store: Store<fromStore.StoreState>,
     readonly _snackBar: MatSnackBar
     ) {
@@ -38,13 +34,13 @@ export class PageComponent implements OnInit, OnChanges {
     .observe(['(max-width: 767px)'])
     .subscribe((state: BreakpointState) => {
       if (state.matches) {
-        this.store.dispatch(new HomePanelActions.SetMulti(false));
-        this.store.dispatch(new HomePanelActions.SetOpen(false));
-        this.store.dispatch(new HomePanelActions.SetToggle(false));
+        this.storeService.setHomePanelMulti(false);
+        this.storeService.setHomePanelOpen(false);
+        this.storeService.setHomePanelToggle(false);
       } else {
-        this.store.dispatch(new HomePanelActions.SetMulti(true));
-        this.store.dispatch(new HomePanelActions.SetOpen(true));
-        this.store.dispatch(new HomePanelActions.SetToggle(true));
+        this.storeService.setHomePanelMulti(true);
+        this.storeService.setHomePanelOpen(true);
+        this.storeService.setHomePanelToggle(true);
       }
     });
   }

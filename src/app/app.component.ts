@@ -6,10 +6,8 @@ import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Link } from './shared/classes/link.class';
 import { EventsService } from './shared/services/events.service';
-import * as SidebarActions from './store/sidebar/sidebar.actions';
-import * as RightSidebarActions from './store/sidebarRight/sidebar.actions';
-import * as fromStoreActions from './store/store.actions';
 import * as fromStore from './store/store.reducers';
+import { StoreService } from './store/store.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -31,7 +29,8 @@ export class AppComponent implements OnDestroy, OnInit {
   constructor(
     readonly store: Store<fromStore.StoreState>,
     readonly breakpointObserver: BreakpointObserver,
-    readonly events: EventsService
+    readonly events: EventsService,
+    public storeService: StoreService
   ) {
     this.sidebarOpened$ = this.store.select(state => state.sidebar.opened);
     this.sidebarMode$ = this.store.select(state => state.sidebar.mode);
@@ -46,15 +45,15 @@ export class AppComponent implements OnDestroy, OnInit {
         if (state.matches) {this.mayorDisplay = true; this.deptDisplay = true;
         } else {this.mayorDisplay = false; this.deptDisplay = false; }
     });
-    this.store.dispatch(new fromStoreActions.ClearState());
+    this.storeService.resetStoreState();
     this.events.initHearings();
   }
   toggleSidebar(): void {
-    this.store.dispatch(new SidebarActions.Toggle());
+    this.storeService.toggleSidebar();
   }
 
   toggleRightSidebar(): void {
-    this.store.dispatch(new RightSidebarActions.Toggle());
+    this.storeService.toggleRightSidebar();
   }
 
   ngOnDestroy(): void {
@@ -68,7 +67,7 @@ export class AppComponent implements OnDestroy, OnInit {
       .pipe(take(1))
       .subscribe(opened => {
         if (opened !== evt) {
-          this.store.dispatch(new SidebarActions.Toggle());
+          this.storeService.toggleSidebar();
           this.treeControl.collapseAll();
         }
       });
@@ -79,7 +78,7 @@ export class AppComponent implements OnDestroy, OnInit {
       .pipe(take(1))
       .subscribe(opened => {
         if (opened !== evt) {
-          this.store.dispatch(new RightSidebarActions.Toggle());
+          this.storeService.toggleRightSidebar();
         }
       });
   }

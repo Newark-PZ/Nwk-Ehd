@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { JsonDataService } from '../../shared';
 import { BoardPage, HomeCard } from '../../shared/models';
-import * as PageStateActions from '../../store/page-state/page-state.actions';
 import * as fromStore from '../../store/store.reducers';
+import { StoreService } from '../../store/store.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -17,7 +17,11 @@ import * as fromStore from '../../store/store.reducers';
 export class RCBoardComponent implements OnInit {
   activeFragment;
   boardMembers$: Observable<Array<HomeCard>>;
-  constructor(readonly getData: JsonDataService, readonly store: Store<fromStore.StoreState>) {
+  constructor(
+    readonly getData: JsonDataService,
+    readonly store: Store<fromStore.StoreState>,
+    public storeService: StoreService
+    ) {
       this.boardMembers$ = this.store.select(state => state.pageState.boardZBA);
   }
   pageDetails: BoardPage = {
@@ -90,7 +94,7 @@ export class RCBoardComponent implements OnInit {
         }));
       }
     )
-    .then(() => {this.store.dispatch(new PageStateActions.SetBoardZBA(buttons)); })
+    .then(() => {this.storeService.setBoardZBA(buttons); })
     .catch(err => { console.error(err); });
 
     return buttons;

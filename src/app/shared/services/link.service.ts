@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as RoutesArrayActions from '../../store/routes/routes.actions';
-import * as fromStore from '../../store/store.reducers';
+import { StoreService } from '../../store/store.service';
 import { Link } from '../classes/link.class';
 import { AppPage, BoardPage, HomePage, Page, StaffPage } from '../models';
 
@@ -14,7 +12,7 @@ import { AppPage, BoardPage, HomePage, Page, StaffPage } from '../models';
 export class LinkService {
   constructor(
     public http: HttpClient,
-    readonly store: Store<fromStore.StoreState>
+    public storeService: StoreService
   ) {}
   currentOffice: string;
   ehd = [
@@ -74,8 +72,8 @@ export class LinkService {
         this.currentOffice = office;
         break;
     }
-    this.store.dispatch(new RoutesArrayActions.SetCurrentOffice(office));
-    this.store.dispatch(new RoutesArrayActions.SetRouteArray(officeLinks));
+    this.storeService.setCurrentOffice(office);
+    this.storeService.setRoutesArray(officeLinks);
 
     return officeLinks;
   }

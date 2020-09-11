@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import * as HomePanelActions from './home-panels.actions';
 
 export interface State {
@@ -12,18 +13,9 @@ const initialState: State = {
   toggleDisabled: false
 };
 
-export const homePanelReducer = (
-  state = initialState,
-  action: HomePanelActions.HomePanelActions
-) => {
-  switch (action.type) {
-    case HomePanelActions.SET_EXPANSION_OPEN:
-      return { ...state, open: action.payload };
-    case HomePanelActions.SET_EXPANSION_MULTI:
-      return { ...state, multi: action.payload };
-    case HomePanelActions.SET_EXPANSION_TOGGLE:
-      return { ...state, toggleDisabled: action.payload };
-    default:
-      return state;
-  }
-};
+export const homePanelReducer = createReducer(
+  initialState,
+  on(HomePanelActions.setOpen, (state, action) => ({ ...state, open: action.payload })),
+  on(HomePanelActions.setMulti, (state, action) => ({ ...state, multi: action.payload })),
+  on(HomePanelActions.setToggle, (state, action) => ({ ...state, toggleDisabled: action.payload }))
+);

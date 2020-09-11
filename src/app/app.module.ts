@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Event, Router, RouterModule, Scroll } from '@angular/router';
-import { MetaReducer, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 
 import { APP_ROUTES } from './app-routing';
@@ -15,9 +15,7 @@ import { EhdMainComponent } from './ehd-main/ehd-main.component';
 import { EhdOpzComponent } from './ehd-opz/ehd-opz.component';
 import { EhdOrcComponent } from './ehd-orc/ehd-orc.component';
 import { Newark360Component } from './newark360/newark360.component';
-import { clearState, storeReducers, StoreState } from './store/store.reducers';
-
-export const metaReducers: Array<MetaReducer<StoreState>> = [clearState];
+import { storeReducers } from './store/store.reducers';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -35,7 +33,6 @@ export const metaReducers: Array<MetaReducer<StoreState>> = [clearState];
       scrollPositionRestoration: 'enabled'
     }),
     StoreModule.forRoot(storeReducers, {
-      metaReducers,
       runtimeChecks: {
         strictStateImmutability: false,
         strictActionImmutability: false,
