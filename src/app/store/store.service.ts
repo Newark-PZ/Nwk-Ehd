@@ -4,7 +4,7 @@ import { Map } from 'ol';
 import { Observable } from 'rxjs';
 import { Link } from '../shared/classes/link.class';
 import { MapLayer } from '../shared/classes/maplayer';
-import { HomeCard, ParcelFields, SearchItem } from '../shared/models';
+import { FooterList, HomeCard, ParcelFields, SearchItem } from '../shared/models';
 import { LegendItem } from '../shared/models/layers.interface';
 import * as StoreActions from '../store/store.actions';
 import * as fromStore from '../store/store.reducers';
@@ -139,6 +139,9 @@ export class StoreService {
     }
     setBoardZBA(boardmembers: Array<HomeCard>): void {
         this.store.dispatch(new PageStateActions.SetBoardZBA(boardmembers));
+    }
+    setFooter(officeLinks: FooterList): void {
+        this.store.dispatch(new PageStateActions.SetFooter(officeLinks));
     }
     /*
     * Prop Pane state functions

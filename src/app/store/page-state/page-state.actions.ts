@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Hearing } from '../../shared/classes/hearing';
-import { BoardPage, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
+import { BoardPage, FooterList, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
 
 export const SET_PAGE_HOME = '[page-state] Set Home Page';
 export const SET_PAGE_CURRENT = '[page-state] Set Current Page';
@@ -14,7 +14,7 @@ export const SET_CPB_HEARINGS = '[page-state] Set CPB Hearings';
 export const SET_EC_HEARINGS = '[page-state] Set EC Hearings';
 export const SET_LHCP_HEARINGS = '[page-state] Set LHCP Hearings';
 export const SET_ZBA_HEARINGS = '[page-state] Set ZBA Hearings';
-
+export const SET_FOOTER = '[page-state] Set Footer';
 // tslint:disable: max-classes-per-file
 export class SetPageHome implements Action {
   readonly type = SET_PAGE_HOME;
@@ -64,6 +64,10 @@ export class SetZBAHearings implements Action {
   readonly type = SET_ZBA_HEARINGS;
   constructor(public payload: Array<Hearing>) {}
 }
+export class SetFooter implements Action {
+  readonly type = SET_FOOTER;
+  constructor(public payload: FooterList) {}
+}
 
 export type PageStateActions =
   | SetPageHome
@@ -77,4 +81,5 @@ export type PageStateActions =
   | SetCPBHearings
   | SetECHearings
   | SetLHCPHearings
-  | SetZBAHearings;
+  | SetZBAHearings
+  | SetFooter;

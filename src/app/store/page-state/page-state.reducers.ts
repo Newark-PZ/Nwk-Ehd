@@ -1,5 +1,5 @@
 import { Hearing } from '../../shared/classes/hearing';
-import { BoardPage, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
+import { BoardPage, FooterList, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
 import * as PageStateActions from './page-state.actions';
 
 export interface State {
@@ -15,6 +15,7 @@ export interface State {
   hearingsEC: Array<Hearing>;
   hearingsLHPC: Array<Hearing>;
   hearingsZBA: Array<Hearing>;
+  footer: FooterList;
 }
 
 const initialState: State = {
@@ -29,7 +30,17 @@ const initialState: State = {
   hearingsCPB: [],
   hearingsEC: [],
   hearingsLHPC: [],
-  hearingsZBA: []
+  hearingsZBA: [],
+  footer: {
+    text: 'EHD Main Office',
+    path: ['/', 'ehd'],
+    children: [
+      {
+        text: 'Home',
+        path: ['/', 'ehd', 'home']
+      }
+    ]
+  }
 };
 
 export const pageStateReducer = (
@@ -61,6 +72,8 @@ export const pageStateReducer = (
       return { ...state, hearingsLHPC: action.payload };
     case PageStateActions.SET_ZBA_HEARINGS:
       return { ...state, hearingsZBA: action.payload };
+    case PageStateActions.SET_FOOTER:
+      return { ...state, footer: action.payload };
     default:
       return state;
   }

@@ -86,7 +86,8 @@ const globalRippleConfig: RippleGlobalOptions = {
 };
 @NgModule({
   declarations: [
-    ...index.components
+    ...index.components,
+    ...index.pipes
   ],
   exports: [
     FormsModule,

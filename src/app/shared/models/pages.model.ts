@@ -301,3 +301,11 @@ export interface Faq {
       $date: string;
     };
   }
+export interface FooterList {
+  text: string;
+  path?: string | Array<string>;
+  url?: string;
+  params?: object;
+  disabled?: boolean;
+  children?: Array<FooterList>;
+}

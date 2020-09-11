@@ -4,7 +4,17 @@ import { BottomSheetComponent } from './components/elements/bottomsheet.componen
 import { EventComponent } from './components/elements/event.component';
 import { ModalComponent } from './components/elements/modal.component';
 import { SnackbarComponent } from './components/elements/snackbar.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { FileComponent } from './components/filelist/file.component';
+import { FileListControlComponent } from './components/filelist/filelist-control.component';
+import { FileListComponent } from './components/filelist/filelist.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { AreaPaneComponent } from './components/mapels/area-pane.component';
+import { IntroPaneComponent } from './components/mapels/intro-pane.component';
+import { MapPaneComponent } from './components/mapels/map-pane.component';
+import { PropPaneComponent } from './components/mapels/prop-pane.component';
+import { PropSnackbarComponent } from './components/mapels/prop-snackbar.component';
 import { PageComponent } from './components/page/page.component';
 import { SidebarButtonComponent } from './components/sidebar-button/sidebar-button.component';
 import { StaffComponent } from './components/staff/staff.component';
@@ -15,37 +25,27 @@ import { JsonDataService } from './services/get-json-data.service';
 import { GetRegsService } from './services/getregs.service';
 import { GoogleService } from './services/google.service';
 
-import { FaqComponent } from './components/faq/faq.component';
-import { FileComponent } from './components/filelist/file.component';
-import { FileListControlComponent } from './components/filelist/filelist-control.component';
-import { FileListComponent } from './components/filelist/filelist.component';
-import { AreaPaneComponent } from './components/mapels/area-pane.component';
-import { IntroPaneComponent } from './components/mapels/intro-pane.component';
-import { MapPaneComponent } from './components/mapels/map-pane.component';
-import { PropPaneComponent } from './components/mapels/prop-pane.component';
-import { PropSnackbarComponent } from './components/mapels/prop-snackbar.component';
-
 export const components = [
-    HomeComponent,
-    PageComponent,
     ApplicationsComponent,
+    AreaPaneComponent,
     BoardPageComponent,
     BottomSheetComponent,
-    ModalComponent,
-    SidebarButtonComponent,
-    SnackbarComponent,
-    StaffComponent,
-    FilterCatPipe,
-    PropSnackbarComponent,
-    PropPaneComponent,
-    MapPaneComponent,
-    IntroPaneComponent,
-    AreaPaneComponent,
     EventComponent,
     FaqComponent,
     FileComponent,
     FileListComponent,
-    FileListControlComponent
+    FileListControlComponent,
+    FooterComponent,
+    HomeComponent,
+    IntroPaneComponent,
+    MapPaneComponent,
+    ModalComponent,
+    PageComponent,
+    PropPaneComponent,
+    PropSnackbarComponent,
+    SidebarButtonComponent,
+    SnackbarComponent,
+    StaffComponent
 ];
 
 export const services = [
@@ -54,6 +54,10 @@ export const services = [
     JsonDataService,
     GetRegsService,
     GoogleService
+];
+
+export const pipes = [
+    FilterCatPipe
 ];
 
 export * from './components/applications/applications.component';
@@ -65,6 +69,7 @@ export * from './components/faq/faq.component';
 export * from './components/filelist/file.component';
 export * from './components/filelist/filelist.component';
 export * from './components/filelist/filelist-control.component';
+export * from './components/footer/footer.component';
 export * from './components/home/home.component';
 export * from './components/mapels/area-pane.component';
 export * from './components/mapels/intro-pane.component';

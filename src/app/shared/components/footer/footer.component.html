@@ -1,0 +1,55 @@
+<footer>
+    <a class='footer-top' (click)="scrollToTop()">Scroll to Top</a>
+    <section class="footer-lists">
+        <div *ngFor="let list of linkLists">
+            <a class="list-header"
+                [ngClass]="list.disabled ? 'disabled' : ''" (click)="goTo(list.url)"
+                [routerLink]="list.disabled ? undefined : list.path" [queryParams]="list.params">
+                    {{ list.text }}
+            </a>
+            <div class="list">
+                <a class="list-link" *ngFor="let child of list.children"
+                [ngClass]="child.disabled ? 'disabled' : ''" (click)="goTo(child.url)"
+                [routerLink]="child.disabled ? undefined : child.path" [queryParams]="child.params">
+                    {{ child.text }}
+                </a>
+            </div>
+        </div>
+        <div *ngIf="(officeLink$ | async) as list">
+            <a class="list-header"
+                [ngClass]="list.disabled ? 'disabled' : ''" (click)="goTo(list.url)"
+                [routerLink]="list.disabled ? undefined : list.path" [queryParams]="list.params">
+                    {{ list.text }}
+            </a>
+            <div class="list">
+                <a class="list-link" *ngFor="let child of list.children"
+                [ngClass]="child.disabled ? 'disabled' : ''" (click)="goTo(child.url)"
+                [routerLink]="child.disabled ? undefined : child.path" [queryParams]="child.params">
+                    {{ child.text }}
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="footer-bottom">
+        <div class="city_dept">
+            <img src="assets/img/city-of-newark-logo-white.png">
+            <h3>
+                <span class="city">City of Newark</span><br>
+                <span class="dept">Economic & Housing Development</span>
+            </h3>
+        </div>
+        <div class="contact">
+            <h3>Contact Info</h3>
+            <div class="contact_buttons">
+                <a href="tel:+19737336575">
+                    <mat-icon>call</mat-icon>
+                    (973) 733-6575
+                </a>
+                <a href="mailto:ehd@ci.newark.nj.us">
+                    <mat-icon>email</mat-icon>
+                    ehd@ci.newark.nj.us
+                </a>
+            </div>
+        </div>
+    </section>
+</footer>

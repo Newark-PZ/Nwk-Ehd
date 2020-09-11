@@ -51,7 +51,7 @@ export class FileListComponent  implements AfterViewInit {
       }
     }
     groupSelected(group: DocGroup): void {
-      // tslint:disable: no-non-null-assertion
+      // tslint:disable: no-string-literal
       if (group !== this.selectedGroup) { this.selectedGroup = group; }
       this.airData.getDocs(group.group === 'res' ? 'Resources' : group.group, `view=${group.year ? group.year : ''}${group.year ? ' ' : ''}${group.type}`)
       .subscribe(
