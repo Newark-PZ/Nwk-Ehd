@@ -12,20 +12,10 @@ import { StaffPage } from '../../shared/models';
 })
 
 export class OpzStaffComponent implements OnInit {
-  activeFragment;
-  activeViewName;
+  activeFragment: string;
+  activeViewName: string;
   data: Array<any> = [];
-  pageDetails: StaffPage = {
-    id: 'staff',
-    title: 'Our Staff',
-    icon: 'people',
-    subtitle: this.activeFragment,
-    introText: '',
-    contentIntro: {text: 'This is our staff'},
-    searchDisplay: 'none',
-    staffClasses: ['leadership', 'planning', 'support'],
-    buttons: []
-  };
+  pageDetails: StaffPage;
 
   constructor(
     readonly clipboard: Clipboard,
@@ -40,18 +30,29 @@ export class OpzStaffComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeFragment = this.router.url.slice(this.router.url.lastIndexOf('/') + 1);
+    this.pageDetails = {
+      id: 'staff',
+      title: 'Our Staff',
+      icon: 'people',
+      subtitle: this.activeFragment,
+      introText: '',
+      contentIntro: {text: 'This is our staff'},
+      searchDisplay: 'none',
+      staffClasses: ['leadership', 'planning', 'support'],
+      buttons: []
+    };
   }
-  copySuccess(object): any {
+  copySuccess(object: string): any {
     this._snackBar.openFromComponent(SnackbarComponent, {
       panelClass: 'mat-snackbar',
       duration: 500,
       data: { message: 'Copied!', detail: object }
     });
   }
-  getTab(view): any {
+  getTab(view: string): any {
     this.activeViewName = view;
   }
-  copyVal(val, object): any {
+  copyVal(val: string, object: string): any {
     this.clipboard.copy(val);
     this.copySuccess(object);
   }

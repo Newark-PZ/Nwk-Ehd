@@ -1,8 +1,9 @@
-import { Input, OnInit } from '@angular/core';
+import { Input, OnInit, Directive } from '@angular/core';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import { FeatureComponent } from '../feature.component';
 import { MapComponent } from '../map.component';
 
+@Directive()
 export abstract class SimpleGeometryComponent implements OnInit {
   instance: SimpleGeometry;
   componentType = 'simple-geometry';

@@ -11,7 +11,7 @@ import { buildingTypes, getDimensions } from '../../diagrams/models/diagrams.mod
 export class OpzZoningResComponent implements OnInit {
   @Input() dimensions: any;
   @Input() typeNumber: number;
-  @Input() zone: string;
+  @Input() zone = '';
   @Input() bldgTypes = buildingTypes(this.zone);
   @Input() value;
   @Input() items: Array<DataItem> = [];

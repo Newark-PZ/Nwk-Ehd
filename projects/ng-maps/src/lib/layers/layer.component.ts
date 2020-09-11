@@ -1,9 +1,10 @@
-import { Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Input, OnChanges, OnDestroy, OnInit, SimpleChanges, Directive } from '@angular/core';
 import Event from 'ol/events/Event';
 import { Extent } from 'ol/extent';
 import { MapComponent } from '../map.component';
 import { LayerGroupComponent } from './layergroup.component';
 
+@Directive()
 export abstract class LayerComponent implements OnInit, OnChanges, OnDestroy {
   instance: any;
   componentType = 'layer';

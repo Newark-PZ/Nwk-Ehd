@@ -5,7 +5,6 @@ import {
   Stitch,
   StitchAppClient
 } from 'mongodb-stitch-browser-sdk';
-import { isString } from 'util';
 import { SearchFeature } from '../models';
 // tslint:disable: object-literal-key-quotes
 @Injectable({
@@ -20,7 +19,7 @@ export class MongodbService {
   }
 
   async searchAddr(input: string, field = 'STREET_ADD'): Promise<Array<SearchFeature>> {
-    const query = isString(input) ? input : '';
+    const query = typeof input === 'string' ? input : '';
 
     return  this.client.callFunction('Search', [query]) as Promise<Array<SearchFeature>>;
   }

@@ -1,8 +1,9 @@
-import { Input, OnDestroy } from '@angular/core';
+import { Input, OnDestroy, Directive } from '@angular/core';
 import { Source } from 'ol/source';
 
 import { LayerComponent } from '../layers/layer.component';
 
+@Directive()
 export abstract class SourceComponent implements OnDestroy {
   instance: Source;
   componentType = 'source';

@@ -40,6 +40,9 @@
         "interface-over-type-literal": true,
         "function-constructor": true,
         "no-parameter-reassignment": true,
+        "deprecation": {
+          "severity": "warning"
+        },
         "no-void-expression": true,
         "invalid-void": [
             true,
@@ -72,10 +75,7 @@
         "prefer-const": true,
         "no-var-keyword": true,
         "no-shadowed-variable": [
-            true,
-            {
-                "temporalDeadZone": false
-            }
+            true
         ],
         "one-variable-per-declaration": [
             true,
