@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FaqPage } from '../../shared/models/pages.model';
+import { Page } from '../../shared/models/pages.model';
 
 @Component({
   selector: 'app-planningzoning-faq',
@@ -7,8 +7,8 @@ import { FaqPage } from '../../shared/models/pages.model';
 })
 
 export class PlanningFAQComponent {
-  faqPage: FaqPage = {
-    type: 'Tenant',
+  faqPage: Page = {
+    id: 'Tenant',
     icon: 'people',
     title: 'Newark Tenants FAQs'
   };

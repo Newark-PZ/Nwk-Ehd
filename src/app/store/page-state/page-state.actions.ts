@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Hearing } from '../../shared/classes/hearing';
-import { BoardPage, FooterList, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
+import { BoardPage, FooterList, HomeCard, HomePage, Page } from '../../shared/models';
 
 export const setPageHome = createAction(
   '[Page State] Set Page Home',
@@ -13,10 +13,6 @@ export const setPageCurrent = createAction(
 export const setPageBoard = createAction(
   '[Page State] Set Page Board',
   props<{ payload: BoardPage }>()
-);
-export const setPageStaff = createAction(
-  '[Page State] Set Page Staff',
-  props<{ payload: StaffPage }>()
 );
 export const setBoardCPB = createAction(
   '[Page State] Set Board CPB',

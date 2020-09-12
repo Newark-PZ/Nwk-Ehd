@@ -1,13 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { Hearing } from '../../shared/classes/hearing';
-import { BoardPage, FooterList, HomeCard, HomePage, Page, StaffPage } from '../../shared/models';
+import { BoardPage, FooterList, HomeCard, HomePage, Page } from '../../shared/models';
 import * as PageStateActions from './page-state.actions';
 
 export interface State {
   home: HomePage;
   currentPage: Page;
   boardPage: BoardPage;
-  staffPage: StaffPage;
   boardCPB: Array<HomeCard>;
   boardEC: Array<HomeCard>;
   boardLHPC: Array<HomeCard>;
@@ -23,7 +22,6 @@ const initialState: State = {
   home: {id: 'home', buttonCategories: [], contentIntro: { text: ''}},
   currentPage: {id: 'home', buttonCategories: [], contentIntro: { text: ''}, hideBottomBar: true, title: ''},
   boardPage: {id: 'home', buttonCategories: [], contentIntro: { text: ''}, title: '', buttons: []},
-  staffPage: {id: 'home', contentIntro: { text: ''}, buttons: [], title: ''},
   boardCPB: [],
   boardEC: [],
   boardLHPC: [],
@@ -49,7 +47,6 @@ export const pageStateReducer = createReducer(
     on(PageStateActions.setPageHome, (state, action) => ({...state, home: action.payload })),
     on(PageStateActions.setPageCurrent, (state, action) => ({...state, currentPage: action.payload  })),
     on(PageStateActions.setPageBoard, (state, action) => ({...state, boardPage: action.payload  })),
-    on(PageStateActions.setPageStaff, (state, action) => ({...state, staffPage: action.payload  })),
     on(PageStateActions.setBoardCPB, (state, action) => ({...state, boardCPB: action.payload  })),
     on(PageStateActions.setBoardEC, (state, action) => ({...state, boardEC: action.payload  })),
     on(PageStateActions.setBoardLHPC, (state, action) => ({...state, boardLHPC: action.payload  })),

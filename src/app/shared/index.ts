@@ -20,6 +20,7 @@ import { SidebarButtonComponent } from './components/sidebar-button/sidebar-butt
 import { StaffComponent } from './components/staff/staff.component';
 import { AirService } from './services/air.service';
 import { CartoService } from './services/carto.service';
+import { FaqCatPipe } from './services/faqfilter.pipe';
 import { FilterCatPipe } from './services/filter.pipe';
 import { JsonDataService } from './services/get-json-data.service';
 import { GetRegsService } from './services/getregs.service';
@@ -57,6 +58,7 @@ export const services = [
 ];
 
 export const pipes = [
+    FaqCatPipe,
     FilterCatPipe
 ];
 
@@ -82,6 +84,7 @@ export * from './components/staff/staff.component';
 
 export * from './services/air.service';
 export * from './services/carto.service';
+export * from './services/faqfilter.pipe';
 export * from './services/filter.pipe';
 export * from './services/get-json-data.service';
 export * from './services/getregs.service';

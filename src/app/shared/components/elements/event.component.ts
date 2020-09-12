@@ -47,8 +47,8 @@ export interface EventTableRow {
 })
 export class EventComponent implements OnInit, OnChanges {
     @Input() board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
-    @Input() agenda: string;
-    @Input() fofId: string;
+    @Input() agenda = '';
+    @Input() fofId = '';
     @Input() type: 'popup' | undefined;
     cols = ['section', 'content'];
     hearing: Hearing;
@@ -56,12 +56,7 @@ export class EventComponent implements OnInit, OnChanges {
     @Output() readonly eventClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
     constructor(readonly router: Router, readonly events: EventsService) {}
     ngOnInit(): void {
-        if (!this.agenda) {
-            this.agenda = '';
-        }
-        if (!this.fofId) {
-            this.fofId = '';
-        }
+
         this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
@@ -140,4 +135,3 @@ export class EventComponent implements OnInit, OnChanges {
         return setRows(idno, hearingid);
     }
 }
-// &ensp;&vert;&ensp;<b>Passcode</b>: 090029

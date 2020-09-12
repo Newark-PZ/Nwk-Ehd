@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { JsonDataService, SnackbarComponent } from '../../shared';
-import { StaffPage } from '../../shared/models';
+import { Page } from '../../shared/models';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Default,
@@ -15,7 +15,7 @@ export class OpzStaffComponent implements OnInit {
   activeFragment: string;
   activeViewName: string;
   data: Array<any> = [];
-  pageDetails: StaffPage;
+  pageDetails: Page;
 
   constructor(
     readonly clipboard: Clipboard,
@@ -37,8 +37,7 @@ export class OpzStaffComponent implements OnInit {
       subtitle: this.activeFragment,
       introText: '',
       contentIntro: {text: 'This is our staff'},
-      searchDisplay: 'none',
-      staffClasses: ['leadership', 'planning', 'support'],
+      buttonCategories: ['leadership', 'planning', 'support'],
       buttons: []
     };
   }

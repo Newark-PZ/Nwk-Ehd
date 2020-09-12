@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
-import { SidebarLink } from '../shared/interfaces/other.interface';
-import { FooterList } from '../shared/models';
+import { FooterList, SidebarLink } from '../shared/models';
 import { LinkService } from '../shared/services/link.service';
 import { StoreService } from '../store/store.service';
 

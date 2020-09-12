@@ -4,7 +4,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../store/store.reducers';
-import { StaffPage } from '../../models/pages.model';
+import { Page } from '../../models/pages.model';
 import { JsonDataService } from '../../services/get-json-data.service';
 import { slideshowAnimation } from '../../util/animations';
 import { SnackbarComponent } from '../elements/snackbar.component';
@@ -18,14 +18,13 @@ import { SnackbarComponent } from '../elements/snackbar.component';
 })
 
 export class StaffComponent implements AfterViewInit {
-  @Input() page: StaffPage =  {
+  @Input() page: Page =  {
     id: 'staff',
     title: 'Our Staff',
     icon: 'people',
     introText: '',
     contentIntro: {text: "The Office of Planning & Zoning is devoted to furthering Mayor Baraka's Newark Forward Agenda of Equitable Growth by shaping the city's built environment. Planning and Zoning staff maintain and propose updates to the city's Master Plan and Zoning Ordinance to reflect Newark's needs and values, support the Planning Board and Zoning Board in exercising their roles, review and process applications for new development, draft redevelopment plans to catalyze new development and growth, research best practices for improving the quality of the built environment, and collaborate with other agencies across the city to share and implement these best practices."},
-    searchDisplay: 'none',
-    staffClasses: ['leadership', 'planning & special projects', 'office & boards support'],
+    buttonCategories: ['leadership', 'planning & special projects', 'office & boards support'],
     buttons: []
   };
   @Input() data$: Array<any> = [];

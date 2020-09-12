@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as fromStore from '../../../store/store.reducers';
-import { Faq, FaqPage } from '../../models/pages.model';
+import { Faq, Page } from '../../models/pages.model';
 
 @Component({
   selector: 'app-faq',
@@ -13,7 +13,7 @@ import { Faq, FaqPage } from '../../models/pages.model';
 
 export class FaqComponent implements OnInit {
   document: Document;
-  @Input() faqPage: FaqPage;
+  @Input() faqPage: Page;
   @Input() faqText: Array<Faq>;
   faqCategories: Array<string> = [];
   currentLanguage$: Observable<string>;
@@ -31,9 +31,9 @@ export class FaqComponent implements OnInit {
         .select(state => state.i18n.currentLanguage)
         .pipe(take(1))
         .subscribe(currentLang => {
-          if (currentLang && this.faqPage.type) {
-            this.getFaq(this.faqPage.type, lang);
-            this.faqCategories = this.getCategories(this.faqPage.type, lang);
+          if (currentLang && this.faqPage.id) {
+            this.getFaq(this.faqPage.id, lang);
+            this.faqCategories = this.getCategories(this.faqPage.id, lang);
           }
         });
       });

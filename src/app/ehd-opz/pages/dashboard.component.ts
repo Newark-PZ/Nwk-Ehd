@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy,  Component, ElementRef, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectionStrategy,  Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Link } from '../../shared/classes/link.class';
-import { VirtualHearingTab } from '../../shared/interfaces/other.interface';
+import { VirtualHearingTab } from '../../shared/models/pages.model';
 import { EventsService } from '../../shared/services/events.service';
 import { LinkService } from '../../shared/services/link.service';
 import * as fromStore from '../../store/store.reducers';
@@ -27,35 +26,31 @@ export class DashboardComponent {
   agendaUrl = 'http';
   fofUrl = 'http';
   colRegex = /[A-Z]/gi;
-  @ViewChild('frame') frame: ElementRef;
-  cpbTab$: Observable<VirtualHearingTab>;
-  lhpcTab$: Observable<VirtualHearingTab>;
-  zbaTab$: Observable<VirtualHearingTab>;
-  boardTabs: Array<any> = [
-    {
-      board: 'CPB',
-      label: 'Central Planning Board'
-    },
-    {
-      board: 'LHPC',
-      label: 'Landmarks & Historic Pres.'
-    },
-    {
-      board: 'ZBA',
-      label: 'Zoning Board of Adjustment'
-    }
-  ];
+  boardTabs: Array<{board: string; label: string; data: Observable<VirtualHearingTab>}>;
   constructor(
-    public sanitizer: DomSanitizer,
     readonly store: Store<fromStore.StoreState>,
     readonly getEvents: EventsService,
     readonly route: ActivatedRoute,
     readonly linker: LinkService,
     public storeService: StoreService
     ) {
-      this.cpbTab$ = this.store.select(state => state.hearing.cpbTab);
-      this.lhpcTab$ = this.store.select(state => state.hearing.lhpcTab);
-      this.zbaTab$ = this.store.select(state => state.hearing.zbaTab);
+      this.boardTabs = [
+        {
+          board: 'CPB',
+          label: 'Central Planning Board',
+          data: this.store.select(state => state.hearing.cpbTab)
+        },
+        {
+          board: 'LHPC',
+          label: 'Landmarks & Historic Pres.',
+          data: this.store.select(state => state.hearing.lhpcTab)
+        },
+        {
+          board: 'ZBA',
+          label: 'Zoning Board of Adjustment',
+          data: this.store.select(state => state.hearing.zbaTab)
+        }
+      ];
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.link = params.get('id') || 'CPB';
         this.currentLink = this.linker.planningzoning[0];

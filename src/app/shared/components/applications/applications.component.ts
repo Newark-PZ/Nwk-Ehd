@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../store/store.reducers';
-import { AppPage } from '../../models/pages.model';
+import { Page } from '../../models/pages.model';
 import { slideshowAnimation } from '../../util/animations';
 import { SnackbarComponent } from '../elements/snackbar.component';
 
@@ -16,7 +16,7 @@ import { SnackbarComponent } from '../elements/snackbar.component';
 })
 
 export class ApplicationsComponent {
-  @Input() page: AppPage;
+  @Input() page: Page;
   @Input() data$: Array<any> = [];
   constructor(
     readonly store: Store<fromStore.StoreState>,

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StoreService } from '../../store/store.service';
 import { Link } from '../classes/link.class';
-import { AppPage, BoardPage, HomePage, Page, StaffPage } from '../models';
+import { BoardPage, HomePage, Page } from '../models/pages.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,8 +78,8 @@ export class LinkService {
     return officeLinks;
   }
   getPage(id: string, language: string): Observable<any> {
-    return this.http.get<Array<AppPage | BoardPage | HomePage | Page | StaffPage>>(`assets/i18n/${this.currentOffice}/${language}.json`)
+    return this.http.get<Array<BoardPage | HomePage | Page>>(`assets/i18n/${this.currentOffice}/${language}.json`)
     .pipe(
-      map((p: Array<AppPage | BoardPage | HomePage | Page | StaffPage>) => p.find(page => page.id === id)));
+      map((p: Array<BoardPage | HomePage | Page>) => p.find(page => page.id === id)));
   }
 }

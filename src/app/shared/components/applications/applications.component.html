@@ -16,7 +16,7 @@
     </div>
 </section>
 <section class="starting-cards">
-    <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined" [queryParams]="card.params" (click)="goTo(card.extUrl ? card.extUrl : undefined)" *ngFor="let card of page.startingButtons" class="starting-card" [ngClass]="card.disabled ? 'disabled': ''">
+    <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined" [queryParams]="card.params" (click)="goTo(card.extUrl ? card.extUrl : undefined)" *ngFor="let card of page.buttons" class="starting-card" [ngClass]="card.disabled ? 'disabled': ''">
         <div class="card-title">
             <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
             <h4 style="margin: auto">{{ card.title }}</h4>

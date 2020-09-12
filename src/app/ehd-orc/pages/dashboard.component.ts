@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Link } from '../../shared/classes/link.class';
-import { VirtualHearingTab } from '../../shared/interfaces/other.interface';
+import { VirtualHearingTab } from '../../shared/models';
 import { EventsService } from '../../shared/services/events.service';
 import { LinkService } from '../../shared/services/link.service';
 import * as fromStore from '../../store/store.reducers';

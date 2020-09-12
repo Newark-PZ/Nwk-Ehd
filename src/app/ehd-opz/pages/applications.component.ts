@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppPage } from '../../shared/models';
+import { Page } from '../../shared/models';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,12 +11,12 @@ import { AppPage } from '../../shared/models';
 export class OpzApplicationsComponent implements OnInit {
   activeFragment;
   activeViewName;
-  page: AppPage = {
+  page: Page = {
     id: 'applications',
     title: 'Applications & Payment',
     icon: 'assessment',
     contentIntro: {text: ''},
-    startingButtons: [
+    buttons: [
       {
         icon: 'ballot',
         title: 'Board Application',
@@ -61,8 +61,7 @@ export class OpzApplicationsComponent implements OnInit {
         extUrl: 'https://dl.airtable.com/.attachments/e20291159fd3765b4b6908e52564ba3f/452bd251/Instructions.pdf',
         category: 'AppButtons'
       }
-    ],
-    hideBottomBar: true
+    ]
   };
   data = [];
   constructor(

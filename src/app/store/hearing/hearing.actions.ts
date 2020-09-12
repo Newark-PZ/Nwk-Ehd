@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Hearing } from '../../shared/classes/hearing';
-import { DataRow } from '../../shared/interfaces/other.interface';
+import { DataRow } from '../../shared/models/interfaces';
 
 export const setTabCPB = createAction(
   '[Hearing] Set Tab CPB',

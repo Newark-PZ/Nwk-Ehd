@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject, TrackByFunction } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ModalConfig } from '../../interfaces/other.interface';
+import { ModalConfig } from '../../models/interfaces';
 
 @Component({
   selector: 'app-modal',

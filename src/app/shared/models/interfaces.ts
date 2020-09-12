@@ -1,3 +1,6 @@
+import { Route } from '@angular/router';
+import { CalEvent } from '../models/pages.model';
+
 export interface DataItem {
     collapsedIcon?: string;
     color?: string;
@@ -33,11 +36,6 @@ export interface DocGroup {
     year?: number;
     docs?: Array<DocGroup>;
 }
-export interface DocSubGroup {
-    group: string;
-    type: string;
-    year?: number;
-}
 export interface DocData {
     data: Array<DataItem>;
 }
@@ -47,14 +45,6 @@ export interface SubComponent {
     label: string;
     path: string;
     viewName?: string;
-}
-
-export interface MapInput {
-    hood: string;
-    block?: string;
-    lot?: string;
-    zoneColor?: string;
-    labelStyle?: string;
 }
 export interface CartoFields {
     [key: string]:
@@ -177,38 +167,6 @@ export interface DriveSearch {
             mimeType: 'application/pdf' | 'application/vnd.google-apps.folder';
         }
     ];
-}
-export interface GCalEvent {
-    kind: 'calendar#event' | string;
-    etag: string;
-    id: '_8d9lcgrfdpr6asjk60pj0o9pcgs3eob169hjedpo60o32p1gccp6ceb274omae1ocgr0' | string;
-    status: 'confirmed' | string;
-    htmlLink: string;
-    created: '1900-01-01T12:00:00.000Z' | string;
-    updated: '2020-06-05T19:33:47.991Z' | string;
-    summary: string;
-    description: string;
-    creator: { email: 'nterwin714@gmail.com' | string };
-    organizer: {
-        email: '6a0j49o3e6h43ut32hmbmihnb4@group.calendar.google.com' | string;
-        displayName: 'Newark Board Hearings' | string;
-        self: boolean
-    };
-    start: { dateTime: string; };
-    end: { dateTime: string; };
-    iCalUID: string;
-    sequence: number;
-}
-export interface GCalResponse {
-    kind: 'calendar#events' | string;
-    etag: string;
-    summary: 'Newark Board Hearings' | string;
-    updated: string;
-    timeZone: 'America/New_York' | string;
-    accessRole: 'reader' | string;
-    defaultReminders: [];
-    nextSyncToken: string;
-    items: Array<GCalEvent>;
 }
 export interface GSheetsValuesResponse {
     range: string;
@@ -337,4 +295,27 @@ export interface CKANResponse {
         };
         total: number;
     };
+}
+export interface SidebarLink extends Route {
+    title?: string;
+    icon?: string;
+    children?: Array<SidebarLink>;
+    parentFragment?: string;
+    isChild?: boolean;
+    viewName?: string;
+}
+export interface DataRow {
+    board: string;
+    app: string;
+    address: string;
+    link: string;
+    type: 'folders' | string;
+}
+export interface ModalConfig {
+    header?: string;
+    message?: string;
+    event?: CalEvent;
+    link?: string;
+    tabIndex?: number;
+    eventButtons?: Array<{ id: string; link: string; linkText: string; icon: string; styling?: string; }>;
 }

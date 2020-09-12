@@ -1,8 +1,9 @@
 import { NgStyle } from '@angular/common';
 import { Type } from '@angular/core';
+import { Hearing } from '../classes/hearing';
 import { Link } from '../classes/link.class';
 import { Record } from './airtable-model';
-import { SubComponent } from './interfaces';
+import { DataRow, SubComponent } from './interfaces';
 
 export interface LinkOptions {
     id: string;
@@ -142,53 +143,6 @@ export interface BoardPage {
         logos?: Array<string>;
       }>;
 }
-export interface StaffPage {
-    id: string;
-    title: string;
-    subtitle?: string;
-    infoButtons?: Array<{text: string; link?: string;  extUrl?: string; parent?: string; }>;
-    icon?: string;
-    introText?: string;
-    introPic?: string;
-    contentIntro: {
-        right?: {text: string; };
-        header?: string;
-        text?: string;
-        footer?: string;
-        events?: Array<{
-            event: string;
-            date?: string;
-            icon?: string;
-            link?: string;
-            extUrl?: string;
-            parent?: string;
-        }>
-    };
-    buttons: Array<HomeCard>;
-    staffClasses?: Array<string>;
-    officer?: {
-        name: string;
-        position?: string;
-        flair?: string;
-        pic?: string;
-    };
-    searchDisplay?: boolean | string;
-    splashImgs?: Array<{src: string; alt: string}>;
-    splashBlurb?: {
-        text: string;
-        buttons?: Array<{ text: string; link?: string;  extUrl?: string; parent?: string;  }>;
-    };
-    sections?: Array<{
-        header?: string;
-        buttons?: Array<{
-          link?: string;
-          linkText?: string;
-          fullWidth?: boolean;
-        }>;
-        text: string;
-        logos?: Array<string>;
-      }>;
-}
 
 export interface Page {
     id: string;
@@ -222,85 +176,21 @@ export interface Page {
         text: string;
         logos?: Array<string>;
       }>;
-    hideBottomBar: boolean;
+    hideBottomBar?: boolean;
     subComponents?: Array<SubComponent>;
 }
-
-export interface AppPage {
-    id: string;
-    title: string;
-    subtitle?: string;
-    startingButtons?: Array<HomeCard>;
-    icon?: string;
-    introText?: string;
-    introPic?: string;
-    contentIntro: {
-        right?: {text: string; };
-        header?: string;
-        text?: string;
-        footer?: string;
-        events?: Array<{
-            event: string;
-            date?: string;
-            icon?: string;
-            link?: string;
-            extUrl?: string;
-            parent?: string;
-        }>
-    };
-    sections?: Array<{
-        header?: string;
-        buttons?: Array<{
-          link?: string;
-          linkText?: string;
-          fullWidth?: boolean;
-        }>;
-        text: string;
-        logos?: Array<string>;
-      }>;
-    hideBottomBar?: boolean | false;
-}
-export interface FaqPage {
-    type: 'Tenant' | 'Homeowners' | 'RentControl';
-    icon: 'business_center' | 'people' | 'person' | 'house' | 'color_lens' | 'local_dining' | 'local_hospital';
-    contentIntro?: {
-      right?: {text: string; };
-      header?: string;
-      paragraphs?: Array<string>;
-      footer?: string;
-      buttons?: Array<{
-          title: string;
-          date?: string;
-          icon?: string;
-          link?: string;
-          extUrl?: string;
-          parent?: string;
-      }>
-    };
-    title: string;
-  }
 export interface FaqCategory {
     name: string;
     children?: Array<Faq>;
   }
 export interface Faq {
-    Answer: string;
-    Categories: string;
-    Postscript?: string;
-    Question: string;
-    tableRows?: Array<Array<string>>;
-    Type: 'Tenant' | 'Homeowner' | 'RentControl';
-    __v?: number;
-    _id?: {
-      id: any
-    };
-    createdAt?: {
-      $date: string;
-    };
-    updatedAt?: {
-      $date: string;
-    };
-  }
+  Name: string;
+  Answer: string;
+  Category: string;
+  Question: string;
+  tableRows?: Array<Array<string>>;
+  LastUpdated: string;
+}
 export interface FooterList {
   text: string;
   path?: string | Array<string>;
@@ -308,4 +198,13 @@ export interface FooterList {
   params?: object;
   disabled?: boolean;
   children?: Array<FooterList>;
+}
+export interface VirtualHearingTab {
+  board: 'CPB' | 'EC' | 'LHPC' | 'ZBA' | string;
+  label: string;
+  agenda?: string;
+  fofId?: string;
+  event?: Hearing;
+  data?: Array<DataRow>;
+  prevHearings?: Array<{event: Hearing; data: Array<DataRow>}>;
 }

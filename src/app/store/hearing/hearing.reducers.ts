@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { VirtualHearingTab } from '../../shared/interfaces/other.interface';
+import { VirtualHearingTab } from '../../shared/models/pages.model';
 import * as HearingActions from './hearing.actions';
 
 export interface State {
