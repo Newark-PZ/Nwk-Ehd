@@ -174,7 +174,7 @@
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
                 "link": "documents",
-                "params": {"group": "cpb", "type": "agendas", "year": "2020"}
+                "params": {"group": "cpb", "type": "Agendas", "year": "2020"}
             },
             {
                 "disabled": false, "icon": "attach_file",
@@ -184,7 +184,7 @@
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
                 "link": "documents",
-                "params": {"group": "cpb", "type": "minutes", "year": "2020"}
+                "params": {"group": "cpb", "type": "Minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
@@ -443,7 +443,7 @@
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
                 "link": "documents",
-                "params": {"group": "lhpc", "type": "agendas", "year": "2020"}
+                "params": {"group": "lhpc", "type": "Agendas", "year": "2020"}
             },
             {
                 "disabled": false, "icon": "attach_file",
@@ -453,7 +453,7 @@
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
                 "link": "documents",
-                "params": {"group": "lhpc", "type": "minutes", "year": "2020"}
+                "params": {"group": "lhpc", "type": "Minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
@@ -597,7 +597,7 @@
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
                 "link": "documents",
-                "params": {"group": "zba", "type": "agendas", "year": "2020"}
+                "params": {"group": "zba", "type": "Agendas", "year": "2020"}
             },
             {
                 "disabled": false, "icon": "attach_file",
@@ -607,7 +607,7 @@
                 "subtextIcon": "info",
                 "parent": "/planningzoning/resources",
                 "link": "documents",
-                "params": {"group": "zba", "type": "minutes", "year": "2020"}
+                "params": {"group": "zba", "type": "Minutes", "year": "2020"}
             }
         ],
         "contentIntro": {
