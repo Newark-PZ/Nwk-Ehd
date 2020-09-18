@@ -122,3 +122,16 @@ export const menuAnim = trigger('menuAnimate', [
       ])
     ])
 ]);
+export const showHidePanel: AnimationTriggerMetadata = trigger(
+    'showHidePanel', [
+      state('shown', style({
+          maxHeight: '*',
+          overflow: 'auto'
+      })),
+      state('hidden', style({
+          maxHeight: '3rem',
+          overflow: 'hidden'
+      })),
+      transition('shown <=> hidden', [animate('150ms cubic-bezier(.1,.5,.5,.1)')])
+    ]
+  );

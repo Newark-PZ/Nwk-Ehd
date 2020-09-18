@@ -10,14 +10,7 @@ import { DocGroup } from '../../models';
     styleUrls: ['./filelist.component.scss'],
     // tslint:disable: component-max-inline-declarations template-i18n template-no-call-expression
     template: `
-        <mat-form-field class="cols-9" style="padding: 0 1rem" class="searchbar">
-            <mat-label>Search Documents</mat-label>
-            <input matInput type="text" (keyup)="applyFilter(filterValue)" [(ngModel)]="filterValue">
-            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <span class="filterLabel"><b>Change Documents</b></span>
+        <span class="filterLabel">Group</span>
         <mat-tree [dataSource]="docGroups" [treeControl]="treeControl" class="files-tree">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
                 <li class="mat-tree-node" (click)="groupSelect(node, node.group)">
@@ -58,8 +51,6 @@ export class FileListControlComponent {
     @Input() docGroups: Array<DocGroup> = [];
     @Input() selectedGroup: DocGroup;
     @Output() readonly groupChange: EventEmitter<DocGroup> = new EventEmitter<DocGroup>();
-    @Output() readonly filter: EventEmitter<string> = new EventEmitter<string>();
-    filterValue: string;
     isLoadingResults = false;
     @ViewChild(MatInput, { static: true }) input: MatInput;
     treeControl = new NestedTreeControl<DocGroup>(node => node.docs);
@@ -70,9 +61,6 @@ export class FileListControlComponent {
     hasChild = (_: number, node: DocGroup) => !!node.docs && node.docs.length > 0;
     trackByFn(index: number, el: any): string {
         return `item_${index}`;
-    }
-    applyFilter(filterVal = ''): void {
-        this.filter.emit(filterVal);
     }
     groupSelect(group: DocGroup): void {
         if (group !== this.selectedGroup) { this.selectedGroup = group; }

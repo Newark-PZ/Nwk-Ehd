@@ -1,21 +1,18 @@
+
 .file-list-control {
-    flex: 1 1 28%;
-    max-width: 350px;
-    margin: 0rem auto auto .5rem;
-    background: black;
     display: flex;
     flex-direction: column;
-    border-radius: .25rem;
-    border: .02rem solid lightgrey;
-}
-.searchbar {
-    background: lightgrey;
+    background: whitesmoke;
+    flex: 1 1 auto;
+    padding: 0.5rem;
+    @media screen and (max-width: 768px) {
+        margin: 0.5rem;
+    }
 }
 
 .filterLabel {
-    color: white;
-    -webkit-text-fill-color: white;
-    margin: .5rem 1.5rem;
+    margin: .5rem 1rem;
+    display: flex;
 }
 
 .filterTagList {
@@ -35,13 +32,17 @@
 .tree-invisible {
     display: none;
   }
-  
-  .files-tree ul,
-  .files-tree li {
-    margin-top: 0;
-    margin-bottom: 0;
-    list-style-type: none;
-    cursor: pointer;
+  .files-tree {
+    box-shadow: inset 0 0 0.25rem rgba(0, 0, 0, 0.3);
+    border-radius: .25rem;
+    ul,li {
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style-type: none;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
   }
   .mat-tree-node {
       height: 2rem;
@@ -56,11 +57,13 @@
     max-height: unset !important;
     border: none;
     width: 100%;
+    padding: .66rem;
 }
 .table-container {
     display: flex;
     flex-direction: column;
     flex: 1 1 55%;
+    margin: 0 .85rem .85rem .85rem;
 }
 .selected {
     font-weight: 600;

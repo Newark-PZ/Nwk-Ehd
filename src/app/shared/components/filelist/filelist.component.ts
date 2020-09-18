@@ -8,20 +8,28 @@ import { AirService } from '../../services/air.service';
 
 @Component({
     selector: 'app-file-list',
+    styles: [':host {display: flex;flex-wrap: wrap;width:90vw; margin: auto}'],
     styleUrls: ['./filelist.component.scss'],
     // tslint:disable: component-max-inline-declarations template-i18n template-no-call-expression
     template: `
-    <app-file-list-control [docGroups]="docGroups" [selectedGroup]="selectedGroup"
-      (groupChange)="groupSelected($event)" (filter)="searchFilter($event)"></app-file-list-control>
+    <app-file-list-control class="file-list-control" [docGroups]="docGroups" [selectedGroup]="selectedGroup"
+      (groupChange)="groupSelected($event)"></app-file-list-control>
     <div class="table-container">
+      <mat-form-field appearance="outline" class="searchbar">
+          <mat-label><mat-icon style="vertical-align:text-top;font-size: 1.5rem;">search</mat-icon>&ensp;Search Documents</mat-label>
+          <input matInput type="text" (keyup)="searchFilter(filterValue)" [(ngModel)]="filterValue">
+          <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchFilter(filterValue = '')">
+              <mat-icon>close</mat-icon>
+          </button>
+      </mat-form-field>
       <mat-table [dataSource]="dataSource" matSort matSortActive="label" matSortDirection="desc" style="width: 100%; height: 100%">
         <ng-container matColumnDef="label">
-            <mat-cell *matCellDef="let row"><app-file [data]="row"></app-file></mat-cell>
+            <mat-cell *matCellDef="let row" style="padding:0"><app-file [data]="row"></app-file></mat-cell>
         </ng-container>
         <mat-row class="row" *matRowDef="let row; columns: ['label'];" [class.selected]="selectedElement === row" style="padding: .25rem 0;"></mat-row>
       </mat-table>
-      <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [hidePageSize]="true" showFirstLastButtons  style="background: whitesmoke;"></mat-paginator>
     </div>
+    <mat-paginator [length]="dataSource.data.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"  showFirstLastButtons  style="background: whitesmoke;flex:1 1 100%"></mat-paginator>
     `
 })
 

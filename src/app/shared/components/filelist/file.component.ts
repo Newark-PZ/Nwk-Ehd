@@ -17,7 +17,8 @@ import { ModalComponent } from '../elements/modal.component';
                 Published: {{data.Published | date:'MMM-yyyy'}} | Uploaded: {{data.Uploaded | date:'MMM-yyyy'}}
             </mat-card-subtitle>
             <mat-card-content>
-                <p [innerHtml]="data.Description ? data.Description : 'Description of Document'"></p>
+                <p
+                [innerHtml]="data.Description ? data.Description : 'Description of Document'"></p>
                 <span style=" font-size: 1rem; font-weight:500; flex: 1 1 66%">
                     <mat-chip-list>
                         <mat-chip [ngClass]="data.Type ? data.Type.replace(' ', '') : 'General'">{{data.Type ? data.Type : 'General'}}</mat-chip>
