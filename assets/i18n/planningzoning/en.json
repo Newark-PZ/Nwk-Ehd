@@ -1,165 +1,6 @@
 [
     {
-        "id": "home",
-        "splashImgs": [
-            {
-                "src": "assets/img/HalseyStreet_image7.png",
-                "alt": "Halsey Street"
-            },
-            {
-                "src": "assets/img/NwkCitySky.png",
-                "alt": "Newark Skyline"
-            }
-        ],
-        "buttonCategories": [
-            "Boards & Commissions",
-            "Tools",
-            "Our Office"
-        ],
-        "buttons": [
-            {
-                "disabled": false, "icon": "house",
-                "category": "Boards & Commissions",
-                "title": "Central Planning Board",
-                "subtext": "Next Hearing: <b>May 11</b>",
-                "isEvent": true,
-                "subtexticon": "notification_important",
-                "parent": "/planningzoning/boards",
-                "link": "cpb"
-            },
-            {
-                "disabled": false, "icon": "house",
-                "category": "Boards & Commissions",
-                "title": "Zoning Board of Adjustment",
-                "isEvent": true,
-                "subtext": "Next Hearing: <b>May 14</b>",
-                "subtextIcon": "notification_important",
-                "parent": "/planningzoning/boards",
-                "link": "zba"
-            },
-            {
-                "disabled": false, "icon": "house",
-                "category": "Boards & Commissions",
-                "title": "Landmarks & Historic Preservation",
-                "isEvent": true,
-                "subtext": "Next Hearing: <b>May 20</b>",
-                "subtextIcon": "notification_important",
-                "parent": "/planningzoning/boards",
-                "link": "lhpc"
-            },
-            {
-                "disabled": false, "icon": "house",
-                "category": "Boards & Commissions",
-                "title": "Environmental Commission",
-                "isEvent": true,
-                "subtext": "Next Hearing: <b>May 13</b>",
-                "subtextIcon": "notification_important",
-                "parent": "/planningzoning/boards",
-                "link": "ec"
-            },
-            {
-                "disabled": false, "icon": "info",
-                "category": "Tools",
-                "title": "Application Submission & Status",
-                "parent": "/planningzoning/zoning",
-                "link": "zoning"
-            },
-            {
-                "disabled": false, "icon": "map",
-                "category": "Tools",
-                "title": "Interactive Zoning Map",
-                "parent": "/planningzoning/maps",
-                "link": "zoning"
-            },
-            {
-                "disabled": false, "icon": "info",
-                "category": "Tools",
-                "title": "Our Zoning, Explained",
-                "parent": "/planningzoning/zoning",
-                "link": "zoning"
-            },
-            {
-                "disabled": false, "icon": "attachment",
-                "category": "Tools",
-                "title": "Redevelopment Plans",
-                "parent": "/planningzoning/resources",
-                "link": "res-minutes"
-            },
-            {
-                "disabled": false, "icon": "attachment",
-                "category": "Tools",
-                "title": "Master Plan",
-                "parent": "/planningzoning/resources",
-                "link": "documents"
-            },
-            {
-                "disabled": true, "icon": "people",
-                "category": "Our Office",
-                "title": "Our Team",
-                "parent": "/planningzoning/team",
-                "link": "leadership"
-            },
-            {
-                "disabled": true, "icon": "info",
-                "category": "Our Office",
-                "title": "Contact Us",
-                "parent": "/planningzoning",
-                "link": "contact"
-            }
-        ],
-        "contentIntro": {
-            "header": "Upcoming Hearings",
-            "events": [
-                {
-                    "disabled": false, "icon": "event",
-                    "event": "Central Planning Board",
-                    "date": "Mon, June 1 @ 6pm"
-                  },
-                  {
-                    "disabled": false, "icon": "event",
-                    "event": "Central Planning Board",
-                    "date": "Mon, June 15 @ 6pm"
-                }
-            ],
-            "right": {
-                "text": "More Tools and Services Below"
-            }
-        },
-        "splashTitle": "Welcome to the Office of Planning & Zoning",
-        "officer": {
-            "name": "Chris Watson",
-            "position": "City Planning Officer",
-            "pic": "headerPhotos/APANJTreatPl.jpeg"
-        },
-        "splashBlurb": {
-            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
-            "buttons": [
-                {
-                    "text": "Applications",
-                    "parent": "/planningzoning/applications",
-                    "link": "info"
-                },
-                {
-                    "text": "Payments",
-                    "parent": "/planningzoning/applications",
-                    "link": "payments"
-                },
-                {
-                    "text": "Zoning Map",
-                    "parent": "/planningzoning",
-                    "link": "maps"
-                }
-            ]
-        }
-    },
-    {
         "id": "cpb",
-        "splashImgs": [
-            {
-                "src": "assets/img/NwkCitySky.png",
-                "alt": "Newark Skyline"
-            }
-        ],
         "buttonCategories": [
             "Central Planning Board",
             "Resources"
@@ -189,27 +30,12 @@
         ],
         "contentIntro": {
             "header": "Upcoming Hearings",
-            "events": [
-                {
-                    "disabled": false, "icon": "event",
-                    "board": "CPB",
-                    "eventType": "Virtual Hearing",
-                    "event": "Central Planning Board",
-                    "date": "Tue, July 7 @ 6pm"
-                    },
-                    {
-                    "disabled": false, "icon": "event",
-                    "board": "CPB",
-                    "eventType": "Virtual Hearing",
-                    "event": "Central Planning Board",
-                    "date": "Mon, July 20 @ 6pm"
-            }
-            ],
             "right": {
                 "text": "More Info Below"
             }
         },
-        "introText": "<img class='intro-pic' src='assets/img/NwkLibrary.jpg'>The Central Planning Board is entrusted with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.",
+        "introPic": "assets/img/NwkLibrary.jpg",
+        "introText": "The Central Planning Board is entrusted with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.",
         "sections": [
             {
                 "header": "Applications to the Central Planning Board",
@@ -292,12 +118,7 @@
     },
     {
         "id": "ec",
-        "splashImgs": [
-            {
-                "src": "assets/img/NwkCitySky.png",
-                "alt": "Newark Skyline"
-            }
-        ],
+        "introPic": "assets/img/NwkCitySky.png",
         "buttonCategories": [
             "Environmental Commission",
             "Resources"
@@ -325,41 +146,9 @@
         ],
         "contentIntro": {
             "header": "Upcoming Events",
-            "events": [
-                {
-                    "disabled": false, "icon": "notification_important",
-                    "event": "Central Planning Board",
-                    "date": "Mon, May 11 @ 6pm"
-                },
-                {
-                    "disabled": false, "icon": "notification_important",
-                    "event": "Environmental Commission",
-                    "date": "Wed, May 13 @ 6pm"
-                }
-            ],
             "right": {
                 "text": "More Info Below"
             }
-        },
-        "splashBlurb": {
-            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
-            "buttons": [
-                {
-                    "text": "Applications",
-                    "parent": "/opz/applications",
-                    "link": "info"
-                },
-                {
-                    "text": "Payments",
-                    "parent": "/opz/applications",
-                    "link": "payments"
-                },
-                {
-                    "text": "Zoning Map",
-                    "parent": "/opz/maps",
-                    "link": "zoning"
-                }
-            ]
         },
         "members": [
             {
@@ -423,12 +212,7 @@
     },
     {
         "id": "lhpc",
-        "splashImgs": [
-            {
-                "src": "assets/img/NwkCitySky.png",
-                "alt": "Newark Skyline"
-            }
-        ],
+        "introPic": "assets/img/NwkCitySky.png",
         "buttonCategories": [
             "Landmark & Historic Preservation Commission",
             "Resources"
@@ -458,44 +242,9 @@
         ],
         "contentIntro": {
             "header": "Upcoming Events",
-            "events": [
-                    {
-                        "disabled": false, "icon": "event",
-                        "board": "LHPC",
-                        "eventType": "Virtual Hearing",
-                        "event": "Historic Commission",
-                        "date": "Wed, July 1 @ 6pm"
-                    },
-                    {
-                        "disabled": false, "icon": "event",
-                        "board": "LHPC",
-                        "eventType": "Virtual Hearing",
-                        "event": "Historic Commission",
-                        "date": "Wed, Sep 2 @ 6pm"
-                }],
             "right": {
                 "text": "More Info Below"
             }
-        },
-        "splashBlurb": {
-            "text": "Planning & Zoning works hard everyday to ensure a fair, open and efficient process for updating our City's built environment. We advise developers and homeowners alike on how they can help to build a Newark that will benefit all Newarkers. Learn more by exploring the online tools and services we offer below, including:",
-            "buttons": [
-                {
-                    "text": "Applications",
-                    "parent": "/opz/applications",
-                    "link": "info"
-                },
-                {
-                    "text": "Payments",
-                    "parent": "/opz/applications",
-                    "link": "payments"
-                },
-                {
-                    "text": "Zoning Map",
-                    "parent": "/opz/maps",
-                    "link": "zoning"
-                }
-            ]
         },
         "members": [
             {
@@ -576,13 +325,8 @@
     },
     {
         "id": "zba",
-        "splashImgs": [
-            {
-                "src": "assets/img/NwkCitySky.png",
-                "alt": "Newark Skyline"
-            }
-        ],
-        "introText": "<img class='intro-pic' src='assets/img/nwkcityhall-01.png'>The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
+        "introPic": "assets/img/nwkcityhall-01.png",
+        "introText": "The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
         "buttonCategories": [
             "Zoning Board of Adjustment",
             "Resources"
@@ -612,21 +356,6 @@
         ],
         "contentIntro": {
             "header": "Upcoming Hearings",
-            "events": [
-                {
-                "disabled": false, "icon": "event",
-                "board": "ZBA",
-                "eventType": "Virtual Hearing",
-                "event": "Zoning Board of Adjustment",
-                "date": "Thu, June 25 @ 6pm"
-                },
-                {
-                "disabled": false, "icon": "event",
-                "board": "ZBA",
-                "eventType": "Virtual Hearing",
-                "event": "Zoning Board of Adjustment",
-                "date": "Thu, July 9 @ 6pm"
-            }],
             "right": {
                 "text": "More Info Below"
             }
