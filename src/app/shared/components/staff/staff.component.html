@@ -1,7 +1,7 @@
 <mat-toolbar>
     <div class="title">
-      <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
-      <h2>{{ page.title }}</h2>
+      <mat-icon style="margin-right: .5rem">{{ page.splashIcon }}</mat-icon>
+      <h2>{{ page.splashTitle }}</h2>
     </div>
   </mat-toolbar>
   <section class="content-intro" *ngIf="page.contentIntro">
@@ -25,7 +25,7 @@
   <mat-list class="program-cats">
     <mat-list-item>
       <mat-accordion id="accordion" [multi]="false" #accordion>
-        <mat-expansion-panel *ngFor="let cat of page.buttonCategories">
+        <mat-expansion-panel *ngFor="let cat of []">
           <mat-expansion-panel-header (click)="headerClick()">
             <mat-panel-title>
               <h3>

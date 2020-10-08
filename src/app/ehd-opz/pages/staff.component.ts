@@ -32,13 +32,9 @@ export class OpzStaffComponent implements OnInit {
     this.activeFragment = this.router.url.slice(this.router.url.lastIndexOf('/') + 1);
     this.pageDetails = {
       id: 'staff',
-      title: 'Our Staff',
-      icon: 'people',
-      subtitle: this.activeFragment,
-      introText: '',
-      contentIntro: {text: 'This is our staff'},
-      buttonCategories: ['leadership', 'planning', 'support'],
-      buttons: []
+      splashTitle: 'Our Staff',
+      splashIcon: 'people',
+      contentIntro: {left: {text: 'This is our staff'}}
     };
   }
   copySuccess(object: string): any {

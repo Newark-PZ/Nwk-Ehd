@@ -13,10 +13,17 @@ export class OpzApplicationsComponent implements OnInit {
   activeViewName;
   page: Page = {
     id: 'applications',
-    title: 'Applications & Payment',
-    icon: 'assessment',
-    contentIntro: {text: ''},
-    buttons: [
+    splashTitle: 'Applications & Payment',
+    splashIcon: 'assessment',
+    specialButtons: [
+      {
+        icon: 'payment',
+        title: 'Payment Portal',
+        subtext: 'One stop online payment portal, powered by nCourt. Pay online or by phone through their bilingual call center: (973) 494-5881',
+        specialIcon: 'nCourt',
+        extUrl: 'http://www.newarkehd-payments.com/',
+        category: 'AppButtons'
+      },
       {
         icon: 'ballot',
         title: 'Board Application',
@@ -33,20 +40,12 @@ export class OpzApplicationsComponent implements OnInit {
         disabled: true
       },
       {
-        icon: 'payment',
-        title: 'Coming Soon: Payment Portal',
-        subtext: 'One stop payment portal for any fees owed to the Office of Planning & Zoning',
-        link: '',
-        category: 'AppButtons',
-        disabled: true
-      },
-      {
         icon: 'edit',
-        title: 'Other Forms',
+        title: 'Other Documents/Forms',
         subtext: 'Fill out and submit other forms owed to the Office of Planning & Zoning: including Zoning Determination, Zoning Certification, etc.',
         parent: '/planningzoning/resources',
         link: 'documents',
-        params: {group: 'res', type: 'Other_Documents'},
+        params: {group: 'res', type: 'Other'},
         category: 'AppButtons'
       },
       {

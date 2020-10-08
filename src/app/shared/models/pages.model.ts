@@ -3,7 +3,7 @@ import { Type } from '@angular/core';
 import { Hearing } from '../classes/hearing';
 import { Link } from '../classes/link.class';
 import { Record } from './airtable-model';
-import { DataRow, SubComponent } from './interfaces';
+import { DataRow } from './interfaces';
 
 export interface LinkOptions {
     id: string;
@@ -40,6 +40,7 @@ export interface HomeCard {
     isEvent?: boolean;
     params?: object;
     disabled?: boolean;
+    new?: boolean;
 }
 export interface CalEvent {
     event: string;
@@ -62,20 +63,6 @@ export interface HomePage {
         footer?: string;
         events?: Array<CalEvent>
     };
-    contact?: {
-        officer?: string;
-        officerTitle?: string;
-        phone?: string;
-        fax?: string;
-        email?: string;
-        room: string;
-        buttons?: Array<{
-          link?: string;
-          linkText?: string;
-          fullWidth?: boolean;
-        }>;
-        text?: string;
-      };
     buttons?: Array<HomeCard>;
     buttonCategories: Array<string>;
     officer?: {
@@ -84,7 +71,24 @@ export interface HomePage {
         flair?: string;
         pic?: string;
     };
-    searchDisplay?: boolean | false;
+    contact?: {
+      header?: string;
+      contacts: Array<{
+        officer?: string;
+        officerTitle?: string;
+        phone?: string;
+        fax?: string;
+        email?: string;
+        room: string;
+        img?: string;
+        buttons?: Array<{
+          link?: string;
+          linkText?: string;
+          fullWidth?: boolean;
+        }>;
+        text?: string;
+      }>;
+    };
     sections?: Array<{
         header?: string;
         buttons?: Array<{
@@ -94,6 +98,7 @@ export interface HomePage {
         }>;
         text: string;
         logos?: Array<string>;
+        list?: Array<{ text: string; subText?: string; hierarchy?: number; }>;
       }>;
     splashTitle?: Array<Record> | string;
     splashImg?: {src: string; alt: string};
@@ -145,39 +150,83 @@ export interface BoardPage {
 }
 
 export interface Page {
-    id: string;
-    title: string;
-    subtitle?: string;
-    subtitleOpts?: Array<any>;
-    icon?: string;
-    introText?: string;
-    introPic?: string;
-    contentIntro?: {
-        right?: {text: string; };
-        header?: string;
-        text?: string;
-        footer?: string;
+  id: string;
+  contentIntro?: {
+    left?: {
+      header?: string;
+      img?: string;
+      text?: string;
     };
-    buttons?: Array<HomeCard>;
-    buttonCategories?: Array<string>;
-    officer?: {
-        name: string;
-        flair?: string;
-        pic?: string;
+    middle?: {
+      header?: string;
+      img?: string;
+      text?: string;
     };
-    listBase?: string;
-    sections?: Array<{
-        header?: string;
-        buttons?: Array<{
-          link?: string;
-          linkText?: string;
-          fullWidth?: boolean;
-        }>;
-        text: string;
-        logos?: Array<string>;
+    right?: {
+      header?: string;
+      img?: string;
+      text?: string;
+    };
+    footer?: string;
+    events?: Array<CalEvent>;
+  };
+  contact?: {
+    header?: string;
+    contacts: Array<{
+      officer?: string;
+      officerTitle?: string;
+      phone?: string;
+      fax?: string;
+      email?: string;
+      room: string;
+      buttons?: Array<{
+        link?: string;
+        linkText?: string;
+        fullWidth?: boolean;
       }>;
-    hideBottomBar?: boolean;
-    subComponents?: Array<SubComponent>;
+      text?: string;
+    }>;
+  };
+  sections?: Array<{
+      header?: string;
+      buttons?: Array<{
+        link?: string;
+        linkText?: string;
+        fullWidth?: boolean;
+      }>;
+      text: string;
+      logos?: Array<string>;
+      list?: Array<{ text: string; subText?: string; hierarchy?: number; }>;
+    }>;
+  acknowledgments?: Array<{
+      header?: string;
+      buttons?: Array<{
+        link?: string;
+        linkText?: string;
+        fullWidth?: boolean;
+      }>;
+      text: string;
+      logos?: Array<string>;
+    }>;
+  splashIcon?: string;
+  splashTitle?: Array<Record> | string;
+  splashImg?: {src: string; alt: string};
+  splashBlurb?: {
+      text: string;
+      buttons?: Array<{ text: string; link?: string;  extUrl?: string; parent?: string;  }>;
+  };
+  specialButtons?: Array<{
+    icon: string;
+    title: string;
+    subtext?: string;
+    specialIcon?: string;
+    parent?: string;
+    link?: string;
+    params?: { group: string; type: string; year?: number; },
+    category?: string;
+    extUrl?: string;
+    disabled?: boolean;
+  }>;
 }
 export interface FaqCategory {
     name: string;

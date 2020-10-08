@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy,  Component, ElementRef, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectionStrategy,  Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Link } from '../../shared/classes/link.class';
-import { VirtualHearingTab } from '../../shared/models';
+import { VirtualHearingTab } from '../../shared/models/pages.model';
 import { EventsService } from '../../shared/services/events.service';
 import { LinkService } from '../../shared/services/link.service';
 import * as fromStore from '../../store/store.reducers';
@@ -16,34 +15,40 @@ import { StoreService } from '../../store/store.service';
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent {
+export class OrcDashboardComponent {
   currentUrl: string;
   currentImg: string;
   window: Window;
   link: string;
   currentLink: Link;
   currentLanguage$: Observable<string>;
+  currentTab: number;
   agendaUrl = 'http';
+  fofUrl = 'http';
   colRegex = /[A-Z]/gi;
-  @ViewChild('frame') frame: ElementRef;
-  rcTab$: Observable<VirtualHearingTab>;
+  boardTabs: Array<{board: string; label: string; data: Observable<VirtualHearingTab>}>;
   constructor(
-    public sanitizer: DomSanitizer,
     readonly store: Store<fromStore.StoreState>,
-    public storeService: StoreService,
     readonly getEvents: EventsService,
     readonly route: ActivatedRoute,
-    readonly linker: LinkService
+    readonly linker: LinkService,
+    public storeService: StoreService
     ) {
-      this.rcTab$ = this.store.select(state => state.hearing.rcTab);
+      this.boardTabs = [
+        {
+          board: 'RC',
+          label: 'Rent Control Board',
+          data: this.store.select(state => state.hearing.rcTab)
+        }
+      ];
       this.route.paramMap.subscribe((params: ParamMap) => {
-        this.link = 'RC';
-        this.currentLink = this.linker.rentcontrol[0];
+        this.link = params.get('id') || 'RC';
+        this.currentLink = this.linker.planningzoning[0];
+        this.setTab(this.link.toUpperCase());
         this.storeService.setPageCurrent({
-          title: this.currentLink.title,
-          icon: this.currentLink.icon,
-          id: this.link,
-          hideBottomBar: true
+          splashTitle: this.currentLink.title,
+          splashIcon: this.currentLink.icon,
+          id: this.link
         });
       });
     }
@@ -55,5 +60,8 @@ export class DashboardComponent {
     } else {
       location.href = url;
     }
+  }
+  setTab(tabId: 'CPB' | 'EC' | 'LHPC' | 'ZBA' | string): void {
+    this.currentTab = this.boardTabs.findIndex(t => t.board === tabId);
   }
 }

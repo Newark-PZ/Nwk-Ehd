@@ -1,7 +1,7 @@
 <mat-toolbar>
     <div class="title">
-        <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
-        <h2>{{ page.title }}</h2>
+        <mat-icon style="margin-right: .5rem">{{ page.splashIcon }}</mat-icon>
+        <h2>{{ page.splashTitle }}</h2>
     </div>
 </mat-toolbar>
 <section class="intro-text">
@@ -16,10 +16,11 @@
     </div>
 </section>
 <section class="starting-cards">
-    <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined" [queryParams]="card.params" (click)="goTo(card.extUrl ? card.extUrl : undefined)" *ngFor="let card of page.buttons" class="starting-card" [ngClass]="card.disabled ? 'disabled': ''">
+    <mat-card [routerLink]="card.link ? [card.parent, card.link] : undefined" [queryParams]="card.params" (click)="goTo(card.extUrl ? card.extUrl : undefined)" *ngFor="let card of page.specialButtons" class="starting-card" [ngClass]="card.disabled ? 'disabled': ''">
         <div class="card-title">
             <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
             <h4 style="margin: auto">{{ card.title }}</h4>
+            <img *ngIf="card.specialIcon === 'nCourt'" src="assets/img/icons/ncourtPay.png" class="specialIcon" />
         </div>
         <div class="card-content" *ngIf="card.subtext">
             <mat-icon *ngIf="card.subtexticon">{{ card.subtexticon }}</mat-icon>

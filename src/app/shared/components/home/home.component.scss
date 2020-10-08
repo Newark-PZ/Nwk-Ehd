@@ -289,37 +289,80 @@
     }
   }
 }
-.program-cats {
+.section-blocks {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  justify-content: center;
+}
+.section-block {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2rem;
+  .mat-card-title {
+    font-weight: 100 !important;
+    font-size: 2rem;
+    line-height: normal;
+  }
+  .card-body {
+    padding: 1rem;
     font-size: 1.15rem;
-    display: flex;
-    flex-direction: column;
-    width: 85%;
+    line-height: 2rem;
+  }
+  h3 {text-align: left; font-size: 1.5rem;}
+  .mat-expansion-panel {
+    border-top: 2px solid !important;
+    border-radius: 0.25rem;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25) !important;
     margin: 1rem auto;
-    h3 {text-align: left; font-size: 1.5rem;}
-    .mat-expansion-panel {
-      border-top: 2px solid !important;
-      border-radius: 0.25rem;
-      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25) !important;
-      margin: 1rem auto;
-    }
-    .mat-expansion-panel-header {
-      flex-direction: row-reverse;
-      height: 5rem !important;
-      font-size: 1.25rem !important;
-      padding-right: .1rem !important;
-    }
-    .mat-expansion-panel-header-title {
-      font-weight: 500 !important;
-      margin-right: .1rem !important;
-      justify-content: center !important;
-      @media screen and (max-width: 769px) {
-        justify-content: flex-end !important;
-      }
+  }
+  .mat-expansion-panel-header {
+    flex-direction: row-reverse;
+    height: 5rem !important;
+    font-size: 1.25rem !important;
+    padding-right: .1rem !important;
+  }
+  .mat-expansion-panel-header-title {
+    font-weight: 500 !important;
+    margin-right: .1rem !important;
+    justify-content: center !important;
+    @media screen and (max-width: 769px) {
+      justify-content: flex-end !important;
     }
   }
+  &.acknowledgments {
+    background-color: rgba(13, 71, 161, 0.15);
+    margin: 0;
+    box-shadow: none;
+    .mat-card-header {
+      width: 66%;
+      padding: .5rem .5rem 0 0;
+      background-color: white;
+      margin-left: 1rem;
+      border: .05rem solid lightcoral;
+      border-width: 0 .1rem .1rem 0;
+      border-radius: .15rem .5rem .15rem .5rem;
+    }
+  }
+  &.contact {
+    background: rgba(0,0,0,.3);
+    color: white;
+    -webkit-text-fill-color: white;
+    padding: 2rem;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    .card-body {
+      text-align: center;
+      background: white;
+      color: rgba(0,0,0,.5);
+      -webkit-text-fill-color: rgba(0,0,0,.5);
+      border-radius: .3rem;
+      margin-top: 2rem;
+    }
+  }
+}
 .program-cards {
   display: flex;
   flex-direction: row;
@@ -340,6 +383,14 @@
   box-shadow: none;
   border: .85px black solid;
   padding: .75rem;
+  .newBtn {
+    float: right;
+    background: rgb(255, 182, 193,.6);
+    padding: .1rem 0.5rem;
+    border-radius: .2rem;
+    color: rgba(0,0,0,.5);
+    -webkit-text-fill-color: rgba(0,0,0,.5);
+  }
   &:hover {
     background-color: $primary-color !important;
     box-shadow: none;
@@ -380,60 +431,7 @@
     }
   }
 }
-.card-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0 .2rem;
-  margin: 0;
-  margin-bottom: 0px;
-  border-radius: .5rem;
-  color: #0d47a1 !important;
-  -webkit-text-fill-color: #0d47a1 !important;
-  justify-content: center;
-  background: aliceblue;
-  font-weight: 600;
-  &.event {
-    color: #b71c1c !important;
-    -webkit-text-fill-color: #b71c1c !important;
-    background: antiquewhite;
-    justify-content: space-between;
-    font-weight: 500;
-    line-height: 0;
 
-  }
-}
-
-.text-card {
-  border-top: 2px solid !important;
-  border-radius: 0.25rem;
-  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25) !important;
-  margin: 1rem 0;
-  .mat-card {
-    width: 90%;
-    margin: 1rem auto;
-    font-size: 1.3rem !important;
-  }
-
-  .mat-card-actions {
-    flex-wrap: wrap;
-  }
-
-  h3 {
-    font-size: 1.5rem !important;
-    margin: .5rem auto;
-    text-align: center;
-    justify-content: center !important;
-    @media screen and (max-width: 769px) {
-      justify-content: flex-end !important;
-    }
-  }
-
-  .card-body {
-    font-size: 1.3rem !important;
-    line-height: 2rem;
-    margin: 1rem auto;
-  }
 
   .info-buttons {
     color: rgb(13, 71, 161) !important;
@@ -446,8 +444,6 @@
     justify-content: space-evenly;
     margin: auto .5rem !important;
   }
-}
-.page-bottom {height: 5rem; width: 100%; display: flex; background-color: black;}
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
   .splash-title,
@@ -482,7 +478,7 @@
   }
   .content-intro {
     font-size: 1rem;
-    height: 16rem !important;
+    height: 14rem !important;
     h4 {margin: .1rem}
     .left {
       padding: .5rem;

@@ -18,7 +18,7 @@ export class EhdOpzComponent implements OnInit {
     public storeService: StoreService
   ) {
     this.linker.initRoutes('planningzoning');
-    const pzLinks = this.linker.planningzoning.filter(pz => !pz.children)
+    const pzLinks = this.linker.planningzoning.filter(pz => !pz.children && pz.id !== 'home')
     .map(pz => ({
       text: pz.title,
       path: ['/planningzoning', pz.id],

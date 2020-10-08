@@ -32,11 +32,11 @@ import { StoreService } from '../../store/store.service';
 export class MapsComponent implements AfterViewInit, OnDestroy {
   basemapUrls = [
     'https://d.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
-    'http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'
+    'https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'
   ];
   cartoLabelsUrl = [
     'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png',
-    'http://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}'
+    'https://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}'
   ];
   basemapAttr = [
     '<span><a href="http://www.openstreetmap.org/copyright">© OpenStreetMap</a> contributors, <a href="https://carto.com/attribution">© CARTO</a></span>',

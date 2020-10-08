@@ -22,14 +22,14 @@ export interface EventTableRow {
     template: `
     <mat-table [dataSource]="data" multiTemplateDataRows>
       <ng-container matColumnDef="section">
-          <mat-cell *matCellDef="let row" class="column-section" style="width: 33%"><span [innerHtml]="row.section"></span></mat-cell>
+          <mat-cell *matCellDef="let row" class="column-section"><span [innerHtml]="row.section"></span></mat-cell>
       </ng-container>
       <ng-container matColumnDef="content">
-          <mat-cell *matCellDef="let row" class="column-content" style="width: 66%">
+          <mat-cell *matCellDef="let row" class="column-content">
             <span *ngIf="!row.numbers" [ngClass]="row.link ? 'mat-raised-button mat-primary' : ''" (click)="goTo(row.link)">{{ row.content }}</span>
-            <table *ngIf="row.numbers" style="width: 100%">
+            <table *ngIf="row.numbers" style="width: 100%; font-size: 1rem">
                 <tr class="flex-row">
-                    <td class="flex-col cols-9" colspan="auto" style="max-height: 8rem;">
+                    <td class="flex-col cols-9" colspan="auto" style="max-height: 7rem;">
                         <a *ngFor="let num of row.numbers" mat-button class="cols-4" [href]="'tel:+1'+ fixPhone(num)">
                         <mat-icon style="font-size: 1rem">phone</mat-icon>
                         {{num}}
@@ -50,24 +50,27 @@ export class EventComponent implements OnInit, OnChanges {
     @Input() agenda = '';
     @Input() fofId = '';
     @Input() type: 'popup' | undefined;
+    @Input() hearing: Hearing;
     cols = ['section', 'content'];
-    hearing: Hearing;
     data: Array<EventTableRow>;
     @Output() readonly eventClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
     constructor(readonly router: Router, readonly events: EventsService) {}
     ngOnInit(): void {
-
-        this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
+        if (this.hearing === undefined) {
+            this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
+        }
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
-            this.data.push({ section: 'Find More Info', content: 'Applications & Documents', link: `/${this.board === 'RC' ? 'rentcontrol' : 'planningzoning'}/virtualhearing/${this.board === 'RC' ? '' : this.board.toLowerCase()}` });
+            this.data.splice(1, 0, { section: 'Info', content: 'Applications & Documents', link: `/${this.board === 'RC' ? 'rentcontrol' : 'planningzoning'}/virtualhearing/${this.board === 'RC' ? '' : this.board.toLowerCase()}` });
         }
     }
     ngOnChanges(changes: SimpleChanges): void {
         this.board = changes.board ? changes.board.currentValue : this.board;
         this.agenda = changes.agenda ? changes.agenda.currentValue : this.agenda;
         this.fofId = changes.fofId ? changes.fofId.currentValue : this.fofId;
-        this.hearing = this.events.hearings.filter(h => h.board === changes.board.currentValue && h.timeUntil >= -10800000)[0];
+        this.hearing = changes.hearing.currentValue
+            ? changes.hearing.currentValue
+            : this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
         this.data = this.setData(changes.board.currentValue, this.hearing, this.agenda, this.fofId);
     }
     fixPhone(num: string): string {
@@ -93,37 +96,36 @@ export class EventComponent implements OnInit, OnChanges {
         const setRows = (idnum, id): Array<EventTableRow> => {
             switch (board) {
                 case 'RC': return [
-                    { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
-                    { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
-                    { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                    { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString('en-us') : 'TBD'} EST`},
+                    { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
                       link: hearing ? hearing.link : ''},
-                    { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`6465588656,,${idno}#`, `3017158592,,${idno}#`]},
-                    { section: 'Or Other Telephone<br>' +
+                    { section: 'iPhone One-Tap', content: 'US', numbers: [`6465588656,,${idno}#`, `3017158592,,${idno}#`]},
+                    { section: 'Other Phone<br>' +
                       '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                       content: 'US',
                       extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
                       numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
                 ];
                 case 'ZBA': return [
-                    { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
-                    { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
+                    { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} EST`},
+                    { section: 'Agenda', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
                     { section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings' : 'Coming Soon', link: fofId },
-                    { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                    { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
                       link: hearing ? hearing.link : ''},
-                    { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
-                    { section: 'Or Other Telephone<br>' +
+                    { section: 'iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
+                    { section: 'Other Phone<br>' +
                       '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                       content: 'US',
                       extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
                       numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
                 ];
                 default: return [
-                        { section: 'Next Hearing', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} Eastern Time (US and Canada)`},
-                        { section: 'Topic', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
-                        { section: 'To Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                        { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} EST`},
+                        { section: 'Agenda', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
+                        { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
                           link: hearing ? hearing.link : ''},
-                        { section: 'Or Over iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
-                        { section: 'Or Other Telephone<br>' +
+                        { section: 'iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
+                        { section: 'Other Phone<br>' +
                           '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                           content: 'US',
                           extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://newarknj.zoom.us/u/adVk4AnkaC">International Numbers Here<a>'],

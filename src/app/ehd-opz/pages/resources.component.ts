@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { FileListComponent } from '../../shared/components/filelist/filelist.component';
@@ -7,7 +7,7 @@ import { DocGroup, Page } from '../../shared/models';
 @Component({
   selector: 'app-opz-resources',
   template: `
-  <app-page [page]="pageDetails">
+    <app-page [page]="pageDetails">
       <app-file-list  [docGroups]="data" (groupChange)="setSubtitle($event)" childComponent></app-file-list>
     </app-page>
     `
@@ -15,10 +15,10 @@ import { DocGroup, Page } from '../../shared/models';
 
 export class OpzResourcesComponent implements AfterViewInit {
   @ViewChild(FileListComponent) fileList: FileListComponent;
-  @Input() pageDetails: Page = {
+  pageDetails: Page = {
     id: 'documents',
-    title: 'Resources',
-    hideBottomBar: true
+    splashTitle: 'Resources',
+    splashIcon: 'document'
   };
   data: Array<DocGroup> = [
     {
@@ -53,7 +53,7 @@ export class OpzResourcesComponent implements AfterViewInit {
   constructor(
     readonly route: ActivatedRoute,
     readonly router: Router
-  ) { }
+  ) {}
   ngAfterViewInit(): void {
     this.route.queryParams.pipe(
       filter(params => params.group && params.type)
@@ -71,7 +71,7 @@ export class OpzResourcesComponent implements AfterViewInit {
     this.selectedGroup ? this.selectedGroup = this.selectedGroup : this.fileList.groupSelected({name: '', group: 'res', type: 'Redevelopment_Plans'});
   }
   setSubtitle(docsubgroup: DocGroup): void {
-    this.pageDetails.title = `Documents: ${
+    const title = () => `Documents: ${
       docsubgroup && docsubgroup.group === 'res' ? '' : docsubgroup.group.toUpperCase()
     }${
       docsubgroup.year ? ' ' : ''
@@ -81,5 +81,10 @@ export class OpzResourcesComponent implements AfterViewInit {
       docsubgroup.year ? ' ' : ''
     }${
       docsubgroup.type ? docsubgroup.type.replace('_', ' ') : ''}`;
+    this.pageDetails = {
+      id: 'documents',
+      splashTitle: title(),
+      splashIcon: 'document'
+    };
   }
 }

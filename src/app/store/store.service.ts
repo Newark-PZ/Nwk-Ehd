@@ -4,7 +4,7 @@ import { Map } from 'ol';
 import { Observable } from 'rxjs';
 import { Link } from '../shared/classes/link.class';
 import { MapLayer } from '../shared/classes/maplayer';
-import { BoardPage, FooterList, HomeCard, Page, ParcelFields, SearchItem } from '../shared/models';
+import { FooterList, HomeCard, Page, ParcelFields, SearchItem } from '../shared/models';
 import { LegendItem } from '../shared/models/layers.interface';
 import * as fromStore from '../store/store.reducers';
 import * as homePanelActions from './home-panels/home-panels.actions';
@@ -118,7 +118,7 @@ export class StoreService {
     setPageCurrent(page: Page): void {
         this.store.dispatch(PageStateActions.setPageCurrent({payload: page}));
     }
-    setPageBoard(boardPage: BoardPage): void {
+    setPageBoard(boardPage: Page): void {
         this.store.dispatch(PageStateActions.setPageBoard({payload: boardPage}));
     }
     setBoardCPB(boardmembers: Array<HomeCard>): void {

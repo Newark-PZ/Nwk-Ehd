@@ -11,8 +11,8 @@ import { HomePage } from '../../shared/models';
 export class OpzHomeComponent {
   homePageDetails: HomePage = {
     id: 'home',
-    splashImg: {src: 'assets/img/HalseyStreet_image7.png', alt: 'Halsey Street'},
-    buttonCategories: ['Boards & Commissions', 'Tools'],
+    splashImg: {src: 'assets/img/headerPhotos/HalseyStreet_image7.png', alt: 'Halsey Street'},
+    buttonCategories: ['Boards & Commissions', 'Projects', 'Tools'],
     buttons: [
       {
         icon: 'house', category: 'Boards & Commissions', title: 'Central Planning Board', parent: '/planningzoning/boards', link: 'cpb'
@@ -22,6 +22,12 @@ export class OpzHomeComponent {
       },
       {
         icon: 'house', category: 'Boards & Commissions', title: 'Landmarks & Historic Preservation', parent: '/planningzoning/boards', link: 'lhpc'
+      },
+      {
+        icon: 'campaign', category: 'Projects', title: 'Doremus Port-Industrial District', parent: '/planningzoning', link: 'doremus'
+      },
+      {
+        icon: 'payment', category: 'Tools', title: 'Applications & Payment', parent: '/planningzoning', link: 'applying', new: true
       },
       {
         icon: 'map', category: 'Tools', title: 'Interactive Zoning Map', parent: '/planningzoning', link: 'maps'

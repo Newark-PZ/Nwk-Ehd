@@ -56,10 +56,9 @@ export class DashboardComponent {
         this.currentLink = this.linker.planningzoning[0];
         this.setTab(this.link.toUpperCase());
         this.storeService.setPageCurrent({
-          title: this.currentLink.title,
-          icon: this.currentLink.icon,
-          id: this.link,
-          hideBottomBar: true
+          splashTitle: this.currentLink.title,
+          splashIcon: this.currentLink.icon,
+          id: this.link
         });
       });
     }

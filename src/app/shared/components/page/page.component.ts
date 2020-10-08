@@ -1,12 +1,16 @@
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
+import { take } from 'rxjs/operators';
 import * as fromStore from '../../../store/store.reducers';
 import { StoreService } from '../../../store/store.service';
+import { Hearing } from '../../classes/hearing';
 import { Page } from '../../models/pages.model';
-import { SnackbarComponent } from '../elements/snackbar.component';
+import { EventsService } from '../../services/events.service';
+import { LinkService } from '../../services/link.service';
+import { ModalComponent } from '../elements/modal.component';
 
 @Component({
   selector: 'app-page',
@@ -14,36 +18,52 @@ import { SnackbarComponent } from '../elements/snackbar.component';
   templateUrl: './page.component.html'
 })
 
-export class PageComponent implements OnInit, OnChanges {
+export class PageComponent implements OnChanges {
   @Input() page: Page;
+  link: string;
+  boardPage$: Observable<Page>;
   expansionOpen$: Observable<boolean>;
   expansionMulti$: Observable<boolean>;
   expansionDisabled$: Observable<boolean>;
+  nextevents: Observable<Array<Hearing>>;
   constructor(
-    public breakpointObserver: BreakpointObserver,
+    public dialog: MatDialog,
     public storeService: StoreService,
-    readonly store: Store<fromStore.StoreState>,
-    readonly _snackBar: MatSnackBar
+    readonly events: EventsService,
+    readonly linker: LinkService,
+    readonly route: ActivatedRoute,
+    readonly store: Store<fromStore.StoreState>
     ) {
-      this.expansionOpen$ = this.store.select(state => state.homePanel.open);
-      this.expansionMulti$ = this.store.select(state => state.homePanel.multi);
-      this.expansionDisabled$ = this.store.select(state => state.homePanel.toggleDisabled);
+      this.boardPage$ = this.store.select(state => state.pageState.boardPage);
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        this.link = params.get('id') || '';
+        if (this.link === 'cpb' || this.link === 'lhpc' || this.link === 'zba') {
+          this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
+            setTimeout(() => {
+              if (this.events.hearings.filter(h => h.board === this.link.toUpperCase() && h.timeUntil >= 0).length < 0) {
+                observer.next([]);
+              } else {
+                observer.next(this.events.hearings.filter(h =>  h.board === this.link.toUpperCase() && h.timeUntil >= 0)
+                .slice(0, 2));
+                observer.complete();
+              }
+            }, 100);
+          });
+          this.store
+          .select(state => state.i18n.currentLanguage)
+          .pipe(take(1))
+          .subscribe(currentLang => {
+            if (currentLang) {
+              this.linker.getPage(this.link, currentLang)
+              .subscribe(p => {
+                this.storeService.setPageBoard(p);
+                this.page = p;
+              });
+            }
+          });
+        }
+      });
     }
-  ngOnInit(): void {
-    this.breakpointObserver
-    .observe(['(max-width: 767px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        this.storeService.setHomePanelMulti(false);
-        this.storeService.setHomePanelOpen(false);
-        this.storeService.setHomePanelToggle(false);
-      } else {
-        this.storeService.setHomePanelMulti(true);
-        this.storeService.setHomePanelOpen(true);
-        this.storeService.setHomePanelToggle(true);
-      }
-    });
-  }
   ngOnChanges(changes: SimpleChanges): void {
     this.page = changes.page.currentValue;
   }
@@ -53,10 +73,14 @@ export class PageComponent implements OnInit, OnChanges {
   goTo(url?: string): void {
     if (url) {window.open(url, '_self'); }
   }
-  copySuccess(object): any {
-    this._snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
-      data: { message: 'Copied!', detail: object }
+  openEvent(evt: Hearing): void {
+    this.dialog.open(ModalComponent, {
+      maxWidth: '90vw',
+      data: {
+        header: `<b>${evt.title}</b><br><span>${evt.start.toLocaleDateString()}</span>`,
+        message: 'event',
+        event: evt
+      }
     });
   }
 }

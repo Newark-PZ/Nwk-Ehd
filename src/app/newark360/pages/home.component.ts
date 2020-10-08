@@ -18,7 +18,7 @@ export class N360HomeComponent implements OnInit {
     {color: 'red', name: 'Our Values', icon: 'people'},
     {color: 'purple', name: 'Our Process', icon: 'people'},
     {color: 'orange', name: 'Planning', icon: 'people'},
-    {color: 'lightblue', name: 'Communities', icon: 'people'}
+    {color: 'lightblue', name: 'Neighborhoods', icon: 'people'}
   ];
   ngOnInit(): void {
     setTimeout(() => {

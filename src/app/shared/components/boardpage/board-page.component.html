@@ -1,38 +1,43 @@
-<mat-toolbar>
-  <div class="title">
-    <mat-icon style="margin-right: .5rem">people</mat-icon>
-    <h2>{{ (boardPage$  | async).title }}</h2>
+<section class="splash">
+  <div class="splash-image" *ngIf="(boardPage$  | async).introPic">
+    <img src="{{(boardPage$  | async).introPic}}">
   </div>
-</mat-toolbar>
-<mat-list class="intro-cards" *ngIf="(boardPage$  | async).introText">
-  <mat-list-item class="intro-card">
-    <mat-card>
-      <div class="card-body" [innerHtml]="(boardPage$  | async).introText"></div>
-      <mat-card-actions align="end">
-        <button mat-stroked-button [ngClass]="live === true && button.icon ? 'stream-live' : 'info-buttons'"
-          *ngFor="let button of boardPageButtons" [routerLink]="[button.parent, button.link, button.param]">
-          <span *ngIf="button.text; else standardText0">{{ button.text }}</span>
-          <ng-template #standardText0>Learn More</ng-template>
-          <mat-icon>{{button.icon ? button.icon : 'double_arrow'}}</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-list-item>
-</mat-list>
+  <div class="splash-header">
+    <span class="toolbar-spacer left-space"></span>
+    <span class="splash-title">
+      <h2>{{ (boardPage$  | async).title }}</h2>
+    </span>
+    <span class="toolbar-spacer right-space"></span>
+  </div>
+  <div class="splash-body">
+    <span class="toolbar-spacer left-space"></span>
+    <span class="splash-subtitle">
+      <div *ngIf="(boardPage$  | async).introText" style="color: white;-webkit-text-fill-color: white !important;">
+        <p [innerHtml]="(boardPage$  | async).introText"></p>
+      </div>
+    </span>
+    <span class="toolbar-spacer right-space"></span>
+  </div>
+</section>
 <section class="content-intro" *ngIf="(boardPage$ | async).contentIntro">
   <div [ngClass]="(boardPage$ | async).contentIntro.right ? 'content-intro left' : 'content-intro'">
-    <h4 *ngIf="(boardPage$ | async).contentIntro.header">{{ (boardPage$ | async).contentIntro.header }}</h4>
-    <p *ngIf="(boardPage$ | async).contentIntro.text">{{ (boardPage$ | async).contentIntro.text }}</p>
-    <div class="content-intro-btns" *ngIf="nextevents | async">
-      <button *ngFor="let button of (nextevents | async)" class="event" (click)="openEvent(button)">
+      <h4 *ngIf="(boardPage$ | async).contentIntro.header">
+          <mat-icon style="margin: 0 .5rem;vertical-align: bottom;">event</mat-icon>{{ (boardPage$ | async).contentIntro.header }}</h4>
+          <p *ngIf="(boardPage$ | async).contentIntro.text">{{ (boardPage$ | async).contentIntro.text }}</p>
+          <div class="content-intro-btns">
+          <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
         <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
       </button>
-    </div>
-    <h4 *ngIf="(boardPage$ | async).contentIntro.footer">{{ (boardPage$ | async).contentIntro.footer }}</h4>
+          <button class="dashboard-btn" [routerLink]="['/planningzoning','virtualhearing']">
+        <mat-icon>live_tv</mat-icon>
+        <span>Virtual Hearing</span>
+        <span>Dashboard</span>
+      </button>
+      </div>
   </div>
   <div class="content-intro right" *ngIf="(boardPage$ | async).contentIntro.right">
-    <h3>{{ (boardPage$ | async).contentIntro.right.text }}</h3>
-    <mat-icon>arrow_downward</mat-icon>
+      <h3>{{ (boardPage$ | async).contentIntro.right.text }}</h3>
+      <mat-icon>arrow_downward</mat-icon>
   </div>
 </section>
 <section class="program-cats">

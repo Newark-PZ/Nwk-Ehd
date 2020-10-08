@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { BoardPageComponent, PageComponent, StaffComponent } from '../shared';
+import { PageComponent } from '../shared';
 import { OpzApplicationsComponent } from './pages/applications.component';
 import { OpzContactComponent } from './pages/contact.component';
 import { DashboardComponent } from './pages/dashboard.component';
+import { OpzDoremusComponent } from './pages/doremus.component';
 import { PlanningFAQComponent } from './pages/faqs.component';
 import { OpzHomeComponent } from './pages/home.component';
 import { MapsComponent } from './pages/maps.component';
@@ -32,8 +33,12 @@ export const PLANNING_ROUTES: Routes = [
     component: OpzApplicationsComponent
   },
   {
+    path: 'doremus',
+    component: OpzDoremusComponent
+  },
+  {
     path: 'boards/:id',
-    component: BoardPageComponent
+    component: PageComponent
   },
   {
     path: 'zoning/:id',
@@ -55,10 +60,6 @@ export const PLANNING_ROUTES: Routes = [
   {
     path: 'maps',
     component: MapsComponent
-  },
-  {
-    path: 'team',
-    component: StaffComponent
   },
   {
     path: ':id',

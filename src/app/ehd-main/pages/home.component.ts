@@ -11,7 +11,7 @@ import { HomePage } from '../../shared/models';
 export class EhdHomeComponent {
   homePageDetails: HomePage = {
     id: 'home',
-    splashImg: {src: 'assets/img/NwkCitySky.png', alt: 'Newark Skyline'},
+    splashImg: {src: 'assets/img/headerPhotos/NwkCitySky.png', alt: 'Newark Skyline'},
     buttonCategories: ['Divisions', 'Important Partners'],
     buttons: [
       { disabled: true, icon: 'house', category: 'Divisions', title: 'Affordable Housing', subtext: 'Jerrah Crowder', extUrl: 'https://www.newarknj.gov/departments/affordable-housing' },

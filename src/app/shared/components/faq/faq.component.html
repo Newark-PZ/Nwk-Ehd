@@ -1,33 +1,18 @@
-<mat-toolbar *ngIf="faqPage.id !== 'RentControl'">
-    <mat-icon style="margin-right: .5rem">{{ faqPage.icon }}</mat-icon>
-    <h2 [translate]="'FAQ.title.' + faqPage.type"></h2>
-</mat-toolbar>
-<section class="content-intro" *ngIf="faqPage.contentIntro">
-    <h4 *ngIf="faqPage.contentIntro.header" [translate]="'FAQ.blurb.title'"></h4>
-    <p *ngFor="let p of faqPage.contentIntro.paragraphs" [translate]="'FAQ.blurb.text'" [innerHtml]="p"></p>
-    <button *ngFor="let button of faqPage.contentIntro.buttons" mat-stroked-button [routerLink]="[button.parent, button.link]" (click)="goTo(button.extUrl)">
-      <mat-icon *ngIf="button.icon; else: icon">{{ button.icon }}</mat-icon>
-      <b [translate]="'FAQ.blurb.title'"></b><br>{{ button.date }}
-      <ng-template #icon>
-        <mat-icon>exit_to_app</mat-icon>
-      </ng-template>
-    </button>
-</section>
-<mat-card class="categories-card" *ngIf="faqPage.id !== 'RentControl'">
-    <mat-card-subtitle [translate]="'FAQ.clickText.'+faqPage.type"></mat-card-subtitle>
+<mat-card class="categories-card" *ngIf="faqCategories.length > 1">
+    <mat-card-subtitle>{{catText}}</mat-card-subtitle>
     <div class="categories">
         <div class="categories-item" *ngFor="let cat of faqCategories; let i=index">
             <button mat-stroked-button color="accent" (click)="scrollTo(i)">{{ cat }}</button>
         </div>
     </div>
 </mat-card>
-<section>
-    <div *ngFor="let cat of faqCategories; let i=index">
-        <h3 mat-list-item [id]="'category' + i">
+<section class="faqContent">
+    <div class="faqGroup" *ngFor="let cat of faqCategories; let i=index">
+        <h3 [id]="'category' + i">
             <mat-divider style="margin: 1rem 0;"></mat-divider>
             {{ cat }}
         </h3>
-        <mat-accordion mat-list-item>
+        <mat-accordion>
             <mat-expansion-panel *ngFor="let faq of faqText | FaqCatPipe:filterCat(cat)">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -52,4 +37,3 @@
         </mat-accordion>
     </div>
 </section>
-<app-footer></app-footer>

@@ -1,54 +1,123 @@
-<mat-toolbar>
+<mat-toolbar *ngIf="page.splashIcon">
   <div class="title">
-    <mat-icon style="margin-right: .5rem">{{ page.icon }}</mat-icon>
-    <h2>{{ page.title }}</h2>    
+    <mat-icon style="margin-right: .5rem">{{ page.splashIcon }}</mat-icon>
+    <h2>{{ page.splashTitle }}</h2>
   </div>
   <ng-content select='[subtitleDrop]'></ng-content>
-  <div class="subtitle" *ngIf="page.subtitle">
-    <h3>{{ page.subtitle }}</h3>
-  </div>
 </mat-toolbar>
-<mat-list class="intro-cards" *ngIf="page.introText">
-  <mat-list-item class="intro-card">
-    <mat-card>
-      <div class="card-body" [innerHtml]="page.introText"></div>
-      <mat-card-actions align="end" *ngIf="page.buttons">
-        <a mat-stroked-button *ngFor="let button of page.buttons"
-          [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [routerLink]="['./', button.link]">
-          <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
-          <ng-template #standardText0>Apply</ng-template>
-          <mat-icon>double_arrow</mat-icon>
-        </a>
-      </mat-card-actions>
-    </mat-card>
-  </mat-list-item>
-</mat-list>
-<section class="content-intro" *ngIf="page.contentIntro">
-  <h3>{{ page.contentIntro.header }}</h3>
-  <h3 [innerHtml]='page.contentIntro.body'></h3>
-  <mat-icon>arrow_downward</mat-icon>
+<section class="splash" *ngIf="page.splashIcon === undefined">
+  <div class="splash-image" *ngIf="page.splashImg">
+    <img [src]="page.splashImg.src" alt="{{page.splashImg.alt}}">
+  </div>
+  <h2 class="splash-title">{{ page.splashTitle }}</h2>
+  <div class="splash-blurb" *ngIf="page.splashBlurb">
+    <p [innerHtml]="page.splashBlurb.text"></p>
+    <div class="splash-blurb-btns" *ngIf="page.splashBlurb.buttons">
+      <button *ngFor="let button of page.splashBlurb.buttons" mat-stroked-button
+        [routerLink]="button.link ? [button.parent, button.link] : undefined" (click)="goTo(button.extUrl)">
+        {{ button.text }}
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </div>
+</section>
+<section class="content-intro" *ngIf="page.contentIntro as ci">
+  <div class="left" *ngIf="ci.left">
+    <h2 *ngIf="ci.left.header">{{ ci.left.header }}</h2>
+    <img *ngIf="ci.left.img" [src]="ci.left.img">
+    <div class="text" *ngIf="ci.left.text" [innerHtml]="ci.left.text"></div>
+  </div>
+  <div class="right" *ngIf="ci.right">
+    <h2 *ngIf="ci.right.header">{{ ci.right.header }}</h2>
+    <img *ngIf="ci.right.img" [src]="ci.right.img">
+    <div class="text" *ngIf="ci.right.text" [innerHtml]="ci.right.text"></div>
+  </div>
+  <div class="middle" *ngIf="ci.middle">
+    <h2 *ngIf="ci.middle.header">
+      <mat-icon style="margin: 0 .5rem;vertical-align: bottom;" *ngIf="nextevents | async">event</mat-icon>{{ ci.middle.header }}
+    </h2>
+    <div class="content-intro-btns" *ngIf="nextevents | async">
+      <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
+        <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
+      </button>
+      <button class="dashboard-btn" [routerLink]="['/planningzoning/virtualhearing',link]">
+        <mat-icon>live_tv</mat-icon>
+        <span>Virtual Hearing</span>
+        <span>Dashboard</span>
+      </button>
+    </div>
+    <img *ngIf="ci.middle.img" [src]="ci.middle.img">
+    <div class="text" *ngIf="ci.middle.text" [innerHtml]="ci.middle.text"></div>
+  </div>
 </section>
 <ng-content select='[childComponent]'></ng-content>
 <router-outlet></router-outlet>
-<mat-list class="program-cards">
-  <mat-list-item class="program-card" *ngFor="let card of page.sections">
-    <mat-card>
-      <mat-card-header *ngIf="card.header">
-        <mat-card-title>{{ card.header }}</mat-card-title>
-      </mat-card-header>
-      <div class="card-body" [innerHtml]="card.text"></div>
-      <div class="logos" *ngIf="card.logos">
-        <img *ngFor="let logo of card.logos" [src]="'assets/img/logos/logo_' + logo + '.png'">
-      </div>
-      <mat-card-actions align="end" *ngIf="card.buttons">
-        <a mat-stroked-button *ngFor="let button of card.buttons"
-        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+<section class="section-blocks">
+  <mat-card class="section-block" *ngFor="let card of page.sections; let i = index;"
+    [style.background]="i % 2 === 0 ? 'url(' + page.splashImg.src +'), rgba(13, 71, 161,.75)' : ''">
+    <mat-card-header *ngIf="card.header">
+      <mat-card-title>{{ card.header }}</mat-card-title>
+    </mat-card-header>
+    <div class="card-body" *ngIf="!card.list" [innerHtml]="card.text"></div>
+    <div class="card-list" *ngIf="card.list">
+      <ul class="text-list">
+        <li *ngFor="let item of card.list">
+          <b>{{item.text}}</b><span *ngIf="item.subText"> | <i>{{item.subText}}</i></span>
+        </li>
+      </ul>
+    </div>
+    <mat-card-actions align="end" *ngIf="card.buttons">
+        <button *ngFor="let button of card.buttons" mat-stroked-button
+        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'"
+        [routerLink]="button.link ? [button.parent, button.link] : undefined" 
+        [queryParams]="button.params ? button.params : undefined" (click)="goTo(button.extUrl)">
+          <mat-icon>{{ button.icon ? button.icon : 'exit_to_app' }}</mat-icon>
+          {{ button.text }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="section-block acknowledgments" *ngFor="let card of page.acknowledgments; let i = index;">
+    <mat-card-header *ngIf="card.header">
+      <mat-card-title>{{ card.header }}</mat-card-title>
+    </mat-card-header>
+    <div class="card-body" [innerHtml]="card.text"></div>
+    <mat-card-actions align="end" *ngIf="card.buttons">
+      <a mat-stroked-button *ngFor="let button of card.buttons"
+        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
+        [href]="button.link">
         <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
         <ng-template #standardText0>Apply</ng-template>
         <mat-icon>double_arrow</mat-icon>
       </a>
-      </mat-card-actions>
-    </mat-card>
-  </mat-list-item>
-</mat-list>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="section-block contact" *ngIf="page.contact">
+    <mat-card-header *ngIf="page.contact.header">
+      <mat-card-title>{{ page.contact.header }}</mat-card-title>
+    </mat-card-header>
+    <div class="card-body" style="text-align: center">
+      <table class="text-table">
+        <tr *ngFor="let contact of page.contact.contacts">
+          <td><b>{{contact.text}}</b></td>
+          <td>
+            <div>
+              <p style="line-height: .5rem; font-weight: 400; font-size: 1.25rem;" [innerHtml]="contact.officer"></p>
+              <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;" [innerHtml]="contact.officerTitle">
+              </p>
+            </div>
+          </td>
+          <td>
+            <div class="flex-row justify-content-around">
+              <p style="font-size: 1rem">
+                <span>Tel: <a [href]="'tel:+1'+contact.phone">({{contact.phone.slice(0,3)}})
+                    {{contact.phone.slice(3,6)}}-{{contact.phone.slice(6)}}</a></span><br>
+                <span>Email: <a [href]="'mailto:'+contact.email">{{contact.email}}</a></span>
+              </p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card>
+</section>
 <app-footer></app-footer>

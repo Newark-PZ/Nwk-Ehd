@@ -3,13 +3,13 @@ import { Page } from '../../shared/models/pages.model';
 
 @Component({
   selector: 'app-planningzoning-faq',
-  template: '<app-faq [faqPage]="faqPage"></app-faq>'
+  template: `<app-page [page]="faqPage"><app-faq [faqType]="'planningzoning'" childComponent></app-faq></app-page>`
 })
 
 export class PlanningFAQComponent {
   faqPage: Page = {
-    id: 'Tenant',
-    icon: 'people',
-    title: 'Newark Tenants FAQs'
+    id: 'faq',
+    splashIcon: 'forum',
+    splashTitle: 'Frequently Asked Questions'
   };
 }

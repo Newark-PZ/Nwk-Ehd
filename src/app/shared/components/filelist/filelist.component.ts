@@ -1,5 +1,5 @@
 
-import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { DocGroup, DocsFields } from '../../models';
 import { AirService } from '../../services/air.service';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.Default,
     selector: 'app-file-list',
     styles: [':host {display: flex;flex-wrap: wrap;width:90vw; margin: auto}'],
     styleUrls: ['./filelist.component.scss'],

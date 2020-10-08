@@ -16,15 +16,24 @@ export class EhdOrcComponent {
     public storeService: StoreService
     ) {
     this.linker.initRoutes('rentcontrol');
+    const rcLinks = this.linker.rentcontrol.filter(rc => !rc.children && rc.id !== 'home')
+    .map(rc => ({
+      text: rc.title,
+      path: ['/rentcontrol', rc.id],
+      disabled: rc.disabled
+    }));
     this.officeRoutes = {
       text: 'Rent Control',
       path: ['/', 'rentcontrol'],
-      children: this.linker.rentcontrol.map(rc => ({
-        text: rc.title,
-        path: ['/', rc.fullPath],
-        disabled: rc.disabled
-      })
-      )
+      children: rcLinks.concat(
+        this.linker.rentcontrolChildren.filter(rc => !rc.disabled && rc.parent !== 'boards')
+          .map(rc => ({
+            text: rc.title,
+            path: ['/rentcontrol', rc.parent, rc.id],
+            disabled: rc.disabled
+          })
+          )
+        )
     };
     this.storeService.setFooter(this.officeRoutes);
   }

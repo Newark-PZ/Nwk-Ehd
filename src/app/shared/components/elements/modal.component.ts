@@ -13,7 +13,7 @@ import { ModalConfig } from '../../models/interfaces';
 <app-event-detail *ngIf="data.message === 'event'"
 [agenda]="data.event.agenda ? data.event.agenda : ''"
 [fofId]="data.event.fof ? data.event.fof : ''"
-[board]="data.event.board" [type]="'popup'" (eventClicked)="dialogRef.close()"></app-event-detail>
+[board]="data.event.board" [hearing]="data.event" [type]="'popup'" (eventClicked)="dialogRef.close()"></app-event-detail>
 <div mat-dialog-actions><button mat-raised-button color="primary" (click)="dialogRef.close()" i18n="@@modalButton | Close Modal">Close</button></div>
   `
 })

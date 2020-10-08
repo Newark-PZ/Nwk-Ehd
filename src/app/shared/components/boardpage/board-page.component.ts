@@ -7,14 +7,12 @@ import { take } from 'rxjs/operators';
 import * as fromStore from '../../../store/store.reducers';
 import { StoreService } from '../../../store/store.service';
 import { Hearing } from '../../classes/hearing';
-import { BoardPage } from '../../models/pages.model';
+import { Page } from '../../models/pages.model';
 import { EventsService } from '../../services/events.service';
 import { LinkService } from '../../services/link.service';
-import { slideshowAnimation } from '../../util/animations';
 import { ModalComponent } from '../elements/modal.component';
 
 @Component({
-  animations: [slideshowAnimation],
   changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-board-page',
   styleUrls: ['./board-page.component.scss'],
@@ -23,13 +21,12 @@ import { ModalComponent } from '../elements/modal.component';
 
 export class BoardPageComponent {
   link: string;
-  boardPage$: Observable<BoardPage>;
+  boardPage$: Observable<Page>;
   currentLanguage$: Observable<string>;
   expansionOpen$: Observable<boolean>;
   expansionMulti$: Observable<boolean>;
   expansionDisabled$: Observable<boolean>;
   live: boolean;
-  boardPageButtons: Array<any> = [];
   nextevents: Observable<Array<Hearing>>;
   constructor(
     readonly store: Store<fromStore.StoreState>,
@@ -57,13 +54,6 @@ export class BoardPageComponent {
           }
         }, 100);
       });
-      this.boardPageButtons = [{
-        text: 'Virtual Hearing Dashboard',
-        icon: this.live ? 'live_tv' : 'tv_off',
-        parent: '/planningzoning',
-        link: 'virtualhearing',
-        param: this.link
-      }];
       this.store
       .select(state => state.i18n.currentLanguage)
       .pipe(take(1))

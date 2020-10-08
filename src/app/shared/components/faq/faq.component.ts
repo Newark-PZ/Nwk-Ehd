@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as fromStore from '../../../store/store.reducers';
-import { Faq, Page } from '../../models/pages.model';
+import { Faq } from '../../models/pages.model';
 
 @Component({
   selector: 'app-faq',
@@ -13,7 +13,8 @@ import { Faq, Page } from '../../models/pages.model';
 
 export class FaqComponent implements OnInit {
   document: Document;
-  @Input() faqPage: Page;
+  @Input() catText = 'Click on a category below to find answers';
+  @Input() faqType: 'rentcontrol' | 'planningzoning';
   @Input() faqText: Array<Faq>;
   faqCategories: Array<string> = [];
   currentLanguage$: Observable<string>;
@@ -31,9 +32,9 @@ export class FaqComponent implements OnInit {
         .select(state => state.i18n.currentLanguage)
         .pipe(take(1))
         .subscribe(currentLang => {
-          if (currentLang && this.faqPage.id) {
-            this.getFaq(this.faqPage.id, lang);
-            this.faqCategories = this.getCategories(this.faqPage.id, lang);
+          if (currentLang && this.faqType) {
+            this.getFaq(this.faqType, lang);
+            this.faqCategories = this.getCategories(this.faqType, lang);
           }
         });
       });
@@ -45,12 +46,15 @@ export class FaqComponent implements OnInit {
       .then(data => this.faqText = data)
       .catch(err => { console.error(err); });
   }
-  getCategories(faq: string, language: string): Array<string> {
+  getCategories(type: string, language: string): Array<string> {
     let categories: Array<string> = [];
-    switch (language) {
+    switch (type) {
+      case 'rentcontrol':
+        categories = ['Rent Control'];
+        break;
       default:
             categories = [
-                'Applying', 'Payment/Escrow'
+                'Rent Control'
             ];
     }
 

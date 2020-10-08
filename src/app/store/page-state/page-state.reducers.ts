@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { Hearing } from '../../shared/classes/hearing';
-import { BoardPage, FooterList, HomeCard, HomePage, Page } from '../../shared/models';
+import { FooterList, HomeCard, HomePage, Page } from '../../shared/models';
 import * as PageStateActions from './page-state.actions';
 
 export interface State {
   home: HomePage;
   currentPage: Page;
-  boardPage: BoardPage;
+  boardPage: Page;
   boardCPB: Array<HomeCard>;
   boardEC: Array<HomeCard>;
   boardLHPC: Array<HomeCard>;
@@ -20,8 +20,8 @@ export interface State {
 
 const initialState: State = {
   home: {id: 'home', buttonCategories: [], contentIntro: { text: ''}},
-  currentPage: {id: 'home', buttonCategories: [], contentIntro: { text: ''}, hideBottomBar: true, title: ''},
-  boardPage: {id: 'home', buttonCategories: [], contentIntro: { text: ''}, title: '', buttons: []},
+  currentPage: {id: 'home', splashTitle: ''},
+  boardPage: {id: 'cpb', splashTitle: ''},
   boardCPB: [],
   boardEC: [],
   boardLHPC: [],

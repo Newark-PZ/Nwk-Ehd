@@ -1,5 +1,5 @@
 import { ApplicationsComponent } from './components/applications/applications.component';
-import { BoardPageComponent } from './components/boardpage/board-page.component';
+import { MapImageComponent } from './components/elements/basic-map.component';
 import { BottomSheetComponent } from './components/elements/bottomsheet.component';
 import { EventComponent } from './components/elements/event.component';
 import { ModalComponent } from './components/elements/modal.component';
@@ -17,7 +17,6 @@ import { PropPaneComponent } from './components/mapels/prop-pane.component';
 import { PropSnackbarComponent } from './components/mapels/prop-snackbar.component';
 import { PageComponent } from './components/page/page.component';
 import { SidebarButtonComponent } from './components/sidebar-button/sidebar-button.component';
-import { StaffComponent } from './components/staff/staff.component';
 import { AirService } from './services/air.service';
 import { CartoService } from './services/carto.service';
 import { FaqCatPipe } from './services/faqfilter.pipe';
@@ -29,7 +28,6 @@ import { GoogleService } from './services/google.service';
 export const components = [
     ApplicationsComponent,
     AreaPaneComponent,
-    BoardPageComponent,
     BottomSheetComponent,
     EventComponent,
     FaqComponent,
@@ -40,13 +38,13 @@ export const components = [
     HomeComponent,
     IntroPaneComponent,
     MapPaneComponent,
+    MapImageComponent,
     ModalComponent,
     PageComponent,
     PropPaneComponent,
     PropSnackbarComponent,
     SidebarButtonComponent,
-    SnackbarComponent,
-    StaffComponent
+    SnackbarComponent
 ];
 
 export const services = [
@@ -63,7 +61,7 @@ export const pipes = [
 ];
 
 export * from './components/applications/applications.component';
-export * from './components/boardpage/board-page.component';
+export * from './components/elements/basic-map.component';
 export * from './components/elements/modal.component';
 export * from './components/elements/snackbar.component';
 export * from './components/elements/event.component';
@@ -80,7 +78,6 @@ export * from './components/page/page.component';
 export * from './components/mapels/prop-snackbar.component';
 export * from './components/mapels/prop-pane.component';
 export * from './components/sidebar-button/sidebar-button.component';
-export * from './components/staff/staff.component';
 
 export * from './services/air.service';
 export * from './services/carto.service';

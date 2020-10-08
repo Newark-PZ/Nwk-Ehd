@@ -3,6 +3,7 @@ import { OpzContactComponent } from './pages/contact.component';
 import { DashboardComponent } from './pages/dashboard.component';
 import { DiagramsComponent } from './pages/diagrams/diagrams.component';
 import { LotComponent } from './pages/diagrams/lot.component';
+import { OpzDoremusComponent } from './pages/doremus.component';
 import { PlanningFAQComponent } from './pages/faqs.component';
 import { OpzHomeComponent } from './pages/home.component';
 import { MapsComponent } from './pages/maps.component';
@@ -21,6 +22,7 @@ export const planningComponents = [
   OpzResourcesComponent,
   OpzZoningComponent,
   OpzContactComponent,
+  OpzDoremusComponent,
   DashboardComponent,
   PlanningFAQComponent
 ];

@@ -16,8 +16,7 @@ import { Page } from '../../shared/models';
 export class OpzContactComponent {
   pageDetails: Page = {
     id: 'contact',
-    title: 'Submit the form below to contact us',
-    hideBottomBar: true
+    splashTitle: 'Submit the form below to contact us'
   };
   link = 'https://airtable.com/embed/shrXXlLSQ5ZepfZo2?backgroundColor=purple';
   constructor(

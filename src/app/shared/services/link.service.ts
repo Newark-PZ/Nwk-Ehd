@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StoreService } from '../../store/store.service';
 import { Link } from '../classes/link.class';
-import { BoardPage, HomePage, Page } from '../models/pages.model';
+import { HomePage, Page } from '../models/pages.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,7 @@ export class LinkService {
     new Link({id: 'virtualhearing', title: 'Virtual Hearing Dashboard', office: 'planningzoning', icon: 'live_tv', isChild: false}),
     new Link({id: 'home', title: 'OPZ Home', office: 'planningzoning', icon: 'home', isChild: false}),
     new Link({id: 'applying', title: 'Applications & Payment', office: 'planningzoning', icon: 'assignment', isChild: false}),
+    new Link({id: 'doremus', title: 'Doremus Port-Industrial District', office: 'planningzoning', icon: 'campaign', isChild: false}),
     // new Link({id: 'team', title: 'Our Team', office: 'planningzoning', icon: 'people', isChild: false}),
     new Link({id: 'maps', title: 'Maps', office: 'planningzoning', icon: 'map', isChild: false}),
     new Link({id: 'boards', title: 'Boards & Commissions', office: 'planningzoning',
@@ -45,12 +46,17 @@ export class LinkService {
     new Link({id: 'home', title: 'Newark 360 Home', office: '360', icon: 'home', isChild: false}),
     new Link({id: 'newark-today', title: 'Newark Today', office: '360', icon: 'map', isChild: false})
   ];
+  rentcontrolChildren = [
+    new Link({id: 'documents', title: 'Resources: Documents', office: 'rentcontrol', parent: 'resources' }),
+    new Link({id: 'faqs', title: 'Resources: FAQs', office: 'rentcontrol', parent: 'resources' })
+  ];
   rentcontrol = [
     new Link({id: 'virtualhearing', title: 'Virtual Hearing Dashboard', office: 'rentcontrol', icon: 'live_tv', isChild: false}),
     new Link({id: 'home', title: 'Rent Control Home', office: 'rentcontrol', icon: 'home', isChild: false}),
     // new Link({id: 'dash', title: 'Maps', office: 'rentcontrol', icon: 'map', isChild: false, disabled: false}),
     new Link({id: 'board', title: 'Rent Control Board', office: 'rentcontrol', icon: 'people', isChild: false, disabled: true}),
-    new Link({id: 'resources', title: 'Resources', office: 'rentcontrol', icon: 'file', isChild: false, disabled: true})
+    new Link({id: 'resources', title: 'Resources', office: 'rentcontrol', icon: 'file', isChild: false,
+              children: this.rentcontrolChildren.filter(v => v.parent === 'resources')})
   ];
   initRoutes(office: '360' | 'ehd' | 'planningzoning' | 'rentcontrol'): Array<Link> {
     let officeLinks: Array<Link>;
@@ -78,8 +84,8 @@ export class LinkService {
     return officeLinks;
   }
   getPage(id: string, language: string): Observable<any> {
-    return this.http.get<Array<BoardPage | HomePage | Page>>(`assets/i18n/${this.currentOffice}/${language}.json`)
+    return this.http.get<Array<HomePage | Page>>(`assets/i18n/${this.currentOffice}/${language}.json`)
     .pipe(
-      map((p: Array<BoardPage | HomePage | Page>) => p.find(page => page.id === id)));
+      map((p: Array<HomePage | Page>) => p.find(page => page.id === id)));
   }
 }

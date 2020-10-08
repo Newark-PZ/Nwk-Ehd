@@ -10,7 +10,7 @@ import { ModalComponent } from '../elements/modal.component';
     // tslint:disable: component-max-inline-declarations template-i18n template-no-call-expression
     template: `
         <mat-card class="row-card">
-            <mat-card-title style="background-color: rgba(0,0,0,.04); font-size: 1.15rem; font-weight: 500; border-radius: .25rem; width: 100%; padding: .5rem;">
+            <mat-card-title style="background-color: rgba(0,0,0,.04); font-size: 1.15rem; font-weight: 500; border-radius: .25rem; width: 100%; padding: .25rem .5rem;">
             {{data.Name ? replaceAll(data.Name) : 'Document Name'}}
             </mat-card-title>
             <mat-card-subtitle style="font-weight: 100;">

@@ -134,11 +134,19 @@
         flex-direction: row;
         align-self: stretch;
         font-size: 1.15rem;
+        .specialIcon {
+            height: 2rem;
+            margin: -1rem -0.5rem 0 0;
+            padding: 0;
+            background: #231f20;
+            border-radius: .25rem;
+            position: absolute;
+            right: 0;
+        }
     }
     .card-content {
         height: 5rem;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 1rem;

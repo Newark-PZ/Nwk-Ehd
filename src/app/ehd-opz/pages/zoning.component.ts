@@ -53,14 +53,7 @@ export class OpzZoningComponent implements OnInit {
   activeViewName;
   pageDetails: Page = {
     id: 'zoning',
-    title: 'Zoning: Click through our regulations below',
-    introText: '',
-    buttons: [
-      { icon: 'calendar', category: 'staff', title: 'Our Leadership', link: 'leadership' },
-      { icon: 'file', category: 'staff', title: 'Planning Staff', link: 'planners' },
-      { icon: 'map', category: 'staff', title: 'Zoning & Support Staff', link: 'support' }
-    ],
-    hideBottomBar: true
+    splashTitle: 'Zoning: Click through our regulations below'
   };
   constructor(
     public clipboard: Clipboard,
