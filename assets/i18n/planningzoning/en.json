@@ -8,7 +8,7 @@
             }
         },
         "splashImg": {
-            "src": "assets/img/NwkLibrary.jpg",
+            "src": "assets/img/headerPhotos/NwkLibrary.jpg",
             "alt": "Newark Public Library: Downtown"
         },
         "splashBlurb": {
@@ -210,7 +210,7 @@
     {
         "id": "lhpc",
         "splashImg": {
-            "src": "assets/img/NwkCitySky.png",
+            "src": "assets/img/headerPhotos/NwkCitySky.png",
             "alt": "City Skyline"
         },
         "splashTitle": "Landmark & Historic Preservation Commission",
@@ -322,7 +322,7 @@
     {
         "id": "zba",
         "splashImg": {
-            "src": "assets/img/nwkcityhall-01.png",
+            "src": "assets/img/headerPhotos/nwkcityhall-01.png",
             "alt": "City Hall Montage"
         },
         "splashBlurb": {
@@ -362,6 +362,10 @@
                     },
                     {
                         "text": "Charles Hall Jr.",
+                        "hierarchy": 3
+                    },
+                    {
+                        "text": "Sharon Hardesty",
                         "hierarchy": 3
                     },
                     {
