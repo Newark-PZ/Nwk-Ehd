@@ -59,6 +59,7 @@
       <mat-card-title>{{ card.header }}</mat-card-title>
     </mat-card-header>
     <div class="card-body" *ngIf="!card.list" [innerHtml]="card.text"></div>
+    <iframe *ngIf="card.iframe" [src]="card.iframe.src" [height]="card.iframe.height" [height]="card.iframe.width" frameborder="0"></iframe>
     <div class="card-list" *ngIf="card.list">
       <ul class="text-list">
         <li *ngFor="let item of card.list">

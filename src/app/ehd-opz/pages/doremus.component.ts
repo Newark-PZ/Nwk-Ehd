@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from '../../shared/models';
 
@@ -16,7 +17,10 @@ export class OpzDoremusComponent {
     splashImg: { src: 'assets/img/headerPhotos/Doremus.jpg', alt: "Bird's Eye view of Doremus" },
     splashBlurb: {
       text: 'Forward-Bound Doremus is a shared vision and redevelopment plan for the Doremus Port-Industrial District. See more info below or go to the project website',
-      buttons: [{ text: 'Project Website', extUrl: 'https://sites.google.com/view/forwardbounddoremus' }, { text: 'Youtube Channel', extUrl: 'https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA' }]
+      buttons: [
+        { text: 'Project Website', extUrl: 'https://sites.google.com/view/forwardbounddoremus' },
+        { text: 'Youtube Channel', extUrl: 'https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA' }
+      ]
     },
     contentIntro: {
       left: {
@@ -32,7 +36,7 @@ export class OpzDoremusComponent {
       },
       {
         header: 'THE LAUNCH',
-        text: '<p>The public, the media and all stakeholders are invited to participate in the Virtual Project Launch Presentation of Forward-Bound Doremus, a Redevelopment Plan for the City of Newark Port-Industrial District, on <b>October 14, 2020 at 6pm, EST</b>. This will be a 1.5-hour presentation to introduce participants to the project goals, team, process, timeline and how to get involved! At the end of the presentation there will be a participatory group activity for participants to provide input.  Participants can attend this virtual meeting on Zoom, watch the live stream on the <a href="www.facebook.com/CityofNewark">City of Newark Facebook page</a>, or by following the <a href="https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA">Forward-Doremus Youtube Channel</a>.</p><p>The prime consultant for the Port-Industrial District Redevelopment Plan, leading a planning team with local familiarity is WRT an award-winning, national practice of planners, urban designers, architects, and landscape architects headquartered in Philadelphia, PA. The objective is to create a robust, inclusive, and equitable planning process that elevates the economic and environmental conversation and improves the health of the surrounding neighborhood, enabling stakeholders and residents to find mutually beneficial solutions.</p>'
+        text: '<p>The public, the media and all stakeholders are invited to participate in the Virtual Project Launch Presentation of Forward-Bound Doremus, a Redevelopment Plan for the City of Newark Port-Industrial District, on <b>October 14, 2020 at 6pm, EST</b>. This will be a 1.5-hour presentation to introduce participants to the project goals, team, process, timeline and how to get involved! At the end of the presentation there will be a participatory group activity for participants to provide input.  Participants can attend this virtual meeting on Zoom, watch the live stream on the <a href="www.facebook.com/CityofNewark">City of Newark Facebook page</a>, or by following the <a href="https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA">Forward-Bound Doremus Youtube Channel</a>.</p><p>The prime consultant for the Port-Industrial District Redevelopment Plan, leading a planning team with local familiarity is WRT an award-winning, national practice of planners, urban designers, architects, and landscape architects headquartered in Philadelphia, PA. The objective is to create a robust, inclusive, and equitable planning process that elevates the economic and environmental conversation and improves the health of the surrounding neighborhood, enabling stakeholders and residents to find mutually beneficial solutions.</p>'
       },
       {
         header: 'WHY',
@@ -48,7 +52,16 @@ export class OpzDoremusComponent {
       },
       {
         header: 'HOW TO ATTEND',
-        text: '<p>All of the meetings that require more than 10 people will be virtual meetings using Zoom, a free video conference tool.  If you are not familiar with the software please visit the website, create an account, and download the program on your computer and smartphone before joining the meeting.<table class="text-table"><tr><td><b>Location</b></td><td><a href="https://zoom.us/j/94447543140">https://zoom.us/j/94447543140</a></td></tr><tr><td><b>Meeting information</b></td><td><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: Forward</td></tr><tr><td><b>One tap mobile</b></td><td><a href="tel:+13017158592,,94447543140#,,,,,,0#,,772042#">+13017158592,,94447543140#,,,,,,0#,,772042# US (Germantown)</a><br><a href="tel:+13126266799,,94447543140#,,,,,,0#,,772042#">+13126266799,,94447543140#,,,,,,0#,,772042# US (Chicago)</a><br><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: 772042</td></tr></table></p><p>You can also participate through the <a href="www.facebook.com/CityofNewark">City of Newark Facebook page</a> or by following the <a href="https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA">Forward-Doremus Youtube Channel</a>'
+        text: '<p>All of the meetings that require more than 10 people will be virtual meetings using Zoom, a free video conference tool.  If you are not familiar with the software please visit the website, create an account, and download the program on your computer and smartphone before joining the meeting. <i>Note: Meeting proceedings will be recorded (both audio and video) to ensure accuracy and availability to the public.</i><table class="text-table"><tr><td><b>Location</b></td><td><a href="https://zoom.us/j/94447543140">https://zoom.us/j/94447543140</a></td></tr><tr><td><b>Meeting information</b></td><td><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: Forward</td></tr><tr><td><b>One tap mobile</b></td><td><a href="tel:+13017158592,,94447543140#,,,,,,0#,,772042#">+13017158592,,94447543140#,,,,,,0#,,772042# US (Germantown)</a><br><a href="tel:+13126266799,,94447543140#,,,,,,0#,,772042#">+13126266799,,94447543140#,,,,,,0#,,772042# US (Chicago)</a><br><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: 772042</td></tr></table></p><p>You can also participate through the <a href="www.facebook.com/CityofNewark">City of Newark Facebook page</a> or by following the <a href="https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA">Forward-Bound Doremus Youtube Channel</a></p>'
+      },
+      {
+        header: 'Documents & Presentations',
+        text: 'October 14th, 2020, Public Meeting Presentation',
+        iframe: {
+          src: this.safeLink.bypassSecurityTrustResourceUrl('https://drive.google.com/file/d/1SI-_ztwQtuW_Ghwlx71eVaIzysB54Ixt/preview'),
+          width: '640',
+          height: '480'
+        }
       }
     ],
     acknowledgments: [
@@ -63,7 +76,7 @@ export class OpzDoremusComponent {
         {
           officer: 'Frank Baraff',
           officerTitle: 'Communications Manager',
-          phone: '9737336575',
+          phone: '9144693775',
           email: 'barafff@ci.newark.nj.us',
           room: '218',
           text: 'For Media Inquiries:'
@@ -80,6 +93,7 @@ export class OpzDoremusComponent {
     }
   };
   constructor(
+    public safeLink: DomSanitizer,
     readonly route: ActivatedRoute,
     readonly router: Router
   ) { }
