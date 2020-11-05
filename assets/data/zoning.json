@@ -1,0 +1,150 @@
+[
+    {
+        "ZONE": "R-1",
+        "USES_PRIMARY": "Active Recreation Park,Community Residences,Municipal Uses,Passive Recreation Park,Primary & Secondary Schools,Single-Family Dwelling",
+        "USES_ACCESSORY": "Composting (see Section 40: 4-6. Additional Standards),Family Day Care Homes,Home Occupation,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential',Private Sports Courts,Sheds and Other Accessory Storage Structures,Solar Energy Systems,'Swimming Pools, Private','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "One-family",
+        "TYPE": "Residential"
+    },
+    {
+        "ZONE": "R-2",
+        "USES_PRIMARY": "Active Recreation Park,Childcare Center,Community Gardens,Community Residences,Municipal Uses,Passive Recreation Park,Places of Worship,Primary & Secondary Schools,Single-Family Dwelling,Two-Family Dwelling",
+        "USES_ACCESSORY": "Coldframe,Composting (see Section 40: 4-6. Additional Standards),Family Day Care Homes,Greenhouse,Home Occupation,Hoophouse,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential',Private Sports Courts,Sheds and Other Accessory Storage Structures,Solar Energy Systems,'Swimming Pools, Private','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "One-family,Two-family,Townhouse,'Schools (Elementary, Middle, High Schools)',Place of Worship",
+        "TYPE": "Residential"
+    },
+    {
+        "ZONE": "R-3",
+        "USES_PRIMARY": "Active Recreation Park,Childcare Center,Community Centers,Community Gardens,Community Residences,Municipal Uses,Passive Recreation Park,Places of Worship,Primary & Secondary Schools,Single-Family Dwelling,Three-Family Dwelling,'Town House, Dwelling',Two-Family Dwelling,Urban Farms",
+        "USES_ACCESSORY": "Coldframe,Composting (see Section 40: 4-6. Additional Standards),Family Day Care Homes,Greenhouse,Home Occupation,Hoophouse,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential',Private Sports Courts,Sheds and Other Accessory Storage Structures,Solar Energy Systems,'Swimming Pools, Private','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "One-family,Two-family,Three-family,Townhouse,'Schools (Elementary, Middle, High Schools)',Place of Worship",
+        "TYPE": "Residential"
+    },
+    {
+        "ZONE": "R-4",
+        "USES_PRIMARY": "Active Recreation Park,Assisted Living Facilities & Nursing Homes,Childcare Center,Community Centers,Community Gardens,Community Residences,Low-Rise Multi-Family Dwellings,Municipal Uses,Passive Recreation Park,Places of Worship,Primary & Secondary Schools,Single-Family Dwelling,Three-Family Dwelling,'Town House, Dwelling',Two-Family Dwelling,Urban Farms",
+        "USES_ACCESSORY": "Coldframe,Composting (see Section 40: 4-6. Additional Standards),Family Day Care Homes,Greenhouse,Home Occupation,Home Professional Offices,Hoophouse,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential',Private Sports Courts,Sheds and Other Accessory Storage Structures,Solar Energy Systems,'Swimming Pools, Private','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "One-family,Two-family,Three-family,Townhouse,Low-rise multifamily & Four-Family,Ground-floor commercial with commercial or residential above,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Residential"
+    },
+    {
+        "ZONE": "R-5",
+        "USES_PRIMARY": "Active Recreation Park,Assisted Living Facilities & Nursing Homes,Childcare Center,Community Centers,Community Gardens,Community Residences,Low-Rise Multi-Family Dwellings,Mid-Rise Multi-Family Dwellings,Municipal Uses,Passive Recreation Park,Places of Worship,Primary & Secondary Schools,Urban Farms",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40:4-6. Additional Standards),Coldframe,Composting (see Section 40: 4-6. Additional Standards),Family Day Care Homes,Greenhouse,Home Occupation,Home Professional Offices,Hoophouse,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential',Private Sports Courts,Sheds and Other Accessory Storage Structures,Solar Energy Systems,'Swimming Pools, Private','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Low-rise multifamily & Four-Family,Mid-rise multifamily,Ground-floor commercial with commercial or residential above,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Residential"
+    },
+    {
+        "ZONE": "R-6",
+        "USES_PRIMARY": "High-Rise Multi-Family Dwellings,Active Recreation Park,Assisted Living Facilities & Nursing Homes,Childcare Center,Community Centers,Community Gardens,Community Residences,Low-Rise Multi-Family Dwellings,Mid-Rise Multi-Family Dwellings,Municipal Uses,Passive Recreation Park,Places of Worship,Primary & Secondary Schools,Urban Farms",
+        "USES_ACCESSORY": "Commercial Antennas & Microwave Dishes,Automotive Lifts (see Section 40:4-6. Additional Standards),Coldframe,Composting (see Section 40: 4-6. Additional Standards),Family Day Care Homes,Greenhouse,Home Occupation,Home Professional Offices,Hoophouse,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential',Private Sports Courts,Sheds and Other Accessory Storage Structures,Solar Energy Systems,'Swimming Pools, Private','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Low-rise multifamily & Four-Family,Mid-rise multifamily,High-rise multifamily,Ground-floor commercial with commercial or residential above,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Residential"
+    },
+    {
+        "ZONE": "C-1",
+        "USES_PRIMARY": "Childcare Center,Commercial Antennas & Microwave Dishes,Community Centers,Community Gardens,Consignment Store,Consumer Repair Services,Convenience Retail (permitted on ground floor only),'Dwelling, Above the Ground Floor of Retail, Office or Service Use','Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services',Fresh Food Market,Funeral Home or Mortuary,'Furniture & Appliance Stores, Used',Governmental (Non-Municipal) Uses,Laundromat,Market Gardens,Municipal Uses,Offices (only permitted on second floor or above in C-2),Personal Service Establishment,Places of Worship,Primary & Secondary Schools",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40: 4-6. Additional Standards),Childcare Center,Coldframe,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,'Emergency Food Distribution Center, Food Pantry, Soup Kitchen',Farm Stand,Greenhouse,Home Occupation,Hoophouse,Ice Cream Service Window,Massage Facilities,'Outdoor Storage, Portable Storage Units','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)'",
+        "BUILDING_TYPES": "Low-rise multifamily & Four-Family,Ground-floor commercial with commercial or residential above,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Commercial"
+    },
+    {
+        "ZONE": "C-2",
+        "USES_PRIMARY": "Bail Bond Agency,'Bars, Taverns, Lounges',Body Art Studio,'Business, Specialized or Vocational Schools',Childcare Center,Commercial Antennas & Microwave Dishes,Community Centers,Community Gardens,Consignment Store,Consumer Repair Services,Convenience Retail (permitted on ground floor only),Dry Cleaning & Laundry Establishment,'Dwelling, Above the Ground Floor of Retail, Office or Service Use','Emergency Food Distribution Center, Food Pantry & Soup Kitchen','Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services','Fish, Meat & Poultry Markets',Fitness Center,Fresh Food Market,Funeral Home or Mortuary,'Furniture & Appliance Stores, Used',Governmental (Non-Municipal) Uses,Laundromat,Market Gardens,Massage Facilities,Municipal Uses,'Nightclubs, Discotheques & Cabarets',Offices (only permitted on second floor or above in C-2),Personal Service Establishment,Places of Worship,Primary & Secondary Schools",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40: 4-6. Additional Standards),Childcare Center,Coldframe,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,'Emergency Food Distribution Center, Food Pantry, Soup Kitchen',Farm Stand,Greenhouse,Home Occupation,Hoophouse,Ice Cream Service Window,Massage Facilities,'Outdoor Storage, Portable Storage Units',Solar Energy Systems,'Wind Energy Systems, Small','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)'",
+        "BUILDING_TYPES": "Ground-floor commercial with commercial or residential above,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Commercial"
+    },
+    {
+        "ZONE": "C-3",
+        "USES_PRIMARY": "Cigar/Tobacco Retail Sales Establishment (See Section 40: 4-6. Additional Standards),Department Store,Large Format Retail &/or Shopping Centers,Liquor Stores,Pawn Shops,Pet Shop (See Section 40: 4-6. Additional Standards),'Animal Daycare, Animal Grooming',Automobile Rentals,Automobile Repair & Tire Repair,Automobile Sales,Bail Bond Agency,'Bars, Taverns, Lounges',Body Art Studio,'Business, Specialized or Vocational Schools',Check-Cashing Establishment,Childcare Center,Commercial Antennas & Microwave Dishes,'Commercial Recreation, Large Scale',Community Centers,Community Gardens,Consignment Store,Consumer Repair Services,Convenience Retail (permitted on ground floor only),Dry Cleaning & Laundry Establishment,'Dwelling, Above the Ground Floor of Retail, Office or Service Use','Emergency Food Distribution Center, Food Pantry & Soup Kitchen','Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services','Fish, Meat & Poultry Markets',Fitness Center,Fresh Food Market,Funeral Home or Mortuary,'Furniture & Appliance Stores, Used',Gasoline Station,Governmental (Non-Municipal) Uses,Hotels (See Section 40:4-6. Additional Standards),Laundromat,Market Gardens,Massage Facilities,Medical Clinic or Emergency Care Facility,Medical Offices,Methadone Maintenance Clinic,Municipal Uses,'Nightclubs, Discotheques & Cabarets',Offices (only permitted on second floor or above in C-2),Personal Service Establishment,Places of Worship,Primary & Secondary Schools,'Commercial Recreation, Small Scale'",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40: 4-6. Additional Standards),Childcare Center,Coldframe,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,Drive-Through Facilities,'Emergency Food Distribution Center, Food Pantry, Soup Kitchen',Farm Stand,Greenhouse,Home Occupation,Hoophouse,Ice Cream Service Window,Massage Facilities,'Outdoor Storage, Portable Storage Units','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)'",
+        "BUILDING_TYPES": "Ground-floor commercial with commercial or residential above,Detached commercial,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Commercial"
+    },
+    {
+        "ZONE": "I-1",
+        "USES_PRIMARY": "Artist Live/Work Studio (Nuisance Producing),'Nightclubs, Discotheques & Cabarets',Self Storage,'Animal Boarding or Kennel, Animal Shelter, Pound',Automobile Car Wash,Automobile Rentals,Automobile Repair & Tire Repair,Automobile Sales,Bail Bond Agency,Check-Cashing Establishment,Commercial Antennas & Microwave Dishes,'Commercial Recreation, Large Scale',Convenience Retail,Data Center,Exterminator / Pesticide Application Business,'Fish, Meat & Poultry Markets',Fitness Center,Gasoline Station,Governmental (Non-Municipal) Uses,Heavy Retail & Service,Homeless Shelter,Laundry Facility-Commercial/Wholesale,Live Animal Market,'Manufacturing, Light',Methadone Maintenance Clinic,Municipal Uses,Operation Facilities for Bus/Taxicab/Ambulance/Limousine,Places of Worship,Recycling Center,Research & Development,Sit-Down Restaurant,Solar Energy System,Substance Abuse Treatment Centers,Take-Out Restaurant,Telephone Switching Facility,Vehicle Towing Facility,'Veterinary Clinic, Office or Hospital','Warehousing, Wholesaling & Distribution',Wholesale Bakeries,'Wind Energy Systems, Large','Commercial Recreation, Small Scale'",
+        "USES_ACCESSORY": "Emergency,Automotive Lifts (see Section 40:4-6. Additional Standards),Childcare Center,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,Drive-Through Facilities,Offices,Outdoor Display Area,Outdoor Storage,'Outdoor Storage, Chemical','Outdoor Storage, Portable Storage Units','Parking Area, Private','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Detached commercial,Industrial,Place of Worship",
+        "TYPE": "Industrial"
+    },
+    {
+        "ZONE": "I-2",
+        "USES_PRIMARY": "Sexually Oriented Businesses,'Animal Boarding or Kennel, Animal Shelter, Pound',Automobile Car Wash,Automobile Paint & Body Repair,Automobile Rentals,Automobile Repair & Tire Repair,Automobile Sales,Bail Bond Agency,Check-Cashing Establishment,Commercial Antennas & Microwave Dishes,'Commercial Recreation, Large Scale','Commercial, Industrial Truck & Bus Services',Convenience Retail,'Crematorium, Animal',Data Center,Dry Cleaning & Laundry Establishment,'Emergency Food Distribution Center, Food Pantry & Soup Kitchen',Exterminator / Pesticide Application Business,Fitness Center,Gasoline Station,Governmental (Non-Municipal) Uses,Heavy Retail & Service,Laundry Facility-Commercial/Wholesale,Live Animal Market,'Manufacturing, Light','Manufacturing, Medium',Materials Salvage or Junk Facility,Municipal Uses,Operation Facilities for Bus/Taxicab/Ambulance/Limousine,'Parking Garage, Commercial Vehicle',Recycling Center,Research & Development,Solar Energy System,Telephone Switching Facility,Truck Terminal,Vehicle Towing Facility,'Warehousing, Wholesaling & Distribution',Wholesale Bakeries,'Wind Energy Systems, Large','Commercial Recreation, Small Scale'",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40:4-6. Additional Standards),'Commercial, Industrial Truck and Bus Wash',Composting (see Section 40: 4-6. Additional Standards),Donation Bin,Offices,Outdoor Display Area,Outdoor Storage,'Outdoor Storage, Chemical','Outdoor Storage, Portable Storage Units','Parking Area, Private','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Industrial",
+        "TYPE": "Industrial"
+    },
+    {
+        "ZONE": "I-3",
+        "USES_PRIMARY": "Electrical or Gas Switching Facility, Power Distribution or Substation',Outdoor Storage,'Outdoor Storage, Chemical',Power Generation Facilities,Waste Transfer Station,Automobile Paint & Body Repair,Automobile Repair & Tire Repair,Billboards,Commercial Antennas & Microwave Dishes,'Commercial, Industrial Truck & Bus Services',Convenience Retail,'Crematorium, Animal',Data Center,Dry Cleaning & Laundry Establishment,'Emergency Food Distribution Center, Food Pantry & Soup Kitchen',Exterminator / Pesticide Application Business,Gasoline Station,Governmental (Non-Municipal) Uses,Laundry Facility-Commercial/Wholesale,Live Animal Market,'Manufacturing, Heavy','Manufacturing, Light','Manufacturing, Medium',Materials Salvage or Junk Facility,Municipal Uses,'Parking Garage, Commercial Vehicle',Recycling Center,Research & Development,Solar Energy System,Telephone Switching Facility,Truck Terminal,'Warehousing, Wholesaling & Distribution',Wholesale Bakeries,'Wind Energy Systems, Large'",
+        "USES_ACCESSORY": "Power Plant,Automotive Lifts (see Section 40:4-6. Additional Standards),'Commercial, Industrial Truck and Bus Wash',Composting (see Section 40: 4-6. Additional Standards),Donation Bin,Offices,Outdoor Display Area,Outdoor Storage,'Outdoor Storage, Chemical','Outdoor Storage, Portable Storage Units','Parking Area, Private','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Industrial",
+        "TYPE": "Industrial"
+    },
+    {
+        "ZONE": "MX-1",
+        "USES_PRIMARY": "Private Clubs,Active Recreation Park,'Animal Daycare, Animal Grooming','Bars, Taverns, Lounges',Childcare Center,Community Centers,Community Gardens,Consignment Store,Consumer Repair Services,Dry Cleaning & Laundry Establishment,'Emergency Food Distribution Center, Food Pantry & Soup Kitchen','Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services','Fish, Meat & Poultry Markets',Fitness Center,Fresh Food Market,Funeral Home or Mortuary,Homeless Shelter,Laundromat,Low-Rise Multi-Family Dwellings,Massage Facilities,Medical Offices,Municipal Uses,Offices (only permitted on second floor or above in C-2),Passive Recreation Park,Personal Service Establishment,Places of Worship,Primary & Secondary Schools,Resale or Thrift Shop,'Retail Sales, General Consumer Goods',Single-Family Dwelling,Sit-Down Restaurant,Supermarket,Take-Out Restaurant,Three-Family Dwelling,'Town House, Dwelling',Two-Family Dwelling,Urban Farms,'Brewery, Restricted','Commercial Recreation, Small Scale',Convenience Retail (permitted on ground floor only),Shared Kitchen",
+        "USES_ACCESSORY": "Childcare Center,Coldframe,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,'Emergency Food Distribution Center, Food Pantry, Soup Kitchen',Farm Stand,Greenhouse,Home Occupation,Home Professional Offices,Hoophouse,Massage Facilities,Offices,'Parking Garage, Private Residential','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)','Solar Energy System, Residential Roof Mounted (See Section 41: 4-6. Additional Standards)'",
+        "BUILDING_TYPES": "One-family,Two-family,Three-family,Townhouse,Low-rise multifamily & Four-Family,Ground-floor commercial with commercial or residential above,Detached commercial,'Schools (Elementary, Middle, High Schools)',Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Mixed Use"
+    },
+    {
+        "ZONE": "MX-2",
+        "USES_PRIMARY": "Artist Live/Work Studio,Automobile Repair & Tire Repair,Active Recreation Park,'Animal Boarding or Kennel, Animal Shelter, Pound','Animal Daycare, Animal Grooming','Bars, Taverns, Lounges',Body Art Studio,'Business, Specialized or Vocational Schools',Childcare Center,'Commercial Recreation, Large Scale',Community Centers,Community Gardens,Consignment Store,Consumer Repair Services,Data Center,Dry Cleaning & Laundry Establishment,'Emergency Food Distribution Center, Food Pantry & Soup Kitchen','Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services','Fish, Meat & Poultry Markets',Fitness Center,Fresh Food Market,Funeral Home or Mortuary,Governmental (Non-Municipal) Uses,Homeless Shelter,Laundromat,Low-Rise Multi-Family Dwellings,'Manufacturing, Light',Massage Facilities,Medical Clinic or Emergency Care Facility,Medical Offices,Methadone Maintenance Clinic,Municipal Uses,Offices (only permitted on second floor or above in C-2),Passive Recreation Park,Personal Service Establishment,Places of Worship,Primary & Secondary Schools,Recycling Center,Resale or Thrift Shop,Research & Development,'Retail Sales, General Consumer Goods',Single-Family Dwelling,Sit-Down Restaurant,Substance Abuse Treatment Centers,Supermarket,Take-Out Restaurant,Three-Family Dwelling,'Town House, Dwelling',Two-Family Dwelling,Urban Farms,'Veterinary Clinic, Office or Hospital','Warehousing, Wholesaling & Distribution',Wholesale Bakeries,Artisans & Craft Workspace,'Brewery, Limited','Brewery, Restricted','Commercial Recreation, Small Scale',Convenience Retail (permitted on ground floor only),Shared Kitchen",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40: 4-6. Additional Standards),Childcare Center,Coldframe,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,'Emergency Food Distribution Center, Food Pantry, Soup Kitchen',Farm Stand,Greenhouse,Home Professional Offices,Hoophouse,Massage Facilities,Offices,'Outdoor Storage, Portable Storage Units','Parking Garage, Private Residential','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)','Solar Energy System, Residential Roof Mounted (See Section 41: 4-6. Additional Standards)'",
+        "BUILDING_TYPES": "One-family,Two-family,Three-family,Townhouse,Low-rise multifamily & Four-Family,Ground-floor commercial with commercial or residential above,Industrial,Place of Worship,'Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings'",
+        "TYPE": "Mixed Use"
+    },
+    {
+        "ZONE": "MX-3",
+        "USES_PRIMARY": "Low-Rise Multi-Family Dwellings,Mid-Rise Multi-Family Dwellings,High-Rise Multi-Family Dwellings,Artisans & Craft Workspace,Active Recreation Park,'Animal Daycare, Animal Grooming','Bars, Taverns, Lounges','Brewery, Limited','Brewery, Restricted','Business, Specialized or Vocational Schools',Childcare Center,'Commercial Recreation, Large Scale','Commercial Recreation, Small Scale',Community Centers,Consignment Store,Consumer Repair Services,Convenience Retail (permitted on ground floor only),Data Center,Dry Cleaning & Laundry Establishment,'Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services','Fish, Meat & Poultry Markets',Fitness Center,Fresh Food Market,Governmental (Non-Municipal) Uses,Hotels (See Section 40:4-6. Additional Standards),Laundromat,Live-Work Unit (Non-Nuisance Producing),Makers Space,'Manufacturing, Light',Massage Facilities,Medical Clinic or Emergency Care Facility,Medical Offices,Municipal Uses,Offices (only permitted on second floor or above in C-2),Passive Recreation Park,Personal Service Establishment,Places of Worship,Primary & Secondary Schools,Private Clubs,Resale or Thrift Shop,Research & Development,'Retail Sales, General Consumer Goods',Shared Kitchen,Sit-Down Restaurant,Supermarket,Take-Out Restaurant,Theater,'Veterinary Clinic, Office or Hospital'",
+        "USES_ACCESSORY": "Childcare Center,'Emergency Food Distribution Center, Food Pantry, Soup Kitchen',Farm Stand,Greenhouse,Home Occupation,Home Professional Offices,Hoophouse,Massage Facilities,Offices,'Parking, Structured','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)',Solar Energy Systems,'Solar Energy System, Residential Roof Mounted (See Section 41: 4-6. Additional Standards)','Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Community Center, Stand-Alone Daycare or Preschool in a Non-residential Area, and other Civic Buildings',Detached commercial,Ground-floor commercial with commercial or residential above,High-rise multifamily,Mid-rise multifamily,Low-rise multifamily & Four-Family",
+        "NOTES": "Note MX-3 Height,Note MX-3 Parking,MX-3 Sustainability Standards",
+        "TYPE": "Mixed Use"
+    },
+    {
+        "ZONE": "EWR",
+        "USES_PRIMARY": "Airport,Commercial Antennas & Microwave Dishes,Governmental (Non-Municipal) Uses,Heliport,Municipal Uses,'Warehousing, Wholesaling & Distribution'",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40:4-6. Additional Standards),Composting (see Section 40: 4-6. Additional Standards),Outdoor Display Area,Outdoor Storage,'Outdoor Storage, Chemical','Outdoor Storage, Portable Storage Units','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "",
+        "TYPE": "Special"
+    },
+    {
+        "ZONE": "EWR-S",
+        "USES_PRIMARY": "Gasoline Station,Automobile Car Wash,Automobile Paint & Body Repair,Automobile Rentals,Automobile Sales,Billboards,Childcare Center,Commercial Antennas & Microwave Dishes,'Commercial, Industrial Truck & Bus Services',Convenience Retail,Data Center,Dry Cleaning & Laundry Establishment,'Finance, Insurance, Real Estate, or Securities Brokerage Consumer Services',Governmental (Non-Municipal) Uses,Heliport,Hotels (See Section 40:4-6. Additional Standards),'Manufacturing, Light',Municipal Uses,Operation Facilities for Bus/Taxicab/Ambulance/Limousine,Research & Development,'Warehousing, Wholesaling & Distribution',Wholesale Bakeries",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40:4-6. Additional Standards),Childcare Center,'Commercial, Industrial Truck and Bus Wash',Composting (see Section 40: 4-6. Additional Standards),Drive-Through Facilities,Outdoor Display Area,Outdoor Storage,'Outdoor Storage, Chemical','Outdoor Storage, Portable Storage Units','Parking Area, Private','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "Detached commercial,Industrial",
+        "TYPE": "Special"
+    },
+    {
+        "ZONE": "PORT",
+        "USES_PRIMARY": "Billboards,Commercial Antennas & Microwave Dishes,Governmental (Non-Municipal) Uses,'Manufacturing, Heavy','Manufacturing, Light','Manufacturing, Medium',Municipal Uses,'Warehousing, Wholesaling & Distribution'",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40:4-6. Additional Standards),Composting (see Section 40: 4-6. Additional Standards),Drive-Through Facilities,Outdoor Display Area,Outdoor Storage,'Outdoor Storage, Chemical','Outdoor Storage, Portable Storage Units','Parking Area, Private','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "",
+        "TYPE": "Special"
+    },
+    {
+        "ZONE": "PARK",
+        "USES_PRIMARY": "Active Recreation Park,Community Gardens,Passive Recreation Park",
+        "USES_ACCESSORY": "Coldframe,Composting (see Section 40: 4-6. Additional Standards),Greenhouse,Hoophouse,Maintenance Buildings,'Wind Energy Systems, Small'",
+        "BUILDING_TYPES": "",
+        "TYPE": "Special"
+    },
+    {
+        "ZONE": "INST",
+        "USES_PRIMARY": "Colleges & Universities,Dormitory,Hospital or Medical Institution,Museums,Theater,Active Recreation Park,Childcare Center,Community Centers,Community Gardens,Convenience Retail,Dry Cleaning & Laundry Establishment,Fitness Center,Fresh Food Market,Governmental (Non-Municipal) Uses,Homeless Shelter,Low-Rise Multi-Family Dwellings,Mid-Rise Multi-Family Dwellings,Municipal Uses,Offices (only permitted on second floor or above in C-2),Passive Recreation Park,Places of Worship,Primary & Secondary Schools,Research & Development,'Retail Sales, General Consumer Goods','Town House, Dwelling',Urban Farms,Shared Kitchen",
+        "USES_ACCESSORY": "Automotive Lifts (see Section 40: 4-6. Additional Standards),Childcare Center,Coldframe,Composting (see Section 40: 4-6. Additional Standards),Donation Bin,Farm Stand,Greenhouse,Hoophouse,Maintenance Buildings,Offices,'Outdoor Storage, Portable Storage Units',Solar Energy Systems,'Wind Energy Systems, Small','Sidewalk Café (accessory to permitted restaurant only, see Section 40: 4-6. Additional Standards)','Solar Energy System, Residential Roof Mounted (See Section 41: 4-6. Additional Standards)'",
+        "BUILDING_TYPES": "Townhouse,Low-rise multifamily & Four-Family,Mid-rise multifamily,Ground-floor commercial with commercial or residential above,University,Hospital or Medical Institution,'Schools (Elementary, Middle, High Schools)',Place of Worship",
+        "TYPE": "Special"
+    },
+    {
+        "ZONE": "CEM",
+        "USES_PRIMARY": "Cemeteries",
+        "USES_ACCESSORY": "Crematorium, Animal','Crematorium, Human',Mausoleum,'Mausoleum, Family',Place of Worship,Tombstones and Monuments,Composting (see Section 40: 4-6. Additional Standards),Maintenance Buildings,Offices,'Outdoor Storage, Portable Storage Units','Parking, Structured',Solar Energy Systems,'Wind Energy Systems, Small',Columbarium",
+        "BUILDING_TYPES": "",
+        "TYPE": "Special"
+    }
+]
