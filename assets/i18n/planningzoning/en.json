@@ -527,10 +527,10 @@
         "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br> Safe. Fast. Affordable</span>",
         "splashImg": {
             "src": "assets/img/headerPhotos/newarkgo_banner.jpg",
-            "alt": "Bird's Eye view of Doremus"
+            "alt": "Newark Go: Woman Using Scooter"
         },
         "splashBlurb": {
-            "text": "NewarkGo will bring shared e-bikes and e-scooters to the streets of Newark for a 6-month pilot in the spring of 2021. To get involved, please take our survey and join us for our three public meetings.",
+            "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot in the spring of 2021. To get involved, please take our survey & join us for our three public meetings.",
             "buttons": [
                 {
                     "text": "Survey-English",
@@ -544,7 +544,7 @@
         },
         "contentIntro": {
             "left": {
-                "img": "assets/img/headerPhotos/newarkgo.png"
+                "img": "assets/img/headerPhotos/newarkgo_body.svg"
             },
             "right": {
                 "text": "<p>NewarkGo will bring shared mobility services, in the form of e-bikes and e-scooters, to the City of Newark for a 6-month pilot in the spring of 2021. Shared mobility services can link underserved populations to jobs, schools, housing, health care facilities, grocery stores, mass transit and other essential services; complement the use of public transportation; and create attractive, vibrant, pedestrian-friendly neighborhoods where people can live, shop, work, and play without relying on automobiles. The City also views shared mobility services as an additional transportation option to promote social distancing during the COVID-19 outbreak.</p>"
