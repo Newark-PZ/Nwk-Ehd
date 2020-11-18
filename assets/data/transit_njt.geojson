@@ -14,7 +14,7 @@
             "properties": {
                 "LINE": "NJT",
                 "ICON": "Logo_Airport",
-                "STATION": "Newark Airport"
+                "STATION": "EWR"
             }
         },
         {
@@ -30,7 +30,7 @@
             "properties": {
                 "LINE": "NJT",
                 "ICON": "Logo_Penn",
-                "STATION": "Newark Penn Station"
+                "STATION": "Penn Stn."
             }
         },
         {
@@ -46,7 +46,7 @@
             "properties": {
                 "LINE": "NJT",
                 "ICON": "Logo_Broad",
-                "STATION": "Newark Broad Street"
+                "STATION": "Broad St."
             }
         }
     ]
