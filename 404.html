@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <script>
+        // Store the URL the user was trying to access when receiving the 404.
+        sessionStorage.redirect = location.href;
+      </script>
+
+  <!-- Immediately redirect to the base URL so we can use the SPA routing. -->
+  <meta http-equiv="refresh" content="0;URL='/'"></meta>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4W9M1XBT5"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -94,6 +101,9 @@
             </div>
         </div>
     </app-root>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <noscript>Please enable JavaScript to continue using this application.</noscript>
 <script src="./runtime-es2015.ec9a6e95eb90e2a01674.js" type="module"></script><script src="runtime-es5.ec9a6e95eb90e2a01674.js" nomodule defer></script><script src="polyfills-es5.ab4a8a97f8855a54024c.js" nomodule defer></script><script src="polyfills-es2015.4fef91c8450bd06786c1.js" type="module"></script><script src="main-es2015.2e21b320d6b50a4135cc.js" type="module"></script><script src="main-es5.2e21b320d6b50a4135cc.js" nomodule defer></script></body>
 
