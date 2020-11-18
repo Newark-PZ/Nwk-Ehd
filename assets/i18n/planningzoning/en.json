@@ -530,15 +530,15 @@
             "alt": "Newark Go: Woman Using Scooter"
         },
         "splashBlurb": {
-            "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot in the spring of 2021. To get involved, please take our survey & join us for our three public meetings.",
+            "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot in the spring of 2021. To get involved, please take our <a href='https://newark.seamlessdocs.com/f/qwwy6utlw3fq'>survey<a/>&mdash;<a href='https://newark.seamlessdocs.com/f/3f7vgoap9mny'>o en espa&ntilde;ol</a>&mdash;& join us for our three public meetings.",
             "buttons": [
                 {
-                    "text": "Survey-English",
+                    "text": "Survey-EN",
                     "extUrl": "https://newark.seamlessdocs.com/f/qwwy6utlw3fq"
                 },
                 {
-                    "text": "Survey-Spanish",
-                    "extUrl": "https://newark.seamlessdocs.com/f/3f7vgoap9mny"
+                    "text": "More Details",
+                    "extUrl": "https://drive.google.com/file/d/1qsHYhH8xK67uNLGmYjzyvE5bbG5r0uLD/view?usp=sharing"
                 }
             ]
         },
@@ -561,7 +561,7 @@
             },
             {
                 "header": "PLANNING PROCESS",
-                "text": "<p><i>Seeking a shared understanding of shared mobility</i></p><p>The City recognizes the importance of creating a program <u>designed for, and by, Newark residents</u>. Public engagement focuses on the following:<ul class='text-list'><li>Empowering Newark residents, advocates, and business leaders to lead conversations that will <b>shape program policies.</b></li><li>Soliciting values from Newark communities to <b>build support for context-specific performance measures.</b></li><li>Supporting and expanding existing community-led programs to <b>teach and support new and continuing bicyclists.</b></li><li>Implementing regulations with <b>a focus on equitable distribution</b> of bikes and scooters once the program launches.</li><li>Obtaining feedback about infrastructure and safety measures to anticipate potential challenges and <b>generate solutions in advance.</b></li></ul></p><p>Engagement by the numbers [as of 11/11/2020]<ul class='text-list'><li>690 surveys collected.</li><li>Two focus groups convened, with three more scheduled.</li><li>Three citywide public forums scheduled between November and December.</li><li>Nine months of inter-departmental planning and collaboration from city staff.</li></ul></p>"
+                "text": "<p><i>Seeking a shared understanding of shared mobility</i></p><p>The City recognizes the importance of creating a program <u>designed for, and by, Newark residents</u>. Public engagement focuses on the following:<ul class='text-list'><li>Empowering Newark residents, advocates, and business leaders to lead conversations that will <b>shape program policies.</b></li><li>Soliciting values from Newark communities to <b>build support for context-specific performance measures.</b></li><li>Supporting and expanding existing community-led programs to <b>teach and support new and continuing bicyclists.</b></li><li>Implementing regulations with <b>a focus on equitable distribution</b> of bikes and scooters once the program launches.</li><li>Obtaining feedback about infrastructure and safety measures to anticipate potential challenges and <b>generate solutions in advance.</b></li></ul></p><p>Engagement by the numbers [as of 11/11/2020]<ul class='text-list'><li>690 surveys collected.</li><li>Two focus groups convened, with three more scheduled.</li><li>Three citywide public forums scheduled between November and December.</li><li>Nine months of inter-departmental planning and collaboration from city staff.</li></ul></p><p><i>Project Team</i></p><p>The NewarkGo project team is led by staff from the Department of Economic and Housing Development and Department of Engineering. The team also receives consulting assistance from Bloomberg Associates, a team of globally recognized experts and industry leaders working with cities across the globe to ignite change and transform dynamic vision into reality.</p>"
             },
             {
                 "header": "PUBLIC MEETINGS",
