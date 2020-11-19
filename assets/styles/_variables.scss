@@ -128,3 +128,8 @@ $margins: 1,2,3;
     &_left_#{$marg} { margin-left: #{$marg * 0.5}rem !important}
   }
 }
+.v-align {
+  &-top {
+    vertical-align: text-top !important;
+  }
+}
