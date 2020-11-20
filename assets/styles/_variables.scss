@@ -126,6 +126,7 @@ $margins: 1,2,3;
 @each $marg in $margins {
   .margin {
     &_left_#{$marg} { margin-left: #{$marg * 0.5}rem !important}
+    &_right_#{$marg} { margin-right: #{$marg * 0.5}rem !important}
   }
 }
 .v-align {
