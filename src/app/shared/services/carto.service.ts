@@ -18,9 +18,36 @@ export class CartoService {
  * @param API_WHERE_BLOCK block of parcel to query
  * @param API_WHERE_LOT lot of parcel to query
  */
-  getZoning(API_SELECT: string, API_WHERE_BLOCK: string, API_WHERE_LOT: string): Observable<any> {
+  getZoning(API_WHERE_BLOCKLOT: string, API_SELECT?: string): Observable<any> {
+    const selectDefault = [
+      'blocklot',
+      'historicdi',
+      'inuez',
+      'opportunit',
+      'propclass',
+      'proploc',
+      'redevarea',
+      'zone'
+    ];
     const SQL_QUERY =
-      `select ${API_SELECT} from public.parcels where blocklot = '${API_WHERE_BLOCK}-${API_WHERE_LOT}'`;
+      `SELECT ${API_SELECT ? API_SELECT : selectDefault.join(',')} FROM public.parcels WHERE blocklot = '${API_WHERE_BLOCKLOT}' LIMIT 1`;
+
+    return this.http.get<CartoSQLResp>(
+      `${this.API_BASE_URL}${SQL_QUERY}`
+    );
+  }
+  getInfoFromPoint(pointGeom: [number, number], cols = '', table = 'parcels'): Observable<CartoSQLResp> {
+    const selectDefault = [
+      'blocklot',
+      'historicdi',
+      'inuez',
+      'opportunit',
+      'propclass',
+      'proploc',
+      'redevarea',
+      'zone'
+    ];
+    const SQL_QUERY = `select ${cols === '' ? selectDefault.join(',') : cols} from public.${table} where ST_Intersects(the_geom,'SRID=4326;POINT(${pointGeom.join(' ')})') limit 1`;
 
     return this.http.get<CartoSQLResp>(
       `${this.API_BASE_URL}${SQL_QUERY}`

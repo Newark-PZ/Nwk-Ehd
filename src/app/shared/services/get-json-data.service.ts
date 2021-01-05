@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArcPropResponse, BoardHearing, BoardsFields, CKANResponse, DocData, RedevCodeRecord, SearchFeature, SearchResult, Staff } from '../models';
+import { ArcPropResponse, BoardHearing, BoardsFields, DocData, SearchFeature, SearchResult } from '../models';
 
 @Injectable()
 export class JsonDataService {
@@ -22,11 +22,6 @@ export class JsonDataService {
         return this.http.get('/assets/sitemap.json')
             .toPromise()
             .then(res => res as Array<any>);
-    }
-    async getStaff(): Promise<Array<Staff>> {
-        return this.http.get('/assets/data/staff.json')
-            .toPromise()
-            .then(res => res as Array<Staff>);
     }
     async getBoardMembers(
         board: 'Central Planning Board'
@@ -57,29 +52,4 @@ export class JsonDataService {
         )
         .pipe(resp => resp);
       }
-    async getCKANData(query: string, resource: string): Promise<RedevCodeRecord> {
-        const ckanUrl = (field, resourceId): string => `https://data.newarkehd.com/api/3/action/datastore_search?q={"${field}":"${query}"}&resource_id=${resourceId}`;
-        const params = (): string => {
-            switch (resource) {default: return ckanUrl('RedevCode', '7e82d536-33a8-47d4-85e8-9b74295a8dcd'); }
-        };
-
-        return this.http.get<CKANResponse>(
-          `${params()}`
-        )
-        .toPromise()
-        .then(res => res.result.records[0]);
-    }
-    getDash(query: string, resource: string): Observable<CKANResponse> {
-        const ckanUrl = (field: string, resourceId: string): string => `https://data.newarkehd.com/api/3/action/datastore_search?q={${field && field.length > 0 ? '"' + field + '":"' + query + '"' : ''}}&plain=false&limit=500&include_total=false&resource_id=${resourceId}`;
-        const params = (): string => {
-            switch (resource) {
-                case 'ORC': return ckanUrl('', '8853a776-4ec2-49e8-9b37-4ac549fe9946');
-                default: return ckanUrl('AppNo', '4d2bf499-1c1a-4f3a-95f4-89e11d8cbd4e'); }
-        };
-
-        return this.http.get<CKANResponse>(
-            `${params()}`
-        )
-        .pipe(resp => resp);
-    }
 }

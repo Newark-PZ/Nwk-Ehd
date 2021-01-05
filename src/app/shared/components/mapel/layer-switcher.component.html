@@ -1,0 +1,66 @@
+<mat-table [dataSource]="layers" multiTemplateDataRows class="layer-table">
+    <ng-container matColumnDef="expand">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button [color]="selection.isSelected(row) ? 'primary' : 'secondary'">
+                <mat-icon>{{selection.isSelected(row)  ? 'expand_less' : 'chevron_right'}}</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Layers</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{(row.get('className') ? row.get('className') : row.getClassName()) | titlecase}}{{row.getLayersArray().length > 1 ? ' Layers' : ''}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="visible">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button [style.color]="row.getVisible() ? '#0d47a1' : 'lightgrey'"
+                [title]="row.getVisible() ? 'Hide Group' : 'Show Group'"
+                (click)="$event ? toggleVisible($event, row) : null">
+                <mat-icon>{{ row.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="opacity">
+        <td mat-cell *matCellDef="let row" [attr.colspan]="cols.length" style="padding: .5rem;">
+            <div class="row-detail" [@rowExpand]="selection.isSelected(row) ? 'expanded' : 'collapsed'"
+                [style.height]="selection.isSelected(row) ? 'unset' : '0 !important'">
+                <h5>Opacity <i>{{row.getOpacity() | percent}}</i></h5>
+                <mat-slider class="opacity-slider" [max]="1" [min]="0" [step]=".25" [tickInterval]="1"
+                    [value]="row.getOpacity()" (change)="setOpacity($event, row)">
+                </mat-slider>
+            </div>
+            <div *ngIf="row.getLayersArray().length > 1" style="text-align: left">
+                <table style="width: 100%;">
+                    <tr *ngFor="let lyr of row.getLayersArray()">
+                        <td>
+                            <button mat-icon-button [style.color]="lyr.getVisible() ? '#0d47a1' : 'lightgrey'"
+                            [title]="lyr.getVisible() ? 'Hide Layer' : 'Show Layer'"
+                            (click)="$event ? toggleVisible($event, lyr, row) : null">
+                                <mat-icon>{{ lyr.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            </button>
+                        </td>
+                        <td>{{lyr.getClassName() === 'LU' ? 'Land Use' : lyr.getClassName() | titlecase}}</td>
+                        <td>
+                            <button mat-icon-button title="Layer Info" (click)="$event ? openDetails(lyr) : null">
+                                <mat-icon style="font-size:1.2rem">{{ 'info' }}</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div *ngIf="row.getLayersArray() === undefined" style="text-align: left">
+                    <button mat-icon-button [style.color]="row.getVisible() ? '#0d47a1' : 'lightgrey'"
+                    (click)="$event ? openDetails(row) : null">
+                        <mat-icon>{{ row.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
+            </div>
+        </td>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="cols; sticky: true"></mat-header-row>
+    <mat-row class="row" *matRowDef="let row; columns: cols;" [class.example-expanded-row]="selection.isSelected(row)"
+    (click)="selection.toggle(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: ['opacity']" class="row-detail"
+        [@rowExpand]="selection.isSelected(row) ? 'expanded' : 'collapsed'" style="overflow: hidden">
+    </mat-row>
+</mat-table>

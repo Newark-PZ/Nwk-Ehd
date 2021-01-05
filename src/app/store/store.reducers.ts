@@ -4,7 +4,6 @@ import * as fromHearing from './hearing/hearing.reducers';
 import * as fromHomePanels from './home-panels/home-panels.reducers';
 import * as fromI18n from './i18n/i18n.reducers';
 import * as fromMapPane from './map-pane/map-pane.reducers';
-import * as fromMap from './map/map.reducers';
 import * as fromPageState from './page-state/page-state.reducers';
 import * as fromPropPane from './prop-pane/prop-pane.reducers';
 import * as fromRoutesArray from './routes/routes.reducers';
@@ -19,7 +18,6 @@ export interface StoreState {
   hearing: fromHearing.State;
   homePanel: fromHomePanels.State;
   i18n: fromI18n.State;
-  map: fromMap.State;
   mapPane: fromMapPane.State;
   pageState: fromPageState.State;
   propPane: fromPropPane.State;
@@ -32,7 +30,6 @@ export const storeReducers: ActionReducerMap<StoreState> = {
   hearing: fromHearing.hearingReducer,
   homePanel: fromHomePanels.homePanelReducer,
   i18n: fromI18n.i18nReducer,
-  map: fromMap.mapReducer,
   mapPane: fromMapPane.mapPaneReducer,
   pageState: fromPageState.pageStateReducer,
   propPane: fromPropPane.propPaneReducer,

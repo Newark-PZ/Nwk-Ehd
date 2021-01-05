@@ -9,7 +9,7 @@
   <div class="splash-image" *ngIf="page.splashImg">
     <img [src]="page.splashImg.src" alt="{{page.splashImg.alt}}">
   </div>
-  <h2 class="splash-title">{{ page.splashTitle }}</h2>
+  <h2 class="splash-title" [innerHTML]="page.splashTitle"></h2>
   <div class="splash-blurb" *ngIf="page.splashBlurb">
     <p [innerHtml]="page.splashBlurb.text"></p>
     <div class="splash-blurb-btns" *ngIf="page.splashBlurb.buttons">
@@ -54,12 +54,30 @@
 <router-outlet></router-outlet>
 <section class="section-blocks">
   <mat-card class="section-block" *ngFor="let card of page.sections; let i = index;"
+    [ngClass]="card.faq ? 'faq-card' : ''"
     [style.background]="i % 2 === 0 ? 'url(' + page.splashImg.src +'), rgba(13, 71, 161,.75)' : ''">
     <mat-card-header *ngIf="card.header">
       <mat-card-title>{{ card.header }}</mat-card-title>
     </mat-card-header>
     <div class="card-body" *ngIf="!card.list" [innerHtml]="card.text"></div>
-    <iframe *ngIf="card.iframe" [src]="card.iframe.src" [height]="card.iframe.height" [height]="card.iframe.width" frameborder="0"></iframe>
+    <iframe *ngIf="card.iframe" [src]="iframeUrl" [height]="card.iframe.height" [height]="card.iframe.width" frameborder="0"></iframe>
+    <mat-accordion *ngIf="card.tables">
+      <mat-expansion-panel *ngFor="let table of card.tables">
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                  {{ table.title }}
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-table class="faqTable" [dataSource]="table.rows">
+            <ng-container [matColumnDef]="column" *ngFor="let column of table.columns">
+              <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+              <td mat-cell *matCellDef="let row"> {{row[column]}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: table.columns;"></tr>
+          </mat-table>
+      </mat-expansion-panel>
+    </mat-accordion>
     <div class="card-list" *ngIf="card.list">
       <ul class="text-list">
         <li *ngFor="let item of card.list">
@@ -67,6 +85,8 @@
         </li>
       </ul>
     </div>
+    <app-faq *ngIf="card.faq" [faqType]="card.faq"></app-faq>
+    <app-editable-map *ngIf="card.map" style="width: 100%;height: calc(60vh - 4.7rem)"></app-editable-map>
     <mat-card-actions align="end" *ngIf="card.buttons">
         <button *ngFor="let button of card.buttons" mat-stroked-button
         [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'"
@@ -98,6 +118,20 @@
     </mat-card-header>
     <div class="card-body" style="text-align: center">
       <table class="text-table">
+        <tr *ngIf="page.contact.hideContactForm !== true">
+          <td><b>For Any Comments/Questions:</b></td>
+          <td>
+            <div>
+              <p style="line-height: .5rem; font-weight: 400; font-size: 1.25rem;">Use Our Contact Form</p>
+              <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;">to best reach us</p>
+            </div>
+          </td>
+          <td>
+            <a href="https://newark.seamlessdocs.com/f/PZO_Contact" target="_blank" class="mat-stroked-button mat-secondary">
+              Click to Submit a Contact Form
+            </a>
+          </td>
+        </tr>
         <tr *ngFor="let contact of page.contact.contacts">
           <td><b>{{contact.text}}</b></td>
           <td>

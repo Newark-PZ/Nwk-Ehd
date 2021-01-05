@@ -15,7 +15,7 @@ import { StoreService } from '../../store/store.service';
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent {
+export class OpzDashboardComponent {
   currentUrl: string;
   currentImg: string;
   window: Window;

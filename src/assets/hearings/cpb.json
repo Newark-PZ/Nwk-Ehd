@@ -1,0 +1,64 @@
+{
+    "lastUpdated": "2020-11-04T23:15:33.851Z",
+    "hearingFolders": {
+        "CPB_HEARING_2020_11_02": {
+            "lastUpdated": "2020-11-04T23:15:33.851Z",
+            "folders": [
+                {
+                    "kind": "drive#file",
+                    "id": "1OpUHLwm6d6iYHI6d72kigfVxiwSA9x83",
+                    "name": "H20-101 766-770 DEGRAW AVE",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1Kzx1ImG7NaslWboWbwPKWCoKMOkp7V3z",
+                    "name": "LHPC_Agenda_2020_10_07.pdf",
+                    "mimeType": "application/pdf"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1U7ttoourLzkDq_2Nw9UM2W5ld490xLnR",
+                    "name": "H20-100 77 LINCOLN PARK",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1EqEf_n50lXbHRM1Wj5daRo_-OSNiiVLf",
+                    "name": "H20-099 833 BROAD ST",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "13MJZ8oWjDUPzG7zWGwvd75wnEFGgjhRb",
+                    "name": "H20-092 260-266 WASHINGTON ST",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1FuvUKb9SRGPH3Lbv6ga4D49HNtjx-RL3",
+                    "name": "H20-098 34-40 PARK PLACE",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1sZP467Y8BA5uk6lvUkkjaN6eRug4M3Rf",
+                    "name": "H20-091 691-695 PARKER ST",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1X6n-z2crzInnJ6FUo45fcSOaHo1McoXh",
+                    "name": "H20-069 800 BROAD ST",
+                    "mimeType": "application/vnd.google-apps.folder"
+                },
+                {
+                    "kind": "drive#file",
+                    "id": "1MHpHtQoNgBDvzOD5foyHXhr53_LBpuWF",
+                    "name": "H20-19 27-29-31 ACADEMY ST",
+                    "mimeType": "application/vnd.google-apps.folder"
+                }
+            ]
+        }
+    }
+}

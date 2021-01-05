@@ -57,7 +57,10 @@ export class EventComponent implements OnInit, OnChanges {
     constructor(readonly router: Router, readonly events: EventsService) {}
     ngOnInit(): void {
         if (this.hearing === undefined) {
-            this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
+            this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0]
+            ? this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0]
+            : new Hearing({id: 'Coming Soon', board: this.board, start: this.getNextWeek()
+                .toDateString()});
         }
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
@@ -68,10 +71,9 @@ export class EventComponent implements OnInit, OnChanges {
         this.board = changes.board ? changes.board.currentValue : this.board;
         this.agenda = changes.agenda ? changes.agenda.currentValue : this.agenda;
         this.fofId = changes.fofId ? changes.fofId.currentValue : this.fofId;
-        this.hearing = changes.hearing.currentValue
-            ? changes.hearing.currentValue
+        this.hearing = changes.hearing ? changes.hearing.currentValue
             : this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0];
-        this.data = this.setData(changes.board.currentValue, this.hearing, this.agenda, this.fofId);
+        this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
     }
     fixPhone(num: string): string {
         return num.replace('(', '')
@@ -99,11 +101,11 @@ export class EventComponent implements OnInit, OnChanges {
                     { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString('en-us') : 'TBD'} EST`},
                     { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
                       link: hearing ? hearing.link : ''},
-                    { section: 'iPhone One-Tap', content: 'US', numbers: [`6465588656,,${idno}#`, `3017158592,,${idno}#`]},
+                    { section: 'iPhone One-Tap', content: 'US', numbers: [`6465588656,,${idnum}#`, `3017158592,,${idnum}#`]},
                     { section: 'Other Phone<br>' +
                       '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                       content: 'US',
-                      extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
+                      extra: [`<b>Webinar ID</b>: ${id}`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
                       numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
                 ];
                 case 'ZBA': return [
@@ -135,5 +137,11 @@ export class EventComponent implements OnInit, OnChanges {
         };
 
         return setRows(idno, hearingid);
+    }
+    getNextWeek(): Date {
+        const today = new Date();
+        const nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+
+        return nextweek;
     }
 }

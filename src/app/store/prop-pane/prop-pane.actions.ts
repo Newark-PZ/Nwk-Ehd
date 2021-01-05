@@ -18,7 +18,7 @@ export const setSelectedProp = createAction(
 );
 export const setSelectedGeo = createAction(
   '[Prop Pane] Set Selected Geo Feature',
-  props<{ payload: any }>()
+  props<{ payload: {layer: string; selectedGeo: string; } }>()
 );
 export const setPropInfo = createAction(
   '[Prop Pane] SET_PROP_INFO',

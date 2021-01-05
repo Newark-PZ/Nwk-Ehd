@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -17,7 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -37,7 +38,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
-import { AngularOpenlayersModule } from 'ng-maps';
 import * as index from './';
 
 const matModules = [
@@ -84,6 +84,7 @@ const globalRippleConfig: RippleGlobalOptions = {
   },
   terminateOnPointerUp: true
 };
+
 @NgModule({
   declarations: [
     ...index.components,
@@ -100,7 +101,6 @@ const globalRippleConfig: RippleGlobalOptions = {
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AngularOpenlayersModule,
     matModules
   ],
   providers: [
@@ -109,4 +109,16 @@ const globalRippleConfig: RippleGlobalOptions = {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(
+    public iconRegistry: MatIconRegistry,
+    readonly sanitizer: DomSanitizer
+    ) {
+    this.iconRegistry.addSvgIcon(
+      'newarkgo',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/newarkgo.svg'));
+    this.iconRegistry.addSvgIcon(
+      'blocklot',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/blocklot-24px.svg'));
+    }
+}

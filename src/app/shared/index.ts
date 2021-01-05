@@ -1,5 +1,5 @@
 import { ApplicationsComponent } from './components/applications/applications.component';
-import { MapImageComponent } from './components/elements/basic-map.component';
+import { EditableMapComponent } from './components/editablemap/editmap.component';
 import { BottomSheetComponent } from './components/elements/bottomsheet.component';
 import { EventComponent } from './components/elements/event.component';
 import { ModalComponent } from './components/elements/modal.component';
@@ -10,24 +10,22 @@ import { FileListControlComponent } from './components/filelist/filelist-control
 import { FileListComponent } from './components/filelist/filelist.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { AreaPaneComponent } from './components/mapels/area-pane.component';
-import { IntroPaneComponent } from './components/mapels/intro-pane.component';
-import { MapPaneComponent } from './components/mapels/map-pane.component';
-import { PropPaneComponent } from './components/mapels/prop-pane.component';
-import { PropSnackbarComponent } from './components/mapels/prop-snackbar.component';
+import { InfoTabsComponent } from './components/mapel/info-tabs.component';
+import { LayerSwitcherComponent } from './components/mapel/layer-switcher.component';
+import { MapComponent } from './components/mapel/map.component';
+import { SearchBarComponent } from './components/mapel/search.component';
 import { PageComponent } from './components/page/page.component';
 import { SidebarButtonComponent } from './components/sidebar-button/sidebar-button.component';
+
 import { AirService } from './services/air.service';
 import { CartoService } from './services/carto.service';
 import { FaqCatPipe } from './services/faqfilter.pipe';
 import { FilterCatPipe } from './services/filter.pipe';
 import { JsonDataService } from './services/get-json-data.service';
-import { GetRegsService } from './services/getregs.service';
 import { GoogleService } from './services/google.service';
 
 export const components = [
     ApplicationsComponent,
-    AreaPaneComponent,
     BottomSheetComponent,
     EventComponent,
     FaqComponent,
@@ -36,13 +34,13 @@ export const components = [
     FileListControlComponent,
     FooterComponent,
     HomeComponent,
-    IntroPaneComponent,
-    MapPaneComponent,
-    MapImageComponent,
+    InfoTabsComponent,
+    LayerSwitcherComponent,
+    MapComponent,
+    EditableMapComponent,
     ModalComponent,
     PageComponent,
-    PropPaneComponent,
-    PropSnackbarComponent,
+    SearchBarComponent,
     SidebarButtonComponent,
     SnackbarComponent
 ];
@@ -51,7 +49,6 @@ export const services = [
     AirService,
     CartoService,
     JsonDataService,
-    GetRegsService,
     GoogleService
 ];
 
@@ -61,7 +58,7 @@ export const pipes = [
 ];
 
 export * from './components/applications/applications.component';
-export * from './components/elements/basic-map.component';
+export * from './components/editablemap/editmap.component';
 export * from './components/elements/modal.component';
 export * from './components/elements/snackbar.component';
 export * from './components/elements/event.component';
@@ -71,12 +68,11 @@ export * from './components/filelist/filelist.component';
 export * from './components/filelist/filelist-control.component';
 export * from './components/footer/footer.component';
 export * from './components/home/home.component';
-export * from './components/mapels/area-pane.component';
-export * from './components/mapels/intro-pane.component';
-export * from './components/mapels/map-pane.component';
+export * from './components/mapel/map.component';
+export * from './components/mapel/info-tabs.component';
+export * from './components/mapel/layer-switcher.component';
+export * from './components/mapel/search.component';
 export * from './components/page/page.component';
-export * from './components/mapels/prop-snackbar.component';
-export * from './components/mapels/prop-pane.component';
 export * from './components/sidebar-button/sidebar-button.component';
 
 export * from './services/air.service';
@@ -84,7 +80,6 @@ export * from './services/carto.service';
 export * from './services/faqfilter.pipe';
 export * from './services/filter.pipe';
 export * from './services/get-json-data.service';
-export * from './services/getregs.service';
 export * from './services/google.service';
-export * from './services/layers.service';
 export * from './services/link.service';
+export * from './services/maplayer.service';

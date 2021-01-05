@@ -18,32 +18,36 @@
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
                         "aot": true,
-                        "outputPath": "dist/nwk-ehd",
+                        "outputPath": "dist/",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
-                          "src/favicon.ico",
-                          "src/assets",
-                          "src/CNAME"
+                            "src/favicon.ico",
+                            "src/assets",
+                            "src/CNAME"
                         ],
                         "styles": [
-                          "src/styles.scss",
-                          "node_modules/ol/ol.css"
+                            "src/styles.scss",
+                            "node_modules/ol/ol.css"
                         ],
                         "scripts": []
-                      },
+                    },
                     "configurations": {
                         "production": {
-                            "budgets": [{
-                                "type": "anyComponentStyle",
-                                "maximumWarning": "6kb"
-                            }],
-                            "fileReplacements": [{
-                                "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.prod.ts"
-                            }],
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -103,47 +107,6 @@
                     }
                 }
             }
-        },
-        "ng-maps": {
-            "projectType": "library",
-            "root": "projects/ng-maps",
-            "sourceRoot": "projects/ng-maps/src",
-            "prefix": "map",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-ng-packagr:build",
-                    "options": {
-                        "tsConfig": "projects/ng-maps/tsconfig.lib.json",
-                        "project": "projects/ng-maps/ng-package.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/ng-maps/tsconfig.lib.prod.json"
-                        }
-                    }
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "main": "projects/ng-maps/src/test.ts",
-                        "tsConfig": "projects/ng-maps/tsconfig.spec.json",
-                        "karmaConfig": "projects/ng-maps/karma.conf.js"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "projects/ng-maps/tsconfig.lib.json",
-                            "projects/ng-maps/tsconfig.spec.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**"
-                        ]
-                    }
-                }
-            }
-        }
-    },
-    "defaultProject": "nwk-ehd"
-}
+        }},
+        "defaultProject": "nwk-ehd"
+    }

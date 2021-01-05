@@ -1,0 +1,43 @@
+<div [style.width]="width" [style.height]="height"></div>
+<div id="popup" class="ol-popup">
+    <a (click)="closeOverlay(pcloser); checkEditing(pcloser)" #pcloser id="popup-closer" class="mat-icon-button">
+        <mat-icon>close</mat-icon>
+    </a>
+    <div id="popup-content">
+        <div class="popup-geo">{{drawStatus && attributesEditing ? 'New Location' : 'Corral Location'}}</div>
+        <div *ngIf="!attributesEditing && selected && selected.name">{{selected.name}}</div>
+        <div *ngIf="!attributesEditing && selected && selected.description">{{selected.description}}</div>
+        <form [formGroup]="featureForm" *ngIf="attributesEditing">
+            <mat-form-field class="margin_1">
+                <mat-label>Name</mat-label>
+                <input formControlName="name" required matInput placeholder="Ex. Broad and Market St">
+            </mat-form-field>
+            <mat-form-field class="margin_1">
+                <mat-label>Explanation</mat-label>
+                <textarea formControlName="description" matInput placeholder="Ex. 100 Main St"></textarea>
+            </mat-form-field>
+            <mat-divider></mat-divider>
+            <button mat-flat-button color="primary" class="margin_1" [disabled]="!featureForm.valid" (click)="finishDraw()">Submit</button>
+            <button mat-flat-button color="accent" class="margin_1" (click)="closeOverlay(pcloser); checkEditing(pcloser)">Cancel</button>
+        </form>
+    </div>
+</div>
+<div class="control-top right">
+    <div class="control-btn group">
+        <button [matTooltip]="'Zoom In'" matTooltipPosition="before" (click)="zoomChange('in')">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button [matTooltip]="'Reset Zoom'" matTooltipPosition="before" (click)="resetView()">
+            <mat-icon>zoom_out_map</mat-icon>
+        </button>
+        <button [matTooltip]="'Zoom Out'" matTooltipPosition="before" (click)="zoomChange('out')">
+            <mat-icon>remove</mat-icon>
+        </button>
+    </div>
+</div>
+<button mat-raised-button 
+    [color]="drawStatus ? 'warn' : 'primary'" style="width: 10rem;height: 2.75rem;position:absolute;top: 0.75rem;right:4.15rem"
+    [matTooltip]="drawStatus ? 'Cancel' : 'Add Point'" matTooltipPosition="before" (click)="toggleDraw()">
+    <mat-icon class="flex_inline margin_right_1 justify-content-center" style="font-size:2rem;vertical-align: text-top;padding:0">{{drawStatus ? 'cancel' : 'add_location'}}</mat-icon>
+    {{drawStatus ? 'Cancel' : 'Add Point'}}
+</button>

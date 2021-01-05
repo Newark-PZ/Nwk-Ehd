@@ -27,13 +27,17 @@ export class OpzHomeComponent {
         icon: 'campaign', category: 'Projects', title: 'Doremus Port-Industrial District', parent: '/planningzoning', link: 'doremus'
       },
       {
+        icon: 'newarkgo', category: 'Projects', title: 'NewarkGo: A Newark Mobility Program',
+        parent: '/planningzoning', link: 'newarkgo'
+      },
+      {
         icon: 'payment', category: 'Tools', title: 'Applications & Payment', parent: '/planningzoning', link: 'applying', new: true
       },
       {
         icon: 'map', category: 'Tools', title: 'Interactive Zoning Map', parent: '/planningzoning', link: 'maps'
       },
       {
-        icon: 'info', category: 'Tools', title: 'Our Zoning Code', parent: '/planningzoning/zoning', link: 'regs'
+        icon: 'info', category: 'Tools', title: 'Our Zoning Code', parent: '/planningzoning/zoning', link: 'regs', disabled: true
       },
       {
         icon: 'attachment', category: 'Tools', title: 'Master Plan', parent: '/planningzoning/resources', link: 'documents',

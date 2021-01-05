@@ -6,11 +6,10 @@ import { AngularOpenlayersModule } from 'ng-maps';
 import { SharedModule } from '../shared/shared.module';
 import { EhdMainComponent } from './ehd-main.component';
 import { EHD_ROUTES } from './ehd-main.routing';
-import { DataDashComponent } from './pages/data-dash.component';
 import { EhdHomeComponent } from './pages/home.component';
 
 @NgModule({
-  declarations: [EhdHomeComponent, DataDashComponent],
+  declarations: [EhdHomeComponent],
   entryComponents: [EhdMainComponent],
   imports: [
     CommonModule,

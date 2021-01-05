@@ -1,0 +1,120 @@
+[
+    {
+        "Answer": "<ul><li>Two compliance officers, funded by the companies, will conduct random checks to ensure that vehicles are deployed to equity zones, and that sidewalks are clear of clutter.</li><li>20 parking corrals throughout the downtown and 10 in the neighborhoods (Equity Zones) will help incentivize users to park inside these reduce parking infractions.</li><li>The scoring criteria in the permit application will favor companies who come up with parking solutions, such as equipping vehicles with “lock-to” mechanisms (users will have to lock a built-in cord around a stationary object to end the ride). </li><li>To avoid oversaturation, companies will start with a vehicle cap, which will be subject to increases as long as certain thresholds – i.e., number of parking complaints, equity compliance, and trips per vehicle – are met.</li></ul>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_1",
+        "Question": "What will the City do about dockless bike and scooter sidewalk clutter? ",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<ol><li><b>NewarkGo addresses a mobility need for all Newarkers, especially those employed in essential services.</b><ul><li>37% of all Newark residents work in Health Care and Social Assistance; Retail Trade; and Accommodation and Food services. Shared mobility is designed to get these workers safely to and from their jobs, just as it has in these other cities.</li><li>In 2009 a Newark resident travelled 20 minutes to work; today, Newarkers commute on average 35 minutes – four minutes longer than the state average (ACS 1-year Estimates).</li><li>40 percent of Newark residents do not have access to a car.</li></ul></li><li><b>Precedents from other US cities indicate that bike and scooter sharing directly benefitted low-income communities.</b><ul><li>In six major US cities operating bike share programs, the most popular destinations for bike share programs weren’t arenas, stadiums, or bars, but rather <a href='https://www.citymetric.com/transport/decisions-cities-made-about-coronavirus-had-big-impact-bike-share-ridership-5218#bikeshare-map'>pharmacies, farmer’s markets, and grocery stores</a>.</li><li>Cities like Detroit report a 225% increase in trips starting and ending in lower-income neighborhoods – 40% of all trips in the system, up from 16% pre-COVID. </li><li>Baltimore reported that, even before COVID, more bike and scooter trips ended in equity zones than began there. </li><li>The scooter company Spin <a href='https://www.govtech.com/fs/transportation/The-Pandemic-Has-Shifted-Where-Scooters-and-Robots-Fit-In.html'>reports</a> that the duration of trips has increased to nearly 22 minutes in May, up from 15 minutes a year ago. In the Northeast, trip duration climbed 33 percent in April, compared to April in 2019.</li></ul></li></ol>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_2",
+        "Question": "Will this program cause gentrification in Newark?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "Each vehicle will have a GPS tracker. Companies will be responsible for operating and maintaining their fleets. If a vehicle cannot be recovered or if there are damages to property, the cost will also be borne by the company.",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_3",
+        "Question": "How will the City respond to stolen/vandalized vehicles?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<ol><li>As part of the pilot evaluation, the City will use trip data to identify priority corridors for protected bike lane infrastructure.</li><li>Promoting road safety is a top priority of this pilot. In the spring, the City will be partnering with Newark Community Cycling Center to host “how to ride” training workshops.</li><li>Additionally, the Newark Police Department will partner with Street Smart NJ to raise awareness about the program and conduct targeted enforcement of traffic laws in the weeks prior to launch.</li></ol>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_4",
+        "Question": "Will there be corresponding infrastructure in place to prevent injury while riding in the street?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<ul><li>The cost of docking stations&mdash;about $50,000 per station&mdash;would limit the availability of vehicles, creating a rigid program that doesn’t allow users the freedom to end their trip where they need to go. Having a dockless program = More coverage = more equity.</li><li>Temporary infrastructure allows for a pilot period. The City can always reevaluate at the end of the trial run.</li><ul>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_5",
+        "Question": "Why is NewarkGo a dockless program instead of a docked program?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<p><b>Companies will be required to offer programs addressing barriers to use of the service.</b></p><ul><li>For example, companies operating in other cities have offered a prepaid option, where unbanked individuals can put cash on debit cards at local convenience stores and use with the vehicles.</li><li>Discounted programs could include unlimited half-hour trips for $5 per month, for those receiving any kind of state or federal assistance, such as section 8.</li><li>Newark is also requiring companies to conduct 4 public meetings within each deployment area in order to educate the riding public about the benefits and uses of its services.</li></ul>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_6",
+        "Question": "How will users without a smart phone or bank accounts use NewarkGo?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<p>Currently, users will need to continue their trip using another mode if their destination is falls outside of Newark city limits. However, within the first few months of the pilot, if there is a need to work with adjacent municipalities to complete trips by bike or scooter, the City will know this through user feedback and an analysis of trip data provided by companies.</p>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_7",
+        "Question": "What if I need to get to an adjacent town on a bike or scooter?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<p>For users 18 and older, there will not be a helmet requirement. There are two main reasons for this:</p><ol><li>First, requiring helmets sharply decreases the number of cyclists and micromobility riders on the streets, which makes streets less safe by diluting the <a href='https://usa.streetsblog.org/2015/02/27/safety-in-numbers-biking-is-safest-in-nations-with-the-most-people-on-bikes/'>“safety in numbers” effect</a>. NACTO has pushed back on these laws as recently <a href='https://nacto.org/2019/11/08/helmet-laws/'>as last year</a>.</li><li>Second, a mandatory helmet statute, by reducing the number of customers using a micromobility service, jeopardizes the financial viability of service providers. This has resulted in the collapse of micromobility programs in other cities, <a href='https://usa.streetsblog.org/2017/09/05/helmet-scolds-could-unwittingly-undermine-bike-safety-in-seattle/'>such as Seattle</a>.<ul><li>That said, users are encouraged to wear helmets, and many providers hand out free helmets as part of their education and outreach.</li></ul></li></ol>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_8",
+        "Question": "Will everyone be required to wear a helmet?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<p>While the company will set prices, shared mobility services typically cost around $1 to unlock, 15-20 cents/minute after. This comes to:</p><ul><li>15-minute ride = $3.25</li><li>30-minute ride = $5.50</li><li>60-minute ride = $10.00</li></ul><p>For comparison:</p><table><thead><tr><th>Bike/Scooter</th><th>Uber/Lyft</th></tr></thead><tbody><tr><td><ul><li>15-minute ride = $3.25</li><li>30-minute ride = $5.50 </li><li>60-minute ride = $10.00</li><li>30-minute ride = $28.00</li><li>60-minute ride = $74-$88</li></td><td><ul><li>15-minute ride = $10.00 (Newark Penn --> Upper Clinton Hill)</li></ul></td></tr></tbody></table>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_9",
+        "Question": "How much does it cost to rent an e-bike or e-scooter?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "Yes. E-scooters will be limited to 15 mph, and e-bikes to 20mph.",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_10",
+        "Question": "Are there speed limits for these vehicles?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "Riding on sidewalks is prohibited, unless the speed limit on the adjacent roadway is 30mph or higher.",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_11",
+        "Question": "Will users be allowed to ride on the sidewalk?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "Equity Zones are areas of the city where 30 percent or more of residents earn less than the AMI, face excessive commutes (60+ minutes, one-way), and fall outside a 10-minute walk radius to rapid rail transit. We also considered density, auto ownership, and Newark Housing Authority buildings as an additional criterion. Companies will be required to deploy 15 percent of their vehicles in these zones.",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_12",
+        "Question": "What are Equity Zones? How were they established.",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<ul><li>Locations where high vehicle/trip volumes are anticipated (i.e., transit stations, entertainment centers, transfer points, universities).</li><li>Designating these locations provides the City more control over the start and end location of vehicles, increases predictability for users and non-users alike, and reduces encroachment in the public right-of-way.</li></ul>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_13",
+        "Question": "What are fleet anchors?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<ul><li>“Corrals” are designated shared micromobility parking zones in high volume or crowded areas where users are encouraged to drop off vehicles in the furniture zone of sidewalks.</li><li>“docking stations” are those employed in docked systems like New York City’s CitiBike. Rather than dropping off the vehicle on the sidewalk out of the public right of way once the trip is over, users lock the bike back in a designated bike station. <strong>This is not Newark’s approach.</strong></li></ul>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_14",
+        "Question": "Parking “corrals” vs. “docking stations”",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "Geofencing technology uses GPS signals to create geographic boundaries that restrict e-scooters from operating in specific areas. NewarkGo will have a geofence around its boundaries to contain the service within city limits while it’s being piloted. Certain high-volume areas, like the plazas in front of Penn Station and Prudential Arena, may also be geofenced to slow vehicle speeds.",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_15",
+        "Question": "What is geofencing?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<p>The City recognizes the importance of creating a program designed for, and by, Newark residents. Public engagement focuses on the following:</p><ul><li>Empowering Newark residents, advocates, and business leaders to lead conversations that will <b>shape program policies</b>.</li><li>Soliciting values from Newark communities to <b>build support for context-specific performance measures</b>.</li><li>Supporting and expanding existing community-led programs to <b>teach and support new and continuing bicyclists</b>.</li><li>Implementing regulations with <b>a focus on equitable distribution</b> of bikes and scooters once the program launches.</li><li>Obtaining feedback about infrastructure and safety measures to anticipate potential challenges and <b>generate solutions in advance</b>.</li></ul><p>Engagement by the numbers [as of 11/11/2020]</p><ul><li>690 surveys collected</li><li>Two focus groups convened, with three more scheduled.</li><li>Three citywide public forums scheduled between November and December.</li><li>Nine months of interdepartmental planning and collaboration from city staff.</li></ul>",
+        "Category": "Newark Go FAQs",
+        "Name": "NG_16",
+        "Question": "How is the city engaging the public?",
+        "Type": "NewarkGo"
+    },
+    {
+        "Answer": "<p>A <a href='https://news.cornell.edu/stories/2020/03/study-explores-micromobility-improper-parking-5-cities'>paper published in March by the University of Oregon</a> found that out of 3,666 observations in 5 major US cities, 24.7% of cars were found to be illegally parked, compared with just 0.8% of micromobility vehicles. Over time, vehicle impounding due to improper parking has become less of an issue. For example, if Newark’s experience is anything like Alexandria, VA’s 9-month pilot, 2.2% of all scooters would be seized, amounting to just 41 out of 2000 vehicles.</p><p>Recognizing the importance of equitable policy and programs in cities, scooter companies have begun to <a href='https://usa.streetsblog.org/2020/07/24/a-black-and-white-issue-lime-confronts-the-scooter-racial-divide/'>seriously reconsider its deployment, hiring, and marketing practices</a>.</p>",
+        "Name": "NG_17",
+        "Category": "Newark Go FAQs",
+        "Question": "Extra Information/Notes"
+    }
+]

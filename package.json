@@ -23,7 +23,6 @@
     "@types/ol": "^6.2.0",
     "core-js": "^3.4.7",
     "mongoose": "^5.9.14",
-    "ng-maps": "link:dist/ng-maps",
     "ol": "^6.2.1",
     "proj4": "^2.6.0",
     "realm-web": "^0.8.1",
@@ -39,7 +38,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod": "node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --base-href /"
+    "build-prod": "node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --base-href /",
+    "build-firebase": "node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --base-href / && firebase deploy --only hosting"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.1",

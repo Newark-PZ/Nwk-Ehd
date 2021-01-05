@@ -28,4 +28,39 @@
         </div>
     </mat-card>
 </section>
+<section class="section-blocks">
+  <mat-card class="section-block" *ngFor="let card of page.sections; let i = index;">
+    <mat-card-header *ngIf="card.header">
+      <mat-card-title>{{ card.header }}</mat-card-title>
+    </mat-card-header>
+    <div class="card-body" *ngIf="!card.list" [innerHtml]="card.text"></div>
+    <iframe *ngIf="card.iframe" [src]="card.iframe.src" [height]="card.iframe.height" [height]="card.iframe.width" frameborder="0"></iframe>
+    <mat-accordion *ngIf="card.tables">
+      <mat-expansion-panel *ngFor="let table of card.tables">
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                  {{ table.title }}
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-table class="faqTable" [dataSource]="table.rows">
+            <ng-container [matColumnDef]="column" *ngFor="let column of table.columns">
+              <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+              <td mat-cell *matCellDef="let row"> {{row[column]}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="table.columns;sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: table.columns;"></tr>
+          </mat-table>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-card-actions align="end" *ngIf="card.buttons">
+        <button *ngFor="let button of card.buttons" mat-stroked-button
+        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'"
+        [routerLink]="button.link ? [button.parent, button.link] : undefined" 
+        [queryParams]="button.params ? button.params : undefined" (click)="goTo(button.extUrl)">
+          <mat-icon>{{ button.icon ? button.icon : 'exit_to_app' }}</mat-icon>
+          {{ button.text }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>
 <app-footer></app-footer>

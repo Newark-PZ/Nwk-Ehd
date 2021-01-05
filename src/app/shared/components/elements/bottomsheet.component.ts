@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
-import { MapComponent, OverlayComponent } from 'ng-maps';
 import { Observable } from 'rxjs';
 import * as fromStore from '../../../store/store.reducers';
 import { StoreService } from '../../../store/store.service';
@@ -25,10 +24,7 @@ export class BottomSheetComponent {
   mapPane$: Observable<number>;
   constructor(
     public _bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: {
-      map: MapComponent;
-      overlay: OverlayComponent;
-    },
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     readonly store: Store<fromStore.StoreState>,
     public storeService: StoreService
     ) {

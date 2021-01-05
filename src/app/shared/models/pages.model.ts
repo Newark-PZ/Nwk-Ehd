@@ -173,6 +173,7 @@ export interface Page {
   };
   contact?: {
     header?: string;
+    hideContactForm?: boolean;
     contacts: Array<{
       officer?: string;
       officerTitle?: string;
@@ -201,8 +202,11 @@ export interface Page {
         width?: string;
         height?: string;
       };
+      faq?: string;
+      map?: boolean;
       logos?: Array<string>;
       list?: Array<{ text: string; subText?: string; hierarchy?: number; }>;
+      tables?: Array<{ title: string; columns: Array<string>; rows: Array<object>; }>
     }>;
   acknowledgments?: Array<{
       header?: string;
@@ -242,9 +246,10 @@ export interface Faq {
   Name: string;
   Answer: string;
   Category: string;
+  Type?: string;
   Question: string;
   tableRows?: Array<Array<string>>;
-  LastUpdated: string;
+  LastUpdated?: string;
 }
 export interface FooterList {
   text: string;
@@ -262,4 +267,9 @@ export interface VirtualHearingTab {
   event?: Hearing;
   data?: Array<DataRow>;
   prevHearings?: Array<{event: Hearing; data: Array<DataRow>}>;
+}
+export interface LegendItem {
+  layer: string;
+  group: any;
+  items: Array<[string, string, string, string?]>;
 }

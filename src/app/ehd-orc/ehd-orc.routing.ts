@@ -3,7 +3,6 @@ import { PageComponent } from '../shared';
 import { OrcDashboardComponent } from './pages/dashboard.component';
 import { OrcFAQComponent } from './pages/faq.component';
 import { OrcHomeComponent } from './pages/home.component';
-// import { OrcDashComponent } from './pages/orc-dash.component';
 import { OrcResourcesComponent } from './pages/resources.component';
 export const ORC_ROUTES: Routes = [
   {
@@ -32,10 +31,6 @@ export const ORC_ROUTES: Routes = [
       }
     ]
   },
-  // {
-  //   path: 'dash',
-  //   component: OrcDashComponent
-  // },
   {
     path: ':id',
     component: PageComponent

@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Map } from 'ol';
 import { Observable } from 'rxjs';
 import { Link } from '../shared/classes/link.class';
-import { MapLayer } from '../shared/classes/maplayer';
 import { FooterList, HomeCard, Page, ParcelFields, SearchItem } from '../shared/models';
-import { LegendItem } from '../shared/models/layers.interface';
 import * as fromStore from '../store/store.reducers';
 import * as homePanelActions from './home-panels/home-panels.actions';
 import * as fromHomePanel from './home-panels/home-panels.reducers';
@@ -13,8 +10,6 @@ import * as i18nActions from './i18n/i18n.actions';
 import * as fromI18n from './i18n/i18n.reducers';
 import * as MapPaneActions from './map-pane/map-pane.actions';
 import * as fromMapPane from './map-pane/map-pane.reducers';
-import * as MapActions from './map/map.actions';
-import * as fromMap from './map/map.reducers';
 import * as PageStateActions from './page-state/page-state.actions';
 import * as fromPageState from './page-state/page-state.reducers';
 import * as PropPaneActions from './prop-pane/prop-pane.actions';
@@ -32,7 +27,6 @@ import * as fromRightSidebar from './sidebarRight/sidebar.reducers';
 export class StoreService {
     homePanelsState$: Observable<fromHomePanel.State>;
     i18nState$: Observable<fromI18n.State>;
-    mapState$: Observable<fromMap.State>;
     mapPaneState$: Observable<fromMapPane.State>;
     pageState$: Observable<fromPageState.State>;
     propPaneState$: Observable<fromPropPane.State>;
@@ -43,7 +37,6 @@ export class StoreService {
     constructor(private readonly store: Store<fromStore.StoreState>) {
         this.homePanelsState$ = this.store.select(state => state.homePanel);
         this.i18nState$ = this.store.select(state => state.i18n);
-        this.mapState$ = this.store.select(state => state.map);
         this.mapPaneState$ = this.store.select(state => state.mapPane);
         this.pageState$ = this.store.select(state => state.pageState);
         this.propPaneState$ = this.store.select(state => state.propPane);
@@ -77,27 +70,6 @@ export class StoreService {
     }
     setRoutesArray(routes: Array<Link>): void {
         this.store.dispatch(RoutesArrayActions.setRouteArray({ payload: routes }));
-    }
-    /*
-    * Map state functions
-    */
-    setMap(map: Map): void {
-        this.store.dispatch(MapActions.setMap({ payload: map }));
-    }
-    toggleBasemap(): void {
-        this.store.dispatch(MapActions.toggleBasemap());
-    }
-    setGeoLayer(layer: Array<MapLayer>): void {
-        this.store.dispatch(MapActions.setGeoLayer({ payload: layer}));
-    }
-    setParcelLayers(layers: Array<MapLayer>): void {
-        this.store.dispatch(MapActions.setParcelLayers({ payload: layers }));
-    }
-    setOverlayLayers(layers: Array<MapLayer>): void {
-        this.store.dispatch(MapActions.setOverlayLayers({ payload: layers}));
-    }
-    setLegend(legend: Array<LegendItem>): void {
-        this.store.dispatch(MapActions.setLegend({ payload: legend}));
     }
     /*
     * Map Pane state functions
@@ -151,8 +123,8 @@ export class StoreService {
     setPropPaneSelectedProp(selectedProp: SearchItem): void {
         this.store.dispatch(PropPaneActions.setSelectedProp({ payload: selectedProp}));
     }
-    setPropPaneSelectedGeo(selectedGeo: any): void {
-        this.store.dispatch(PropPaneActions.setSelectedGeo({ payload: selectedGeo}));
+    setPropPaneSelectedGeo(layer: string, selectedGeo: any): void {
+        this.store.dispatch(PropPaneActions.setSelectedGeo({ payload: {layer, selectedGeo}}));
     }
     setPropPanePropInfo(propInfo: ParcelFields): void {
         this.store.dispatch(PropPaneActions.setPropInfo({ payload: propInfo}));

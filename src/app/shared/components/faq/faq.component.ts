@@ -14,7 +14,7 @@ import { Faq } from '../../models/pages.model';
 export class FaqComponent implements OnInit {
   document: Document;
   @Input() catText = 'Click on a category below to find answers';
-  @Input() faqType: 'rentcontrol' | 'planningzoning';
+  @Input() faqType: 'rentcontrol' | 'planningzoning' | 'newarkgo';
   @Input() faqText: Array<Faq>;
   faqCategories: Array<string> = [];
   currentLanguage$: Observable<string>;
@@ -52,10 +52,12 @@ export class FaqComponent implements OnInit {
       case 'rentcontrol':
         categories = ['Rent Control'];
         break;
+      case 'newarkgo':
+        categories = ['Newark Go FAQs'];
+        break;
       default:
-            categories = [
-                'Rent Control'
-            ];
+        categories = ['General'];
+        break;
     }
 
     return categories;

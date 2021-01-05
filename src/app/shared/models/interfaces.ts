@@ -1,3 +1,4 @@
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { Route } from '@angular/router';
 import { CalEvent } from '../models/pages.model';
 
@@ -279,23 +280,6 @@ export interface RentControlData {
     'Date Created': Date;
     'Date Modified': Date;
 }
-export interface CKANResponse {
-    help: string;
-    success: boolean;
-    result: {
-        include_total: boolean;
-        resource_id: string;
-        fields: Array<{ type: 'int' | 'text' | string; id: string }>;
-        records_format: string;
-        q: string | object;
-        records: Array<RedevCodeRecord | RentControlData | any>;
-        _links: {
-            start: string;
-            next: string;
-        };
-        total: number;
-    };
-}
 export interface SidebarLink extends Route {
     title?: string;
     icon?: string;
@@ -317,5 +301,30 @@ export interface ModalConfig {
     event?: CalEvent;
     link?: string;
     tabIndex?: number;
+    download?: {
+        href: SafeResourceUrl;
+        filename: string;
+        text: string;
+    };
     eventButtons?: Array<{ id: string; link: string; linkText: string; icon: string; styling?: string; }>;
+}
+export interface HearingFolderItem {
+    id: string;
+    name: string;
+    type: 'application/pdf' | 'application/vnd.google-apps.folder' | string;
+}
+export interface HearingFolders {
+    folders: Array<{
+        folderId: string;
+        driveId: string;
+        contents: Array<HearingFolderItem>;
+    }>;
+    lastUpdated: string;
+}
+export interface HearingInfo {
+    board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA';
+    app: string;
+    address: string;
+    link: string;
+    type: string | 'folders';
 }

@@ -20,11 +20,11 @@ export class LinkService {
   ];
   planingzoningChildren = [
     // new Link({id: 'diagrams', title: 'Zoning Diagrams', office: 'planningzoning', parent: 'zoning', disabled: true }),
-    new Link({id: 'regulations', title: 'Zoning Regulations', office: 'planningzoning', parent: 'zoning' }),
+    new Link({id: 'regulations', title: 'Zoning Regulations', office: 'planningzoning', parent: 'zoning', disabled: true }),
     new Link({id: 'documents', title: 'Resources: Documents', office: 'planningzoning', parent: 'resources' }),
     new Link({id: 'faqs', title: 'Resources: FAQs', office: 'planningzoning', parent: 'resources', disabled: true }),
     new Link({id: 'cpb', title: 'Central Planning Board', office: 'planningzoning', parent: 'boards'}),
-    // new Link({id: 'ec', title: 'Environmental Commission', office: 'planningzoning', parent: 'boards'}),
+    new Link({id: 'ec', title: 'Environmental Commission', office: 'planningzoning', parent: 'boards'}),
     new Link({id: 'lhpc', title: 'Landmarks & Historic Preservation', office: 'planningzoning', parent: 'boards'}),
     new Link({id: 'zba', title: 'Zoning Board of Adjustment', office: 'planningzoning', parent: 'boards'})
     ];
@@ -33,13 +33,14 @@ export class LinkService {
     new Link({id: 'home', title: 'OPZ Home', office: 'planningzoning', icon: 'home', isChild: false}),
     new Link({id: 'applying', title: 'Applications & Payment', office: 'planningzoning', icon: 'assignment', isChild: false}),
     new Link({id: 'doremus', title: 'Doremus Port-Industrial District', office: 'planningzoning', icon: 'campaign', isChild: false}),
+    new Link({id: 'newarkgo', title: 'NewarkGo', office: 'planningzoning', icon: 'campaign', isChild: false }),
     // new Link({id: 'team', title: 'Our Team', office: 'planningzoning', icon: 'people', isChild: false}),
     new Link({id: 'maps', title: 'Maps', office: 'planningzoning', icon: 'map', isChild: false}),
     new Link({id: 'boards', title: 'Boards & Commissions', office: 'planningzoning',
               children: this.planingzoningChildren.filter(v => v.parent === 'boards'), icon: 'people', isChild: false}),
     new Link({id: 'resources', title: 'Resources', office: 'planningzoning',
               children: this.planingzoningChildren.filter(v => v.parent === 'resources'), icon: 'file', isChild: false}),
-    new Link({id: 'zoning', title: 'Zoning Regulations', office: 'planningzoning', icon: 'touch_app', isChild: false,
+    new Link({id: 'zoning', title: 'Zoning Regulations', office: 'planningzoning', icon: 'touch_app', isChild: false, disabled: true,
               children: this.planingzoningChildren.filter(v => v.parent === 'zoning')})
   ];
   n360 = [

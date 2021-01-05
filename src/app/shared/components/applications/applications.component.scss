@@ -32,7 +32,7 @@
     flex-direction: column;
     align-items: flex-start;
     background: linear-gradient(rgba(183, 28, 28, 0.15) 0%, white 100%);
-    padding: .5rem 0 .5rem 15vw !important;
+    padding: 0.5rem 0 0.5rem calc(10vw + 5rem) !important;
     @media only screen and (max-width: 769px) {
         padding: .5rem 0 .5rem 1rem !important;
         h2 {
@@ -194,7 +194,68 @@
         cursor: pointer;
     }
 }
-
+.section-blocks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .section-block {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem;
+      border: 0.85px black solid;
+    .mat-card-title {
+      font-weight: 100 !important;
+      font-size: 2rem;
+      line-height: normal;
+    }
+    .card-body {
+      padding: 1rem;
+      font-size: 1.15rem;
+      line-height: 2rem;
+    }
+  }
+  
+mat-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+    tr {
+        width: 100%;
+        height: 1.5rem;
+        &:first-of-type {
+            background-color: rgb(13, 71, 161, .1);
+        }
+        th {
+            font-size: 1rem !important;
+            font-weight: 500;
+            text-align: right;
+            padding: 0 1rem;
+        }
+        td {
+            min-width: 15rem;
+            font-size: 1rem !important;
+            font-weight: normal;
+            text-align: right;
+            padding: 0 1rem;
+        }
+        th:first-of-type,
+        td:first-of-type {
+            text-align: left;
+        }
+        th:nth-of-type(2),
+        td:nth-of-type(2) {
+            background-color: rgba(13, 71, 161, .05);
+        }
+        &:not(:first-of-type):hover {
+            background-color:rgb(13, 71, 161, .1);
+        }
+    }
+}
+mat-expansion-panel {
+    border: .01rem solid rgb(13 71 161/.25);
+    box-shadow: 0rem 0.01rem 0.1rem 0 rgba(13,71,161,.3), 0.01rem 0.01rem 0.2rem 0 rgba(13,71,161,.12), 0rem 0.05rem 0.05rem 0rem rgba(13,71,161,.1) !important;
+}
 @media screen and (min-width: 576px) and (max-width: 1030px) {
     .splash-title,
     .splash-subtitle {

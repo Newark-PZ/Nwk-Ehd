@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { EhdMainComponent } from './ehd-main/ehd-main.component';
+// import { EhdMainComponent } from './ehd-main/ehd-main.component';
 import { EhdOpzComponent } from './ehd-opz/ehd-opz.component';
 import { EhdOrcComponent } from './ehd-orc/ehd-orc.component';
 import { Newark360Component } from './newark360/newark360.component';
@@ -8,13 +8,7 @@ export const APP_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'ehd'
-  },
-  {
-    component: EhdMainComponent,
-    loadChildren: async () => import('./ehd-main/ehd-main.module')
-      .then(m => m.EhdMainModule),
-    path: 'ehd'
+    redirectTo: 'planningzoning'
   },
   {
     component: EhdOpzComponent,
@@ -37,11 +31,17 @@ export const APP_ROUTES: Routes = [
   {
     path: 'ehd/',
     pathMatch: 'full',
-    redirectTo: 'ehd'
+    redirectTo: 'planningzoning'
   },
+  // {
+  //   component: EhdMainComponent,
+  //   loadChildren: async () => import('./ehd-main/ehd-main.module')
+  //     .then(m => m.EhdMainModule),
+  //   path: 'ehd'
+  // },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: 'ehd'
+    redirectTo: 'planningzoning'
   }
 ];

@@ -6,7 +6,7 @@ export interface State {
   opened: boolean;
   title: string;
   selectedProp: SearchItem;
-  selectedGeo: any;
+  selectedGeo: { layer: string; selectedGeo: string; };
   propInfo: ParcelFields;
 }
 
@@ -25,7 +25,7 @@ const initialState: State = {
     objectid: 0,
     ward: 'CENTRAL',
     zipcode: '',
-    blocklot: '000-00',
+    blocklot: ' ',
     addlots: '000-00',
     proploc: '',
     propclass: '',
@@ -45,7 +45,7 @@ const initialState: State = {
     shape_length: 0,
     shape_area: 0
   },
-  selectedGeo: undefined
+  selectedGeo: {layer: '', selectedGeo: ''}
 };
 
 export const propPaneReducer = createReducer(

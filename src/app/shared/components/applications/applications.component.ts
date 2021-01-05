@@ -4,11 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../store/store.reducers';
 import { Page } from '../../models/pages.model';
-import { slideshowAnimation } from '../../util/animations';
 import { SnackbarComponent } from '../elements/snackbar.component';
 
 @Component({
-  animations: [slideshowAnimation],
   changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-applications',
   styleUrls: ['./applications.component.scss'],

@@ -156,12 +156,12 @@ $custom-typography: mat-typography-config( $font-family: 'Segoe UI, sans-serif',
     bottom: .5rem !important;
     left: .5rem !important;
     padding: .1rem !important;
-    @media screen and (max-width: 576px) {
-        left: 1.1rem !important;
-        padding: 0.1rem !important;
-        top: 4rem !important;
-        bottom: unset !important;
-    }
+    // @media screen and (max-width: 576px) {
+    //     left: 1.1rem !important;
+    //     padding: 0.1rem !important;
+    //     top: 4rem !important;
+    //     bottom: unset !important;
+    // }
 }
 
 .map-frame-mini .ol-scale-line {
@@ -185,8 +185,8 @@ $custom-typography: mat-typography-config( $font-family: 'Segoe UI, sans-serif',
     &:not(.ol-collapsed) {
         background-color: white !important;
     }
-    right: 1.5rem !important;
-    bottom: .75rem !important;
+    right: 0.5rem !important;
+    bottom: 0.5rem !important;
     ul {
         &::before {
             content: "Attributions";
@@ -208,6 +208,7 @@ $custom-typography: mat-typography-config( $font-family: 'Segoe UI, sans-serif',
     button {
         background-color: rgba(0, 0, 0, 0.5) !important;
         border-radius: .2rem !important;
+        cursor: pointer;
     }
 }
 
@@ -217,6 +218,10 @@ $custom-typography: mat-typography-config( $font-family: 'Segoe UI, sans-serif',
     color: white !important;
     margin: .2rem !important;
     font: .85rem "Segoe UI" !important;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .mat-bottom-sheet-container {

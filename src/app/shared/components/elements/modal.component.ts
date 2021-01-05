@@ -9,6 +9,7 @@ import { ModalConfig } from '../../models/interfaces';
   template: `
 <h1 mat-dialog-title [innerHtml]="data.header"></h1>
 <div mat-dialog-content *ngIf="data.message !== 'event' && data.message" [innerHtml]="data.message"></div>
+<a *ngIf="data.download" [href]="data.download.href" [download]="data.download.filename">{{data.download.text}}</a>
 <iframe *ngIf="data.link" [src]="link" style="width: 88vw; height: 70vh; border: none;"></iframe>
 <app-event-detail *ngIf="data.message === 'event'"
 [agenda]="data.event.agenda ? data.event.agenda : ''"

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { FileListComponent } from '../../shared/components/filelist/filelist.component';
@@ -13,12 +13,12 @@ import { DocGroup, Page } from '../../shared/models';
     `
 })
 
-export class OpzResourcesComponent implements AfterViewInit {
+export class OpzResourcesComponent {
   @ViewChild(FileListComponent) fileList: FileListComponent;
-  pageDetails: Page = {
+  @Input() pageDetails: Page = {
     id: 'documents',
-    splashTitle: 'Resources',
-    splashIcon: 'document'
+    splashTitle: 'Documents',
+    splashIcon: 'description'
   };
   data: Array<DocGroup> = [
     {
@@ -53,8 +53,8 @@ export class OpzResourcesComponent implements AfterViewInit {
   constructor(
     readonly route: ActivatedRoute,
     readonly router: Router
-  ) {}
-  ngAfterViewInit(): void {
+  ) {
+    setTimeout(() => {
     this.route.queryParams.pipe(
       filter(params => params.group && params.type)
     )
@@ -69,9 +69,10 @@ export class OpzResourcesComponent implements AfterViewInit {
           this.selectedGroup = this.fileList.selectedGroup;
       });
     this.selectedGroup ? this.selectedGroup = this.selectedGroup : this.fileList.groupSelected({name: '', group: 'res', type: 'Redevelopment_Plans'});
+    }, 350);
   }
   setSubtitle(docsubgroup: DocGroup): void {
-    const title = () => `Documents: ${
+    this.pageDetails.splashTitle = `Documents: ${
       docsubgroup && docsubgroup.group === 'res' ? '' : docsubgroup.group.toUpperCase()
     }${
       docsubgroup.year ? ' ' : ''
@@ -81,10 +82,5 @@ export class OpzResourcesComponent implements AfterViewInit {
       docsubgroup.year ? ' ' : ''
     }${
       docsubgroup.type ? docsubgroup.type.replace('_', ' ') : ''}`;
-    this.pageDetails = {
-      id: 'documents',
-      splashTitle: title(),
-      splashIcon: 'document'
-    };
   }
 }

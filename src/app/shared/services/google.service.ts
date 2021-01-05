@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { toLonLat } from 'ol/proj';
 
 /**
- * Service with methods to connect map clicks to
- * google maps and street view
+ * Service with methods to connect map clicks to google maps and street view
  * @method openStreetView() Open Location in Google Street View with only Lat Long
  * @method openGoogleMaps() Open Location as pin in Google Maps with only Lat Long
  */
 @Injectable()
 export class GoogleService {
-/* Open Location in Google Street View with only Lat Long
+/**
+ * Open Location in Google Street View with only Lat Long
  * @param LAT Numerical Latitude, in decimal degrees
  * @param LONG Numerical Longitude, in decimal degrees
  */
@@ -17,7 +17,8 @@ export class GoogleService {
         const latlon = toLonLat([LAT, LONG]);
         window.open(`https://www.google.com/maps?q=&layer=c&cbll=${latlon[1].toString()},${latlon[0].toString()}`, '_blank');
     }
-/* Open Location as pin in Google Maps with only Lat Long
+/**
+ * Open Location as pin in Google Maps with only Lat Long
  * @param LAT Numerical Latitude, in decimal degrees
  * @param LONG Numerical Longitude, in decimal degrees
  */

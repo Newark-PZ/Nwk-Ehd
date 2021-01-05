@@ -8,7 +8,7 @@
 </mat-card>
 <section class="faqContent">
     <div class="faqGroup" *ngFor="let cat of faqCategories; let i=index">
-        <h3 [id]="'category' + i">
+        <h3 [id]="'category' + i" *ngIf="faqCategories.length > 1">
             <mat-divider style="margin: 1rem 0;"></mat-divider>
             {{ cat }}
         </h3>
@@ -19,7 +19,7 @@
                         {{ faq.Question }}
                     </mat-panel-title>
                     <mat-panel-description>
-                        {{ faq.Categories }}
+                        {{ faq.Category }}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <P [innerHtml]="faq.Answer"></P>

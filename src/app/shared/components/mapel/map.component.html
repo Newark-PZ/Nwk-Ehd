@@ -1,0 +1,46 @@
+<div [style.width]="width" [style.height]="height"></div>
+<div id="popup" class="ol-popup"><a (click)="closeOverlay(pcloser)" #pcloser id="popup-closer" class="mat-icon-button">
+        <mat-icon>close</mat-icon>
+    </a>
+    <div id="popup-content">
+        <div class="popup-geo">{{clicked.geo}}</div>
+        <span>
+            <mat-icon class="margin_right_1 v-align-top">home</mat-icon>{{clicked.proploc}}
+        </span><br>
+        <span>
+            <mat-icon class="margin_right_1 v-align-top" [svgIcon]="'blocklot'"></mat-icon>{{clicked.blocklot}}
+        </span>
+    </div>
+</div>
+<map-search-bar [ngClass]="panel ? 'move-buttons' : ''" [overlay]="popup" (searchEvt)="handlePropLookup(undefined, [$event])">
+</map-search-bar>
+<map-info-tabs #infotabs [map]="instance" [parcelView]="parcelView" (export)="exportMap($event)" [menuOpen]="panel === true ? false : undefined" (menuOpened)="panel = false"></map-info-tabs>
+<div class="layer-switcher" [@togglePanel]="panel ? 'shown' : 'hidden'">
+    <app-layer-switcher [map]="instance" [parcelView]="parcelView" (viewChanged)="legendSync($event)">
+    </app-layer-switcher>
+</div>
+<div class="control-top right" [ngClass]="panel ? 'move-buttons' : ''">
+    <button class="control-btn" [matTooltip]="basemap === 'base' ? 'Satellite View' : 'Map View'"
+        matTooltipPosition="before" (click)="toggleBasemapLayer()">
+        <mat-icon>{{basemap === 'base' ? 'map' : 'satellite'}}</mat-icon>
+    </button>
+    <button class="control-btn" [matTooltip]="transitGroup.getVisible() ? 'Hide Transit Layer' : 'Show Transit Layer'"
+        matTooltipPosition="before" (click)="transitGroup.setVisible(!transitGroup.getVisible())">
+        <mat-icon>{{transitGroup.getVisible() ? 'no_transfer' : 'directions_transit'}}</mat-icon>
+    </button>
+    <button class="control-btn" [matTooltip]="panel ? 'Close Layer List' : 'Open Layer List'"
+        matTooltipPosition="before" (click)="panel = !panel">
+        <mat-icon>{{panel ? 'close' : 'layers'}}</mat-icon>
+    </button>
+    <div class="control-btn group">
+        <button [matTooltip]="'Zoom In'" matTooltipPosition="before" (click)="zoomChange('in')">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button [matTooltip]="'Reset Zoom'" matTooltipPosition="before" (click)="resetView()">
+            <mat-icon>zoom_out_map</mat-icon>
+        </button>
+        <button [matTooltip]="'Zoom Out'" matTooltipPosition="before" (click)="zoomChange('out')">
+            <mat-icon>remove</mat-icon>
+        </button>
+    </div>
+</div>

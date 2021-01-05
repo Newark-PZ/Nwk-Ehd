@@ -76,7 +76,7 @@
                         (click)="card.disabled ? '' : goTo(card.extUrl)" class="program-card"
                         *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
                         <div class="button-card">
-                            <mat-icon style="margin-right: .5rem">{{ card.icon }}</mat-icon>
+                            <mat-icon style="margin-right: .5rem" [ngStyle]="card.icon === 'newarkgo' ? {'width': '3rem','height': '2rem'} : ''" [svgIcon]="card.icon === 'newarkgo' ? 'newarkgo' : undefined">{{ card.icon }}</mat-icon>
                             <h4 style="margin: auto">{{ card.title }}</h4>
                             <mat-icon style="margin-left: .5rem">exit_to_app</mat-icon>
                         </div>

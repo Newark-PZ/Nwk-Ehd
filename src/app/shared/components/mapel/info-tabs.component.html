@@ -1,0 +1,106 @@
+<div class="flex-col info-menu">
+    <button [matTooltip]="'Show Legend'" matTooltipPosition="after" [ngClass]="currentTab === 'legend' ? 'active' : ''"
+        (click)="openMenu('legend')">
+        <mat-icon>category</mat-icon>
+    </button>
+    <button [matTooltip]="'Show Prop Info'" matTooltipPosition="after"
+        [ngClass]="currentTab === 'Property Information' ? 'active' : ''"
+        (click)="openMenu('Property Information')">
+        <mat-icon>person_pin_circle</mat-icon>
+    </button>
+    <button [matTooltip]="'Export View'" matTooltipPosition="after" [ngClass]="currentTab === 'export' ? 'active' : ''"
+        (click)="openMenu('export')">
+        <mat-icon>save_alt</mat-icon>
+    </button>
+    <button [matTooltip]="menuOpen ? 'Collapse' : 'Expand'" matTooltipPosition="after"
+        style="margin-top: auto; margin-bottom: 0;" (click)="openMenu(currentTab, 'toggle')">
+        <mat-icon [ngClass]="menuOpen ? 'rotate' : ''">login</mat-icon>
+    </button>
+</div>
+<section class="menu-block" [ngClass]="menuOpen ? 'open' : ''" [ngSwitch]="currentTab" *ngIf="menuOpen">
+    <h3 *ngIf="menuOpen" style="margin-top:0" [innerText]="currentTab | titlecase"></h3>
+    <div *ngSwitchCase="'Property Information'" style="overflow-y: auto; overflow-x: hidden; height: 85%">
+        <div *ngIf="!(propSub | async) || (propSub | async).blocklot === ' '; else info">
+            <p>Click on the map to get information about a parcel</p>
+            <p class="flex-col-12">Make sure to click on a location with an address/blocklot associated to it</p>
+        </div>
+        <ng-template #info>
+        <div class="prop-title" (click)="copyVal()">
+            <span
+                [innerHTML]="(propSub | async).proploc !== '' ? (propSub | async).proploc : (propSub | async).blocklot | titlecase">Address</span>
+            <span *ngIf="(propSub | async).proploc">Block: {{ (propSub | async).blocklot.split('-')[0] }} | Lot:
+                {{ (propSub | async).blocklot.split('-')[1] }}</span>
+        </div>
+        <mat-table [dataSource]="propFields.slice(2)" multiTemplateDataRows class="prop-table">
+            <ng-container matColumnDef="prop">
+                <mat-cell *matCellDef="let row">{{ row.name | titlecase}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="value">
+                <mat-cell *matCellDef="let row" [ngSwitch]="row.prop">
+                    <ng-container *ngSwitchCase="'zone'">
+                        <div class="zone" [ngClass]="(propSub | async)[row.prop]"
+                            [style.background]=" zoneFilter((propSub | async)[row.prop])[1]">
+                            {{ (propSub | async)[row.prop] || 'N/A'}}
+                        </div>
+                        {{ zoneFilter( (propSub | async)[row.prop])[0] }}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'propclass'">
+                        <div class="propclass" [ngClass]="'pc-'+(propSub | async)[row.prop]"
+                            [style.background]=" propClassFilter((propSub | async)[row.prop])[1]">
+                            {{ (propSub | async)[row.prop] || 'N/A'}}
+                        </div>
+                        {{ propClassFilter( (propSub | async)[row.prop])[0] }}
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        {{ (propSub | async)[row.prop] === ' ' ? 'N/A' : (propSub | async)[row.prop] }}
+                    </ng-container>
+                </mat-cell>
+            </ng-container>
+            <mat-row class="row" *matRowDef="let row; columns: ['prop','value'];"></mat-row>
+        </mat-table>
+        <a class="mat-raised-button mat-primary"
+            style="margin: 1rem;" *ngIf="(propSub | async)['blocklot'] as blocklot" (click)="openMoreInfo(blocklot)">See
+            More Info</a>
+        </ng-template>
+    </div>
+    <div *ngSwitchCase="'export'">
+        <button mat-button id="export-png" style="margin-top: auto; margin-bottom: 0;" (click)="downloadMap(el)">
+            <mat-icon>image</mat-icon>
+            Download PNG
+        </button>
+        <a #el id="image-download" download></a>
+    </div>
+    <div *ngSwitchCase="'legend'">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let el of layers" class="legend-panel">
+                <mat-expansion-panel-header style="max-height: 2.5rem;">
+                    <mat-panel-title>
+                        {{ el.group | titlecase}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{ el.layer | titlecase}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-table [dataSource]="el.items" class="legend-layer" style="max-height: 12rem; overflow-y: auto;">
+                    <ng-container matColumnDef="element">
+                        <mat-cell *matCellDef="let subrow" style="max-width: 3.5rem; padding-left: .15rem;">
+                            <div class="legend-symbol" style="width: 2rem; height: 1rem;border: solid 1px"
+                                [ngStyle]="{'border-color': subrow[1]}" [style.backgroundColor]="subrow[2]"></div>
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="label">
+                        <mat-cell *matCellDef="let subrow">{{subrow[0]}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="info">
+                        <mat-cell *matCellDef="let subrow" style="max-width: 2rem; padding-right: .15rem;">
+                            <mat-icon [matTooltip]="subrow[3]" matTooltipClass="legend-tooltip" style="cursor: pointer;"
+                                matTooltipPosition="after">info</mat-icon>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-row class="row" style="min-height: 2rem !important"
+                        *matRowDef="let subrow; columns: legendCols;"></mat-row>
+                </mat-table>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</section>

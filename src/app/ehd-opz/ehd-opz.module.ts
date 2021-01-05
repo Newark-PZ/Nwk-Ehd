@@ -2,7 +2,6 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Event, Router, RouterModule, Scroll } from '@angular/router';
-import { AngularOpenlayersModule } from 'ng-maps';
 import { filter } from 'rxjs/operators';
 import { SharedModule } from '../shared/shared.module';
 import { PLANNING_ROUTES } from './ehd-opz.routing';
@@ -18,7 +17,6 @@ import * as components from './index';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularOpenlayersModule,
     RouterModule.forChild(PLANNING_ROUTES)
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

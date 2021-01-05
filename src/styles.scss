@@ -252,6 +252,17 @@ body {
   tbody {vertical-align: top;}
   tr { padding: .5rem;}
   td {padding: .25rem}
+  td.side-header {
+    background-color: rgba(50,50,50,.1);
+    padding: .5rem;
+    text-align: center;
+    width: 9rem;
+  }
+  td.propVals {
+    display: flex;
+    flex-direction: column;
+    width: 9rem;
+  }
   @media screen and (max-width: 769px) {
     tr {
       display: flex;

@@ -1,6 +1,7 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
@@ -9,11 +10,9 @@ import { StoreService } from '../../../store/store.service';
 import { Hearing } from '../../classes/hearing';
 import { HomePage } from '../../models';
 import { EventsService } from '../../services/events.service';
-import { slideshowAnimation } from '../../util/animations';
 import { ModalComponent } from '../elements/modal.component';
 
 @Component({
-  animations: [slideshowAnimation],
   changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-home',
   styleUrls: ['./home.component.scss'],
@@ -30,7 +29,8 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     public storeService: StoreService,
     readonly store: Store<fromStore.StoreState>,
-    readonly events: EventsService
+    readonly events: EventsService,
+    readonly sanitizer: DomSanitizer
     ) {
       this.expansionOpen$ = this.store.select(state => state.homePanel.open);
       this.expansionMulti$ = this.store.select(state => state.homePanel.multi);

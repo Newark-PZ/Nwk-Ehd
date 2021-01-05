@@ -2,7 +2,6 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Event, Router, RouterModule, Scroll } from '@angular/router';
-import { AngularOpenlayersModule } from 'ng-maps';
 import { filter } from 'rxjs/operators';
 import { SharedModule } from '../shared/shared.module';
 import * as components from './index';
@@ -17,7 +16,6 @@ import { NEWARK360_ROUTES } from './newark360.routing';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularOpenlayersModule,
     RouterModule.forChild(NEWARK360_ROUTES)
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
