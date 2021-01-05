@@ -106,6 +106,28 @@
                             "type": "Minutes",
                             "year": "2020"
                         }
+                    },
+                    {
+                        "icon": "attach_file",
+                        "text": "2021 Agendas",
+                        "parent": "/planningzoning/resources",
+                        "link": "documents",
+                        "params": {
+                            "group": "cpb",
+                            "type": "Agendas",
+                            "year": "2021"
+                        }
+                    },
+                    {
+                        "icon": "attach_file",
+                        "text": "2021 Minutes",
+                        "parent": "/planningzoning/resources",
+                        "link": "documents",
+                        "params": {
+                            "group": "cpb",
+                            "type": "Minutes",
+                            "year": "2021"
+                        }
                     }
                 ]
             }
@@ -204,24 +226,24 @@
                 "buttons": [
                     {
                         "icon": "attach_file",
-                        "text": "2020 Agendas",
+                        "text": "2021 Agendas",
                         "parent": "/planningzoning/resources",
                         "link": "documents",
                         "params": {
                             "group": "ec",
                             "type": "Agendas",
-                            "year": "2020"
+                            "year": "2021"
                         }
                     },
                     {
                         "icon": "attach_file",
-                        "text": "2020 Minutes",
+                        "text": "2021 Minutes",
                         "parent": "/planningzoning/resources",
                         "link": "documents",
                         "params": {
                             "group": "ec",
                             "type": "Minutes",
-                            "year": "2020"
+                            "year": "2021"
                         }
                     }
                 ]
@@ -335,6 +357,28 @@
                             "type": "Minutes",
                             "year": "2020"
                         }
+                    },
+                    {
+                        "icon": "attach_file",
+                        "text": "2021 Agendas",
+                        "parent": "/planningzoning/resources",
+                        "link": "documents",
+                        "params": {
+                            "group": "lhpc",
+                            "type": "Agendas",
+                            "year": "2021"
+                        }
+                    },
+                    {
+                        "icon": "attach_file",
+                        "text": "2021 Minutes",
+                        "parent": "/planningzoning/resources",
+                        "link": "documents",
+                        "params": {
+                            "group": "lhpc",
+                            "type": "Minutes",
+                            "year": "2021"
+                        }
                     }
                 ]
             }
@@ -447,6 +491,28 @@
                             "group": "zba",
                             "type": "Minutes",
                             "year": "2020"
+                        }
+                    },
+                    {
+                        "icon": "attach_file",
+                        "text": "2021 Agendas",
+                        "parent": "/planningzoning/resources",
+                        "link": "documents",
+                        "params": {
+                            "group": "zba",
+                            "type": "Agendas",
+                            "year": "2021"
+                        }
+                    },
+                    {
+                        "icon": "attach_file",
+                        "text": "2021 Minutes",
+                        "parent": "/planningzoning/resources",
+                        "link": "documents",
+                        "params": {
+                            "group": "zba",
+                            "type": "Minutes",
+                            "year": "2021"
                         }
                     }
                 ]

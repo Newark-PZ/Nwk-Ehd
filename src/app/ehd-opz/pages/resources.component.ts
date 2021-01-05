@@ -30,22 +30,36 @@ export class OpzResourcesComponent {
     },
     {
       group: 'cpb', name: 'Central Planning Board', disabled: false, docs: [
-        { name: '2018 Minutes', group: 'cpb', type: 'Minutes', year: 2018 },
         { name: '2019 Minutes', group: 'cpb', type: 'Minutes', year: 2019 },
         { name: '2020 Minutes', group: 'cpb', type: 'Minutes', year: 2020 },
-        { name: '2018 Agendas', group: 'cpb', type: 'Agendas', year: 2018 },
+        { name: '2021 Minutes', group: 'cpb', type: 'Minutes', year: 2021 },
         { name: '2019 Agendas', group: 'cpb', type: 'Agendas', year: 2019 },
-        { name: '2020 Agendas', group: 'cpb', type: 'Agendas', year: 2020 }
+        { name: '2020 Agendas', group: 'cpb', type: 'Agendas', year: 2020 },
+        { name: '2021 Agendas', group: 'cpb', type: 'Agendas', year: 2021 }
+      ]
+    },
+    {
+      group: 'ec', name: 'Environmental Commission', disabled: false, docs: [
+        { name: '2021 Minutes', group: 'ec', type: 'Minutes', year: 2021 },
+        { name: '2021 Agendas', group: 'ec', type: 'Agendas', year: 2021 }
+      ]
+    },
+    {
+      group: 'lhpc', name: 'Landmarks & Historic Pres.', disabled: false, docs: [
+        { name: '2020 Minutes', group: 'lhpc', type: 'Minutes', year: 2020 },
+        { name: '2021 Minutes', group: 'lhpc', type: 'Minutes', year: 2021 },
+        { name: '2020 Agendas', group: 'lhpc', type: 'Agendas', year: 2020 },
+        { name: '2021 Agendas', group: 'lhpc', type: 'Agendas', year: 2021 }
       ]
     },
     {
       group: 'zba', name: 'Zoning Board of Adjustment', disabled: false, docs: [
-        { name: '2018 Minutes', group: 'zba', type: 'Minutes', year: 2018 },
         { name: '2019 Minutes', group: 'zba', type: 'Minutes', year: 2019 },
         { name: '2020 Minutes', group: 'zba', type: 'Minutes', year: 2020 },
-        { name: '2018 Agendas', group: 'zba', type: 'Agendas', year: 2018 },
+        { name: '2021 Minutes', group: 'zba', type: 'Minutes', year: 2021 },
         { name: '2019 Agendas', group: 'zba', type: 'Agendas', year: 2019 },
-        { name: '2020 Agendas', group: 'zba', type: 'Agendas', year: 2020 }
+        { name: '2020 Agendas', group: 'zba', type: 'Agendas', year: 2020 },
+        { name: '2021 Agendas', group: 'zba', type: 'Agendas', year: 2021 }
       ]
     }
   ];

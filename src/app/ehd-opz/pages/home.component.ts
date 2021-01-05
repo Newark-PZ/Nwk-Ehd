@@ -18,10 +18,13 @@ export class OpzHomeComponent {
         icon: 'house', category: 'Boards & Commissions', title: 'Central Planning Board', parent: '/planningzoning/boards', link: 'cpb'
       },
       {
-        icon: 'house', category: 'Boards & Commissions', title: 'Zoning Board of Adjustment', parent: '/planningzoning/boards', link: 'zba'
+        icon: 'house', category: 'Boards & Commissions', title: 'Environmental Commission', parent: '/planningzoning/boards', link: 'ec'
       },
       {
         icon: 'house', category: 'Boards & Commissions', title: 'Landmarks & Historic Preservation', parent: '/planningzoning/boards', link: 'lhpc'
+      },
+      {
+        icon: 'house', category: 'Boards & Commissions', title: 'Zoning Board of Adjustment', parent: '/planningzoning/boards', link: 'zba'
       },
       {
         icon: 'campaign', category: 'Projects', title: 'Doremus Port-Industrial District', parent: '/planningzoning', link: 'doremus'

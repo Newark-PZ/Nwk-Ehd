@@ -41,6 +41,11 @@ export class OpzDashboardComponent {
           data: this.store.select(state => state.hearing.cpbTab)
         },
         {
+          board: 'EC',
+          label: 'Environmental Commission',
+          data: this.store.select(state => state.hearing.ecTab)
+        },
+        {
           board: 'LHPC',
           label: 'Landmarks & Historic Pres.',
           data: this.store.select(state => state.hearing.lhpcTab)
