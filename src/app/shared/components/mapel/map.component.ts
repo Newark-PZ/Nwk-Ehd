@@ -110,7 +110,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
   }
   zoomChange(type: 'in' | 'out'): void {
     this.zoom = this.instance.getView()
-      .getZoom();
+      .getZoom()!;
     this.zoom = type === 'in' ? Math.min(this.zoom + 1, 19) : Math.max(this.zoom - 1, 8);
     this.instance.getView()
       .animate({ zoom: this.zoom, easing: easeOut, duration: 750 });
@@ -177,7 +177,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
   exportMap(e: { event: string, linkEl: HTMLLinkElement }): void {
     this.instance.once('rendercomplete', () => {
       const mapCanvas = document.createElement('canvas');
-      const size = this.instance.getSize();
+      const size = this.instance.getSize()!;
       mapCanvas.width = size[0];
       mapCanvas.height = size[1];
       const mapContext = mapCanvas.getContext('2d');

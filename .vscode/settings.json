@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "C:\\Python38\\python.exe"
+  "python.pythonPath": "C:\\Python38\\python.exe",
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

@@ -157,7 +157,7 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   zoomChange(type: 'in' | 'out'): void {
     this.zoom = this.instance.getView()
-      .getZoom();
+      .getZoom()!;
     this.zoom = type === 'in' ? Math.min(this.zoom + 1, 19) : Math.max(this.zoom - 1, 8);
     this.instance.getView()
       .animate({ zoom: this.zoom, easing: easeOut, duration: 750 });
@@ -186,7 +186,7 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.featureForm.get('coords')!
       .setValue(this.popup.getPosition());
     const feature = {
-      geometry: toLonLat(this.popup.getPosition())
+      geometry: toLonLat(this.popup.getPosition()!)
         .toString(),
       Name: this.featureForm.get('name')?.value,
       Desc_: this.featureForm.get('description')?.value

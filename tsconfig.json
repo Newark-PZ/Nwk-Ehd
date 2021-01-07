@@ -30,12 +30,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "paths": {
-      "ng-maps": [
-        "dist/ng-maps/ng-maps",
-        "dist/ng-maps"
-      ]
-    }
+    "paths": {}
   },
   "angularCompilerOptions": {
     "enableIvy": true

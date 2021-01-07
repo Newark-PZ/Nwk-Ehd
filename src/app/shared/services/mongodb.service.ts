@@ -24,6 +24,6 @@ export class MongodbService {
   async searchAddr(input: string): Promise<Array<SearchFeature>> {
     const query = typeof input === 'string' ? input : '';
 
-    return  this.app.functions.callFunction('Search', query) as Promise<Array<SearchFeature>>;
+    return  this.app.currentUser!.callFunction('Search', query) as Promise<Array<SearchFeature>>;
   }
 }

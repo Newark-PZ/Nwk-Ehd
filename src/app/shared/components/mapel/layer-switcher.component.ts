@@ -101,7 +101,7 @@ export class LayerSwitcherComponent implements OnInit {
         const lyrInfo = this.lyrService.getLayerInfo(className);
         const urlString: string = String(lyr instanceof VectorLayer
             ? (lyr.getSource()).getUrl()
-            : (lyr.getSource() as XYZ).getUrls()[0]);
+            : (lyr.getSource() as XYZ).getUrls()![0]);
         const addLink = className.search(/(Parcels|Grid|Basemap)/gi) === -1
             ? `<tr><td class="side-header">Source</td><td><a class="mat-stroked-button" download="Newark_${className.replace(/\s/gi, '_')}.geojson"
                 href="${urlString}${urlString.startsWith('https://nzlur.carto.com/') ? ('&filename=Newark_').concat(className.replace(/\s/gi, '_')) : ''

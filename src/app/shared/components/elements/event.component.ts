@@ -29,7 +29,7 @@ export interface EventTableRow {
             <span *ngIf="!row.numbers" [ngClass]="row.link ? 'mat-raised-button mat-primary' : ''" (click)="goTo(row.link)">{{ row.content }}</span>
             <table *ngIf="row.numbers" style="width: 100%; font-size: 1rem">
                 <tr class="flex-row">
-                    <td class="flex-col cols-9" colspan="auto" style="max-height: 7rem;">
+                    <td class="flex-col cols-9" colspan="auto" style="max-height: 5rem;">
                         <a *ngFor="let num of row.numbers" mat-button class="cols-4" [href]="'tel:+1'+ fixPhone(num)">
                         <mat-icon style="font-size: 1rem">phone</mat-icon>
                         {{num}}
@@ -93,7 +93,10 @@ export class EventComponent implements OnInit, OnChanges {
         }
     }
     setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC' | 'RC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
-        const idno = hearing ? hearing.link.substring(hearing.link.lastIndexOf('/') + 1) : '000 0000 0000';
+        const idno = hearing ? hearing.link.substring(
+            hearing.link.lastIndexOf('/') + 1,
+            hearing.link.includes('?pwd=') ? hearing.link.lastIndexOf('?pwd=') : undefined
+            ) : '000 0000 0000';
         const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
         const setRows = (idnum, id): Array<EventTableRow> => {
             switch (board) {

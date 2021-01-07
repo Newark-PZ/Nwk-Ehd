@@ -149,7 +149,7 @@ export class EventsService {
     ): Promise<Array<HearingInfo>> {
         const currentHearingID = hearingID ? hearingID : (this.hearings.filter(h => h.board === boardName && h.timeUntil >= -19800000)[0]
             ? this.hearings.filter(h => h.board === boardName && h.timeUntil >= -19800000)[0].id : '');
-        const linkMap = (data: HearingFolders): Array<HearingInfo> => data.folders.filter(
+        const linkMap = (data: HearingFolders): Array<HearingInfo> => data && data.folders.filter(
             f => f.folderId.includes(currentHearingID) && f.contents
         ).length > 0
             ? data.folders.filter(fldr => fldr.folderId.includes(currentHearingID))[0].contents
@@ -174,7 +174,7 @@ export class EventsService {
     }
     nameFix(name: string): string {
         if (name.includes('CPB')) {
-            return name.split(',')[0]
+            return name.slice(0, name.search(/(,|\s+|$)/g) + 1)
                 .replace('CPB', '');
         } else if (name.includes('H20', 0)) {
             return name.slice(1, 8);
@@ -186,13 +186,15 @@ export class EventsService {
         return name;
     }
     address(name: string): string {
-        if (name.includes('CPB')) {
-            return name.split(',')[1] || name.replace('CPB', '');
+        if (name.match(/(agenda)/ig)) {
+            return 'Agenda';
+        } else if (name.includes('CPB')) {
+            return name.slice(name.search(/(,|\s+|$)/g))
+            .replace(' -', '') || name.replace('CPB', '');
         } else if (name.includes('H20', 0)) {
             return name.slice(8);
         } else if (name.includes('ZBA')) {
-            return name.split(',')[0]
-                .replace(/^[1-9]../, '');
+            return name.split(',')[0];
         }
 
         return name.lastIndexOf('.') === -1 ? name : name.slice(0, name.lastIndexOf('.'));

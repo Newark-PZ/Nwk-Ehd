@@ -43,10 +43,10 @@ export class PageComponent implements OnChanges {
         if (this.link === 'cpb' || this.link === 'ec' || this.link === 'lhpc' || this.link === 'zba') {
           this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
             setTimeout(() => {
-              if (this.events.hearings.filter(h => h.board === this.link.toUpperCase() && h.timeUntil >= 0).length < 0) {
+              if (this.events.hearings.filter(h => h.board === this.link.toUpperCase() && h.timeUntil >= -19800000).length < 0) {
                 observer.next([]);
               } else {
-                observer.next(this.events.hearings.filter(h =>  h.board === this.link.toUpperCase() && h.timeUntil >= 0)
+                observer.next(this.events.hearings.filter(h =>  h.board === this.link.toUpperCase() && h.timeUntil >= -19800000)
                 .slice(0, 2));
                 observer.complete();
               }
