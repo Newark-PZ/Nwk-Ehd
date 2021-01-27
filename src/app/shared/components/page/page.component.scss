@@ -237,9 +237,9 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 2rem;
-  &:first-of-type,
-  &:nth-of-type(3),
-  &:nth-of-type(5) {
+  &:first-of-type:not([data-normal="true"]),
+  &:nth-of-type(3):not([data-normal="true"]),
+  &:nth-of-type(5):not([data-normal="true"]) {
     border: 0.85px black solid;
     background-position: center !important;
     background-size: cover !important;

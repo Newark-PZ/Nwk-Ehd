@@ -47,6 +47,10 @@ export const PLANNING_ROUTES: Routes = [
     path: 'resources',
     children: [
       {
+        path: 'corrals',
+        component: PageComponent
+      },
+      {
         path: 'faqs',
         component: OpzFAQComponent
       },

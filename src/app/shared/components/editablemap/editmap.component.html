@@ -4,7 +4,7 @@
         <mat-icon>close</mat-icon>
     </a>
     <div id="popup-content">
-        <div class="popup-geo">{{drawStatus && attributesEditing ? 'New Location' : 'Corral Location'}}</div>
+        <div class="popup-geo">{{drawStatus !== 'off' && attributesEditing ? 'New Location' : 'Corral Location'}}</div>
         <div *ngIf="!attributesEditing && selected && selected.name">{{selected.name}}</div>
         <div *ngIf="!attributesEditing && selected && selected.description">{{selected.description}}</div>
         <form [formGroup]="featureForm" *ngIf="attributesEditing">
@@ -17,7 +17,7 @@
                 <textarea formControlName="description" matInput placeholder="Ex. 100 Main St"></textarea>
             </mat-form-field>
             <mat-divider></mat-divider>
-            <button mat-flat-button color="primary" class="margin_1" [disabled]="!featureForm.valid" (click)="finishDraw()">Submit</button>
+            <button mat-flat-button color="primary" class="margin_1" [disabled]="!featureForm.valid" (click)="finishDraw()">Add</button>
             <button mat-flat-button color="accent" class="margin_1" (click)="closeOverlay(pcloser); checkEditing(pcloser)">Cancel</button>
         </form>
     </div>
@@ -36,8 +36,15 @@
     </div>
 </div>
 <button mat-raised-button 
-    [color]="drawStatus ? 'warn' : 'primary'" style="width: 10rem;height: 2.75rem;position:absolute;top: 0.75rem;right:4.15rem"
-    [matTooltip]="drawStatus ? 'Cancel' : 'Add Point'" matTooltipPosition="before" (click)="toggleDraw()">
-    <mat-icon class="flex_inline margin_right_1 justify-content-center" style="font-size:2rem;vertical-align: text-top;padding:0">{{drawStatus ? 'cancel' : 'add_location'}}</mat-icon>
-    {{drawStatus ? 'Cancel' : 'Add Point'}}
+    [color]="drawOptions[drawStatus].buttonColor" [ngStyle]="drawStatus === 'drawn' ? {'width':'5rem','right':'9.75rem', 'background':'#0d47a1'} : {'width':'10rem','right':'4.15rem'}"
+    style="width: 10rem;height:2.75rem;position:absolute;top:0.75rem;right:4.15rem"
+    [matTooltip]="drawOptions[drawStatus].buttonText" matTooltipPosition="before" (click)="changeDraw(drawStatus)">
+    <mat-icon *ngIf="drawOptions[drawStatus].buttonIcon" class="flex_inline margin_right_1 justify-content-center" style="font-size:2rem;vertical-align: text-top;padding:0">{{drawOptions[drawStatus].buttonIcon}}</mat-icon>
+    {{drawOptions[drawStatus].buttonText}}
+</button>
+<button mat-raised-button 
+    *ngIf="drawStatus === 'drawn'"
+    color="warn" style="width: 5rem;height: 2.75rem;position:absolute;top: 0.75rem;right:4.15rem"
+    matTooltip="Cancel" matTooltipPosition="before" (click)="changeDraw('drawing')">
+    {{drawOptions['drawing'].buttonText}}
 </button>

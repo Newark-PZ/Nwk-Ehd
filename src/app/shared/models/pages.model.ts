@@ -1,6 +1,5 @@
 import { NgStyle } from '@angular/common';
 import { Type } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 import { Hearing } from '../classes/hearing';
 import { Link } from '../classes/link.class';
 import { Record } from './airtable-model';
@@ -196,12 +195,9 @@ export interface Page {
         linkText?: string;
         fullWidth?: boolean;
       }>;
+      normal?: boolean;
       text: string;
-      iframe?: {
-        src: string | SafeResourceUrl;
-        width?: string;
-        height?: string;
-      };
+      iframe?: boolean;
       faq?: string;
       map?: boolean;
       logos?: Array<string>;

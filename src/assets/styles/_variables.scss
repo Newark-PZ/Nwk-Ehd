@@ -7,10 +7,12 @@ $success-colors: mat-palette($mat-green, 400);
 $warning-colors: mat-palette($mat-amber, 400);
 $nwk-primary-colors: mat-palette($mat-deep-purple);
 $nwk-accent-colors: mat-palette($mat-blue-gray, 100, 500, A100);
+$nwk-success-colors: mat-palette($mat-green, 100, 500, A100);
 $nwk-warn-colors: mat-palette($mat-deep-orange);
 $primary-color: mat-color($nwk-primary-colors);
 $accent-color: mat-color($nwk-accent-colors);
 $warn-color: mat-color($nwk-warn-colors);
+$success-color: mat-color($nwk-success-colors);
 
 $nwk-font-family: 'Segoe UI',
 'Open Sans',

@@ -130,6 +130,10 @@
                         }
                     }
                 ]
+            },
+            {
+                "header": "2021 Regularly Scheduled Meetings",
+                "iframe": true
             }
         ]
     },
@@ -219,7 +223,8 @@
             },
             {
                 "header": "Meetings",
-                "text": "<p>The Newark Environmental Commission meets the first Wednesday of each month (except for August) from 6:00 to 8:30 pm via Zoom. Meetings are open to the public and all are welcome.</p><p>For more information and to be added to the distribution list for meeting reminders, please contact: Nathaly Agosto Filion, Chief Sustainability Officer at <a href='mailto:agostofilionn@ci.newark.nj.us'>agostofilionn@ci.newark.nj.us</a>.</p>"
+                "text": "<p>The Newark Environmental Commission meets the first Wednesday of each month (except for August) from 6:00 to 8:30 pm via Zoom. Meetings are open to the public and all are welcome.</p><p>For more information and to be added to the distribution list for meeting reminders, please contact: Nathaly Agosto Filion, Chief Sustainability Officer at <a href='mailto:agostofilionn@ci.newark.nj.us'>agostofilionn@ci.newark.nj.us</a>.</p>",
+                "iframe": true
             },
             {
                 "header": "Information & Resources",
@@ -381,6 +386,10 @@
                         }
                     }
                 ]
+            },
+            {
+                "header": "2021 Regularly Scheduled Meetings",
+                "iframe": true
             }
         ]
     },
@@ -516,6 +525,10 @@
                         }
                     }
                 ]
+            },
+            {
+                "header": "2021 Regularly Scheduled Meetings",
+                "iframe": true
             }
         ]
     },
@@ -674,5 +687,24 @@
             "header": "CONTACT INFORMATION",
             "contacts": []
         }
+    },
+    {
+        "id": "corrals",
+        "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br>Propose Corrals</span>",
+        "splashBlurb": {
+            "text": "Be part of Newark Go! Use the map below to add locations you think should be the highest priority for scooter/bike availability. Or upvote ones you agree with!"
+        },
+        "splashImg": {
+            "src": "assets/img/headerPhotos/corral_render.jpg",
+            "alt": "Newark Go: Corral Render"
+        },
+        "sections": [
+            {
+                "header": "PROPOSE CORRAL LOCATIONS",
+                "normal": true,
+                "text": "We need your help! Please use the map below to propose locations for scooter/bike corrals. Priority areas where the operator would ensure availability of vehicles.",
+                "map": true
+            }
+        ]
     }
 ]

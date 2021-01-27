@@ -44,7 +44,25 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() height = '100%';
   @Input() width = '100%';
   instance: Map;
-  drawStatus = false;
+  drawStatus: 'drawing' | 'drawn' | 'off' = 'off';
+  lastEditedFeat: string | number = 0;
+  drawOptions = {
+    drawing: {
+      buttonColor: 'warn',
+      buttonIcon: 'cancel',
+      buttonText: 'Cancel'
+    },
+    drawn: {
+      buttonColor: 'warn',
+      buttonIcon: undefined,
+      buttonText: 'Submit'
+    },
+    off: {
+      buttonColor: 'primary',
+      buttonIcon: 'add_location',
+      buttonText: 'Add Point'
+    }
+  };
   attributesEditing = false;
   zoom = 13;
   selected: { name: string; description: string };
@@ -177,6 +195,7 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   handleDraw(e: DrawEvent): void {
     const feature = e.feature;
+    this.lastEditedFeat = feature.getId()!;
     // this.drawLayer.getSource()
     //   .addFeature(feature);
     this.attributesEditing = true;
@@ -191,22 +210,27 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
       Name: this.featureForm.get('name')?.value,
       Desc_: this.featureForm.get('description')?.value
     };
-    const payload = `'${feature.Name}', '${feature.Desc_}', ST_SetSRID(ST_Point(${feature.geometry}),4326)`;
-    this.http.get(`${this.serviceUrl}?q=INSERT INTO newark_micromobility_corral_locations (name, description, the_geom) VALUES (${payload})&api_key=xfM0wGFN7KrxqhqCDaFdbA`)
-      .subscribe({
-        next: data => {
-          console.warn(data);
-          this.corralLyr.getSource()
-          .refresh();
-        },
-        error: error => {
-          console.error('There was an error!', error);
-        }
-      });
+    const curFeat = this.drawLayer.getSource().getFeatures().sort((f1, f2) => Number(f1.getId()) - Number(f1.getId()))[0].getId();
+    this.drawLayer.getSource().getFeatureById(this.lastEditedFeat).set('name', this.featureForm.get('name')?.value);
+    this.drawLayer.getSource().getFeatureById(this.lastEditedFeat).set('description', this.featureForm.get('description')?.value);
+    console.log(this.drawLayer.getSource().getFeatures());
+    this.drawStatus = 'drawn';
+    // const payload = `'${feature.Name}', '${feature.Desc_}', ST_SetSRID(ST_Point(${feature.geometry}),4326)`;
+    // this.http.get(`${this.serviceUrl}?q=INSERT INTO newark_micromobility_corral_locations (name, description, the_geom) VALUES (${payload})&api_key=xfM0wGFN7KrxqhqCDaFdbA`)
+    //   .subscribe({
+    //     next: data => {
+    //       console.warn(data);
+    //       this.corralLyr.getSource()
+    //       .refresh();
+    //     },
+    //     error: error => {
+    //       console.error('There was an error!', error);
+    //     }
+    //   });
     this.featureForm.reset();
     this.popup.setPosition(undefined);
-    this.drawLayer.getSource()
-      .clear();
+    // this.drawLayer.getSource()
+    //   .clear();
     this.attributesEditing = false;
   }
   checkEditing(el: HTMLLinkElement): void {
@@ -215,7 +239,9 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.popup.setPosition(undefined);
       el.blur();
       this.drawLayer.getSource()
-        .clear();
+        .removeFeature(
+          this.drawLayer.getSource().getFeatures().sort((f1, f2) => Number(f1.getId()) - Number(f1.getId()))[0]
+        );
     }
   }
   closeOverlay(el: HTMLLinkElement): void {
@@ -237,15 +263,25 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
       .getSource() as XYZ)
       .setUrl(cartoBaseUrl('only_labels'));
   }
-  toggleDraw(): void {
-    this.drawStatus = !this.drawStatus;
-    this.attributesEditing = false;
-    this.popup.setPosition(undefined);
-    this.drawLayer.getSource()
-      .clear();
-    this.selectInteraction.getFeatures()
-      .clear();
-    this.drawStatus ? this.instance.addInteraction(this.draw) : this.instance.removeInteraction(this.draw);
+  changeDraw(status: 'drawing' | 'drawn' | 'off'): void {
+    switch (status) {
+      case 'off': 
+        this.drawStatus = 'drawing';
+        this.attributesEditing = false;
+        this.popup.setPosition(undefined);
+        this.instance.addInteraction(this.draw);
+        break;
+      case 'drawn':
+        break;
+      default:
+        this.drawStatus = 'off';
+        this.drawLayer.getSource()
+          .clear();
+        this.selectInteraction.getFeatures()
+          .clear();
+        this.instance.removeInteraction(this.draw);
+        break;
+    }
   }
   ctrlScroll(): [string, number] {
     return ['block', 1];

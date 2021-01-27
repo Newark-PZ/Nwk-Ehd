@@ -27,6 +27,9 @@ export class OpzHomeComponent {
         icon: 'house', category: 'Boards & Commissions', title: 'Zoning Board of Adjustment', parent: '/planningzoning/boards', link: 'zba'
       },
       {
+        icon: 'date_range', category: 'Boards & Commissions', title: '2021 Full Boards Calendar', extUrl: 'https://drive.google.com/file/d/1nEc7GBHq5MD-jfUexrRN2Z6tterheS3m/view?usp=sharing'
+      },
+      {
         icon: 'campaign', category: 'Projects', title: 'Doremus Port-Industrial District', parent: '/planningzoning', link: 'doremus'
       },
       {
