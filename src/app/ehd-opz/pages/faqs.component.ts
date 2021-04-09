@@ -17,8 +17,6 @@ export class OpzFAQComponent {
   constructor(
     readonly route: ActivatedRoute
     ) {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.link = params.get('id') || 'newarkgo';
-    });
+    this.route.paramMap.subscribe({next: (params: ParamMap) => { this.link = params.get('id') || 'newarkgo'; }});
   }
 }

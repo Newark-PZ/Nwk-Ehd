@@ -51,18 +51,14 @@ export class HomeComponent implements OnInit {
   expansionDisabled$: Observable<boolean>;
   ngOnInit(): void {
     this.breakpointObserver
-    .observe(['(max-width: 767px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        this.storeService.setHomePanelMulti(false);
-        this.storeService.setHomePanelOpen(false);
-        this.storeService.setHomePanelToggle(false);
-      } else {
-        this.storeService.setHomePanelMulti(true);
-        this.storeService.setHomePanelOpen(true);
-        this.storeService.setHomePanelToggle(true);
-      }
-    });
+      .observe(['(max-width: 767px)'])
+      .subscribe({
+        next: (state: BreakpointState) => { this.storeServiceBatch(!state.matches); }});
+  }
+  storeServiceBatch(state: boolean): void {
+    this.storeService.setHomePanelMulti(state);
+    this.storeService.setHomePanelOpen(state);
+    this.storeService.setHomePanelToggle(state);
   }
   filterCat(category): void {
     return category;

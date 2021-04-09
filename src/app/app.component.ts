@@ -46,12 +46,7 @@ export class AppComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.breakpointObserver
       .observe(['(max-width: 767px)'])
-      .subscribe({
-        next: (state: BreakpointState) => {
-          if (state.matches) {this.mayorDisplay = true; this.deptDisplay = true;
-          } else {this.mayorDisplay = false; this.deptDisplay = false; }
-        }
-      });
+      .subscribe({ next: (state: BreakpointState) => { this.setMayorDeptDisplay(state.matches); }});
     this.storeService.resetStoreState();
     this.events.initHearings();
     window.addEventListener('resize', () => { this.appHeight(); });
@@ -76,6 +71,10 @@ export class AppComponent implements OnDestroy, OnInit {
         })
       )
       .subscribe({ next: (ttl: string) => { this.titleService.setTitle(ttl); }});
+  }
+  setMayorDeptDisplay(state: boolean): void {
+    this.mayorDisplay = state;
+    this.deptDisplay = state;
   }
   appHeight(): void {
     const doc = document.documentElement;

@@ -38,7 +38,8 @@ export class OrcResourcesComponent implements AfterViewInit {
     this.route.queryParams.pipe(
       filter(params => params.group && params.type)
     )
-      .subscribe(params => {
+      .subscribe({
+        next: params => {
           this.fileList.groupSelected({
             name: '',
             group: params.group,
@@ -47,7 +48,7 @@ export class OrcResourcesComponent implements AfterViewInit {
           });
           this.setSubtitle({name: '', group: params.group, type: params.type, year: params.year});
           this.selectedGroup = this.fileList.selectedGroup;
-      });
+      }});
     this.selectedGroup
       ? this.selectedGroup = this.selectedGroup
       : this.fileList.groupSelected({name: '', group: 'rc', type: 'Regulations'});

@@ -41,7 +41,8 @@ export class OrcDashboardComponent {
           data: this.store.select(state => state.hearing.rcTab)
         }
       ];
-      this.route.paramMap.subscribe((params: ParamMap) => {
+      this.route.paramMap.subscribe({
+        next: (params: ParamMap) => {
         this.link = params.get('id') || 'RC';
         this.currentLink = this.linker.planningzoning[0];
         this.setTab(this.link.toUpperCase());
@@ -50,7 +51,7 @@ export class OrcDashboardComponent {
           splashIcon: this.currentLink.icon,
           id: this.link
         });
-      });
+      }});
     }
   goToUrl(url: string): void {
     if (url === '') {

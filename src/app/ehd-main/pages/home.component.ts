@@ -3,9 +3,7 @@ import { HomePage } from '../../shared/models';
 
 @Component({
   selector: 'app-ehd-home',
-  template: `
-      <app-home [homePage]="homePageDetails" [office]="'/ehd'"></app-home>
-  `
+  template: `<app-home [homePage]="homePageDetails" [office]="'/ehd'"></app-home>`
 })
 
 export class EhdHomeComponent {

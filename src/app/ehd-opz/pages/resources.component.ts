@@ -72,7 +72,8 @@ export class OpzResourcesComponent {
     this.route.queryParams.pipe(
       filter(params => params.group && params.type)
     )
-      .subscribe(params => {
+      .subscribe({
+        next: params => {
           this.fileList.groupSelected({
             name: '',
             group: params.group,
@@ -81,7 +82,7 @@ export class OpzResourcesComponent {
           });
           this.setSubtitle({name: '', group: params.group, type: params.type, year: params.year});
           this.selectedGroup = this.fileList.selectedGroup;
-      });
+      }});
     this.selectedGroup ? this.selectedGroup = this.selectedGroup : this.fileList.groupSelected({name: '', group: 'res', type: 'Redevelopment_Plans'});
     }, 350);
   }

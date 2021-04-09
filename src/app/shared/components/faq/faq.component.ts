@@ -27,17 +27,18 @@ export class FaqComponent implements OnInit {
   ngOnInit(): void {
     this.store
       .select(state => state.i18n.currentLanguage)
-      .subscribe((lang: string) => {
+      .subscribe({
+        next: (lang: string) => {
         this.store
         .select(state => state.i18n.currentLanguage)
         .pipe(take(1))
-        .subscribe(currentLang => {
+        .subscribe({next: currentLang => {
           if (currentLang && this.faqType) {
             this.getFaq(this.faqType, lang);
             this.faqCategories = this.getCategories(this.faqType, lang);
           }
-        });
-      });
+        }});
+      }});
   }
 
   getFaq(faq: string, language: string): void {

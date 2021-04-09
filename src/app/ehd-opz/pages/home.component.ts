@@ -3,9 +3,7 @@ import { HomePage } from '../../shared/models';
 
 @Component({
   selector: 'app-opz-home',
-  template: `
-      <app-home [homePage]="homePageDetails" [office]="'/planningzoning'"></app-home>
-  `
+  template: `<app-home [homePage]="homePageDetails" [office]="'/planningzoning'"></app-home>`
 })
 
 export class OpzHomeComponent {

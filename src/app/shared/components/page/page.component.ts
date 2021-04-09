@@ -38,7 +38,8 @@ export class PageComponent implements OnChanges {
     readonly sanitizer: DomSanitizer
     ) {
       this.boardPage$ = this.store.select(state => state.pageState.boardPage);
-      this.route.paramMap.subscribe((params: ParamMap) => {
+      this.route.paramMap.subscribe({
+        next: (params: ParamMap) => {
         this.link = params.get('id') || '';
         if (this.link === 'cpb' || this.link === 'ec' || this.link === 'lhpc' || this.link === 'zba') {
           this.nextevents = new Observable((observer: Observer<Array<Hearing>>) => {
@@ -55,32 +56,35 @@ export class PageComponent implements OnChanges {
           this.store
           .select(state => state.i18n.currentLanguage)
           .pipe(take(1))
-          .subscribe(currentLang => {
+          .subscribe({next: currentLang => {
             if (currentLang) {
               this.linker.getPage(this.link, currentLang)
-              .subscribe(p => {
+              .subscribe({
+                next: p => {
                 this.storeService.setPageBoard(p);
                 this.page = p;
                 this.iframeUrl = this.setIframeUrl(this.link);
-              });
+              }});
             }
-          });
+          }});
         } else if (this.link === 'doremus' || this.link === 'newarkgo' || this.link === 'corrals' ) {
           this.store
           .select(state => state.i18n.currentLanguage)
           .pipe(take(1))
-          .subscribe(currentLang => {
+          .subscribe({
+            next: currentLang => {
             if (currentLang) {
               this.linker.getPage(this.link, currentLang)
-              .subscribe(p => {
+              .subscribe({
+                next: p => {
                 this.storeService.setPageCurrent(p);
                 this.page = p;
                 this.iframeUrl = this.setIframeUrl(this.link);
-              });
+              }});
             }
-          });
+          }});
         }
-      });
+      }});
     }
   ngOnChanges(changes: SimpleChanges): void {
     this.page = changes.page.currentValue;
@@ -106,13 +110,16 @@ export class PageComponent implements OnChanges {
   }
   setIframeUrl(link: string): SafeResourceUrl {
     const baseCalUrl = (calid: string): string => `https://calendar.google.com/calendar/embed?wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=${calid}&color=%23F6BF26&mode=MONTH&showNav=1&showTitle=1&showDate=0&showPrint=1&showTabs=0&showCalendars=0`;
-    switch (link) {
-      case 'doremus': return this.sanitizer.bypassSecurityTrustResourceUrl('https://drive.google.com/file/d/1SI-_ztwQtuW_Ghwlx71eVaIzysB54Ixt/preview');
-      case 'cpb': return this.sanitizer.bypassSecurityTrustResourceUrl(baseCalUrl('5m4bft5sgjam972q5kdh012e9c%40group.calendar.google.com'));
-      case 'ec': return this.sanitizer.bypassSecurityTrustResourceUrl(baseCalUrl('js98ihsearqv8vkrdmrtp1tins%40group.calendar.google.com'));
-      case 'lhpc': return this.sanitizer.bypassSecurityTrustResourceUrl(baseCalUrl('4289ve9sqomikgnqa0nt6e5ga0@group.calendar.google.com'));
-      case 'zba': return this.sanitizer.bypassSecurityTrustResourceUrl(baseCalUrl('k8vtrg27dk7dbvegtcdo0f9mno@group.calendar.google.com'));
-      default: return this.sanitizer.bypassSecurityTrustResourceUrl('https://drive.google.com/file/d/1qsHYhH8xK67uNLGmYjzyvE5bbG5r0uLD/view?usp=sharing');
-    }
+    const sanitizeThis = (baseLink: string): SafeResourceUrl => this.sanitizer.bypassSecurityTrustResourceUrl(baseLink);
+    const linkObj = {
+      doremus: 'https://drive.google.com/file/d/1SI-_ztwQtuW_Ghwlx71eVaIzysB54Ixt/preview',
+      cpb: baseCalUrl('5m4bft5sgjam972q5kdh012e9c%40group.calendar.google.com'),
+      ec: baseCalUrl('js98ihsearqv8vkrdmrtp1tins%40group.calendar.google.com'),
+      lhpc: baseCalUrl('4289ve9sqomikgnqa0nt6e5ga0@group.calendar.google.com'),
+      zba: baseCalUrl('k8vtrg27dk7dbvegtcdo0f9mno@group.calendar.google.com')
+    };
+
+    return Object.keys(linkObj)
+      .includes(link) ? sanitizeThis(linkObj[link]) : sanitizeThis('https://drive.google.com/file/d/1qsHYhH8xK67uNLGmYjzyvE5bbG5r0uLD/view?usp=sharing');
   }
 }

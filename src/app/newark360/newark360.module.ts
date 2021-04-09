@@ -25,7 +25,8 @@ export class Newark360Module {
     router.events.pipe(
       filter((e: Event): e is Scroll => e instanceof Scroll)
        )
-       .subscribe(e => {
+       .subscribe({
+         next: e => {
         if (e.position) {
           // backward navigation
           viewportScroller.scrollToPosition(e.position);
@@ -36,6 +37,6 @@ export class Newark360Module {
           // forward navigation
           viewportScroller.scrollToPosition([0, 0]);
          }
-    });
+    }});
   }
 }

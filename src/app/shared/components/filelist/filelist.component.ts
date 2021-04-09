@@ -63,8 +63,8 @@ export class FileListComponent  implements AfterViewInit {
       // tslint:disable: no-string-literal
       if (group !== this.selectedGroup) { this.selectedGroup = group; }
       this.airData.getDocs(group.group === 'res' ? 'Resources' : group.group, `view=${group.year ? group.year : ''}${group.year ? ' ' : ''}${group.type}`)
-      .subscribe(
-        doc => this.dataSource.data = doc.records.map(r => ({
+      .subscribe({
+        next: doc => this.dataSource.data = doc.records.map(r => ({
             Name: r.fields ? r.fields['Name'] : 'Name of Document',
             Published: r.fields ? r.fields['Published'] : '01/01/1900',
             Uploaded: r.fields ? r.fields['Uploaded'] : '01/01/1900',
@@ -73,7 +73,7 @@ export class FileListComponent  implements AfterViewInit {
             Tags: r.fields ? r.fields['Tags'] : 'Planning & Zoning',
             Description: r.fields ? r.fields['Description'] : 'Description of Document'
           }))
-      );
+      });
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.groupChange.emit(group);

@@ -30,9 +30,6 @@ export class BottomSheetComponent {
     ) {
         this.mapPane$ = this.store.select(state => state.mapPane.selectedModule);
         this._bottomSheetRef.afterDismissed()
-        .subscribe(e => {
-            this.storeService.setPropPaneOpened(false);
-            }
-        );
+          .subscribe({next: e => { this.storeService.setPropPaneOpened(false); }});
     }
 }
