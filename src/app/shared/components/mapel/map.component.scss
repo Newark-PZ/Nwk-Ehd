@@ -182,5 +182,25 @@ map-info-tabs {
     mat-icon {
         color: rgb(13, 71, 161,.8);
         -webkit-text-fill-color: rgb(13, 71, 161,.8);
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    input {
+        border: none;
+        font: inherit;
+        background: none;
+        cursor: default;
+        line-height: 0;
+        padding: 0;
+    }
+    .popup-actions {
+        margin: 1rem 1.75rem 0 0;
+        display: flex;
+        justify-content: space-between;
+        a {
+            font-weight: 100;
+            padding: 0 0.5rem !important;
+        }
     }
 }

@@ -57,7 +57,7 @@ export class OpzApplicationsComponent implements OnInit {
       {
         icon: 'info',
         title: 'Application Instructions',
-        extUrl: 'https://dl.airtable.com/.attachments/e20291159fd3765b4b6908e52564ba3f/452bd251/Instructions.pdf',
+        extUrl: 'https://dl.airtable.com/.attachments/3b71833616393715af10eb301ba1b5b1/7a2bda05/PZO_BoardApp_Instructions_2021_04_01.pdf',
         category: 'AppButtons'
       }
     ],

@@ -7,7 +7,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Overlay, View } from 'ol';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
@@ -29,6 +29,7 @@ import { fromLonLat, toLonLat } from 'ol/proj';
 import { Vector, XYZ } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 import { Icon, Style } from 'ol/style';
+import { Converter } from 'showdown';
 import { StoreService } from '../../../store/store.service';
 import { CartoService } from '../../services/carto.service';
 import { MapLayerService } from '../../services/maplayer.service';
@@ -44,30 +45,36 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() height = '100%';
   @Input() width = '100%';
   instance: Map;
-  drawStatus: 'drawing' | 'drawn' | 'off' = 'off';
-  lastEditedFeat: string | number = 0;
-  drawOptions = {
-    drawing: {
+  drawStatus: 'edit' | 'drawn' | 'off' = 'off';
+  editFeatures: Array<{ geometry: string; description: string; votes: number }> = [];
+  drawOptions: {
+    [status: string]: {buttonColor: string; buttonIcon?: string; buttonText: string; action: 'change' | 'submit' | 'cancel'}
+  } = {
+    edit: {
       buttonColor: 'warn',
       buttonIcon: 'cancel',
-      buttonText: 'Cancel'
+      buttonText: 'Cancel',
+      action: 'cancel'
     },
     drawn: {
-      buttonColor: 'warn',
+      buttonColor: 'primary',
       buttonIcon: undefined,
-      buttonText: 'Submit'
+      buttonText: 'Submit',
+      action: 'submit'
     },
     off: {
       buttonColor: 'primary',
       buttonIcon: 'add_location',
-      buttonText: 'Add Point'
+      buttonText: 'Add Point',
+      action: 'change'
     }
   };
   attributesEditing = false;
   zoom = 13;
-  selected: { name: string; description: string };
+  selected: { cartodb_id: number; description: string; votes: number };
   popup: Overlay;
   props = ['basemap', 'height', 'panel', 'parcelView', 'width'];
+  votedIds: Array<string | number> = [];
   basemapgroup = this.layers.makeBasemapGroup();
   transitGroup = this.layers.makeTransitGroup();
   geoGroup = this.layers.makeLayerGroup('Boundary', ['wards']);
@@ -77,9 +84,9 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
     style: new Style({
       image: new Icon({
         crossOrigin: 'anonymous',
-        scale: 1.85,
+        scale: 2,
         anchor: [0.5, 0.95],
-        src: 'assets/img/icons/map-pin_bufer.svg'
+        src: 'assets/img/icons/map-pin_buffer.svg'
       })
     })
   });
@@ -87,14 +94,16 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
     source: this.drawLayer.getSource(), type: 'Point' as GeometryType, condition: () => !this.attributesEditing
   });
   featureForm = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4)
+    ]),
     coords: new FormControl('')
   });
   serviceUrl = 'https://nzlur.carto.com/api/v2/sql';
   corralLyrSource = new VectorSource({
     format: new GeoJSON(),
-    url: `${this.serviceUrl}?format=GeoJSON&q=select%20the_geom,name,description%20from%20public.newark_micromobility_corral_locations`
+    url: `${this.serviceUrl}?format=GeoJSON&q=select%20cartodb_id,the_geom,description,votes%20from%20public.newark_micromobility_corral_locations_voting`
   });
   corralLyr = new VectorLayer({
     source: this.corralLyrSource,
@@ -104,10 +113,13 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
       image: new Icon({
           crossOrigin: 'anonymous',
           anchor: [0.5, 0.95],
-          scale: 1.85,
-          src: 'assets/img/icons/map-pin_bufer.svg'
+          scale: Math.min((feat.get('votes') * 0.1) + 0.85, 3.2),
+          src: 'assets/img/icons/map-pin_buffer.svg'
       }),
-      text: res < 5 ? this.layers.makeText(feat.get('name'), 1.2, 'left', 17, -18, 0.8, '#0afffb', 'white') : undefined
+      text: res < 5 ? this.layers.makeText(
+        `${new Converter().makeMarkdown(feat.get('description'))
+          .slice(0, 25)}...`, 1.2, 'left', 17, -18, 0.8, '#0afffb', 'white'
+        ) : undefined
     })
   });
   selectInteraction = new Select({
@@ -120,7 +132,7 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
     readonly snackbar: MatSnackBar,
     readonly storeService: StoreService,
     readonly layers: MapLayerService,
-    readonly cartooQuery: CartoService) { }
+    readonly cartooQuery: CartoService) {}
   ngOnInit(): void {
     [
       [this.basemapgroup, 'Basemap'], [this.transitGroup, 'Transit'], [this.geoGroup, 'Boundary']
@@ -164,10 +176,12 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setBasemapLayer();
     this.selectInteraction.on('select', e => {
       if (e.selected.length > 0) {
-        this.selected = {name: e.selected[0].get('name'), description: e.selected[0].get('description') };
+        this.selected = {
+          cartodb_id: e.selected[0].get('cartodb_id'), description: e.selected[0].get('description'), votes: e.selected[0].get('votes')
+        };
         this.popup.setPosition((e.selected[0].getGeometry() as Point).getCoordinates());
       } else {
-        this.selected = {name: 'name', description: 'description' };
+        this.selected = {cartodb_id: 0, description: 'description', votes: 1};
         this.popup.setPosition(undefined);
       }
     });
@@ -195,9 +209,6 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   handleDraw(e: DrawEvent): void {
     const feature = e.feature;
-    this.lastEditedFeat = feature.getId()!;
-    // this.drawLayer.getSource()
-    //   .addFeature(feature);
     this.attributesEditing = true;
     this.popup.setPosition((feature.getGeometry() as Point).getCoordinates());
   }
@@ -207,30 +218,13 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
     const feature = {
       geometry: toLonLat(this.popup.getPosition()!)
         .toString(),
-      Name: this.featureForm.get('name')?.value,
-      Desc_: this.featureForm.get('description')?.value
+      description: this.featureForm.get('description')?.value,
+      votes: 1
     };
-    const curFeat = this.drawLayer.getSource().getFeatures().sort((f1, f2) => Number(f1.getId()) - Number(f1.getId()))[0].getId();
-    this.drawLayer.getSource().getFeatureById(this.lastEditedFeat).set('name', this.featureForm.get('name')?.value);
-    this.drawLayer.getSource().getFeatureById(this.lastEditedFeat).set('description', this.featureForm.get('description')?.value);
-    console.log(this.drawLayer.getSource().getFeatures());
+    this.editFeatures.push(feature);
     this.drawStatus = 'drawn';
-    // const payload = `'${feature.Name}', '${feature.Desc_}', ST_SetSRID(ST_Point(${feature.geometry}),4326)`;
-    // this.http.get(`${this.serviceUrl}?q=INSERT INTO newark_micromobility_corral_locations (name, description, the_geom) VALUES (${payload})&api_key=xfM0wGFN7KrxqhqCDaFdbA`)
-    //   .subscribe({
-    //     next: data => {
-    //       console.warn(data);
-    //       this.corralLyr.getSource()
-    //       .refresh();
-    //     },
-    //     error: error => {
-    //       console.error('There was an error!', error);
-    //     }
-    //   });
     this.featureForm.reset();
     this.popup.setPosition(undefined);
-    // this.drawLayer.getSource()
-    //   .clear();
     this.attributesEditing = false;
   }
   checkEditing(el: HTMLLinkElement): void {
@@ -238,10 +232,6 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.attributesEditing = false;
       this.popup.setPosition(undefined);
       el.blur();
-      this.drawLayer.getSource()
-        .removeFeature(
-          this.drawLayer.getSource().getFeatures().sort((f1, f2) => Number(f1.getId()) - Number(f1.getId()))[0]
-        );
     }
   }
   closeOverlay(el: HTMLLinkElement): void {
@@ -263,28 +253,86 @@ export class EditableMapComponent implements OnInit, AfterViewInit, OnDestroy {
       .getSource() as XYZ)
       .setUrl(cartoBaseUrl('only_labels'));
   }
-  changeDraw(status: 'drawing' | 'drawn' | 'off'): void {
-    switch (status) {
-      case 'off': 
-        this.drawStatus = 'drawing';
-        this.attributesEditing = false;
-        this.popup.setPosition(undefined);
-        this.instance.addInteraction(this.draw);
-        break;
-      case 'drawn':
-        break;
-      default:
-        this.drawStatus = 'off';
-        this.drawLayer.getSource()
-          .clear();
-        this.selectInteraction.getFeatures()
-          .clear();
-        this.instance.removeInteraction(this.draw);
-        break;
+  changeDraw(action: 'change' | 'submit' | 'cancel'): void {
+    if (action === 'change') {
+      switch (this.drawStatus) {
+        case 'off':
+          this.drawStatus = 'edit';
+          this.instance.addInteraction(this.draw);
+          break;
+        case 'edit':
+          this.drawStatus = 'drawn';
+          break;
+        default:
+          this.drawStatus = 'off';
+          break;
+      }
     }
+    if (action === 'submit') {
+      const payload = this.editFeatures.map(
+          f => {
+            const text = this.escapeText(f.description);
+
+            return `'${encodeURIComponent(text)}', '${f.votes}', ST_SetSRID(ST_Point(${f.geometry}),4326)`;
+          }
+        )
+        .join(',');
+      console.warn(payload);
+      this.http.get(`${this.serviceUrl}?q=INSERT INTO newark_micromobility_corral_locations_voting (description, votes, the_geom) VALUES (${payload})&api_key=-2qYxHOSn-uzagcFLzjYbA`)
+        .subscribe({
+          next: data => {
+            console.warn(data);
+            this.corralLyr.getSource()
+              .refresh();
+            this.drawLayer.getSource()
+              .clear();
+          },
+          error: error => {
+            console.error('There was an error!', error);
+          }
+      });
+    }
+    if (action === 'cancel' || action === 'submit') {
+      this.drawStatus = 'off';
+      this.editFeatures = [];
+      this.drawLayer.getSource()
+        .clear();
+      this.selectInteraction.getFeatures()
+        .clear();
+      this.instance.removeInteraction(this.draw);
+    }
+    this.attributesEditing = false;
+    this.popup.setPosition(undefined);
   }
   ctrlScroll(): [string, number] {
     return ['block', 1];
+  }
+  doVote(type: 'up' | 'down', id: number, votes: number): void {
+    const changeVote = type === 'up' ? votes + 1 : votes - 1;
+    this.http.get(`${this.serviceUrl}?q=UPDATE newark_micromobility_corral_locations_voting set votes = ${changeVote} where cartodb_id = ${id};&api_key=-2qYxHOSn-uzagcFLzjYbA`)
+      .subscribe({
+        next: data => {
+          console.warn(data);
+          this.corralLyr.getSource()
+          .refresh();
+          this.selected.votes = changeVote;
+          this.votedIds.push(id);
+        },
+        error: error => {
+          console.error('There was an error!', error);
+        }
+      });
+  }
+  escapeText(str: string): string {
+    const fixstr = str.replace(/&/g, '&amp;') /* This MUST be the 1st replacement. */
+      .replace(/'/g, '&apos;') /* The 4 other predefined entities, required. */
+      .replace(/"/g, '&quot;')
+      .replace(/\\/g, '\\\\')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\u0000/g, '\\0');
+
+    return fixstr;
   }
   ngAfterViewInit(): void { this.instance.updateSize(); }
   ngOnDestroy(): void { this.instance.dispose(); this.zoom = 13; }

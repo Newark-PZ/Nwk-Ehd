@@ -1,710 +1,663 @@
-[
-    {
-        "id": "cpb",
-        "splashTitle": "Central Planning Board",
-        "contentIntro": {
-            "middle": {
-                "header": "Upcoming Hearings"
-            }
-        },
-        "splashImg": {
-            "src": "assets/img/headerPhotos/NwkLibrary.jpg",
-            "alt": "Newark Public Library: Downtown"
-        },
-        "splashBlurb": {
-            "text": "The Central Planning Board is entrusted with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.",
-            "buttons": [
-                {
-                    "text": "Virtual Hearing Dashboard",
-                    "parent": "/planningzoning/virtualhearing",
-                    "link": "cpb"
-                }
-            ]
-        },
-        "sections": [
-            {
-                "header": "Applications to the Central Planning Board",
-                "text": "<ul><li>Site plan reviews where no 'd' variance is required as defined in N.J.S.A.40:55d.</li><li>Subdivision or conditional use reviews where no 'd' variance is required as defined in N.J.S.A.40:55d.</li><li>Conditional uses where all conditions are met.</li><li>Site plan, or subdivision reviews where a 'c' variance is requested as defined in N.J.S. A.40:55d.</li></ul>"
-            },
-            {
-                "header": "Commission Members",
-                "text": "",
-                "list": [
-                    {
-                        "text": "Wayne Richardson",
-                        "hierarchy": 1,
-                        "subText": "Chair"
-                    },
-                    {
-                        "text": "Ras Baraka",
-                        "hierarchy": 2,
-                        "subText": "Class I"
-                    },
-                    {
-                        "text": "Vacant",
-                        "hierarchy": 3,
-                        "subText": "Class II"
-                    },
-                    {
-                        "text": "August Amador",
-                        "hierarchy": 4,
-                        "subText": "Class III"
-                    },
-                    {
-                        "text": "Michael DeCapua",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Gregory Good",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Leon Purdie",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Anthony Timmons",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Kalenah Witcher",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Paul Oliver",
-                        "hierarchy": 6,
-                        "subText": "Alternate #1"
-                    },
-                    {
-                        "text": "Jermaine James",
-                        "hierarchy": 7,
-                        "subText": "Alternate #2"
-                    }
-                ]
-            },
-            {
-                "header": "Information & Resources",
-                "buttons": [
-                    {
-                        "icon": "attach_file",
-                        "text": "2020 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "cpb",
-                            "type": "Agendas",
-                            "year": "2020"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2020 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "cpb",
-                            "type": "Minutes",
-                            "year": "2020"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "cpb",
-                            "type": "Agendas",
-                            "year": "2021"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "cpb",
-                            "type": "Minutes",
-                            "year": "2021"
-                        }
-                    }
-                ]
-            },
-            {
-                "header": "2021 Regularly Scheduled Meetings",
-                "iframe": true
-            }
-        ]
+[{
+    "id": "cpb",
+    "splashTitle": "Central Planning Board",
+    "contentIntro": {
+        "middle": {
+            "header": "Upcoming Hearings"
+        }
     },
-    {
-        "id": "ec",
-        "splashImg": {
-            "src": "https://media-cdn.tripadvisor.com/media/photo-m/1280/17/49/b5/36/cherry-blossom.jpg",
-            "alt": "Tripadvisor Branch Brook Cherry Blossoms"
-        },
-        "splashTitle": "Environmental Commission",
-        "splashBlurb": {
-            "text": "The Commission advises the Mayor, the Council, Central Planning and Zoning Boards on issues of the environment and sustainability. They meet monthly and provide recommendations  about environmental, sustainability, and quality of life issues relevant to the City of Newark.",
-            "buttons": [
-                {
-                    "text": "Virtual Hearing Dashboard",
-                    "parent": "/planningzoning/virtualhearing",
-                    "link": "ec"
-                }
-            ]
-        },
-        "contentIntro": {
-            "middle": {
-                "header": "Upcoming Hearings"
-            }
-        },
-        "sections": [
-            {
-                "text": "<p>The Newark Environmental Commission is made up of Newark residents who serve in a volunteer capacity. The Commission is charged to advise the Mayor and the Municipal Council on issues of the environment and sustainability. Members are nominated or can apply to open positions and are appointed by the Municipal Council. They meet monthly and provide recommendations to the City of Newark about environmental, sustainability, and quality of life issues relevant to the City of Newark.</p><p>The Commission is proud to have worked with environmental justice groups throughout New Jersey to gain passage of Newark’s Environmental Justice and Cumulative Impacts Ordinance, the first of its kind in the United States. This ground-breaking law requires companies and other applicants that want to work in Newark to prove they are not adding to Newark’s existing pollution. The law highlights the fact that Newark has long been subject to extreme levels of industrial pollution that is harmful to the health of those who live and work here. As part of the Ordinance, applicants proposing new development or modification of an existing development who are also required to apply for an environmental permit from the New Jersey Department of Environmental Protection or whose application is considered a significant land-use change, are required to fill out an additional form that the Environmental Commission reviews. The Environmental Commission then provides written commentary to the Central Planning Board and Zoning Board of Adjustment. Additionally, the Environmental Commission is working on developing an Environmental Resource Inventory which is a comprehensive analysis of Newark’s existing environmental health.</p>"
-            },
-            {
-                "header": "Commission Members",
-                "text": "",
-                "list": [
-                    {
-                        "text": "Cynthia Mellon",
-                        "hierarchy": 1,
-                        "subText": "Co-Chair"
-                    },
-                    {
-                        "text": "Wynnie-Fred Victor Hinds",
-                        "hierarchy": 1,
-                        "subText": "Co-Chair"
-                    },
-                    {
-                        "text": "William Barnes",
-                        "hierarchy": 2,
-                        "subText": "Member"
-                    },
-                    {
-                        "text": "Nicole Miller",
-                        "hierarchy": 2,
-                        "subText": "Member"
-                    },
-                    {
-                        "text": "Michael Molina",
-                        "hierarchy": 2,
-                        "subText": "Member"
-                    },
-                    {
-                        "text": "Anthony Timmons",
-                        "hierarchy": 3,
-                        "subText": "Member/Planning Board Liaison"
-                    }
-                ]
-            },
-            {
-                "header": "Activities",
-                "text": "",
-                "list": [
-                    {
-                        "text": "Monthly public meetings",
-                        "hierarchy": 1
-                    },
-                    {
-                        "text": "Tabling at public events (i.e. Lincoln Park Music Festival)",
-                        "hierarchy": 1
-                    },
-                    {
-                        "text": "Newark Green Team; Sustainable Jersey",
-                        "hierarchy": 1
-                    },
-                    {
-                        "text": "Speaking engagements across New Jersey",
-                        "hierarchy": 1
-                    }
-                ]
-            },
-            {
-                "header": "Meetings",
-                "text": "<p>The Newark Environmental Commission meets the first Wednesday of each month (except for August) from 6:00 to 8:30 pm via Zoom. Meetings are open to the public and all are welcome.</p><p>For more information and to be added to the distribution list for meeting reminders, please contact: Nathaly Agosto Filion, Chief Sustainability Officer at <a href='mailto:agostofilionn@ci.newark.nj.us'>agostofilionn@ci.newark.nj.us</a>.</p>",
-                "iframe": true
-            },
-            {
-                "header": "Information & Resources",
-                "buttons": [
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "ec",
-                            "type": "Agendas",
-                            "year": "2021"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "ec",
-                            "type": "Minutes",
-                            "year": "2021"
-                        }
-                    }
-                ]
-            }
-        ]
+    "splashImg": {
+        "src": "assets/img/headerPhotos/NwkLibrary.jpg",
+        "alt": "Newark Public Library: Downtown"
     },
-    {
-        "id": "lhpc",
-        "splashImg": {
-            "src": "assets/img/headerPhotos/NwkCitySky.png",
-            "alt": "City Skyline"
-        },
-        "splashTitle": "Landmark & Historic Preservation Commission",
-        "splashBlurb": {
-            "text": "LHPC is the not-for-profit, volunteer-based, citywide advocate for the preservation of Newark's historic and cultural resources.",
-            "buttons": [
-                {
-                    "text": "Virtual Hearing Dashboard",
-                    "parent": "/planningzoning/virtualhearing",
-                    "link": "lhpc"
-                }
-            ]
-        },
-        "contentIntro": {
-            "middle": {
-                "header": "Upcoming Hearings"
-            }
-        },
-        "sections": [
-            {
-                "text": "<p>The Committee's activities include nomination of landmarks to the historic registers; intervention on behalf of threatened landmarks; implementation of educational initiatives; provision of technical assistance; and collaboration with other nonprofit agencies. We perform these activities as described below:<ul class='text-list'><li>Nominate historic and cultural resources to the State and National Registers Historic Places to provide these landmarks (building, structures, sites, objects, and districts) with additional protection from demolition and unsympathetic alterations.</li><li>Select highly threatened landmarks, already listed or eligible to be listed on the historic registers, and mount public campaigns to save them.</li></ul</p>"
-            },
-            {
-                "header": "Commission Members",
-                "text": "",
-                "list": [
-                    {
-                        "text": "Richard Partyka",
-                        "hierarchy": 1,
-                        "subText": "Chairman"
-                    },
-                    {
-                        "text": "Richard Grossklaus",
-                        "hierarchy": 2,
-                        "subText": "Vice Chairman"
-                    },
-                    {
-                        "text": "David Robinson",
-                        "hierarchy": 3,
-                        "subText": "Class A"
-                    },
-                    {
-                        "text": "Wilson Woo",
-                        "hierarchy": 3,
-                        "subText": "Class A"
-                    },
-                    {
-                        "text": "Gwen Motten",
-                        "hierarchy": 4,
-                        "subText": "Class B"
-                    },
-                    {
-                        "text": "Sylvia Benavente",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Fredericka Bey",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Robert Hartman",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Anthony Smith",
-                        "hierarchy": 5
-                    },
-                    {
-                        "text": "Nicaury Miller",
-                        "hierarchy": 6,
-                        "subText": "Alternate #1"
-                    },
-                    {
-                        "text": "Susan Holguin-Veras",
-                        "hierarchy": 7,
-                        "subText": "Alternate #2"
-                    }
-                ]
-            },
-            {
-                "header": "Information & Resources",
-                "buttons": [
-                    {
-                        "icon": "attach_file",
-                        "text": "2020 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "lhpc",
-                            "type": "Agendas",
-                            "year": "2020"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2020 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "lhpc",
-                            "type": "Minutes",
-                            "year": "2020"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "lhpc",
-                            "type": "Agendas",
-                            "year": "2021"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "lhpc",
-                            "type": "Minutes",
-                            "year": "2021"
-                        }
-                    }
-                ]
-            },
-            {
-                "header": "2021 Regularly Scheduled Meetings",
-                "iframe": true
-            }
-        ]
+    "splashBlurb": {
+        "text": "The Central Planning Board is entrusted with preparation of the City's Master Plan, review of applications for development for site plan and subdivision approval, and make recommendations to the Municipal Council on any proposed changes to the Zoning Ordinance.",
+        "buttons": [{
+            "text": "Virtual Hearing Dashboard",
+            "parent": "/planningzoning/virtualhearing",
+            "link": "cpb"
+        }]
     },
-    {
-        "id": "zba",
-        "splashImg": {
-            "src": "assets/img/headerPhotos/nwkcityhall-01.png",
-            "alt": "City Hall Montage"
+    "sections": [{
+            "header": "Applications to the Central Planning Board",
+            "text": "<ul><li>Site plan reviews where no 'd' variance is required as defined in N.J.S.A.40:55d.</li><li>Subdivision or conditional use reviews where no 'd' variance is required as defined in N.J.S.A.40:55d.</li><li>Conditional uses where all conditions are met.</li><li>Site plan, or subdivision reviews where a 'c' variance is requested as defined in N.J.S. A.40:55d.</li></ul>"
         },
-        "splashBlurb": {
-            "text": "The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
-            "buttons": [
-                {
-                    "text": "Virtual Hearing Dashboard",
-                    "parent": "/planningzoning/virtualhearing",
-                    "link": "zba"
-                }
-            ]
-        },
-        "contentIntro": {
-            "middle": {
-                "header": "Upcoming Hearings"
-            }
-        },
-        "splashTitle": "Zoning Board of Adjustment",
-        "sections": [
-            {
-                "header": "Powers & Duties",
-                "text": "<p><b>From 40:12-5:</b><ul class='text-list'><li><b>40:12-5-1</b> To hear and decide appeals where it is alleged by the appellant that there is error in any order, requirement, decision or refusal made by an administrative official or agency based on or made in the enforcement of the Zoning Ordinance.</li><li><b>40:12-5-2</b> To hear and decide requests for interpretation of the Zoning Map or Ordinance, or for decisions upon other special questions upon which such Board is authorized by the Zoning Ordinance to pass in accordance with the Municipal Land Use Law.</li></ul>"
-            },
-            {
-                "header": "Commission Members",
-                "text": "",
-                "list": [
-                    {
-                        "text": "Charles Auffant",
-                        "hierarchy": 1,
-                        "subText": "Chairman"
-                    },
-                    {
-                        "text": "Terence Baine",
-                        "hierarchy": 2,
-                        "subText": "Vice Chairman"
-                    },
-                    {
-                        "text": "Charles Hall Jr.",
-                        "hierarchy": 3
-                    },
-                    {
-                        "text": "Sharon Hardesty",
-                        "hierarchy": 3
-                    },
-                    {
-                        "text": "Wesley Jenkins",
-                        "nameExtra": "IV",
-                        "hierarchy": 3
-                    },
-                    {
-                        "text": "Julius Montford",
-                        "hierarchy": 3
-                    },
-                    {
-                        "text": "Rose Marie Ruivo",
-                        "hierarchy": 3
-                    },
-                    {
-                        "text": "Katiria Cobian",
-                        "hierarchy": 4,
-                        "subText": "Alternate #1"
-                    },
-                    {
-                        "text": "Barry Dobson",
-                        "hierarchy": 5,
-                        "subText": "Alternate #2"
-                    },
-                    {
-                        "text": "Robin Jones",
-                        "hierarchy": 6,
-                        "subText": "Alternate #3"
-                    },
-                    {
-                        "text": "Juan Arias",
-                        "hierarchy": 7,
-                        "subText": " Alternate #4"
-                    }
-                ]
-            },
-            {
-                "header": "Information & Resources",
-                "buttons": [
-                    {
-                        "icon": "attach_file",
-                        "text": "2020 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "zba",
-                            "type": "Agendas",
-                            "year": "2020"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2020 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "zba",
-                            "type": "Minutes",
-                            "year": "2020"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Agendas",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "zba",
-                            "type": "Agendas",
-                            "year": "2021"
-                        }
-                    },
-                    {
-                        "icon": "attach_file",
-                        "text": "2021 Minutes",
-                        "parent": "/planningzoning/resources",
-                        "link": "documents",
-                        "params": {
-                            "group": "zba",
-                            "type": "Minutes",
-                            "year": "2021"
-                        }
-                    }
-                ]
-            },
-            {
-                "header": "2021 Regularly Scheduled Meetings",
-                "iframe": true
-            }
-        ]
-    },
-    {
-        "id": "doremus",
-        "splashTitle": "Forward-Bound Doremus",
-        "splashImg": {
-            "src": "assets/img/headerPhotos/Doremus.jpg",
-            "alt": "Bird's Eye view of Doremus"
-        },
-        "splashBlurb": {
-            "text": "Forward-Bound Doremus is a shared vision and redevelopment plan for the Doremus Port-Industrial District. Help shape the project by taking our <a class='mat-raised-button mat-primary' href='https://forms.gle/AyxrvgNCmjsLeGbV9'>Survey <span class='material-icons v-align-top'>not_started</span></a> or <a class='mat-raised-button mat-primary' href='https://sites.google.com/view/forwardbounddoremus/participate/community-mapping?authuser=0'>Mapping Doremus <span class='material-icons v-align-top'>not_started</span></a>",
-            "buttons": [
-                {
-                    "text": "Project Website",
-                    "extUrl": "https://sites.google.com/view/forwardbounddoremus"
+        {
+            "header": "Commission Members",
+            "text": "",
+            "list": [{
+                    "text": "Wayne Richardson",
+                    "hierarchy": 1,
+                    "subText": "Chair"
                 },
                 {
-                    "text": "Youtube Channel",
-                    "extUrl": "https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA"
+                    "text": "Ras Baraka",
+                    "hierarchy": 2,
+                    "subText": "Class I"
+                },
+                {
+                    "text": "Vacant",
+                    "hierarchy": 3,
+                    "subText": "Class II"
+                },
+                {
+                    "text": "August Amador",
+                    "hierarchy": 4,
+                    "subText": "Class III"
+                },
+                {
+                    "text": "Michael DeCapua",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Gregory Good",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Leon Purdie",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Anthony Timmons",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Kalenah Witcher",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Paul Oliver",
+                    "hierarchy": 6,
+                    "subText": "Alternate #1"
+                },
+                {
+                    "text": "Jermaine James",
+                    "hierarchy": 7,
+                    "subText": "Alternate #2"
                 }
             ]
         },
-        "contentIntro": {
-            "left": {
-                "img": "assets/img/headerPhotos/DoremusStudyArea.jpg"
-            },
-            "right": {
-                "text": "<p>The City of Newark is embarking on a planning process that will engage stakeholders and residents in creating a shared vision for the city’s Port-Industrial District. The Forward-Bound Doremus Plan, aims to balance the needs of industry, the environment, and community while positioning the city for increased economic and environmental resilience as the region enters an exciting period of rapid growth.</p><p>The Forward-Bound Doremus Plan will focus on the core area of Newark’s Industrial District, which is anchored by the Doremus Avenue corridor. The plan’s study area is bound by the Passaic River to the north and east, I-78 and Port Newark to the south, and bound to the west by Routes 9 and 1 through to Foundry Street and Chapel Street where the port-industrial land uses come into contact with the residential neighborhoods of North Ironbound and East Ferry.</p>"
-            }
-        },
-        "sections": [
-            {
-                "text": "&quot;Our port area is essential to Newark’s economy&quot;, said Mayor Baraka. &quot;It provides thousands of jobs for residents in Newark’s most important industrial district. But it is also a major source of pollution that causes serious illness in the nearby residential community.  We are creating a comprehensive planning process that brings together residents, businesses, environmental leaders, city officials and other stakeholders to chart the future of the Doremus area. In this way, we can plan a future for the Port-Industrial District that is healthy, clean, and environmentally sustainable while strengthening economic vitality and preserving community values.&quot;"
-            },
-            {
-                "header": "THE LAUNCH",
-                "text": "<p>The public, the media and all stakeholders are invited to participate in the Virtual Project Launch Presentation of Forward-Bound Doremus, a Redevelopment Plan for the City of Newark Port-Industrial District, on <b>October 14, 2020 at 6pm, EST</b>. This will be a 1.5-hour presentation to introduce participants to the project goals, team, process, timeline and how to get involved! At the end of the presentation there will be a participatory group activity for participants to provide input.  Participants can attend this virtual meeting on Zoom, watch the live stream on the <a href='www.facebook.com/CityofNewark'>City of Newark Facebook page</a>, or by following the <a href='https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA'>Forward-Bound Doremus Youtube Channel</a>.</p><p>The prime consultant for the Port-Industrial District Redevelopment Plan, leading a planning team with local familiarity is WRT an award-winning, national practice of planners, urban designers, architects, and landscape architects headquartered in Philadelphia, PA. The objective is to create a robust, inclusive, and equitable planning process that elevates the economic and environmental conversation and improves the health of the surrounding neighborhood, enabling stakeholders and residents to find mutually beneficial solutions.</p>"
-            },
-            {
-                "header": "WHY",
-                "text": "<ul class='text-list'><li>Frequent and increasing flooding is causing disruption, health risks, and financial losses.</li><li>There is a need to invest in aging infrastructure&#8212;road networks, sewer, rail, electric&#8212;to support long-term sustainability and promote efficient operations within the industrial area.</li><li>The recent expansion and encroachment of industrial uses into residential areas has highlighted the need to better manage the interaction of industrial and non-industrial uses to achieve environmental justice and economic vitality.</li><li>Rapid change in maritime shipping, logistics and industrial technology, coupled with rapid loss of urban industrial land proximate to the ports and heavy transportation assets in the New York City metropolitan area make it critically important to deliberately shape the evolution of industrial land uses in Newark’s sought-after port-industrial area to achieve the desired mix and intensity of industrial uses.</li></ul>"
-            },
-            {
-                "header": "THE PLANNING PROCESS",
-                "text": "<p>The planning process will be guided by a Steering Committee which will provide general guidelines (technical and experiential) to the core and planning team on the vision, strategies, and implementation of the project. The Steering Committee is composed of key stakeholders, local organizations, law makers, and residents.</p><p>Select members of Newark People’s Assembly, along with other neighborhood residents will be critical members of the planning process, serving as Community Ambassadors. Using the same mission, the Ambassadors will help support community outreach and engagement.</p><p>As part of Mayor Baraka’s initiative to empower communities, the Newark People’s Assembly gives organizations and individuals a space to make their voices heard to impact programs and services provided by the city. The Newark People’s Assembly serves as a bridge between the community and City Hall, empowering residents to become involved in organizations and programs that are improving their neighborhoods, like Forward-Bound Doremus.</p>"
-            },
-            {
-                "header": "THE SCHEDULE",
-                "text": "<p>The Forward-Bound Doremus Project had a soft launch in January 2020 and was on track to deliver a collaborative Redevelopment Plan in August 2020. However, due to COVID-19 the project had to be put on hold to adjust the process to follow social distancing guidelines and virtual engagement. Now, the city is ready to begin working with you again to shape the future of the Doremus Port-Industrial District.</p><p>The plan will be developed through four flexible and overlapping phases, starting with the work done in January 2020 and finishing in May 2021. This sequence of steps has consistently delivered plans that are thorough, actionable, and supported by communities.<ul class='text-list'><li><b>Phase 1: INITIATION</b> – Project Launch + Existing Conditions Analysis (February – October 2020)</li><li><b>Phase 2: EXPLORATION</b> – Issues and Opportunities + Concept Plans (November-December 2020)</li><li><b>Phase 3: VALIDATION</b> – Plan Development (January-March 2021)</li><li><b>Phase 4: DOCUMENTATION</b> – Draft and Final Redevelopment Plan (April – May 2021)</li></ul>Visioning and consensus building meetings are included throughout the four phases, with the goal to continue building on the engagement the City has already conducted for the area.</p>"
-            },
-            {
-                "header": "HOW TO ATTEND",
-                "text": "<p>All of the meetings that require more than 10 people will be virtual meetings using Zoom, a free video conference tool.  If you are not familiar with the software please visit the website, create an account, and download the program on your computer and smartphone before joining the meeting. <i>Note: Meeting proceedings will be recorded (both audio and video) to ensure accuracy and availability to the public.</i><table class='text-table'><tr><td><b>Location</b></td><td><a href='https://zoom.us/j/94447543140'>https://zoom.us/j/94447543140</a></td></tr><tr><td><b>Meeting information</b></td><td><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: Forward</td></tr><tr><td><b>One tap mobile</b></td><td><a href='tel:+13017158592,,94447543140#,,,,,,0#,,772042#'>+13017158592,,94447543140#,,,,,,0#,,772042# US (Germantown)</a><br><a href='tel:+13126266799,,94447543140#,,,,,,0#,,772042#'>+13126266799,,94447543140#,,,,,,0#,,772042# US (Chicago)</a><br><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: 772042</td></tr></table></p><p>You can also participate through the <a href='www.facebook.com/CityofNewark'>City of Newark Facebook page</a> or by following the <a href='https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA'>Forward-Bound Doremus Youtube Channel</a></p>"
-            },
-            {
-                "header": "Documents & Presentations",
-                "text": "October 14th, 2020, Public Meeting Presentation",
-                "iframe": {
-                    "src": "https://drive.google.com/file/d/1SI-_ztwQtuW_Ghwlx71eVaIzysB54Ixt/preview",
-                    "width": "640",
-                    "height": "480"
-                }
-            }
-        ],
-        "acknowledgments": [
-            {
-                "header": "ABOUT WRT",
-                "text": "<p><a href='https://www.wrtdesign.com/'>WRT</a> is an award-winning, national practice of planners, urban designers, architects, and landscape architects headquartered in Philadelphia, PA. WRT focuses on building resilient communities—ones that demonstrate how growth can be guided in a sustainable manner that promotes economic vitality and enhances community identity and quality of life. This commitment is expressed in their sensitivity to the environment, inclusion of community values through public engagement, and leveraging of fiscally-sound projects to support vibrant places.</p><p>WRT will be supported by, among others, <a href='https://www.ninigretpartners.com/'>Ninigret Partners</a>, an economic consulting firm that focuses primarily on industrial land uses; and <a href='http://www.tandmassociates.com/''>T&M Associates</a>, a full-service engineering firm headquartered in New Jersey.</p><p>Throughout the planning process, the consultants will work closely with the City of Newark Department of Economic and Housing Development and the Office of Planning and Zoning. They will be supported by the City’s Office of Planning and Sustainability and Department of Engineering along with Bloomberg Associates.</p>"
-            }
-        ],
-        "contact": {
-            "header": "CONTACT INFORMATION",
-            "contacts": [
-                {
-                    "officer": "Frank Baraff",
-                    "officerTitle": "Communications Manager",
-                    "phone": "9144693775",
-                    "email": "barafff@ci.newark.nj.us",
-                    "room": "218",
-                    "text": "For Media Inquiries:"
+        {
+            "header": "Information & Resources",
+            "buttons": [{
+                    "icon": "attach_file",
+                    "text": "2020 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "cpb",
+                        "type": "Agendas",
+                        "year": "2020"
+                    }
                 },
                 {
-                    "officer": "Pallavi Shinde, PP, AICP",
-                    "officerTitle": "Supervising Planner",
-                    "phone": "9737336253",
-                    "email": "shindep@ci.newark.nj.us",
-                    "room": "419",
-                    "text": "For Other Inquiries:"
+                    "icon": "attach_file",
+                    "text": "2020 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "cpb",
+                        "type": "Minutes",
+                        "year": "2020"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "cpb",
+                        "type": "Agendas",
+                        "year": "2021"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "cpb",
+                        "type": "Minutes",
+                        "year": "2021"
+                    }
+                }
+            ]
+        },
+        {
+            "header": "2021 Regularly Scheduled Meetings",
+            "iframe": true
+        }
+    ]
+},
+{
+    "id": "ec",
+    "splashImg": {
+        "src": "https://media-cdn.tripadvisor.com/media/photo-m/1280/17/49/b5/36/cherry-blossom.jpg",
+        "alt": "Tripadvisor Branch Brook Cherry Blossoms"
+    },
+    "splashTitle": "Environmental Commission",
+    "splashBlurb": {
+        "text": "The Commission advises the Mayor, the Council, Central Planning and Zoning Boards on issues of the environment and sustainability. They meet monthly and provide recommendations  about environmental, sustainability, and quality of life issues relevant to the City of Newark.",
+        "buttons": [{
+            "text": "Virtual Hearing Dashboard",
+            "parent": "/planningzoning/virtualhearing",
+            "link": "ec"
+        }]
+    },
+    "contentIntro": {
+        "middle": {
+            "header": "Upcoming Hearings"
+        }
+    },
+    "sections": [{
+            "text": "<p>The Newark Environmental Commission is made up of Newark residents who serve in a volunteer capacity. The Commission is charged to advise the Mayor and the Municipal Council on issues of the environment and sustainability. Members are nominated or can apply to open positions and are appointed by the Municipal Council. They meet monthly and provide recommendations to the City of Newark about environmental, sustainability, and quality of life issues relevant to the City of Newark.</p><p>The Commission is proud to have worked with environmental justice groups throughout New Jersey to gain passage of Newark’s Environmental Justice and Cumulative Impacts Ordinance, the first of its kind in the United States. This ground-breaking law requires companies and other applicants that want to work in Newark to prove they are not adding to Newark’s existing pollution. The law highlights the fact that Newark has long been subject to extreme levels of industrial pollution that is harmful to the health of those who live and work here. As part of the Ordinance, applicants proposing new development or modification of an existing development who are also required to apply for an environmental permit from the New Jersey Department of Environmental Protection or whose application is considered a significant land-use change, are required to fill out an additional form that the Environmental Commission reviews. The Environmental Commission then provides written commentary to the Central Planning Board and Zoning Board of Adjustment. Additionally, the Environmental Commission is working on developing an Environmental Resource Inventory which is a comprehensive analysis of Newark’s existing environmental health.</p>"
+        },
+        {
+            "header": "Commission Members",
+            "text": "",
+            "list": [{
+                    "text": "Cynthia Mellon",
+                    "hierarchy": 1,
+                    "subText": "Co-Chair"
+                },
+                {
+                    "text": "Wynnie-Fred Victor Hinds",
+                    "hierarchy": 1,
+                    "subText": "Co-Chair"
+                },
+                {
+                    "text": "William Barnes",
+                    "hierarchy": 2,
+                    "subText": "Member"
+                },
+                {
+                    "text": "Nicole Miller",
+                    "hierarchy": 2,
+                    "subText": "Member"
+                },
+                {
+                    "text": "Michael Molina",
+                    "hierarchy": 2,
+                    "subText": "Member"
+                },
+                {
+                    "text": "Anthony Timmons",
+                    "hierarchy": 3,
+                    "subText": "Member/Planning Board Liaison"
+                }
+            ]
+        },
+        {
+            "header": "Activities",
+            "text": "",
+            "list": [{
+                    "text": "Monthly public meetings",
+                    "hierarchy": 1
+                },
+                {
+                    "text": "Tabling at public events (i.e. Lincoln Park Music Festival)",
+                    "hierarchy": 1
+                },
+                {
+                    "text": "Newark Green Team; Sustainable Jersey",
+                    "hierarchy": 1
+                },
+                {
+                    "text": "Speaking engagements across New Jersey",
+                    "hierarchy": 1
+                }
+            ]
+        },
+        {
+            "header": "Meetings",
+            "text": "<p>The Newark Environmental Commission meets the first Wednesday of each month (except for August) from 6:00 to 8:30 pm via Zoom. Meetings are open to the public and all are welcome.</p><p>For more information and to be added to the distribution list for meeting reminders, please contact: Nathaly Agosto Filion, Chief Sustainability Officer at <a href='mailto:agostofilionn@ci.newark.nj.us'>agostofilionn@ci.newark.nj.us</a>.</p>",
+            "iframe": true
+        },
+        {
+            "header": "Information & Resources",
+            "buttons": [{
+                    "icon": "attach_file",
+                    "text": "2021 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "ec",
+                        "type": "Agendas",
+                        "year": "2021"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "ec",
+                        "type": "Minutes",
+                        "year": "2021"
+                    }
                 }
             ]
         }
+    ]
+},
+{
+    "id": "lhpc",
+    "splashImg": {
+        "src": "assets/img/headerPhotos/NwkCitySky.png",
+        "alt": "City Skyline"
     },
-    {
-        "id": "newarkgo",
-        "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br> Safe. Fast. Affordable</span>",
-        "splashImg": {
-            "src": "assets/img/headerPhotos/newarkgo_banner.jpg",
-            "alt": "Newark Go: Woman Using Scooter"
+    "splashTitle": "Landmark & Historic Preservation Commission",
+    "splashBlurb": {
+        "text": "LHPC is the not-for-profit, volunteer-based, citywide advocate for the preservation of Newark's historic and cultural resources.",
+        "buttons": [{
+            "text": "Virtual Hearing Dashboard",
+            "parent": "/planningzoning/virtualhearing",
+            "link": "lhpc"
+        }]
+    },
+    "contentIntro": {
+        "middle": {
+            "header": "Upcoming Hearings"
+        }
+    },
+    "sections": [{
+            "text": "<p>The Committee's activities include nomination of landmarks to the historic registers; intervention on behalf of threatened landmarks; implementation of educational initiatives; provision of technical assistance; and collaboration with other nonprofit agencies. We perform these activities as described below:<ul class='text-list'><li>Nominate historic and cultural resources to the State and National Registers Historic Places to provide these landmarks (building, structures, sites, objects, and districts) with additional protection from demolition and unsympathetic alterations.</li><li>Select highly threatened landmarks, already listed or eligible to be listed on the historic registers, and mount public campaigns to save them.</li></ul</p>"
         },
-        "splashBlurb": {
-            "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot in the spring of 2021. To get involved, please take our <a href='https://newark.seamlessdocs.com/f/qwwy6utlw3fq'>survey<a/>&mdash;<a href='https://newark.seamlessdocs.com/f/3f7vgoap9mny'>o en espa&ntilde;ol</a>&mdash;& join us for our three public meetings.",
-            "buttons": [
-                {
-                    "text": "Survey-EN",
-                    "extUrl": "https://newark.seamlessdocs.com/f/qwwy6utlw3fq"
+        {
+            "header": "Commission Members",
+            "text": "",
+            "list": [{
+                    "text": "Richard Partyka",
+                    "hierarchy": 1,
+                    "subText": "Chairman"
                 },
                 {
-                    "text": "More Details",
-                    "extUrl": "https://drive.google.com/file/d/1qsHYhH8xK67uNLGmYjzyvE5bbG5r0uLD/view?usp=sharing"
+                    "text": "Richard Grossklaus",
+                    "hierarchy": 2,
+                    "subText": "Vice Chairman"
+                },
+                {
+                    "text": "David Robinson",
+                    "hierarchy": 3,
+                    "subText": "Class A"
+                },
+                {
+                    "text": "Wilson Woo",
+                    "hierarchy": 3,
+                    "subText": "Class A"
+                },
+                {
+                    "text": "Gwen Motten",
+                    "hierarchy": 4,
+                    "subText": "Class B"
+                },
+                {
+                    "text": "Sylvia Benavente",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Fredericka Bey",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Robert Hartman",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Anthony Smith",
+                    "hierarchy": 5
+                },
+                {
+                    "text": "Nicaury Miller",
+                    "hierarchy": 6,
+                    "subText": "Alternate #1"
+                },
+                {
+                    "text": "Susan Holguin-Veras",
+                    "hierarchy": 7,
+                    "subText": "Alternate #2"
                 }
             ]
         },
-        "contentIntro": {
-            "left": {
-                "img": "assets/img/headerPhotos/newarkgo_body.svg"
-            },
-            "right": {
-                "text": "<p>NewarkGo will bring shared mobility services, in the form of e-bikes and e-scooters, to the City of Newark for a 6-month pilot in the spring of 2021. Shared mobility services can link underserved populations to jobs, schools, housing, health care facilities, grocery stores, mass transit and other essential services; complement the use of public transportation; and create attractive, vibrant, pedestrian-friendly neighborhoods where people can live, shop, work, and play without relying on automobiles. The City also views shared mobility services as an additional transportation option to promote social distancing during the COVID-19 outbreak.</p>"
-            }
+        {
+            "header": "Information & Resources",
+            "buttons": [{
+                    "icon": "attach_file",
+                    "text": "2020 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "lhpc",
+                        "type": "Agendas",
+                        "year": "2020"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2020 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "lhpc",
+                        "type": "Minutes",
+                        "year": "2020"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "lhpc",
+                        "type": "Agendas",
+                        "year": "2021"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "lhpc",
+                        "type": "Minutes",
+                        "year": "2021"
+                    }
+                }
+            ]
         },
-        "sections": [
-            {
-                "header": "Advancing Mayor Baraka’s Newark Forward Agenda",
-                "text": "<h3>&quot;I'm excited about launching our bike and scooter share program and figuring out planning and infrastructure support for biking in our city. Not just downtown but for access across the city.&quot; – Mayor Ras J. Baraka</h3>"
-            },
-            {
-                "header": "PROGRAM GOALS",
-                "text": "<ul class='text-list'><li><b>A Safe City</b>: Promotes social distancing in the time of COVID-19.</li><li><b>An Empowered City</b>: Generates foot traffic for local businesses, encourages exploration of vibrant neighborhoods, and reduces travel times for commuters.</li><li><b>An Equitable City</b>: Provides a convenient and affordable transportation mode linking underserved populations to jobs, housing, and other essential services.</li><li><b>A Collaborative City</b>: Reduces road congestion, parking demand, and toxic emissions to enhance safety, promote walkability, and achieve sustainability.</li></ul>"
-            },
-            {
-                "header": "PLANNING PROCESS",
-                "text": "<p><i>Seeking a shared understanding of shared mobility</i></p><p>The City recognizes the importance of creating a program <u>designed for, and by, Newark residents</u>. Public engagement focuses on the following:<ul class='text-list'><li>Empowering Newark residents, advocates, and business leaders to lead conversations that will <b>shape program policies.</b></li><li>Soliciting values from Newark communities to <b>build support for context-specific performance measures.</b></li><li>Supporting and expanding existing community-led programs to <b>teach and support new and continuing bicyclists.</b></li><li>Implementing regulations with <b>a focus on equitable distribution</b> of bikes and scooters once the program launches.</li><li>Obtaining feedback about infrastructure and safety measures to anticipate potential challenges and <b>generate solutions in advance.</b></li></ul></p><p>Engagement by the numbers [as of 11/11/2020]<ul class='text-list'><li>690 surveys collected.</li><li>Two focus groups convened, with three more scheduled.</li><li>Three citywide public forums scheduled between November and December.</li><li>Nine months of inter-departmental planning and collaboration from city staff.</li></ul></p><p><i>Project Team</i></p><p>The NewarkGo project team is led by staff from the Department of Economic and Housing Development and Department of Engineering. The team also receives consulting assistance from Bloomberg Associates, a team of globally recognized experts and industry leaders working with cities across the globe to ignite change and transform dynamic vision into reality.</p>"
-            },
-            {
-                "header": "PUBLIC MEETINGS",
-                "text": "<p>Join one of our public public meetings by clicking its Zoom link below.</p><ol><li><b>November 24th</b><ul><li>When - 06:00pm EST</li><li>Where - <a href='https://bloombergdotorg.zoom.us/j/84781850124#succes'>Zoom Link</a></li></ul></li><li><b>December 2nd</b><ul><li>When - 06:00pm EST</li><li>Where - <a href='https://bloombergdotorg.zoom.us/j/86501660312#succes'>Zoom Link</a></li></ul></li><li><b>December 7th</b><ul><li>When - 12:00pm EST</li><li>Where - <a href='https://bloombergdotorg.zoom.us/j/84390145519#success'>Zoom Link</a></li></ul></li></ol><p>Learn more about Bike Sharing and Micromobility at the <a href='https://nacto.org/program/bike-share-initiative/'>Bike Share and Shared Micromobility Initiative</a>; a program run by the National Association of City Transportation Officials (NACTO).</p>"
-            },
-            {
-                "header": "FAQs",
-                "faq": "newarkgo"
-            },
-            {
-                "header": "PROPOSE CORRAL LOCATIONS",
-                "text": "We need your help! Please use the map below to propose locations for scooter/bike corrals. Priority areas where the operator would ensure availability of vehicles.",
-                "map": true
-            }
-        ],
-        "acknowledgments": [
-            {
-                "header": "ABOUT BLOOMBERG ASSOCIATES",
-                "text": "<p>Bloomberg Associates is the philanthropic consulting arm of Michael R. Bloomberg’s charitable organization, Bloomberg Philanthropies. Founded in 2014, Bloomberg Associates works side by side with client cities to improve the quality of life for residents, taking a strategic, collaborative and results-oriented approach to make cities stronger, safer, more equitable and efficient. Their team of globally recognized experts and industry leaders has worked with cities across the globe on hundreds of projects in order to ignite change and transform dynamic vision into reality.</p>"
-            }
-        ],
-        "contact": {
-            "header": "CONTACT INFORMATION",
-            "contacts": []
+        {
+            "header": "2021 Regularly Scheduled Meetings",
+            "iframe": true
+        }
+    ]
+},
+{
+    "id": "zba",
+    "splashImg": {
+        "src": "assets/img/headerPhotos/nwkcityhall-01.png",
+        "alt": "City Hall Montage"
+    },
+    "splashBlurb": {
+        "text": "The Zoning Board of Adjustment is entrusted with principal duties to hear appeals to decisions of the Central Planning Board or Planning & Zoning Staff, to grant variances from the strict application of the zoning ordinance and to rule on 'use' applications.",
+        "buttons": [{
+            "text": "Virtual Hearing Dashboard",
+            "parent": "/planningzoning/virtualhearing",
+            "link": "zba"
+        }]
+    },
+    "contentIntro": {
+        "middle": {
+            "header": "Upcoming Hearings"
         }
     },
-    {
-        "id": "corrals",
-        "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br>Propose Corrals</span>",
-        "splashBlurb": {
-            "text": "Be part of Newark Go! Use the map below to add locations you think should be the highest priority for scooter/bike availability. Or upvote ones you agree with!"
+    "splashTitle": "Zoning Board of Adjustment",
+    "sections": [{
+            "header": "Powers & Duties",
+            "text": "<p><b>From 40:12-5:</b><ul class='text-list'><li><b>40:12-5-1</b> To hear and decide appeals where it is alleged by the appellant that there is error in any order, requirement, decision or refusal made by an administrative official or agency based on or made in the enforcement of the Zoning Ordinance.</li><li><b>40:12-5-2</b> To hear and decide requests for interpretation of the Zoning Map or Ordinance, or for decisions upon other special questions upon which such Board is authorized by the Zoning Ordinance to pass in accordance with the Municipal Land Use Law.</li></ul>"
         },
-        "splashImg": {
-            "src": "assets/img/headerPhotos/corral_render.jpg",
-            "alt": "Newark Go: Corral Render"
+        {
+            "header": "Commission Members",
+            "text": "",
+            "list": [{
+                    "text": "Charles Auffant",
+                    "hierarchy": 1,
+                    "subText": "Chairman"
+                },
+                {
+                    "text": "Julius S. Montford",
+                    "hierarchy": 2,
+                    "subText": "Vice Chairman"
+                },
+                {
+                    "text": "Sharon Hardesty",
+                    "hierarchy": 3
+                },
+                {
+                    "text": "Charles N. Hall, Jr.",
+                    "hierarchy": 3
+                },
+                {
+                    "text": "Wesley N. Jenkins, IV",
+                    "hierarchy": 3
+                },
+                {
+                    "text": "Robin Jones",
+                    "hierarchy": 3
+                },
+                {
+                    "text": "Rose Marie Ruivo",
+                    "hierarchy": 3
+                },
+                {
+                    "text": "Katiria Cobian",
+                    "hierarchy": 4,
+                    "subText": "Alternate #1"
+                },
+                {
+                    "text": "Barry Dobson",
+                    "hierarchy": 5,
+                    "subText": "Alternate #2"
+                }
+            ]
         },
-        "sections": [
+        {
+            "header": "Information & Resources",
+            "buttons": [{
+                    "icon": "attach_file",
+                    "text": "2020 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "zba",
+                        "type": "Agendas",
+                        "year": "2020"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2020 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "zba",
+                        "type": "Minutes",
+                        "year": "2020"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Agendas",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "zba",
+                        "type": "Agendas",
+                        "year": "2021"
+                    }
+                },
+                {
+                    "icon": "attach_file",
+                    "text": "2021 Minutes",
+                    "parent": "/planningzoning/resources",
+                    "link": "documents",
+                    "params": {
+                        "group": "zba",
+                        "type": "Minutes",
+                        "year": "2021"
+                    }
+                }
+            ]
+        },
+        {
+            "header": "2021 Regularly Scheduled Meetings",
+            "iframe": true
+        }
+    ]
+},
+{
+    "id": "doremus",
+    "splashTitle": "Forward-Bound Doremus",
+    "splashImg": {
+        "src": "assets/img/headerPhotos/Doremus.jpg",
+        "alt": "Bird's Eye view of Doremus"
+    },
+    "splashBlurb": {
+        "text": "Forward-Bound Doremus is a shared vision and redevelopment plan for the Doremus Port-Industrial District. Help shape the project by taking our <a class='mat-raised-button mat-primary' href='https://forms.gle/AyxrvgNCmjsLeGbV9'>Survey <span class='material-icons v-align-top'>not_started</span></a> or <a class='mat-raised-button mat-primary' href='https://sites.google.com/view/forwardbounddoremus/participate/community-mapping?authuser=0'>Mapping Doremus <span class='material-icons v-align-top'>not_started</span></a>",
+        "buttons": [{
+                "text": "Project Website",
+                "extUrl": "https://sites.google.com/view/forwardbounddoremus"
+            },
             {
-                "header": "PROPOSE CORRAL LOCATIONS",
-                "normal": true,
-                "text": "We need your help! Please use the map below to propose locations for scooter/bike corrals. Priority areas where the operator would ensure availability of vehicles.",
-                "map": true
+                "text": "Youtube Channel",
+                "extUrl": "https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA"
+            }
+        ]
+    },
+    "contentIntro": {
+        "left": {
+            "img": "assets/img/headerPhotos/DoremusStudyArea.jpg"
+        },
+        "right": {
+            "text": "<p>The City of Newark is embarking on a planning process that will engage stakeholders and residents in creating a shared vision for the city’s Port-Industrial District. The Forward-Bound Doremus Plan, aims to balance the needs of industry, the environment, and community while positioning the city for increased economic and environmental resilience as the region enters an exciting period of rapid growth.</p><p>The Forward-Bound Doremus Plan will focus on the core area of Newark’s Industrial District, which is anchored by the Doremus Avenue corridor. The plan’s study area is bound by the Passaic River to the north and east, I-78 and Port Newark to the south, and bound to the west by Routes 9 and 1 through to Foundry Street and Chapel Street where the port-industrial land uses come into contact with the residential neighborhoods of North Ironbound and East Ferry.</p>"
+        }
+    },
+    "sections": [{
+            "text": "&quot;Our port area is essential to Newark’s economy&quot;, said Mayor Baraka. &quot;It provides thousands of jobs for residents in Newark’s most important industrial district. But it is also a major source of pollution that causes serious illness in the nearby residential community.  We are creating a comprehensive planning process that brings together residents, businesses, environmental leaders, city officials and other stakeholders to chart the future of the Doremus area. In this way, we can plan a future for the Port-Industrial District that is healthy, clean, and environmentally sustainable while strengthening economic vitality and preserving community values.&quot;"
+        },
+        {
+            "header": "THE LAUNCH",
+            "text": "<p>The public, the media and all stakeholders are invited to participate in the Virtual Project Launch Presentation of Forward-Bound Doremus, a Redevelopment Plan for the City of Newark Port-Industrial District, on <b>October 14, 2020 at 6pm, EST</b>. This will be a 1.5-hour presentation to introduce participants to the project goals, team, process, timeline and how to get involved! At the end of the presentation there will be a participatory group activity for participants to provide input.  Participants can attend this virtual meeting on Zoom, watch the live stream on the <a href='www.facebook.com/CityofNewark'>City of Newark Facebook page</a>, or by following the <a href='https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA'>Forward-Bound Doremus Youtube Channel</a>.</p><p>The prime consultant for the Port-Industrial District Redevelopment Plan, leading a planning team with local familiarity is WRT an award-winning, national practice of planners, urban designers, architects, and landscape architects headquartered in Philadelphia, PA. The objective is to create a robust, inclusive, and equitable planning process that elevates the economic and environmental conversation and improves the health of the surrounding neighborhood, enabling stakeholders and residents to find mutually beneficial solutions.</p>"
+        },
+        {
+            "header": "WHY",
+            "text": "<ul class='text-list'><li>Frequent and increasing flooding is causing disruption, health risks, and financial losses.</li><li>There is a need to invest in aging infrastructure&#8212;road networks, sewer, rail, electric&#8212;to support long-term sustainability and promote efficient operations within the industrial area.</li><li>The recent expansion and encroachment of industrial uses into residential areas has highlighted the need to better manage the interaction of industrial and non-industrial uses to achieve environmental justice and economic vitality.</li><li>Rapid change in maritime shipping, logistics and industrial technology, coupled with rapid loss of urban industrial land proximate to the ports and heavy transportation assets in the New York City metropolitan area make it critically important to deliberately shape the evolution of industrial land uses in Newark’s sought-after port-industrial area to achieve the desired mix and intensity of industrial uses.</li></ul>"
+        },
+        {
+            "header": "THE PLANNING PROCESS",
+            "text": "<p>The planning process will be guided by a Steering Committee which will provide general guidelines (technical and experiential) to the core and planning team on the vision, strategies, and implementation of the project. The Steering Committee is composed of key stakeholders, local organizations, law makers, and residents.</p><p>Select members of Newark People’s Assembly, along with other neighborhood residents will be critical members of the planning process, serving as Community Ambassadors. Using the same mission, the Ambassadors will help support community outreach and engagement.</p><p>As part of Mayor Baraka’s initiative to empower communities, the Newark People’s Assembly gives organizations and individuals a space to make their voices heard to impact programs and services provided by the city. The Newark People’s Assembly serves as a bridge between the community and City Hall, empowering residents to become involved in organizations and programs that are improving their neighborhoods, like Forward-Bound Doremus.</p>"
+        },
+        {
+            "header": "THE SCHEDULE",
+            "text": "<p>The Forward-Bound Doremus Project had a soft launch in January 2020 and was on track to deliver a collaborative Redevelopment Plan in August 2020. However, due to COVID-19 the project had to be put on hold to adjust the process to follow social distancing guidelines and virtual engagement. Now, the city is ready to begin working with you again to shape the future of the Doremus Port-Industrial District.</p><p>The plan will be developed through four flexible and overlapping phases, starting with the work done in January 2020 and finishing in May 2021. This sequence of steps has consistently delivered plans that are thorough, actionable, and supported by communities.<ul class='text-list'><li><b>Phase 1: INITIATION</b> – Project Launch + Existing Conditions Analysis (February – October 2020)</li><li><b>Phase 2: EXPLORATION</b> – Issues and Opportunities + Concept Plans (November-December 2020)</li><li><b>Phase 3: VALIDATION</b> – Plan Development (January-March 2021)</li><li><b>Phase 4: DOCUMENTATION</b> – Draft and Final Redevelopment Plan (April – May 2021)</li></ul>Visioning and consensus building meetings are included throughout the four phases, with the goal to continue building on the engagement the City has already conducted for the area.</p>"
+        },
+        {
+            "header": "HOW TO ATTEND",
+            "text": "<p>All of the meetings that require more than 10 people will be virtual meetings using Zoom, a free video conference tool.  If you are not familiar with the software please visit the website, create an account, and download the program on your computer and smartphone before joining the meeting. <i>Note: Meeting proceedings will be recorded (both audio and video) to ensure accuracy and availability to the public.</i><table class='text-table'><tr><td><b>Location</b></td><td><a href='https://zoom.us/j/94447543140'>https://zoom.us/j/94447543140</a></td></tr><tr><td><b>Meeting information</b></td><td><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: Forward</td></tr><tr><td><b>One tap mobile</b></td><td><a href='tel:+13017158592,,94447543140#,,,,,,0#,,772042#'>+13017158592,,94447543140#,,,,,,0#,,772042# US (Germantown)</a><br><a href='tel:+13126266799,,94447543140#,,,,,,0#,,772042#'>+13126266799,,94447543140#,,,,,,0#,,772042# US (Chicago)</a><br><b>Meeting ID</b>: 944 4754 3140<br><b>Passcode</b>: 772042</td></tr></table></p><p>You can also participate through the <a href='www.facebook.com/CityofNewark'>City of Newark Facebook page</a> or by following the <a href='https://www.youtube.com/channel/UC4ENrbInlnpAClFFrWEI0CA'>Forward-Bound Doremus Youtube Channel</a></p>"
+        },
+        {
+            "header": "Documents & Presentations",
+            "text": "October 14th, 2020, Public Meeting Presentation",
+            "iframe": {
+                "src": "https://drive.google.com/file/d/1SI-_ztwQtuW_Ghwlx71eVaIzysB54Ixt/preview",
+                "width": "640",
+                "height": "480"
+            }
+        }
+    ],
+    "acknowledgments": [{
+        "header": "ABOUT WRT",
+        "text": "<p><a href='https://www.wrtdesign.com/'>WRT</a> is an award-winning, national practice of planners, urban designers, architects, and landscape architects headquartered in Philadelphia, PA. WRT focuses on building resilient communities—ones that demonstrate how growth can be guided in a sustainable manner that promotes economic vitality and enhances community identity and quality of life. This commitment is expressed in their sensitivity to the environment, inclusion of community values through public engagement, and leveraging of fiscally-sound projects to support vibrant places.</p><p>WRT will be supported by, among others, <a href='https://www.ninigretpartners.com/'>Ninigret Partners</a>, an economic consulting firm that focuses primarily on industrial land uses; and <a href='http://www.tandmassociates.com/''>T&M Associates</a>, a full-service engineering firm headquartered in New Jersey.</p><p>Throughout the planning process, the consultants will work closely with the City of Newark Department of Economic and Housing Development and the Office of Planning and Zoning. They will be supported by the City’s Office of Planning and Sustainability and Department of Engineering along with Bloomberg Associates.</p>"
+    }],
+    "contact": {
+        "header": "CONTACT INFORMATION",
+        "contacts": [{
+                "officer": "Frank Baraff",
+                "officerTitle": "Communications Manager",
+                "phone": "9144693775",
+                "email": "barafff@ci.newark.nj.us",
+                "room": "218",
+                "text": "For Media Inquiries:"
+            },
+            {
+                "officer": "Pallavi Shinde, PP, AICP",
+                "officerTitle": "Supervising Planner",
+                "phone": "9737336253",
+                "email": "shindep@ci.newark.nj.us",
+                "room": "419",
+                "text": "For Other Inquiries:"
             }
         ]
     }
+},
+{
+    "id": "newarkgo",
+    "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br> Safe. Fast. Affordable</span>",
+    "splashImg": {
+        "src": "assets/img/headerPhotos/newarkgo_banner.jpg",
+        "alt": "Newark Go: Woman Using Scooter"
+    },
+    "splashBlurb": {
+        "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot in the spring of 2021. To get involved, please take our <a href='https://newark.seamlessdocs.com/f/qwwy6utlw3fq'>survey<a/>&mdash;<a href='https://newark.seamlessdocs.com/f/3f7vgoap9mny'>o en espa&ntilde;ol</a>&mdash;& join us for our three public meetings.",
+        "buttons": [{
+                "text": "Survey-EN",
+                "extUrl": "https://newark.seamlessdocs.com/f/qwwy6utlw3fq"
+            },
+            {
+                "text": "More Details",
+                "extUrl": "https://drive.google.com/file/d/1qsHYhH8xK67uNLGmYjzyvE5bbG5r0uLD/view?usp=sharing"
+            },
+            {
+                "text": "Map Corrals",
+                "parent": "/planningzoning",
+                "link": "corrals"
+            }
+        ]
+    },
+    "contentIntro": {
+        "left": {
+            "img": "assets/img/headerPhotos/newarkgo_body.svg"
+        },
+        "right": {
+            "text": "<p>NewarkGo will bring shared mobility services, in the form of e-bikes and e-scooters, to the City of Newark for a 6-month pilot in the spring of 2021. Shared mobility services can link underserved populations to jobs, schools, housing, health care facilities, grocery stores, mass transit and other essential services; complement the use of public transportation; and create attractive, vibrant, pedestrian-friendly neighborhoods where people can live, shop, work, and play without relying on automobiles. The City also views shared mobility services as an additional transportation option to promote social distancing during the COVID-19 outbreak.</p>"
+        }
+    },
+    "sections": [{
+            "header": "Advancing Mayor Baraka’s Newark Forward Agenda",
+            "text": "<h3>&quot;I'm excited about launching our bike and scooter share program and figuring out planning and infrastructure support for biking in our city. Not just downtown but for access across the city.&quot; – Mayor Ras J. Baraka</h3>"
+        },
+        {
+            "header": "PROGRAM GOALS",
+            "text": "<ul class='text-list'><li><b>A Safe City</b>: Promotes social distancing in the time of COVID-19.</li><li><b>An Empowered City</b>: Generates foot traffic for local businesses, encourages exploration of vibrant neighborhoods, and reduces travel times for commuters.</li><li><b>An Equitable City</b>: Provides a convenient and affordable transportation mode linking underserved populations to jobs, housing, and other essential services.</li><li><b>A Collaborative City</b>: Reduces road congestion, parking demand, and toxic emissions to enhance safety, promote walkability, and achieve sustainability.</li></ul>"
+        },
+        {
+            "header": "PLANNING PROCESS",
+            "text": "<p><i>Seeking a shared understanding of shared mobility</i></p><p>The City recognizes the importance of creating a program <u>designed for, and by, Newark residents</u>. Public engagement focuses on the following:<ul class='text-list'><li>Empowering Newark residents, advocates, and business leaders to lead conversations that will <b>shape program policies.</b></li><li>Soliciting values from Newark communities to <b>build support for context-specific performance measures.</b></li><li>Supporting and expanding existing community-led programs to <b>teach and support new and continuing bicyclists.</b></li><li>Implementing regulations with <b>a focus on equitable distribution</b> of bikes and scooters once the program launches.</li><li>Obtaining feedback about infrastructure and safety measures to anticipate potential challenges and <b>generate solutions in advance.</b></li></ul></p><p>Engagement by the numbers [as of 11/11/2020]<ul class='text-list'><li>690 surveys collected.</li><li>Two focus groups convened, with three more scheduled.</li><li>Three citywide public forums scheduled between November and December.</li><li>Nine months of inter-departmental planning and collaboration from city staff.</li></ul></p><p><i>Project Team</i></p><p>The NewarkGo project team is led by staff from the Department of Engineering and the Department of Economic and Housing Development. The team also receives consulting assistance from Bloomberg Associates, a team of globally recognized experts and industry leaders working with cities across the globe to ignite change and transform dynamic vision into reality.</p>"
+        },
+        {
+            "header": "FAQs",
+            "faq": "newarkgo"
+        }
+    ],
+    "contact": {
+        "header": "CONTACT INFORMATION",
+        "contacts": []
+    }
+},
+{
+    "id": "corrals",
+    "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br>Propose Corrals</span>",
+    "splashBlurb": {
+        "text": "Be part of Newark Go! Use the map below to add locations you think should be the highest priority for scooter/bike availability. Upvote ones you like or downvote ones you don't!",
+        "buttons": [{
+            "text": "Back to Newark Go",
+            "parent": "/planningzoning",
+            "link": "newarkgo"
+        }]
+    },
+    "splashImg": {
+        "src": "assets/img/headerPhotos/corral_render.jpg",
+        "alt": "Newark Go: Corral Render"
+    },
+    "sections": [{
+        "header": "PROPOSE CORRAL LOCATIONS",
+        "normal": true,
+        "text": "We need your help! Please use the map below to propose locations for scooter/bike corrals. Priority areas where the operator would ensure availability of vehicles.",
+        "map": true
+    }]
+}
 ]

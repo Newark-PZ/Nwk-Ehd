@@ -23,12 +23,15 @@ import VectorLayer from 'ol/layer/Vector';
 import Map from 'ol/Map';
 import MapBrowserEvent from 'ol/MapBrowserEvent';
 import OverlayPositioning from 'ol/OverlayPositioning';
+import { Pixel } from 'ol/pixel';
 import { fromLonLat, toLonLat } from 'ol/proj';
 import { XYZ } from 'ol/source';
 import { take } from 'rxjs/operators';
 import { StoreService } from '../../../store/store.service';
-import { SearchFeature } from '../../models';
+import { ArcAddressPt } from '../../models';
 import { CartoService } from '../../services/carto.service';
+import { JsonDataService } from '../../services/get-json-data.service';
+import { GoogleService } from '../../services/google.service';
 import { MapLayerService } from '../../services/maplayer.service';
 import { togglePanel } from '../../util/animations';
 import { InfoTabsComponent } from './info-tabs.component';
@@ -48,13 +51,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
   @Input() width = '100%';
   instance: Map;
   zoom = 13;
-  clicked = { blocklot: '', proploc: '', geo: '' };
+  clicked = { blocklot: '', proploc: '', geo: '', coords: [0, 0] };
   hovered: { blocklot: string | ''; proploc?: string; };
   popup: Overlay;
   props = ['basemap', 'height', 'panel', 'parcelView', 'width'];
   basemapgroup = this.layers.makeBasemapGroup();
   transitGroup = this.layers.makeTransitGroup();
-  geoGroup = this.layers.makeLayerGroup('Boundary', ['neighborhoods']);
+  geoGroup = this.layers.makeLayerGroup('Boundary', ['Neighborhoods']);
   overlayGroup = this.layers.makeLayerGroup('Overlays', []);
   parcelGroup = this.layers.makeParcelGroup(this.parcelView);
   @ViewChild('infotabs') infotabs: InfoTabsComponent;
@@ -63,7 +66,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
     readonly snackbar: MatSnackBar,
     readonly storeService: StoreService,
     readonly layers: MapLayerService,
-    readonly cartooQuery: CartoService) { }
+    readonly cartooQuery: CartoService,
+    readonly jsonDataFetch: JsonDataService,
+    readonly google: GoogleService) { }
   ngOnInit(): void {
     [
       [this.basemapgroup, 'Basemap'], [this.transitGroup, 'Transit'], [this.geoGroup, 'Boundary'],
@@ -80,11 +85,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
       element: document.getElementById('popup')!
     });
     this.instance = new Map({
-      layers: [
-        this.basemapgroup, this.transitGroup,
-        this.geoGroup, this.overlayGroup,
-        this.parcelGroup
-      ],
+      layers: [this.basemapgroup, this.transitGroup, this.geoGroup, this.overlayGroup, this.parcelGroup],
       overlays: [this.popup],
       interactions: defaultInteractions({ pinchRotate: false })
         .extend(
@@ -96,9 +97,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
       target: this.host.nativeElement.firstElementChild,
       view: new View({
         center: fromLonLat([-74.1723667, 40.735657]),
-        zoom: 13,
-        maxZoom: 19,
-        enableRotation: false
+        zoom: 2,
+        enableRotation: false,
+        constrainResolution: true,
+        resolutions: [
+          76.43702828507324, 38.21851414253662, 19.10925707126831,
+          9.554628535634155, 4.77731426794937, 2.388657133974685,
+          1.1943285668550503, 0.5971642835598172, 0.29858214164761665
+        ]
       })
     });
     this.instance.updateSize();
@@ -116,7 +122,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
       .animate({ zoom: this.zoom, easing: easeOut, duration: 750 });
   }
   resetView(): void {
-    this.zoom = 13;
+    this.zoom = 4;
     this.instance.getView()
       .fit(
         fromExtent([
@@ -128,32 +134,49 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
         { size: this.instance.getSize(), easing: easeOut, duration: 750 }
       );
   }
-  handlePropLookup(e: MapBrowserEvent | undefined, searchevt: Array<SearchFeature>): void {
-    const coordinates: Coordinate = e ? e.coordinate : fromLonLat([searchevt[0].X, searchevt[0].Y]);
+  handlePropLookup(e: MapBrowserEvent | undefined, searchevt: Array<ArcAddressPt['attributes']>): void {
+    const coordinates: Coordinate = e ? e.coordinate : fromLonLat([searchevt[0].POINT_X, searchevt[0].POINT_Y]);
+    const pixel: Pixel = e ? e.pixel : this.instance.getPixelFromCoordinate(coordinates);
+    this.clicked.geo = 'Property Info';
     this.instance.getLayers()
       .forEach(l => {
-        if ((l.get('className')).search(/(Boundary)/gi) > -1) {
-          const geofeat = ((l.getLayersArray()).filter(lyr => lyr.getVisible())[0] as VectorLayer).getSource()
+        if ((l.get('className')).search(/(Boundary)/gi) > -1 && (l.getLayersArray()).filter(lyr => lyr.getVisible()).length > 0) {
+          const geoViz = (l.getLayersArray()).filter(lyr => lyr.getVisible())[0] as VectorLayer;
+          const geofeat = geoViz.getSource()
             .getFeaturesAtCoordinate(coordinates)[0];
+          const keyfield = this.layers.initialLayerData.filter(il => il.name === geoViz.getClassName())[0].keyField;
           geofeat === undefined
             ? console.warn('No Boundary Layer Found')
-            : this.storeService.setPropPaneSelectedGeo(
-              ((l.getLayersArray()).filter(lyr => lyr.getVisible())[0] as VectorLayer).getClassName(),
-              geofeat.get('name')
-            );
-          this.clicked.geo = geofeat.get('name');
+            : this.storeService.setPropPaneSelectedGeo(geoViz.getClassName(), keyfield ? geofeat.get(keyfield) : geofeat.get('NAMELSAD'));
+          if (geofeat) {this.clicked.geo = keyfield ? geofeat.get(keyfield) : geofeat.get('NAMELSAD'); }
         }
     });
-    this.cartooQuery.getInfoFromPoint(toLonLat(coordinates) as [number, number])
-    .pipe(take(1))
-    .subscribe(q => {
-      this.clicked = q.rows.length > 0 ? { blocklot: q.rows[0].blocklot, proploc: q.rows[0].proploc, geo: this.clicked.geo } : { blocklot: '__-__', proploc: 'No Address/Non-Parcel', geo: this.clicked.geo };
-      this.storeService.setPropPaneSelectedProp(
-        { BLOCK_LOT: this.clicked.blocklot, STREET_ADD: this.clicked.proploc, geometry: coordinates as [number, number]}
-      );
-      this.storeService.setPropPanePropInfo(q.rows[0]);
-      this.popup.setPosition(coordinates);
+    const features = this.instance.getFeaturesAtPixel(pixel)
+      .filter(ft => ft.get('layer') === 'Newark_Parcels_2020_07_31');
+    this.clicked = features.length > 0 && features[0].get('MOD4_BLOCK_LOT')
+      ? { blocklot: features[0].get('MOD4_BLOCK_LOT'), proploc: features[0].get('PROPLOC'), geo: this.clicked.geo, coords: coordinates }
+      : { blocklot: '__-__', proploc: 'No Address/Non-Parcel', geo: this.clicked.geo, coords: coordinates };
+    this.storeService.setPropPaneSelectedProp({
+      BLOCK_LOT: this.clicked.blocklot, STREET_ADD: this.clicked.proploc, geometry: coordinates as [number, number]
     });
+    this.popup.setPosition(coordinates);
+    if (features.length > 0 && features[0].get('MOD4_BLOCK_LOT') && this.infotabs.menuOpen) {
+      this.jsonDataFetch.getInfoFromPoint(toLonLat(coordinates) as [number, number])
+        .pipe(take(1))
+        .subscribe({
+          next: q => { this.storeService.setPropPanePropInfo(q.features[0] ? q.features[0].properties : {MOD4_BLOCK_LOT: '__-__', PROPLOC: 'No Address/Non-Parcel'}); },
+          error: err => { console.error(err); }
+        });
+    } else {this.storeService.setPropPanePropInfo({MOD4_BLOCK_LOT: '__-__', PROPLOC: 'No Address/Non-Parcel'}); }
+  }
+  openPropInfo(): void {
+    this.jsonDataFetch.getInfoFromPoint(toLonLat(this.clicked.coords) as [number, number])
+    .pipe(take(1))
+    .subscribe({
+      next: q => { this.storeService.setPropPanePropInfo(q.features[0] ? q.features[0].properties : {MOD4_BLOCK_LOT: '__-__', PROPLOC: 'No Address/Non-Parcel'}); },
+      error: err => { console.error(err); }
+    });
+    this.infotabs.openMenu('Property Information', 'toggle');
   }
   closeOverlay(el: HTMLLinkElement): void { this.popup.setPosition(undefined); el.blur(); }
   toggleBasemapLayer(): void {
@@ -236,6 +259,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
           );
       });
   }
-  ngAfterViewInit(): void { this.instance.updateSize(); }
+  handlePopUpAction(position): void {
+    position ? this.google.openStreetView(position[0], position[1]) : console.warn('No Coordinates to Send you to Street View');
+  }
+  ngAfterViewInit(): void { setTimeout(() => { this.instance.updateSize(); }, 500); }
   ngOnDestroy(): void { this.instance.dispose(); this.zoom = 13; this.panel = false; }
 }

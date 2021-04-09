@@ -43,7 +43,7 @@ export class OpzHomeComponent {
         icon: 'map', category: 'Tools', title: 'Interactive Zoning Map', parent: '/planningzoning', link: 'maps'
       },
       {
-        icon: 'info', category: 'Tools', title: 'Our Zoning Code', parent: '/planningzoning/zoning', link: 'regs', disabled: true
+        icon: 'info', category: 'Tools', title: 'Our Zoning Code', extUrl: '/zoning-ordinance', disabled: false
       },
       {
         icon: 'attachment', category: 'Tools', title: 'Master Plan', parent: '/planningzoning/resources', link: 'documents',

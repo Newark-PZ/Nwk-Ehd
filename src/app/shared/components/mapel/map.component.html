@@ -5,11 +5,15 @@
     <div id="popup-content">
         <div class="popup-geo">{{clicked.geo}}</div>
         <span>
-            <mat-icon class="margin_right_1 v-align-top">home</mat-icon>{{clicked.proploc}}
+            <mat-icon class="margin_right_1 v-align-top">home</mat-icon><input type="text" readonly="true" name="Address" matInput #e1 (focus)="e1.select()" [value]="clicked.proploc" [size]="e1.value && e1.value.length > 0 ? e1.value.length : 20"/>
         </span><br>
         <span>
-            <mat-icon class="margin_right_1 v-align-top" [svgIcon]="'blocklot'"></mat-icon>{{clicked.blocklot}}
-        </span>
+            <mat-icon class="margin_right_1 v-align-top" [svgIcon]="'blocklot'"></mat-icon><input type="text" readonly="true" name="BlockLot" matInput #e2 (focus)="e2.select()" [value]="clicked.blocklot" />
+        </span><br>
+        <div class="popup-actions">
+            <a class="mat-stroked-button" (click)="handlePopUpAction(popup.getPosition())"><mat-icon class="margin_right_1 v-align-top">streetview</mat-icon>Street View</a>
+            <a class="mat-stroked-button" (click)="openPropInfo()"><mat-icon class="margin_right_1 v-align-top">info</mat-icon>Info</a>
+        </div>
     </div>
 </div>
 <map-search-bar [ngClass]="panel ? 'move-buttons' : ''" [overlay]="popup" (searchEvt)="handlePropLookup(undefined, [$event])">

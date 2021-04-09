@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Link } from '../shared/classes/link.class';
-import { FooterList, HomeCard, Page, ParcelFields, SearchItem } from '../shared/models';
+import { ArcFeature, FooterList, HomeCard, Page, SearchItem } from '../shared/models';
 import * as fromStore from '../store/store.reducers';
 import * as homePanelActions from './home-panels/home-panels.actions';
 import * as fromHomePanel from './home-panels/home-panels.reducers';
@@ -126,7 +126,7 @@ export class StoreService {
     setPropPaneSelectedGeo(layer: string, selectedGeo: any): void {
         this.store.dispatch(PropPaneActions.setSelectedGeo({ payload: {layer, selectedGeo}}));
     }
-    setPropPanePropInfo(propInfo: ParcelFields): void {
+    setPropPanePropInfo(propInfo: ArcFeature['attributes']): void {
         this.store.dispatch(PropPaneActions.setPropInfo({ payload: propInfo}));
     }
     /*

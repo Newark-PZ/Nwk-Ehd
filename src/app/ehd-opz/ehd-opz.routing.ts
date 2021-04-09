@@ -17,23 +17,28 @@ export const PLANNING_ROUTES: Routes = [
   },
   {
     path: 'virtualhearing/:id',
-    component: OpzDashboardComponent
+    component: OpzDashboardComponent,
+    data: {title: 'Virtual Hearings', parent: 'PZO'}
   },
   {
     path: 'home',
-    component: OpzHomeComponent
+    component: OpzHomeComponent,
+    data: {title: 'Home', parent: 'PZO'}
   },
   {
     path: 'contact',
-    component: OpzContactComponent
+    component: OpzContactComponent,
+    data: {title: 'Contact', parent: 'PZO'}
   },
   {
     path: 'applying',
-    component: OpzApplicationsComponent
+    component: OpzApplicationsComponent,
+    data: {title: 'Applying', parent: 'PZO'}
   },
   {
     path: 'boards/:id',
-    component: PageComponent
+    component: PageComponent,
+    data: {title: 'Boards', parent: 'PZO'}
   },
   // {
   //   path: 'zoning/:id',
@@ -56,13 +61,15 @@ export const PLANNING_ROUTES: Routes = [
       },
       {
         path: ':id',
-        component: OpzResourcesComponent
+        component: OpzResourcesComponent,
+        data: {title: 'Documents', parent: 'PZO'}
       }
     ]
   },
   {
     path: 'maps',
-    component: OpzMapComponent
+    component: OpzMapComponent,
+    data: {title: 'Zoning Map', parent: 'PZO'}
   },
   // { path: 'newarkgo', redirectTo: 'home', pathMatch: 'full' },
   {

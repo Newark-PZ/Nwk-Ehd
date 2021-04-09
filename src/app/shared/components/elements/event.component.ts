@@ -97,6 +97,7 @@ export class EventComponent implements OnInit, OnChanges {
             hearing.link.lastIndexOf('/') + 1,
             hearing.link.includes('?pwd=') ? hearing.link.lastIndexOf('?pwd=') : undefined
             ) : '000 0000 0000';
+        const pwd = hearing.link.includes('?pwd=') ? hearing.link.substring(hearing.link.lastIndexOf('?pwd=') + 5) : undefined;
         const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
         const setRows = (idnum, id): Array<EventTableRow> => {
             switch (board) {
@@ -121,7 +122,7 @@ export class EventComponent implements OnInit, OnChanges {
                     { section: 'Other Phone<br>' +
                       '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                       content: 'US',
-                      extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
+                      extra: [`<b>Webinar ID</b>: ${hearingid}`, `<b>Passcode</b>: ${pwd}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
                       numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
                 ];
                 default: return [
@@ -133,7 +134,9 @@ export class EventComponent implements OnInit, OnChanges {
                         { section: 'Other Phone<br>' +
                           '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
                           content: 'US',
-                          extra: [`<b>Webinar ID</b>: ${hearingid}`, '<a href="https://newarknj.zoom.us/u/adVk4AnkaC">International Numbers Here<a>'],
+                          extra: [
+                              `<b>Webinar ID</b>: ${hearingid}`,
+                              '<a href="https://newarknj.zoom.us/u/adVk4AnkaC">International Numbers Here<a>'],
                           numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
                 ];
             }

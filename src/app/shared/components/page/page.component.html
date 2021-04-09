@@ -87,7 +87,7 @@
       </ul>
     </div>
     <app-faq *ngIf="card.faq" [faqType]="card.faq"></app-faq>
-    <app-editable-map *ngIf="card.map" style="width: 100%;height: calc(60vh - 4.7rem)"></app-editable-map>
+    <app-editable-map *ngIf="card.map" style="width: 100%;height: calc(70vh - 4.7rem)"></app-editable-map>
     <mat-card-actions align="end" *ngIf="card.buttons">
         <button *ngFor="let button of card.buttons" mat-stroked-button
         [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'"

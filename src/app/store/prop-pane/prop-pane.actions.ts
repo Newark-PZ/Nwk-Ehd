@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ParcelFields, SearchItem } from '../../shared/models';
+import { ArcFeature, SearchItem } from '../../shared/models';
 
 export const toggle = createAction(
   '[Prop Pane] Toggle'
@@ -22,5 +22,5 @@ export const setSelectedGeo = createAction(
 );
 export const setPropInfo = createAction(
   '[Prop Pane] SET_PROP_INFO',
-  props<{ payload: ParcelFields }>()
+  props<{ payload: ArcFeature['attributes'] }>()
 );

@@ -9,7 +9,7 @@
     </ng-container>
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef>Layers</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{(row.get('className') ? row.get('className') : row.getClassName()) | titlecase}}{{row.getLayersArray().length > 1 ? ' Layers' : ''}}</mat-cell>
+        <mat-cell *matCellDef="let row">{{replaceUnderscore(row.get('className') ? row.get('className') : row.getClassName()) | titlecase}}{{row.getLayersArray().length > 1 ? ' Layers' : ''}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="visible">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -40,7 +40,7 @@
                                 <mat-icon>{{ lyr.getVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
                             </button>
                         </td>
-                        <td>{{lyr.getClassName() === 'LU' ? 'Land Use' : lyr.getClassName() | titlecase}}</td>
+                        <td>{{lyr.getClassName() === 'LU' ? 'Land Use' :  replaceUnderscore(lyr.getClassName()) | titlecase}}</td>
                         <td>
                             <button mat-icon-button title="Layer Info" (click)="$event ? openDetails(lyr) : null">
                                 <mat-icon style="font-size:1.2rem">{{ 'info' }}</mat-icon>

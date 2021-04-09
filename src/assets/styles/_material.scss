@@ -1,7 +1,13 @@
 @use './variables' as *;
 @use '../../../node_modules/@angular/material/theming' as *;
 @include mat-core();
-$nwk-theme: mat-light-theme($nwk-primary-colors, $nwk-accent-colors, $nwk-warn-colors);
+$nwk-theme: mat-light-theme((
+    color: (
+      primary: $nwk-primary-colors,
+      accent: $nwk-accent-colors,
+      warn: $nwk-warn-colors  
+    )
+  ));
 @include angular-material-theme($nwk-theme);
 $custom-typography: mat-typography-config( $font-family: 'Segoe UI, sans-serif', $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500));
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).

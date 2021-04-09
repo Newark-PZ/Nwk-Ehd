@@ -20,47 +20,54 @@
 <section class="menu-block" [ngClass]="menuOpen ? 'open' : ''" [ngSwitch]="currentTab" *ngIf="menuOpen">
     <h3 *ngIf="menuOpen" style="margin-top:0" [innerText]="currentTab | titlecase"></h3>
     <div *ngSwitchCase="'Property Information'" style="overflow-y: auto; overflow-x: hidden; height: 85%">
-        <div *ngIf="!(propSub | async) || (propSub | async).blocklot === ' '; else info">
+        <div *ngIf="!(propSub | async) || (propSub | async).MOD4_BLOCK_LOT === ' '; else info">
             <p>Click on the map to get information about a parcel</p>
             <p class="flex-col-12">Make sure to click on a location with an address/blocklot associated to it</p>
         </div>
         <ng-template #info>
         <div class="prop-title" (click)="copyVal()">
             <span
-                [innerHTML]="(propSub | async).proploc !== '' ? (propSub | async).proploc : (propSub | async).blocklot | titlecase">Address</span>
-            <span *ngIf="(propSub | async).proploc">Block: {{ (propSub | async).blocklot.split('-')[0] }} | Lot:
-                {{ (propSub | async).blocklot.split('-')[1] }}</span>
+                [innerHTML]="(propSub | async).PROPLOC !== '' ? (propSub | async).PROPLOC : (propSub | async).MOD4_BLOCK_LOT | titlecase">Address</span>
+            <span *ngIf="(propSub | async).PROPLOC">Block: {{ (propSub | async).MOD4_BLOCK_LOT.split('-')[0] }} | Lot:
+                {{ (propSub | async).MOD4_BLOCK_LOT.split('-')[1] }}</span>
         </div>
         <mat-table [dataSource]="propFields.slice(2)" multiTemplateDataRows class="prop-table">
             <ng-container matColumnDef="prop">
-                <mat-cell *matCellDef="let row">{{ row.name | titlecase}}</mat-cell>
+                <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="value">
                 <mat-cell *matCellDef="let row" [ngSwitch]="row.prop">
-                    <ng-container *ngSwitchCase="'zone'">
+                    <ng-container *ngSwitchCase="'ZONING'">
                         <div class="zone" [ngClass]="(propSub | async)[row.prop]"
                             [style.background]=" zoneFilter((propSub | async)[row.prop])[1]">
                             {{ (propSub | async)[row.prop] || 'N/A'}}
                         </div>
                         {{ zoneFilter( (propSub | async)[row.prop])[0] }}
                     </ng-container>
-                    <ng-container *ngSwitchCase="'propclass'">
+                    <ng-container *ngSwitchCase="'PROPCLASS'">
                         <div class="propclass" [ngClass]="'pc-'+(propSub | async)[row.prop]"
                             [style.background]=" propClassFilter((propSub | async)[row.prop])[1]">
                             {{ (propSub | async)[row.prop] || 'N/A'}}
                         </div>
                         {{ propClassFilter( (propSub | async)[row.prop])[0] }}
                     </ng-container>
+                    <ng-container *ngSwitchCase="'IN_UEZ'">
+                        {{ (propSub | async)[row.prop] && (propSub | async)[row.prop] !== ' ' ? (((propSub | async)[row.prop] === 1).toString() | titlecase) : 'False'}}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'HIST_DIST'">
+                        <span *ngIf="!(propSub | async)['HIST_DIST'] && !(propSub | async)['HIST_PROP']">N/A</span>
+                        <span *ngFor="let prop of ['HIST_DIST','HIST_PROP']">{{ (propSub | async)[prop] && (propSub | async)[prop] !== ' ' ? (propSub | async)[prop] : ''}}</span>
+                    </ng-container>
                     <ng-container *ngSwitchDefault>
-                        {{ (propSub | async)[row.prop] === ' ' ? 'N/A' : (propSub | async)[row.prop] }}
+                        {{ (propSub | async)[row.prop] && (propSub | async)[row.prop] !== ' ' ? (propSub | async)[row.prop] : 'N/A' }}
                     </ng-container>
                 </mat-cell>
             </ng-container>
             <mat-row class="row" *matRowDef="let row; columns: ['prop','value'];"></mat-row>
         </mat-table>
-        <a class="mat-raised-button mat-primary"
-            style="margin: 1rem;" *ngIf="(propSub | async)['blocklot'] as blocklot" (click)="openMoreInfo(blocklot)">See
-            More Info</a>
+        <button class="mat-raised-button mat-primary" mat-raised-button [disabled]="blocklot === '__-__'"
+            style="margin: 1rem;"  *ngIf="(propSub | async)['MOD4_BLOCK_LOT'] as blocklot" (click)="openMoreInfo(blocklot)">See
+            More Info</button>
         </ng-template>
     </div>
     <div *ngSwitchCase="'export'">

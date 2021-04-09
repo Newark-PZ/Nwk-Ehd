@@ -135,6 +135,15 @@ export interface SearchFeature {
     BlockLot: string;
     PropLoc: string;
 }
+export interface ArcAddressPt {
+    attributes: {
+        ADDR_STREET: string;
+        ADDR_LEGAL: string;
+        BLOCK_LOT: string;
+        POINT_X: number;
+        POINT_Y: number;
+    };
+}
 export interface SearchItem {
     STREET_ADD: string;
     BLOCK_LOT: string;
@@ -176,19 +185,44 @@ export interface GSheetsValuesResponse {
 }
 export interface ArcFeature {
     attributes: {
-        AREA: number;
-        ADDLOTS: string;
-        BLOCK_LOT: string;
         PROPLOC: string;
-        BUILDDESC: string;
-        PROPCLASS: string;
-        LANDVALUE: string;
-        IMPRVALUE: string;
-        REDEV_AREA: 'Yes' | 'No';
-        ZONING: string;
-        HISTORIC: 'Yes' | 'No';
+        MOD4_BLOCK_LOT: string;
+        ADDLOTS?: string;
+        ZONING?: string;
+        PROPCLASS?: string;
+        BUILDDESC?: string;
+        RDV_PLAN?: string;
+        RDV_CODE?: string;
+        HIST_DIST?: string;
+        HIST_PROP?: string;
+        IN_UEZ?: number;
+        OPPO_ZONE?: string;
+        LANDVALUE?: number;
+        IMPRVALUE?: number;
+        CITYWARD?: string;
+        ACREAGE?: number;
+        LSTYRTAX?: number;
     };
     centroid: { x: number; y: number; };
+}
+export interface ArcPropInfo {
+    PROPLOC: string;
+    MOD4_BLOCK_LOT: string;
+    ADDLOTS?: string;
+    ZONING?: string;
+    PROPCLASS?: string;
+    BUILDDESC?: string;
+    RDV_PLAN?: string;
+    RDV_CODE?: string;
+    HIST_DIST?: string;
+    HIST_PROP?: string;
+    IN_UEZ?: number;
+    OPPO_ZONE?: string;
+    LANDVALUE?: number;
+    IMPRVALUE?: number;
+    CITYWARD?: string;
+    ACREAGE?: number;
+    LSTYRTAX?: number;
 }
 export interface ArcPropResponse {
     objectIdFieldName: 'FID' | string;
@@ -205,6 +239,38 @@ export interface ArcPropResponse {
         defaultValue: any;
     }>;
     features: Array<ArcFeature>;
+}
+export interface ArcJSONResponse {
+    objectIdFieldName: 'FID' | string;
+    uniqueIdField: { name: 'FID' | string; isSystemMaintained: boolean; };
+    globalIdFieldName: any;
+    geometryType: string;
+    spatialReference: { wkid: 102100 | number; latestWkid: 3857 | number; };
+    fields: Array<{
+        name: string;
+        type: string,
+        alias: string;
+        sqlType: string;
+        domain: any;
+        defaultValue: any;
+    }>;
+    features: Array<ArcAddressPt>;
+}
+export interface ArcGeoJSONResponse {
+    features: Array<{
+        geometry: any;
+        properties: ArcAddressPt['attributes'];
+        type: string;
+    }>;
+    type: string;
+}
+export interface ArcGeoJSONPropResponse {
+    features: Array<{
+        geometry: any;
+        properties: ArcPropInfo;
+        type: string;
+    }>;
+    type: string;
 }
 export interface RedevCodeRecord {
     _id: number;

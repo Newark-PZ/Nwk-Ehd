@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ParcelFields, SearchItem } from '../../shared/models';
+import { ArcFeature, SearchItem } from '../../shared/models';
 import * as PropPaneActions from './prop-pane.actions';
 
 export interface State {
@@ -7,7 +7,7 @@ export interface State {
   title: string;
   selectedProp: SearchItem;
   selectedGeo: { layer: string; selectedGeo: string; };
-  propInfo: ParcelFields;
+  propInfo: ArcFeature['attributes'];
 }
 
 const initialState: State = {
@@ -19,31 +19,8 @@ const initialState: State = {
      geometry: [ 0, 0 ]
   },
   propInfo: {
-    cartodb_id: '',
-    the_geom: '',
-    the_geom_webmercator: '',
-    objectid: 0,
-    ward: 'CENTRAL',
-    zipcode: '',
-    blocklot: ' ',
-    addlots: '000-00',
-    proploc: '',
-    propclass: '',
-    acreage: 0,
-    landvalue: 0,
-    imprvalue: 0,
-    lstyrtax: 0,
-    zone: 'R-6',
-    property_t: '',
-    historicdi: '',
-    opportunit: '',
-    inuez: false,
-    redevcode: '',
-    redevarea: '',
-    cop_use: '',
-    cop_rda: '',
-    shape_length: 0,
-    shape_area: 0
+    PROPLOC: '',
+    MOD4_BLOCK_LOT: ''
   },
   selectedGeo: {layer: '', selectedGeo: ''}
 };

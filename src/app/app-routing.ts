@@ -33,6 +33,13 @@ export const APP_ROUTES: Routes = [
     pathMatch: 'full',
     redirectTo: 'planningzoning'
   },
+  {
+    path: 'zoning-ordinance',
+    loadChildren: async () => new Promise( () => {
+      if (window.location.href.match(/zoning-ordinance/)) {
+        window.location.href = 'https://drive.google.com/file/d/1d_7DnJQ5M5jdfhwx5RwATWMef5R8EOzu/view';
+      }})
+  },
   // {
   //   component: EhdMainComponent,
   //   loadChildren: async () => import('./ehd-main/ehd-main.module')

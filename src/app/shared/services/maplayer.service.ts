@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Feature, { FeatureLike } from 'ol/Feature';
+import { MVT as MVTFormat } from 'ol/format';
 import GeoJSON from 'ol/format/GeoJSON';
 import LayerGroup from 'ol/layer/Group';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
-import { UTFGrid, XYZ } from 'ol/source';
-import VectorSource from 'ol/source/Vector';
+import VectorTileLayer from 'ol/layer/VectorTile';
+import { Vector as VectorSource, VectorTile as VectorTileSource, XYZ } from 'ol/source';
 import { Fill, Icon, Stroke, Style, Text } from 'ol/style';
 import { LegendItem } from '../models';
 
 interface InitLayerData {
-    cartoName: string;
-    cartoCol?: string;
+    resource: string;
+    resourceNum?: number;
+    keyField?: string;
     group: 'Parcels' | 'Boundary' | 'Overlays';
     legendColor: [number, number, number];
     name: string;
@@ -28,46 +30,83 @@ interface InitLayerData {
 @Injectable({ providedIn: 'root' })
 export class MapLayerService {
     mapsApiUrl = 'https://nzlur.carto.com/api/v1/map/';
+    zones = {
+        'R-1': ['Residential: 1 Family', '#FFFFBE'],
+        'R-2': ['Residential: 1-2 Family', '#FFFF00'],
+        'R-3': ['Residential: 1-3 Family', '#E6E600'],
+        'R-4': ['Residential: Low-Rise Multi-Family', '#e4a024'],
+        'R-5': ['Residential: Mid-Rise Multi-Family', '#FF8C00'],
+        'R-6': ['Residential: High-Rise Multi-Family', '#f37520'],
+        'C-1': ['Commercial: Neighborhood', '#FFBEBE'],
+        'C-2': ['Commercial: Community', '#FF7F7F'],
+        'C-3': ['Commercial: Regional', '#A80000'],
+        'I-1': ['Industrial: Light', '#E8BEFF'],
+        'I-2': ['Industrial: Medium', '#DF73FF'],
+        'I-3': ['Industrial: Heavy', '#8400A8'],
+        'MX-1': ['Mixed-Use: Low Intensity', '#BEFFE8'],
+        'MX-2': ['Mixed-Use: Medium Intensity', '#00E6A9'],
+        'MX-3': ['Mixed-Use: High Intensity', '#00A884'],
+        INST: ['Institutional', '#73B2FF'],
+        PARK: ['Parks & Open Space', '#98E600'],
+        CEM: ['Cemeteries', '#70A800'],
+        RDV: ['Redevelopment Zone', '#E1E1E1'],
+        EWR: ['Airport & Airport Support', '#B2B2B2'],
+        PORT: ['Port Related Industrial', '#686868'],
+        'N/A': ['Not Available', '#000000']
+    };
+    landUses = {
+        1: ['Vacant Property', 'rgba(204,204,204)'],
+        2: ['Residential: < 4 Units', 'rgba(255,235,175)'],
+        '4A': ['Commercial', 'rgba(255,127,127)'],
+        '4B': ['Industrial', 'rgba(170,102,205)'],
+        '4C': ['Apartments', 'rgba(230,152,0)'],
+        '5A': ['Railroad: Class I/II', 'rgba(78,78,78)'],
+        '5B': ['Railroad: Class I/II', 'rgba(78,78,78)'],
+        '5A/B': ['Railroad: Class I/II', 'rgba(78,78,78)'],
+        '15A': ['Exempt: Public/Other School Property', 'rgba(190,210,255)'],
+        '15B': ['Exempt: Public/Other School Property', 'rgba(190,210,255)'],
+        '15A/B': ['Exempt: Public/Other School Property', 'rgba(190,210,255)'],
+        '15C': ['Exempt: Public Property', 'rgba(158,170,215)'],
+        '15D': ['Exempt: Church & Charitable Property', 'rgba(122,142,245)'],
+        '15E': ['Exempt: Cemeteries & Graveyards', 'rgba(163,255,115)'],
+        '15F': ['Exempt: Other', 'rgba(102,119,205)'],
+        Unclassed: ['Unclassed Properties', 'rgba(0,0,0,0.2)']
+    };
     initialLayerData: Array<InitLayerData> = [
         {
-            cartoName: 'landmarkdistricts_160420', name: 'Historic Districts',
+            resource: 'Newark_Historic_Assets', resourceNum: 1, keyField: 'ABR_NAME', name: 'Historic_Districts',
             group: 'Overlays', legendColor: [128, 147, 241], zIndex: 11
         },
         {
-            cartoName: 'newark_redevelopmentareas', name: 'Redevelopment Plans',
+            resource: 'Newark_Redevelopment_Plan_Areas', keyField: 'ShortName', name: 'Redevelopment_Plans',
             group: 'Overlays', legendColor: [254, 95, 0], zIndex: 10
         },
         {
-            cartoName: 'newark_opportunityzones', cartoCol: 'namelsad', name: 'Opportunity Zones',
+            resource: 'Newark_Economic_Development', resourceNum: 1, name: 'Opportunity_Zones',
             group: 'Overlays', legendColor: [106, 88, 55], zIndex: 9
         },
         {
-            cartoName: 'uez', cartoCol: 'uez_name', name: 'Urban Enterprise Zone',
+            resource: 'Newark_Economic_Development', resourceNum: 2, keyField: 'UEZ_NAME', name: 'Urban_Enterprise_Zone',
             group: 'Overlays', legendColor: [226, 157, 227], zIndex: 8
+        },
+        {
+            resource: 'Census_Geographies', resourceNum: 0, name: 'Census_Tracts',
+            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
+        },
+        {
+            resource: 'Census_Geographies', resourceNum: 3, keyField: 'ZCTA5CE10', name: 'Zipcodes',
+            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
+        },
+        {
+            resource: 'Newark_Geographies', resourceNum: 0, keyField: 'name', name: 'Neighborhoods',
+            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
+        },
+        {
+            resource: 'Newark_Geographies', resourceNum: 1, keyField: 'WARD_NAME', name: 'Wards',
+            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
         }
     ];
-    initGeoData: Array<InitLayerData> = [
-        {
-            cartoName: 'newark_censustracts', name: 'Census Tracts',
-            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
-        },
-        {
-            cartoName: 'newark_zipcodes', name: 'Zipcodes',
-            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
-        },
-        {
-            cartoName: 'neighborhoods', name: 'Neighborhoods',
-            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
-        },
-        {
-            cartoName: 'wards', name: 'Wards',
-            group: 'Boundary', legendColor: [0, 0, 0], zIndex: 4
-        }
-    ];
-    initParcelData = [
-        { name: 'Parcels', group: 'Parcels', legendColor: [0, 0, 0], zIndex: 3 }
-        // { name: 'Grid', group: 'Parcels', legendColor: [0, 0, 0], zIndex: 2 }
-    ];
+    initParcelData = [{ name: 'Parcels', group: 'Parcels', legendColor: [0, 0, 0], zIndex: 2 }];
     constructor(readonly http: HttpClient) {}
     makeBasemapGroup(): LayerGroup {
         return new LayerGroup({ layers: [
@@ -79,7 +118,7 @@ export class MapLayerService {
         return new LayerGroup({ layers: [
             new VectorLayer({
                 className: 'Commuter Rail',
-                zIndex: 4.1,
+                zIndex: 5.1,
                 source: new VectorSource({ url: 'assets/data/transit_njt.geojson', format: new GeoJSON() }),
                 style: (feat: Feature) => new Style({
                     image: new Icon({ src: `assets/img/icons/${feat.get('ICON')}.png`, crossOrigin: 'anonymous', scale: 0.5 }),
@@ -88,8 +127,8 @@ export class MapLayerService {
             }),
             new VectorLayer({
                 className: 'Light Rail',
-                minZoom: 15,
-                zIndex: 4,
+                maxResolution:  9.554628535634155,
+                zIndex: 5,
                 source: new VectorSource({ url: 'assets/data/transit_nlr.geojson', format: new GeoJSON() }),
                 style: feat => new Style({
                     image: new Icon({ src: 'assets/img/icons/Logo_NLR.png', crossOrigin: 'anonymous', scale: 0.6 }),
@@ -99,36 +138,53 @@ export class MapLayerService {
         });
     }
     makeLayerGroup(group: 'Boundary' | 'Overlays', visibleLyrs: Array<string> = []): LayerGroup {
-        const buildCartoUrl = (cartoLayer: string, cols: string): string => `https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select%20the_geom,${cols}%20from%20public.${cartoLayer}`;
+        // const buildCartoUrl = (cartoLayer: string, cols: string): string => `https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select%20the_geom,${cols}%20from%20public.${cartoLayer}`;
+        const buildArcGISURL = (resourceName: string, resourceNum: number, keyField: string) => `https://services1.arcgis.com/WAUuvHqqP3le2PMh/ArcGIS/rest/services/${resourceName}/FeatureServer/${resourceNum}/query?where="${keyField}" is not null${resourceName === 'Newark_Historic_Assets' ? ` AND "STATUS"='LISTED'` : ''}&geometryType=esriGeometryPolygon&outFields="${keyField}"&returnGeometry=true&f=geojson`;
 
         return new LayerGroup({
-            layers: (group === 'Boundary' ? this.initGeoData : this.initialLayerData).map(il => new VectorLayer({
+            layers: this.initialLayerData.filter(il => il.group === group)
+            .map(il => new VectorLayer({
                 className: il.name,
                 zIndex: il.zIndex,
-                visible: visibleLyrs.includes(il.cartoName),
-                style: feat => this.styleFunction(il.group, feat, il.cartoCol ? il.cartoCol : 'name', il.legendColor),
+                visible: visibleLyrs.includes(il.name),
+                style: feat => this.styleFunction(il.group, feat, il.keyField ? il.keyField : 'NAMELSAD', il.legendColor),
                 source: new VectorSource({
-                    url: buildCartoUrl(il.cartoName, il.cartoCol ? il.cartoCol : 'name'),
+                    url: buildArcGISURL(il.resource, il.resourceNum ? il.resourceNum : 0,  il.keyField ? il.keyField : 'NAMELSAD'),
                     format: new GeoJSON(),
                     attributions: this.getAttributions(il.name)
                 })
             }))
         });
     }
+    setParcelStyle(attr: 'Zoning' | 'LandUse' | 'Base', feat: FeatureLike): Style {
+        const styler = (l, f) => {
+            switch (l) {
+            case 'Zoning': return (
+                {color: `${this.zones[f.get('ZONING') === undefined ? 'N/A' : f.get('ZONING')][1]}CC`}
+                );
+            case 'LandUse': return (
+                {color: `${this.landUses[f.get('PROPCLASS') === undefined ? 'Unclassed' : f.get('PROPCLASS')][1].slice(0, -1)},.8)`}
+                );
+            default: return ({color: 'transparent'});
+        }};
+
+        return new Style({
+            fill: new Fill(styler(attr, feat)),
+            stroke: new Stroke({width: 0.2, color: 'grey'})
+        });
+    }
     makeParcelGroup(layer: 'Zoning' | 'LandUse' | 'Base'): LayerGroup {
         return new LayerGroup({ layers:
             this.initParcelData.map(
-                (ip, i) => new TileLayer({ className: `${ip.name}`, zIndex: ip.zIndex, source: this.makeParcelSources(layer)[i] })
+                (ip, i) => new VectorTileLayer({
+                    className: ip.name, zIndex: ip.zIndex,
+                    source: new VectorTileSource({
+                        format: new MVTFormat(),
+                        url: 'https://vectortileservices1.arcgis.com/WAUuvHqqP3le2PMh/arcgis/rest/services/Newark_Parcels_Zoning/VectorTileServer/tile/{z}/{y}/{x}.pbf'
+                    }),
+                    style: feat => this.setParcelStyle(layer, feat)
+                })
         )});
-    }
-    makeParcelSources(layer: 'Zoning' | 'LandUse' | 'Base'): Array<XYZ | UTFGrid> {
-        const utfID = {Zoning: 'nzlur@5593c0de@38273e9fe0f1c2971af7fdc993ea5f81:1603212334613', LandUse: 'nzlur@6e7b293d@b00a5ad5f87dd84493a639f12bf0a825:1595904108552', Base: 'nzlur@454dcbd4@351b9f58717a82aa3fb7531e7aaca718:1595904108552'};
-        const buildUrls = (): Array<string> => [`https://nzlur.carto.com/api/v1/map/named/Parcels${layer}/all/{z}/{x}/{y}.png`, `https://nzlur.carto.com/api/v1/map/${utfID[layer]}/0/{z}/{x}/{y}.grid.json`];
-
-        return [
-            new XYZ({url: buildUrls()[0], crossOrigin: 'anonymous', attributions: this.getAttributions('parcels') }),
-            new UTFGrid({tileJSON: { version: '2.2.0', grids: [buildUrls()[1]], tiles: [buildUrls()[1]]}})
-        ];
     }
     styleFunction(group: string, feature: FeatureLike, labelProp = 'name', rgb: [number, number, number]): Style {
         const newstyle = new Style({
@@ -204,44 +260,18 @@ export class MapLayerService {
     getLegendData(name: string, type?: 'Boundary' | 'Overlay' | string): LegendItem {
         switch (name) {
             case 'LandUse':
-                return ({ layer: 'Land Use', group: 'Parcels', items: [
-                        ['1', 'grey', 'rgb(204,204,204)', 'Vacant Property' ],
-                        ['2', 'grey', 'rgb(255,235,175)', 'Residential: < 4 Units' ],
-                        ['4A', 'grey', 'rgb(255,127,127)', 'Commercial' ],
-                        ['4B', 'grey', 'rgb(170,102,205)', 'Industrial' ],
-                        ['4C', 'grey', 'rgb(230,152,0)', 'Apartments' ],
-                        ['5A/B', 'grey', 'rgb(78,78,78)', 'Railroad: Class I/II' ],
-                        ['15A/B', 'grey', 'rgb(190,210,255)', 'Exempt: Public/Other School Property' ],
-                        ['15C', 'grey', 'rgb(158,170,215)', 'Exempt: Public Property' ],
-                        ['15D', 'grey', 'rgb(122,142,245)', 'Exempt: Church & Charitable Property' ],
-                        ['15E', 'grey', 'rgb(163,255,115)', 'Exempt: Cemeteries & Graveyards' ],
-                        ['15F', 'grey', 'rgb(102,119,205)', 'Exempt: Other'],
-                        ['Unclassed', 'grey', 'rgb(255,255,255)', 'Unclassed Properties']
-                ]});
+                return ({
+                    layer: 'Land Use', group: 'Parcels',
+                    items: Object.keys(this.landUses)
+                        .filter(k => !['5A', '5B', '15A', '15B'].includes(k))
+                        .map((k, i) => [k, 'grey', this.landUses[k][1], this.landUses[k][0]])
+                });
             case 'Zoning':
-                return ({ layer: 'Zoning', group: 'Parcels', items: [
-                        [ 'R-1', 'grey', '#fffaca', 'Residential: 1 Family' ],
-                        [ 'R-2', 'grey', '#fff68f', 'Residential: 1-2 Family' ],
-                        [ 'R-3', 'grey', '#fff100', 'Residential: 1-3 Family' ],
-                        [ 'R-4', 'grey', '#ebd417', 'Residential: Low-Rise Multi-Family' ],
-                        [ 'R-5', 'grey', '#b49d34', 'Residential: Mid-Rise Multi-Family' ],
-                        [ 'R-6', 'grey', '#998439', 'Residential: High-Rise Multi-Family' ],
-                        [ 'C-1', 'grey', '#fbc8b3', 'Commercial: Neighborhood' ],
-                        [ 'C-2', 'grey', '#da2028', 'Commercial: Community' ],
-                        [ 'C-3', 'grey', '#850204', 'Commercial: Regional' ],
-                        [ 'I-1', 'grey', '#e1c3dd', 'Industrial: Light' ],
-                        [ 'I-2', 'grey', '#A53ED5', 'Industrial: Medium' ],
-                        [ 'I-3', 'grey', '#c0188c', 'Industrial: Heavy' ],
-                        [ 'MX-1', 'grey', '#e4a024', 'Mixed-Use: Low Intensity' ],
-                        [ 'MX-2', 'grey', '#f37520', 'Mixed-Use: Medium Intensity' ],
-                        [ 'MX-3', 'grey', '#734C00', 'Mixed-Use: High Intensity' ],
-                        [ 'INST', 'grey', '#0063ff', 'Institutional' ],
-                        [ 'PARK', 'grey', '#229A00', 'Parks & Open Space' ],
-                        [ 'CEM', 'grey', '#561818', 'Cemeteries' ],
-                        [ 'RDV', 'grey', '#dddddd', 'Redevelopment Zone' ],
-                        [ 'EWR/EWR-S', 'grey', '#8400A8', 'Airport & Airport Support' ],
-                        [ 'PORT', 'grey', '#4C0073', 'Port Related Industrial']
-                ]});
+                return ({
+                    layer: 'Zoning', group: 'Parcels',
+                    items: Object.keys(this.zones)
+                        .map((k, i) => [k, 'grey', this.zones[k][1], this.zones[k][0]])
+                });
             case 'Base': return {
                     layer: 'Base', group: 'Parcels', items: [ ['Parcel', 'grey', 'City of Newark Parcel' ] ]
                 };

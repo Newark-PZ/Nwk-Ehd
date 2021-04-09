@@ -3063,6 +3063,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/showdown@npm:^1.9.3":
+  version: 1.9.3
+  resolution: "@types/showdown@npm:1.9.3"
+  checksum: f0f92676934dfec00b4a4600b593623b9ed03f52d712e9f4faf9347a474b4938eaa274beac5ac92b61fc7f5ec472d12384ba3f78f86db28c026ef1b76a2e527b
+  languageName: node
+  linkType: hard
+
 "@types/source-list-map@npm:*":
   version: 0.1.2
   resolution: "@types/source-list-map@npm:0.1.2"
@@ -11086,6 +11093,7 @@ fsevents@~2.1.2:
     "@types/mongoose": ^5.10.3
     "@types/node": ^14.14.20
     "@types/ol": ^6.4.2
+    "@types/showdown": ^1.9.3
     "@yarnpkg/pnpify": ^2.4.0
     codelyzer: ^6.0.1
     core-js: ^3.8.2
@@ -11100,11 +11108,13 @@ fsevents@~2.1.2:
     mongoose: ^5.11.10
     ng-packagr: ^11.0.3
     ol: ^6.5.0
+    ol-mapbox-style: ^6.3.2
     proj4: ^2.6.3
     protractor: ~7.0.0
     realm-web: ^1.1.0
     rxjs: ^6.6.3
     sass: ^1.32.0
+    showdown: ^1.9.1
     ts-node: ~9.1.1
     tslib: ^2.0.3
     tslint: ~6.1.3
@@ -11238,6 +11248,19 @@ fsevents@~2.1.2:
   peerDependencies:
     ol: ^6.1.0
   checksum: 3e9a6fdbfdbdafb42cdc77163954b7c8c5fe0ada44a524353e32eddbe2e3bc33cf6baa8bf7809344d76b1d075c02e5b40ef48b55f4761e24a9c1672daa83441f
+  languageName: node
+  linkType: hard
+
+"ol-mapbox-style@npm:^6.3.2":
+  version: 6.3.2
+  resolution: "ol-mapbox-style@npm:6.3.2"
+  dependencies:
+    "@mapbox/mapbox-gl-style-spec": ^13.14.0
+    mapbox-to-css-font: ^2.4.0
+    webfont-matcher: ^1.1.0
+  peerDependencies:
+    ol: ^6.1.0
+  checksum: fd0a32a022c60f64e9b6795ba78208585d568e11b811c8d57ce2b5c92182696a28da77ecc5f9059c408515bf3769984a6697d7dcb66f7848f2acb1c040031ba7
   languageName: node
   linkType: hard
 
@@ -13773,6 +13796,17 @@ resolve@1.18.1:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: ea18044ffaf18129ced5a246660a9171a7dff98999aaa9de8abb237d8a7711d8a1f76e16881399994ee429156717ce1c6a50c665bb18a4d55a7f80b9125b1f7d
+  languageName: node
+  linkType: hard
+
+"showdown@npm:^1.9.1":
+  version: 1.9.1
+  resolution: "showdown@npm:1.9.1"
+  dependencies:
+    yargs: ^14.2
+  bin:
+    showdown: bin/showdown.js
+  checksum: ec5d438ab10fdd3639be5164f526437543be578d3289407efbd3b31fd802038c3dfb6a705dc77061cd61b0044e9b1f3a1e4d457c6f33fdf88c35ddaec0bdeed4
   languageName: node
   linkType: hard
 
@@ -16475,6 +16509,16 @@ typescript@4.0.5:
   languageName: node
   linkType: hard
 
+"yargs-parser@npm:^15.0.1":
+  version: 15.0.1
+  resolution: "yargs-parser@npm:15.0.1"
+  dependencies:
+    camelcase: ^5.0.0
+    decamelize: ^1.2.0
+  checksum: 1969d5cf00b9ff37e4958f2fde76728b6ed0b3be36f25870348f825bc99671665488580179af344209c9e08acf12249a9812c0f426b4062cbf00509ee7815fee
+  languageName: node
+  linkType: hard
+
 "yargs-parser@npm:^18.1.2":
   version: 18.1.3
   resolution: "yargs-parser@npm:18.1.3"
@@ -16507,6 +16551,25 @@ typescript@4.0.5:
     y18n: ^4.0.0
     yargs-parser: ^13.1.2
   checksum: 92c612cd14a9217d7421ae4f42bc7c460472633bfc2e45f7f86cd614a61a845670d3bac7c2228c39df7fcecce0b8c12b2af65c785b1f757de974dcf84b5074f9
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^14.2":
+  version: 14.2.3
+  resolution: "yargs@npm:14.2.3"
+  dependencies:
+    cliui: ^5.0.0
+    decamelize: ^1.2.0
+    find-up: ^3.0.0
+    get-caller-file: ^2.0.1
+    require-directory: ^2.1.1
+    require-main-filename: ^2.0.0
+    set-blocking: ^2.0.0
+    string-width: ^3.0.0
+    which-module: ^2.0.0
+    y18n: ^4.0.0
+    yargs-parser: ^15.0.1
+  checksum: cfe46545a6ddb535e7704a5311986e638734b4a11ed548ca7b3af43ecf99089563d54b1353e47c2d12cc7402f5a3e7c6b95c84f968a1f66bdb209c25aea638c9
   languageName: node
   linkType: hard
 

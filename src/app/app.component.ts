@@ -1,9 +1,11 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 import { Link } from './shared/classes/link.class';
 import { EventsService } from './shared/services/events.service';
 import * as fromStore from './store/store.reducers';
@@ -27,10 +29,13 @@ export class AppComponent implements OnDestroy, OnInit {
   treeControl = new NestedTreeControl<Link>(node => node.children);
   hasChild = (_: number, node: Link) => !!node.children && node.children.length > 0;
   constructor(
+    public storeService: StoreService,
     readonly store: Store<fromStore.StoreState>,
     readonly breakpointObserver: BreakpointObserver,
     readonly events: EventsService,
-    public storeService: StoreService
+    private readonly titleService: Title,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router
   ) {
     this.sidebarOpened$ = this.store.select(state => state.sidebar.opened);
     this.sidebarMode$ = this.store.select(state => state.sidebar.mode);
@@ -41,12 +46,40 @@ export class AppComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.breakpointObserver
       .observe(['(max-width: 767px)'])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {this.mayorDisplay = true; this.deptDisplay = true;
-        } else {this.mayorDisplay = false; this.deptDisplay = false; }
-    });
+      .subscribe({
+        next: (state: BreakpointState) => {
+          if (state.matches) {this.mayorDisplay = true; this.deptDisplay = true;
+          } else {this.mayorDisplay = false; this.deptDisplay = false; }
+        }
+      });
     this.storeService.resetStoreState();
     this.events.initHearings();
+    window.addEventListener('resize', () => { this.appHeight(); });
+    this.appHeight();
+    const appTitle = this.titleService.getTitle();
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => {
+          let child = this.activatedRoute.firstChild;
+          while (child && child.firstChild) { child = child.firstChild; }
+          if (child && child.snapshot.data.title) {
+            const childData = child.snapshot.data;
+
+            return `${childData.title}${
+              ['Boards', 'Virtual Hearings'].includes(childData.title) ? `: ${String(child.snapshot.params.id)
+                .toUpperCase()}` : ''
+            }${childData.parent ? ` - ${childData.parent}` : ''} - Newark EHD`;
+          }
+
+          return appTitle;
+        })
+      )
+      .subscribe({ next: (ttl: string) => { this.titleService.setTitle(ttl); }});
+  }
+  appHeight(): void {
+    const doc = document.documentElement;
+    doc.style.setProperty('--vh', `${String(window.innerHeight * 0.01)}px`);
   }
   toggleSidebar(): void {
     this.storeService.toggleSidebar();
@@ -65,22 +98,13 @@ export class AppComponent implements OnDestroy, OnInit {
     this.store
       .select(state => state.sidebar.opened)
       .pipe(take(1))
-      .subscribe(opened => {
-        if (opened !== evt) {
-          this.storeService.toggleSidebar();
-          this.treeControl.collapseAll();
-        }
-      });
+      .subscribe({next: opened => { if (opened !== evt) { this.storeService.toggleSidebar(); this.treeControl.collapseAll(); }}});
   }
   onRightOpenedChange(evt: boolean): void {
     this.store
       .select(state => state.sidebarRight.opened)
       .pipe(take(1))
-      .subscribe(opened => {
-        if (opened !== evt) {
-          this.storeService.toggleRightSidebar();
-        }
-      });
+      .subscribe({ next: opened => { if (opened !== evt) { this.storeService.toggleRightSidebar(); }}});
   }
   goTo(url): void {
     window.open(url, '_self');

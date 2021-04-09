@@ -13,7 +13,9 @@ body {
     font-family: $nwk-font-family;
     margin: 0 !important;
     font-size: calc(6px + .33vw + .85vh) !important;
-    line-height: calc(1rem + 1.15vh) !important;
+    font-size: calc(6px + .33vw + (var(--vh, 1vw) * 0.85)) !important;
+    line-height: calc(1em + 1.15vh) !important;
+    line-height: calc(1em + (var(--vh, 1vw) * 1.15)) !important;
 }
 
 .mat-expansion-panel-content {
@@ -250,18 +252,19 @@ body {
 .text-table {
   width: 100%;
   tbody {vertical-align: top;}
-  tr { padding: .5rem;}
+  tr {display: flex; align-items: center; padding: .5rem;}
   td {padding: .25rem}
   td.side-header {
     background-color: rgba(50,50,50,.1);
-    padding: .5rem;
     text-align: center;
-    width: 9rem;
+    flex: 1 1 33%;
+    align-self: stretch;
   }
   td.propVals {
     display: flex;
     flex-direction: column;
-    width: 9rem;
+    flex: 1 1 66%;
+    align-self: center;
   }
   @media screen and (max-width: 769px) {
     tr {

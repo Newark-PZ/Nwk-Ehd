@@ -215,3 +215,12 @@ map-info-tabs {
         -webkit-text-fill-color: rgb(13, 71, 161, .8);
     }
 }
+.disabled {
+    color: grey !important;
+    -webkit-text-fill-color: grey !important;
+    touch-action: none;
+    cursor: not-allowed;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}

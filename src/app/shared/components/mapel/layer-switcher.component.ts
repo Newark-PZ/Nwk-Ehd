@@ -13,6 +13,7 @@ import BaseLayer from 'ol/layer/Base';
 import LayerGroup from 'ol/layer/Group';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
+import VectorTileLayer from 'ol/layer/VectorTile';
 import { XYZ } from 'ol/source';
 import { MapLayerService } from '../../services/maplayer.service';
 import { rowExpand } from '../../util/animations';
@@ -55,6 +56,9 @@ export class LayerSwitcherComponent implements OnInit {
         this.parcelGrouping.set('className', 'Parcels');
         this.layers.push(this.parcelGrouping);
     }
+    replaceUnderscore(layer: string): string {
+        return layer.replace(/_/g, ' ');
+    }
     setOpacity(e, layer: BaseLayer): void {
         layer.setOpacity(e.value);
         if ((layer.get('className')).search(/(Parcel)/gi) > -1) {
@@ -85,12 +89,11 @@ export class LayerSwitcherComponent implements OnInit {
         if (group && (group.get('className')).search(/(Parcel)/gi) > -1) {
             const name = layer.getClassName()
                 .replace(' ', '');
-            const newSrcs = this.lyrService.makeParcelSources(name as 'Zoning' | 'LandUse' | 'Base');
             this.map.getLayers()
                 .forEach(
                     l => (l.get('className')).search(/(Parcel)/gi) > -1
                             ? (l as LayerGroup).getLayersArray()
-                                .forEach(lyr => { lyr.setSource(newSrcs[0]); })
+                                .forEach(lyr => { (lyr as VectorTileLayer).setStyle(f => this.lyrService.setParcelStyle(name as 'Zoning' | 'LandUse' | 'Base', f)); })
                             : ''
                 );
             this.viewChanged.emit((name as 'Zoning' | 'LandUse' | 'Base'));
@@ -99,11 +102,17 @@ export class LayerSwitcherComponent implements OnInit {
     openDetails(lyr: VectorLayer | TileLayer): void {
         const className: string = lyr.getClassName();
         const lyrInfo = this.lyrService.getLayerInfo(className);
-        const urlString: string = String(lyr instanceof VectorLayer
-            ? (lyr.getSource()).getUrl()
-            : (lyr.getSource() as XYZ).getUrls()![0]);
+        let urlString: string;
+        if (['Zoning', 'Land Use', 'Base'].includes(className)) {
+            urlString = 'https://data-newgin.opendata.arcgis.com/datasets/newark-parcels?layer=0';
+        } else {
+            const resourceinfo = this.lyrService.initialLayerData.filter(il => className.search(il.name) > -1)[0];
+            urlString = String(lyr instanceof VectorLayer
+                ? `https://data-newgin.opendata.arcgis.com/datasets/${resourceinfo.resource.toLowerCase().replace(/_/gi, '-')}?layer=${resourceinfo.resourceNum ? resourceinfo.resourceNum : 0}`
+                : (lyr.getSource() as XYZ).getUrls()![0]);
+        }
         const addLink = className.search(/(Parcels|Grid|Basemap)/gi) === -1
-            ? `<tr><td class="side-header">Source</td><td><a class="mat-stroked-button" download="Newark_${className.replace(/\s/gi, '_')}.geojson"
+            ? `<tr><td class="side-header">Source</td><td class="propVals"><a class="mat-stroked-button" download="Newark_${className.replace(/\s/gi, '_')}.geojson"
                 href="${urlString}${urlString.startsWith('https://nzlur.carto.com/') ? ('&filename=Newark_').concat(className.replace(/\s/gi, '_')) : ''
                 }">${urlString.startsWith('https://nzlur.carto.com/') ? 'CARTO' : 'Data'} Source</a></td></tr>`
             : '';
@@ -113,8 +122,8 @@ export class LayerSwitcherComponent implements OnInit {
             header: `<b>${lyrInfo.info[0]}</b>`,
             message: `
                     <table class="text-table">
-                        <tr><td class="side-header">Description</td><td>${lyrInfo.info[1]}</td></tr>
-                        <tr><td class="side-header">Attributions</td><td>${lyrInfo.source[0].replace('<a ', '<a class="mat-stroked-button" target="_blank" ')}</td></tr>
+                        <tr><td class="side-header">Description</td><td class="propVals">${lyrInfo.info[1]}</td></tr>
+                        <tr><td class="side-header">Attributions</td><td class="propVals">${lyrInfo.source[0].replace('<a ', '<a class="mat-stroked-button" target="_blank" ')}</td></tr>
                         ${addLink}
                     </table>`
           }
