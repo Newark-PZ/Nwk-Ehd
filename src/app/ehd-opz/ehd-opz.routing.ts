@@ -74,7 +74,8 @@ export const PLANNING_ROUTES: Routes = [
   // { path: 'newarkgo', redirectTo: 'home', pathMatch: 'full' },
   {
     path: ':id',
-    component: PageComponent
+    component: PageComponent,
+    data: {title: 'Program', parent: 'PZO'}
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

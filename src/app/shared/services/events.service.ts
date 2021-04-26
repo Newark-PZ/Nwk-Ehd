@@ -56,17 +56,15 @@ export class EventsService {
             .finally(() => {
                 this.getHearingFolderList('CPB')
                     .then( r => {
-                            this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0].agenda =
-                                r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
-                            this.store.dispatch(HearingActions.setTabCPB({
-                                agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0]
-                                    ? r.filter(v => v.app.match(/(agenda)/ig))[0].link
-                                    : '',
-                                data: r.length > 0 ? r : [],
-                                event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0],
-                                prevHearings:  this.hearings.filter(h => h.board === 'CPB' && h.withinLegalNotice)
-                                    .map(h => ({event: h, data: h.data}))
-                            }));
+                        this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0].agenda =
+                            r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
+                        this.store.dispatch(HearingActions.setTabCPB({
+                            agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
+                            data: r.length > 0 ? r : [],
+                            event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0],
+                            prevHearings:  this.hearings.filter(h => h.board === 'CPB' && h.withinLegalNotice)
+                                .map(h => ({event: h, data: h.data}))
+                        }));
                     })
                     .catch(err => { console.error(err); });
                 this.getHearingFolderList('ZBA')
@@ -173,7 +171,9 @@ export class EventsService {
             });
     }
     nameFix(name: string): string {
-        if (name.includes('CPB')) {
+        if (name.match(/(agenda|findings of fact|fof|ainor)/ig)) {
+            return name;
+        } else if (name.includes('CPB')) {
             return name.slice(0, name.search(/(,|\s+|$)/g) + 1)
                 .replace('CPB', '');
         } else if (name.includes('H20', 0)) {

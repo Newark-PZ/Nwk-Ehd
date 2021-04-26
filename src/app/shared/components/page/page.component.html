@@ -1,6 +1,6 @@
 <mat-toolbar *ngIf="page.splashIcon">
   <div class="title">
-    <mat-icon style="margin-right: .5rem">{{ page.splashIcon }}</mat-icon>
+    <mat-icon style="margin-right: .5rem; max-height: 5rem;">{{ page.splashIcon }}</mat-icon>
     <h2>{{ page.splashTitle }}</h2>
   </div>
   <ng-content select='[subtitleDrop]'></ng-content>
@@ -13,7 +13,7 @@
   <div class="splash-blurb" *ngIf="page.splashBlurb">
     <p [innerHtml]="page.splashBlurb.text"></p>
     <div class="splash-blurb-btns" *ngIf="page.splashBlurb.buttons">
-      <button *ngFor="let button of page.splashBlurb.buttons" mat-stroked-button
+      <button *ngFor="let button of page.splashBlurb.buttons" mat-stroked-button [ngStyle]="button.disabled ? {'pointer-events': 'none'} : ''"
         [routerLink]="button.link ? [button.parent, button.link] : undefined" (click)="goTo(button.extUrl)">
         {{ button.text }}
         <mat-icon>exit_to_app</mat-icon>

@@ -592,19 +592,19 @@
         "alt": "Newark Go: Woman Using Scooter"
     },
     "splashBlurb": {
-        "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot in the spring of 2021. To get involved, please take our <a href='https://newark.seamlessdocs.com/f/qwwy6utlw3fq'>survey<a/>&mdash;<a href='https://newark.seamlessdocs.com/f/3f7vgoap9mny'>o en espa&ntilde;ol</a>&mdash;& join us for our three public meetings.",
-        "buttons": [{
-                "text": "Survey-EN",
-                "extUrl": "https://newark.seamlessdocs.com/f/qwwy6utlw3fq"
+        "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot. Operators must obtain a valid permit from the Dept. of Engineering. This page will include the application for obtaining the permit once it is available.",
+        "buttons": [
+            {
+                "text": "Ordinance 21-0261",
+                "extUrl": "https://drive.google.com/file/d/1CrUNFjOejVRaRjbcxN1OOWb61gyHrnHL/view?usp=sharing"
             },
             {
-                "text": "More Details",
-                "extUrl": "https://drive.google.com/file/d/1qsHYhH8xK67uNLGmYjzyvE5bbG5r0uLD/view?usp=sharing"
+                "text": "Rules & Regulations",
+                "extUrl": "https://drive.google.com/file/d/1huKRZvPSfEbrNFzFAYReZ46npeDrbJ0f/view?usp=sharing"
             },
             {
-                "text": "Map Corrals",
-                "parent": "/planningzoning",
-                "link": "corrals"
+                "text": "Operator Permit Application",
+                "extUrl": "https://drive.google.com/file/d/1_-KrfUulZPmxcgMtzGO2VXvXx-s10vEo/view?usp=sharing"
             }
         ]
     },
@@ -631,6 +631,17 @@
         {
             "header": "FAQs",
             "faq": "newarkgo"
+        },
+        {
+            "header": "Get Involved",
+            "text": "Help us understand what you are looking for in a dockless scooter and bike program. Fill out our <a href='https://newark.seamlessdocs.com/f/qwwy6utlw3fq'>survey<a/>&mdash;<a href='https://newark.seamlessdocs.com/f/3f7vgoap9mny'>o en espa&ntilde;ol</a> or help us map out where the corrals should go by click the link below",
+            "buttons": [
+                    {
+                        "text": "Map Corrals",
+                        "parent": "/planningzoning",
+                        "link": "corrals"
+                    }
+            ]
         }
     ],
     "contact": {
@@ -659,5 +670,22 @@
         "text": "We need your help! Please use the map below to propose locations for scooter/bike corrals. Priority areas where the operator would ensure availability of vehicles.",
         "map": true
     }]
+},
+{
+    "id": "newarkgo-application",
+    "splashTitle": "<img class='mat-flat-button cols-2' src='assets/img/headerPhotos/newarkgo_sm.svg'><span class='cols-10 margin_left_1'>NewarkGo<br>Application</span>",
+    "splashBlurb": {
+        "text": "Operating a shared dockless vehicle program requires a valid permit from the Department of Engineering. This page will include the application for obtaining the permit once the application is available.",
+        "buttons": [{
+            "text": "Back to Newark Go",
+            "parent": "/planningzoning",
+            "link": "newarkgo"
+        }]
+    },
+    "splashImg": {
+        "src": "assets/img/headerPhotos/corral_render.jpg",
+        "alt": "Newark Go: Corral Render"
+    },
+    "sections": []
 }
 ]

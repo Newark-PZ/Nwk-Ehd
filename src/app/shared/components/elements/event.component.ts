@@ -92,57 +92,61 @@ export class EventComponent implements OnInit, OnChanges {
             this.eventClicked.emit(true);
         }
     }
-    setData(board: 'ZBA' | 'CPB' | 'EC' | 'LHPC' | 'RC', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
+    setData(board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA', hearing: Hearing, agenda = '', fofId?: string ): Array<EventTableRow> {
         const idno = hearing ? hearing.link.substring(
             hearing.link.lastIndexOf('/') + 1,
             hearing.link.includes('?pwd=') ? hearing.link.lastIndexOf('?pwd=') : undefined
             ) : '000 0000 0000';
-        const pwd = hearing.link.includes('?pwd=') ? hearing.link.substring(hearing.link.lastIndexOf('?pwd=') + 5) : undefined;
+        const pwd = hearing && hearing.link.includes('?pwd=') ? hearing.link.substring(hearing.link.lastIndexOf('?pwd=') + 5) : undefined;
         const hearingid = `${idno.slice(0, 3)} ${idno.slice(3, 7)} ${idno.slice(7)}`;
-        const setRows = (idnum, id): Array<EventTableRow> => {
-            switch (board) {
-                case 'RC': return [
-                    { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString('en-us') : 'TBD'} EST`},
-                    { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
-                      link: hearing ? hearing.link : ''},
-                    { section: 'iPhone One-Tap', content: 'US', numbers: [`6465588656,,${idnum}#`, `3017158592,,${idnum}#`]},
-                    { section: 'Other Phone<br>' +
-                      '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-                      content: 'US',
-                      extra: [`<b>Webinar ID</b>: ${id}`, '<a href="https://newarknj.zoom.us/u/acqduOoBr">International Numbers Here<a>'],
-                      numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
-                ];
-                case 'ZBA': return [
-                    { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} EST`},
-                    { section: 'Agenda', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda},
-                    { section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings' : 'Coming Soon', link: fofId },
-                    { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
-                      link: hearing ? hearing.link : ''},
-                    { section: 'iPhone One-Tap', content: 'US', numbers: [`3017158592,,${idno}#`, `3126266799,,${idno}#`]},
-                    { section: 'Other Phone<br>' +
-                      '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-                      content: 'US',
-                      extra: [`<b>Webinar ID</b>: ${hearingid}`, `<b>Passcode</b>: ${pwd}`, '<a href="https://us02web.zoom.us/u/kiyTJuM8Y">International Numbers Here<a>'],
-                      numbers: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']}
-                ];
-                default: return [
-                        { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString() : 'TBD'} EST`},
-                        { section: 'Agenda', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
-                        { section: 'Join Online', content: hearing && hearing.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
-                          link: hearing ? hearing.link : ''},
-                        { section: 'iPhone One-Tap', content: 'US', numbers: [`9292056099,,${idno}#`, `3017158592,,${idno}#`]},
-                        { section: 'Other Phone<br>' +
-                          '<i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
-                          content: 'US',
-                          extra: [
-                              `<b>Webinar ID</b>: ${hearingid}`,
-                              '<a href="https://newarknj.zoom.us/u/adVk4AnkaC">International Numbers Here<a>'],
-                          numbers: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799']}
-                ];
+        const phoneNums = {
+            oneTap: {
+                CPB: ['3126266799', '6465588656'],
+                EC: ['3017158592', '3126266799'],
+                LHPC: ['3126266799', '6465588656'],
+                RC: ['3017158592', '3126266799'],
+                ZBA: ['3017158592', '3126266799']
+            },
+            basic: {
+                CPB: ['(312) 626-6799', '(646) 558-8656', '(301) 715-8592', '(346) 248-7799', '(669) 900-9128', '(253) 215-8782'],
+                EC: ['(301) 715-8592', '(312) 626-6799', '(646) 558-8656', '(253) 215-8782', '(346) 248-7799', '(669) 900-9128'],
+                LHPC: ['(646) 558-8656', '(301) 715-8592', '(312) 626-6799', '(669) 900-9128', '(253) 215-8782', '(346) 248-7799'],
+                RC: ['(301) 715-8592', '(312) 626-6799', '(646) 558-8656', '(253) 215-8782', '(346) 248-7799', '(669) 900-9128'],
+                ZBA: ['(929) 205-6099', '(301) 715-8592', '(312) 626-6799', '(669) 900-6833', '(253) 215-8782', '(346) 248-7799']
+            },
+            intl: {
+                CPB: 'https://NewarkNJ.zoom.us/u/kttoHed67',
+                EC: 'https://NewarkNJ.zoom.us/u/ad76DzorLo',
+                LHPC: 'https://NewarkNJ.zoom.us/u/kenl9zssK7',
+                RC: 'https://NewarkNJ.zoom.us/u/ab8geqNC0l',
+                ZBA: 'https://us02web.zoom.us/u/kd1mbabqFf'
             }
         };
+        const setRows = (): Array<EventTableRow> => [
+            { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString('en-us') : 'TBD'} EST`},
+            { section: 'Agenda', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
+            ...(board === 'ZBA'
+                ? [{ section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings' : 'Coming Soon', link: fofId }]
+                : []
+            ),
+            {
+                section: 'Join Online',
+                content: hearing?.link.length > 0 ? 'Go To Zoom Meeting' : 'Coming Soon',
+                link: hearing ? hearing.link : ''
+            },
+            { section: 'iPhone One-Tap', content: 'US', numbers: phoneNums.oneTap[board].map((n: string) => `${n},,${idno}#`) },
+            {
+                section: 'Other Phone<br><i class="hide-below-md">for higher quality, dial a number based on your current location</i>',
+                content: 'US',
+                extra: [
+                    `<b>Webinar ID</b>: ${hearingid}`,
+                    ...(pwd ? [`<b>Passcode</b>: ${board === 'EC' ? '63532' : pwd}`] : []),
+                    `<a href="${phoneNums.intl[board]}">International Numbers Here<a>`
+                ],
+                numbers: phoneNums.basic[board]}
+        ];
 
-        return setRows(idno, hearingid);
+        return setRows();
     }
     getNextWeek(): Date {
         const today = new Date();

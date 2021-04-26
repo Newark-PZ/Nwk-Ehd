@@ -34,6 +34,7 @@ export class LinkService {
     new Link({id: 'applying', title: 'Applications & Payment', office: 'planningzoning', icon: 'assignment', isChild: false}),
     new Link({id: 'doremus', title: 'Doremus Port-Industrial District', office: 'planningzoning', icon: 'campaign', isChild: false}),
     new Link({id: 'newarkgo', title: 'NewarkGo', office: 'planningzoning', icon: 'campaign', isChild: false }),
+    new Link({id: 'newarkgo-application', title: 'NewarkGo Application', office: 'planningzoning', icon: 'campaign', isChild: false, hidden: true }),
     new Link({id: 'corrals', title: 'Propose Corrals', office: 'planningzoning', icon: 'campaign', isChild: false }),
     // new Link({id: 'team', title: 'Our Team', office: 'planningzoning', icon: 'people', isChild: false}),
     new Link({id: 'maps', title: 'Maps', office: 'planningzoning', icon: 'map', isChild: false}),
@@ -81,7 +82,7 @@ export class LinkService {
         break;
     }
     this.storeService.setCurrentOffice(office);
-    this.storeService.setRoutesArray(officeLinks);
+    this.storeService.setRoutesArray(officeLinks.filter(l => !l.hidden));
 
     return officeLinks;
   }

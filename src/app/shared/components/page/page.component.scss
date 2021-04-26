@@ -47,6 +47,7 @@
   background-color: rgba(13, 71, 161, .85);
   .splash-title {
     display: flex;
+    width: 50%;
     flex-direction: row;
     line-height: normal;
     align-self: flex-end;
@@ -60,6 +61,7 @@
     display: flex;
     border-radius: .2rem;
     z-index: 1;
+    max-height: 5rem;
     @media screen and (max-width: 576px) {
       font-size: 1.5rem;
       padding: .15rem 1rem;
@@ -117,7 +119,7 @@
     -webkit-text-fill-color: black;
     background-color: white;
     font-size: 1rem !important;
-    flex: 1 1 30%;
+    flex: 1 1 auto;
     margin: .5rem !important;
     .mat-icon {line-height: 1.25rem !important;}
     .mat-button-wrapper {
@@ -326,7 +328,27 @@
     box-shadow: .1px .1px 4px rgba(0,0,260,.4);
     font-weight: 600;
     }
-@media screen and (min-width: 576px) and (max-width: 768px) {
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .splash-blurb {
+      margin: 1rem 20% auto 2rem;
+    }
+    .splash {
+      .splash-title {
+        width: 85%;
+      }
+    }
+  }
+  @media screen and (min-width: 576px) and (max-width: 769px) {
+  .splash-blurb {
+    margin: 0.75rem;
+    padding: 0.75rem;
+  }
+  .splash {
+    .splash-title {
+      width: 100%;
+      margin: 1rem auto !important;
+    }
+  }
   .content-intro {
     font-size: 1rem;
     flex-direction: column;
@@ -344,8 +366,20 @@
       margin: auto;
     }
   }
+  .splash {
+    height: 75vh;
+    p {margin: 0.5rem;}
+    .splash-image {
+      height: 75vh !important;
+    }
+    .splash-title {
+      width: 100%;
+      margin: 1rem auto !important;
+    }
+  }
   .splash-blurb {
-    margin: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
   }
   .section-block {
     margin: 1rem;

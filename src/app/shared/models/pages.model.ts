@@ -104,7 +104,7 @@ export interface HomePage {
     splashImg?: {src: string; alt: string};
     splashBlurb?: {
         text: string;
-        buttons?: Array<{ text: string; link?: string;  extUrl?: string; parent?: string;  }>;
+        buttons?: Array<{ text: string; link?: string;  extUrl?: string; parent?: string;  disabled?: boolean}>;
     };
 }
 export interface BoardPage {

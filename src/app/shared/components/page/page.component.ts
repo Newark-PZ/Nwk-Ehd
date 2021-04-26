@@ -67,7 +67,7 @@ export class PageComponent implements OnChanges {
               }});
             }
           }});
-        } else if (this.link === 'doremus' || this.link === 'newarkgo' || this.link === 'corrals' ) {
+        } else if (['doremus', 'newarkgo', 'newarkgo-application', 'corrals'].includes(this.link) ) {
           this.store
           .select(state => state.i18n.currentLanguage)
           .pipe(take(1))

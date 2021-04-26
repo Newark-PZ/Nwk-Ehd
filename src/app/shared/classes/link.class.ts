@@ -12,6 +12,7 @@ export class Link {
   isChild: boolean;
   disabled: boolean;
   queryParams: object;
+  hidden = false;
   constructor(
     options: {
       id: string,
@@ -22,7 +23,8 @@ export class Link {
       children?: Array<Link>,
       isChild?: boolean,
       queryParams?: object,
-      disabled?: boolean
+      disabled?: boolean,
+      hidden?: boolean
     }) {
     this.id = options.id;
     this.title = options.title;
@@ -34,5 +36,6 @@ export class Link {
     this.queryParams = options.queryParams ? options.queryParams : {};
     this.disabled = options.disabled ? options.disabled : false;
     this.fullPath = this.parent !== '' ? `${this.office}/${this.parent}/${this.id}` : `${this.office}/${this.id}` ;
+    this.hidden = options.hidden ? options.hidden : false;
   }
 }

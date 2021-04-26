@@ -62,8 +62,8 @@ export class AppComponent implements OnDestroy, OnInit {
             const childData = child.snapshot.data;
 
             return `${childData.title}${
-              ['Boards', 'Virtual Hearings'].includes(childData.title) ? `: ${String(child.snapshot.params.id)
-                .toUpperCase()}` : ''
+              ['Boards', 'Virtual Hearings', 'Program'].includes(childData.title) ? `: ${String(child.snapshot.params.id).replace(/\b[a-z]/g, (x) => x.toUpperCase())
+              }` : ''
             }${childData.parent ? ` - ${childData.parent}` : ''} - Newark EHD`;
           }
 
