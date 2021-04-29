@@ -29,7 +29,7 @@
             <mat-table [dataSource]="info.data" multiTemplateDataRows>
                 <ng-container matColumnDef="application">
                     <mat-cell *matCellDef="let row">
-                      <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}-{{ row.app }}</ng-container>
+                      <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}{{ row.app }}</ng-container>
                       <ng-template #justName><mat-icon>{{ row.type === 'folders' ? 'folder' : 'text_snippet' }}</mat-icon></ng-template>
                    </mat-cell>
                 </ng-container>
@@ -57,7 +57,7 @@
             <mat-table [dataSource]="hearing.data" multiTemplateDataRows>
                 <ng-container matColumnDef="application">
                     <mat-cell *matCellDef="let row">
-                      <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}-{{ row.app }}</ng-container>
+                      <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}{{ row.app }}</ng-container>
                       <ng-template #justName><mat-icon>{{ row.type === 'folders' ? 'folder' : 'text_snippet' }}</mat-icon></ng-template>
                     </mat-cell>
                 </ng-container>

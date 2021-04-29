@@ -173,14 +173,12 @@ export class EventsService {
     nameFix(name: string): string {
         if (name.match(/(agenda|findings of fact|fof|ainor)/ig)) {
             return name;
-        } else if (name.includes('CPB')) {
-            return name.slice(0, name.search(/(,|\s+|$)/g) + 1)
-                .replace('CPB', '');
-        } else if (name.includes('H20', 0)) {
-            return name.slice(1, 8);
-        } else if (name.includes('ZBA')) {
-            return name.slice(name.indexOf('ZBA') + 3)
-                    .replace(/^-/, '');
+        } else if (name.search(/CPB\s?\d\d-\d\d/gi) > -1) {
+            return `${name.slice(name.search(/(?<=CPB\s?)/gi), name.search(/(?<=CPB\s?..)/gi))}-${name.slice(name.search(/(?<=CPB\s?..-)/gi), name.search(/(?<=CPB\s?..-..)/gi)).padStart(3, '0')}`;
+        } else if (name.search(/H\s?\d\d-\d\d\d?/gi) > -1) {
+            return  `${name.slice(name.search(/(?<=H\s?\d)/gi) - 1, name.search(/(?<=H\s?\d\d)/gi))}-${name.slice(name.search(/(?<=H\s?..-)/gi), name.search(/(?<=H\s?..-...)/gi)).padStart(3, '0')}`;
+        } else if (name.search(/ZBA-\d\d-\d\d/gi) > -1) {
+            return `${name.slice(name.search(/(?<=ZBA-)/gi), name.search(/(?<=ZBA-..)/gi))}-${name.slice(name.search(/(?<=ZBA-..-)/gi), name.search(/(?<=ZBA-..-..)/gi)).padStart(3, '0')}`;
         }
 
         return name;
@@ -191,10 +189,10 @@ export class EventsService {
         } else if (name.includes('CPB')) {
             return name.slice(name.search(/(,|\s+|$)/g))
             .replace(' -', '') || name.replace('CPB', '');
-        } else if (name.includes('H20', 0)) {
-            return name.slice(8);
-        } else if (name.includes('ZBA')) {
-            return name.split(',')[0];
+        } else if (name.search(/H\s?\d\d-\d\d\d?/gi) > -1) {
+            return  name.slice(name.search(/(?<=H\s?\d\d-\d\d\d?)/gi) + 1).trim();
+        } else if (name.match(/ZBA-\d\d-\d\d/)) {
+            return name.slice(0, name.search(/ZBA-\d\d-\d\d/) - 2);
         }
 
         return name.lastIndexOf('.') === -1 ? name : name.slice(0, name.lastIndexOf('.'));
