@@ -17,7 +17,13 @@ import { GSheetsValuesResponse, HearingFolders, HearingInfo } from '../models';
 export class EventsService {
     hearings: Array<Hearing> = [];
     hearing$: Observable<Array<Hearing>>;
-    folderData: Array<{board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA'; folderData: HearingFolders}> = [];
+    folderData: {CPB: HearingFolders, EC: HearingFolders, LHPC: HearingFolders, RC: HearingFolders, ZBA: HearingFolders} = {
+        CPB: {folders: [], lastUpdated: ''},
+        EC: {folders: [], lastUpdated: ''},
+        LHPC: {folders: [], lastUpdated: ''},
+        RC: {folders: [], lastUpdated: ''},
+        ZBA: {folders: [], lastUpdated: ''}
+    };
     folderLinks: Array<{id: string; board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA'; currenthearingid: string }> = [
         { id: '1VUq_Se2Kk2DcaD4S2qBUeaE_gRlINjuT', board: 'CPB', currenthearingid: '' },
         { id: '1zP3q4h5r7BJ249KAimygdgW_-5M29J0g', board: 'LHPC', currenthearingid: '' },
@@ -160,25 +166,37 @@ export class EventsService {
             }))
             : [{board: boardName, app: '000', address: 'Coming Soon', link: '', type: 'folders'}];
 
-        return this.folderData.filter(d => d.board === boardName).length > 0
-        ? linkMap(this.folderData.filter(d => d.board === boardName)[0].folderData)
-        : this.http.get<HearingFolders>(`https://nwkehd.firebaseio.com/Hearings/hearingFolders/${boardName}.json`)
+        return this.folderData[boardName].lastUpdated === ''
+        ? this.http.get<HearingFolders>(`https://nwkehd.firebaseio.com/Hearings/hearingFolders/${boardName}.json`)
             .toPromise()
             .then(resp => {
-                this.folderData.push({board: boardName, folderData: resp});
+                this.folderData[boardName] = resp;
 
                 return linkMap(resp);
-            });
+            })
+        : linkMap(this.folderData[boardName]);
     }
     nameFix(name: string): string {
         if (name.match(/(agenda|findings of fact|fof|ainor)/ig)) {
             return name;
         } else if (name.search(/CPB\s?\d\d-\d\d/gi) > -1) {
-            return `${name.slice(name.search(/(?<=CPB\s?)/gi), name.search(/(?<=CPB\s?..)/gi))}-${name.slice(name.search(/(?<=CPB\s?..-)/gi), name.search(/(?<=CPB\s?..-..)/gi)).padStart(3, '0')}`;
+            const regexCPB = /CPB\s?/gi;
+            regexCPB.exec(name);
+
+            return `${name.slice(regexCPB.lastIndex, regexCPB.lastIndex + 2)}-${name.slice(regexCPB.lastIndex + 3, regexCPB.lastIndex + 5)
+                .padStart(3, '0')}`;
         } else if (name.search(/H\s?\d\d-\d\d\d?/gi) > -1) {
-            return  `${name.slice(name.search(/(?<=H\s?\d)/gi) - 1, name.search(/(?<=H\s?\d\d)/gi))}-${name.slice(name.search(/(?<=H\s?..-)/gi), name.search(/(?<=H\s?..-...)/gi)).padStart(3, '0')}`;
+            const regexLHPC = /H\s?\d/gi;
+            regexLHPC.exec(name);
+
+            return  `${name.slice(regexLHPC.lastIndex - 1, regexLHPC.lastIndex + 1)}-${name.slice(regexLHPC.lastIndex + 2, regexLHPC.lastIndex + 5)
+                .padStart(3, '0')}`;
         } else if (name.search(/ZBA-\d\d-\d\d/gi) > -1) {
-            return `${name.slice(name.search(/(?<=ZBA-)/gi), name.search(/(?<=ZBA-..)/gi))}-${name.slice(name.search(/(?<=ZBA-..-)/gi), name.search(/(?<=ZBA-..-..)/gi)).padStart(3, '0')}`;
+            const regexZBA = /ZBA-/gi;
+            regexZBA.exec(name);
+
+            return `${name.slice(regexZBA.lastIndex, regexZBA.lastIndex + 2)}-${name.slice(regexZBA.lastIndex + 3, regexZBA.lastIndex + 5)
+                .padStart(3, '0')}`;
         }
 
         return name;
@@ -190,7 +208,11 @@ export class EventsService {
             return name.slice(name.search(/(,|\s+|$)/g))
             .replace(' -', '') || name.replace('CPB', '');
         } else if (name.search(/H\s?\d\d-\d\d\d?/gi) > -1) {
-            return  name.slice(name.search(/(?<=H\s?\d\d-\d\d\d?)/gi) + 1).trim();
+            const regexLHPC2 = /H\s?\d\d-\d\d\d?/gi;
+            regexLHPC2.exec(name);
+
+            return  name.slice(regexLHPC2.lastIndex + 1)
+                .trim();
         } else if (name.match(/ZBA-\d\d-\d\d/)) {
             return name.slice(0, name.search(/ZBA-\d\d-\d\d/) - 2);
         }

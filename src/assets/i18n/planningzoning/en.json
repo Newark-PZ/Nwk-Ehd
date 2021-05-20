@@ -212,7 +212,7 @@
         },
         {
             "header": "Meetings",
-            "text": "<p>The Newark Environmental Commission meets the first Wednesday of each month (except for August) from 6:00 to 8:30 pm via Zoom. Meetings are open to the public and all are welcome.</p><p>For more information and to be added to the distribution list for meeting reminders, please contact: Nathaly Agosto Filion, Chief Sustainability Officer at <a href='mailto:agostofilionn@ci.newark.nj.us'>agostofilionn@ci.newark.nj.us</a>.</p>",
+            "text": "<p>The Newark Environmental Commission meets the first Wednesday of each month (except for August) from 6:00 to 8:30 pm via Zoom. Meetings are open to the public and all are welcome.</p><p>For more information and to be added to the distribution list for meeting reminders, please contact: Nathaly Agosto Filion, Chief Sustainability Officer at <a href='mailto:agostofilionn@ci.newark.nj.us'>agostofilionn@ci.newark.nj.us</a>.</p><p>Video Recordings of meetings will be uploaded to the <a href='https://www.youtube.com/playlist?list=PLRBGJSvsDGGemmCjrsovibQZ_-38oZJUh'>Hearings: Environmental Commission</a> youtube playlist.</p?",
             "iframe": true
         },
         {
@@ -592,19 +592,19 @@
         "alt": "Newark Go: Woman Using Scooter"
     },
     "splashBlurb": {
-        "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot. Operators must obtain a valid permit from the Dept. of Engineering. This page will include the application for obtaining the permit once it is available.",
+        "text": "NewarkGo will bring shared e-bikes & e-scooters to Newark for a 6-month pilot. Operators must obtain a valid permit from the Dept. of Engineering. Please go through the Operator Permit Application, and fill out the Application Form to apply.",
         "buttons": [
             {
-                "text": "Ordinance 21-0261",
-                "extUrl": "https://drive.google.com/file/d/1CrUNFjOejVRaRjbcxN1OOWb61gyHrnHL/view?usp=sharing"
-            },
-            {
-                "text": "Rules & Regulations",
-                "extUrl": "https://drive.google.com/file/d/1huKRZvPSfEbrNFzFAYReZ46npeDrbJ0f/view?usp=sharing"
-            },
-            {
-                "text": "Operator Permit Application",
+                "text": "Operator Application",
                 "extUrl": "https://drive.google.com/file/d/1_-KrfUulZPmxcgMtzGO2VXvXx-s10vEo/view?usp=sharing"
+            },
+            {
+                "text": "Data-Sharing Agreement",
+                "extUrl": "https://drive.google.com/file/d/1ulnHCKACSdKQDg5YNM6JAGKHjPGhpI4_/view?usp=sharing"
+            },
+            {
+                "text": "Application Form",
+                "extUrl":"https://drive.google.com/uc?export=download&id=1eyctd_zblQIBsC8NmhJstfllE42X_8YW"
             }
         ]
     },
@@ -613,7 +613,7 @@
             "img": "assets/img/headerPhotos/newarkgo_body.svg"
         },
         "right": {
-            "text": "<p>NewarkGo will bring shared mobility services, in the form of e-bikes and e-scooters, to the City of Newark for a 6-month pilot in the spring of 2021. Shared mobility services can link underserved populations to jobs, schools, housing, health care facilities, grocery stores, mass transit and other essential services; complement the use of public transportation; and create attractive, vibrant, pedestrian-friendly neighborhoods where people can live, shop, work, and play without relying on automobiles. The City also views shared mobility services as an additional transportation option to promote social distancing during the COVID-19 outbreak.</p>"
+            "text": "<p class='flex'><a class='mat-raised-button cols-6' href='https://drive.google.com/file/d/1CrUNFjOejVRaRjbcxN1OOWb61gyHrnHL/view?usp=sharing'>Ordinance 21-0261&rarr;</a>&emsp;<a class='mat-raised-button cols-6' href='https://drive.google.com/file/d/1huKRZvPSfEbrNFzFAYReZ46npeDrbJ0f/view?usp=sharing'>Rules & Regulations&rarr;</a></p><p>NewarkGo will bring shared mobility services, in the form of e-bikes and e-scooters, to the City of Newark for a 6-month pilot in the spring of 2021. Shared mobility services can link underserved populations to jobs, schools, housing, health care facilities, grocery stores, mass transit and other essential services; complement the use of public transportation; and create attractive, vibrant, pedestrian-friendly neighborhoods where people can live, shop, work, and play without relying on automobiles. The City also views shared mobility services as an additional transportation option to promote social distancing during the COVID-19 outbreak.</p>"
         }
     },
     "sections": [{
