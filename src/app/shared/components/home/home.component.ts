@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
     this.dialog.open(ModalComponent, {
       maxWidth: '90vw',
       data: {
-        header: `<b>${evt.title}</b><br><span>${evt.start.toLocaleDateString()}</span>`,
+        header: `<b>${evt.title}</b><br><span>${evt.type} Meeting ${evt.start.toLocaleDateString()}</span>`,
         message: 'event',
         event: evt
       }

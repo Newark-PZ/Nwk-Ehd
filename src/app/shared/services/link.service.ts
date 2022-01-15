@@ -37,7 +37,6 @@ export class LinkService {
     new Link({id: 'newarkgo-application', title: 'NewarkGo Application', office: 'planningzoning', icon: 'campaign', isChild: false, hidden: true }),
     new Link({id: 'corrals', title: 'Propose Corrals', office: 'planningzoning', icon: 'campaign', isChild: false }),
     // new Link({id: 'team', title: 'Our Team', office: 'planningzoning', icon: 'people', isChild: false}),
-    new Link({id: 'maps', title: 'Maps', office: 'planningzoning', icon: 'map', isChild: false}),
     new Link({id: 'boards', title: 'Boards & Commissions', office: 'planningzoning',
               children: this.planingzoningChildren.filter(v => v.parent === 'boards'), icon: 'people', isChild: false}),
     new Link({id: 'resources', title: 'Resources', office: 'planningzoning',

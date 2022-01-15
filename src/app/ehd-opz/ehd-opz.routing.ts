@@ -5,7 +5,6 @@ import { OpzContactComponent } from './pages/contact.component';
 import { OpzDashboardComponent } from './pages/dashboard.component';
 import { OpzFAQComponent } from './pages/faqs.component';
 import { OpzHomeComponent } from './pages/home.component';
-import { OpzMapComponent } from './pages/opz-map.component';
 import { OpzResourcesComponent } from './pages/resources.component';
 // import { OpzZoningComponent } from './pages/zoning.component';
 
@@ -65,11 +64,6 @@ export const PLANNING_ROUTES: Routes = [
         data: {title: 'Documents', parent: 'PZO'}
       }
     ]
-  },
-  {
-    path: 'maps',
-    component: OpzMapComponent,
-    data: {title: 'Zoning Map', parent: 'PZO'}
   },
   // { path: 'newarkgo', redirectTo: 'home', pathMatch: 'full' },
   {

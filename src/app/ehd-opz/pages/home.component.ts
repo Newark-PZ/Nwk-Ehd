@@ -38,7 +38,7 @@ export class OpzHomeComponent {
         icon: 'payment', category: 'Tools', title: 'Applications & Payment', parent: '/planningzoning', link: 'applying', new: true
       },
       {
-        icon: 'map', category: 'Tools', title: 'Interactive Zoning Map', parent: '/planningzoning', link: 'maps'
+        icon: 'map', category: 'Tools', title: 'Interactive Zoning Map', extUrl: 'https://newgin.maps.arcgis.com/apps/webappviewer/index.html?id=8364d36c5a204dfc8b60b4330af8b1df'
       },
       {
         icon: 'info', category: 'Tools', title: 'Our Zoning Code', extUrl: '/zoning-ordinance', disabled: false

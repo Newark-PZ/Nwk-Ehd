@@ -14,38 +14,38 @@ const initialState: State = {
     cpbTab: {
         agenda: '',
         board: 'CPB',
-        data: [],
         label: 'Central Planning Board',
+        upcomingHearings: [],
         prevHearings: []
     },
     ecTab: {
         agenda: '',
         board: 'EC',
-        data: [],
         label: 'Environmental Commission',
+        upcomingHearings: [],
         prevHearings: []
     },
     lhpcTab: {
         agenda: '',
         board: 'LHPC',
-        data: [],
         label: 'Landmarks & Historic Pres.',
+        upcomingHearings: [],
         prevHearings: []
     },
     rcTab: {
         agenda: '',
         board: 'RC',
-        data: [],
         fofId: '',
         label: 'Rent Control Board',
+        upcomingHearings: [],
         prevHearings: []
     },
     zbaTab: {
         agenda: '',
         board: 'ZBA',
-        data: [],
         fofId: '',
         label: 'Zoning Board of Adjustment',
+        upcomingHearings: [],
         prevHearings: []
     }
 };
@@ -55,46 +55,46 @@ export const hearingReducer = createReducer(
     on(HearingActions.setTabCPB, (state, action) => ({ ...state, cpbTab: {
             agenda: action.agenda,
             board: 'CPB',
-            data: action.data,
             event: action.event,
             label: 'Central Planning Board',
+            upcomingHearings: action.upcomingHearings,
             prevHearings: action.prevHearings
         }
     })),
     on(HearingActions.setTabEC, (state, action) => ({ ...state, ecTab: {
             agenda: action.agenda,
             board: 'EC',
-            data: action.data,
             event: action.event,
             label: 'Environmental Commission',
+            upcomingHearings: action.upcomingHearings,
             prevHearings: action.prevHearings
         }
     })),
     on(HearingActions.setTabLHPC, (state, action) => ({ ...state, lhpcTab: {
             agenda: action.agenda,
             board: 'LHPC',
-            data: action.data,
             event: action.event,
             label: 'Landmarks & Historic Pres.',
+            upcomingHearings: action.upcomingHearings,
             prevHearings: action.prevHearings
         }
     })),
     on(HearingActions.setTabRC, (state, action) => ({ ...state, rcTab: {
             agenda: action.agenda,
             board: 'RC',
-            data: action.data,
             event: action.event,
             label: 'Rent Control Board',
+            upcomingHearings: action.upcomingHearings,
             prevHearings: action.prevHearings
         }
     })),
     on(HearingActions.setTabZBA, (state, action) => ({ ...state, zbaTab: {
             agenda: action.agenda,
             board: 'ZBA',
-            data: action.data,
             event: action.event,
             fofId: action.fofId,
             label: 'Zoning Board of Adjustment',
+            upcomingHearings: action.upcomingHearings,
             prevHearings: action.prevHearings
         }
     }))

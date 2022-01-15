@@ -24,14 +24,12 @@
                 <span *ngIf="homePage.officer">{{ homePage.officer.name }}
                     <span class="officer-position"
                         *ngIf="homePage.officer.position">{{ homePage.officer.position }}</span>
-                    <img *ngIf="homePage.officer.flair" [src]="'assets/img/' + homePage.officer.flair"
-                        class="officer-flair">
-                </span>
-            </div>
-            <img *ngIf="homePage.officer && homePage.officer.pic" [src]="'assets/img/people/' + homePage.officer.pic"
-                class="officer-pic">
+        <img *ngIf="homePage.officer.flair" [src]="'assets/img/' + homePage.officer.flair" class="officer-flair">
         </span>
-        <span class="toolbar-spacer right-space"></span>
+    </div>
+    <img *ngIf="homePage.officer && homePage.officer.pic" [src]="'assets/img/people/' + homePage.officer.pic" class="officer-pic">
+    </span>
+    <span class="toolbar-spacer right-space"></span>
     </div>
 </section>
 <section class="content-intro" *ngIf="homePage.contentIntro">
@@ -41,9 +39,9 @@
         </h4>
         <p *ngIf="homePage.contentIntro.text">{{ homePage.contentIntro.text }}</p>
         <div class="content-intro-btns">
-            <button *ngFor="let button of (nextevents | async); let i = index" class="event"
-                (click)="openEvent(button)">
-                <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
+            <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
+                <div><strong>{{ button.title }}</strong><span *ngIf="button.type != 'Regular'" class="event-tag">{{button.type}}</span></div>
+                <div>{{button.start | date:'short'}}</div>
             </button>
             <button class="dashboard-btn" *ngIf="office !=='/ehd'" [routerLink]="[office,'virtualhearing']">
                 <mat-icon>live_tv</mat-icon>
@@ -61,8 +59,7 @@
 <section class="section-blocks">
     <mat-card class="section-block" style="box-shadow: none;">
         <mat-accordion [multi]="expansionMulti$ | async">
-            <mat-expansion-panel *ngFor="let cat of homePage.buttonCategories" [expanded]="expansionOpen$ | async"
-                [hideToggle]="expansionDisabled$ | async">
+            <mat-expansion-panel *ngFor="let cat of homePage.buttonCategories" [expanded]="expansionOpen$ | async" [hideToggle]="expansionDisabled$ | async">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <h3>
@@ -71,10 +68,7 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="program-cards">
-                    <mat-card [ngClass]="card.disabled ? 'disabled' : ''"
-                        [routerLink]="card.disabled ? undefined : [card.parent, card.link]" [queryParams]="card.params"
-                        (click)="card.disabled ? '' : goTo(card.extUrl)" class="program-card"
-                        *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
+                    <mat-card [ngClass]="card.disabled ? 'disabled' : ''" [routerLink]="card.disabled ? undefined : [card.parent, card.link]" [queryParams]="card.params" (click)="card.disabled ? '' : goTo(card.extUrl)" class="program-card" *ngFor="let card of homePage.buttons | FilterCatPipe:filterCat(cat)">
                         <div class="button-card">
                             <mat-icon style="margin-right: .5rem" [ngStyle]="card.icon === 'newarkgo' ? {'width': '3rem','height': '2rem'} : ''" [svgIcon]="card.icon === 'newarkgo' ? 'newarkgo' : undefined">{{ card.icon }}</mat-icon>
                             <h4 style="margin: auto">{{ card.title }}</h4>
@@ -103,10 +97,8 @@
             </ul>
         </div>
         <mat-card-actions align="end" *ngIf="card.buttons">
-            <button *ngFor="let button of card.buttons" mat-stroked-button
-                [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'"
-                [routerLink]="button.link ? [button.parent, button.link] : undefined"
-                [queryParams]="button.params ? button.params : undefined" (click)="goTo(button.extUrl)">
+            <button *ngFor="let button of card.buttons" mat-stroked-button [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" [routerLink]="button.link ? [button.parent, button.link] : undefined" [queryParams]="button.params ? button.params : undefined"
+                (click)="goTo(button.extUrl)">
                 <mat-icon>{{ button.icon ? button.icon : 'exit_to_app' }}</mat-icon>
                 {{ button.text }}
             </button>
@@ -123,11 +115,9 @@
                     <td style="display: flex; justify-content: space-between; align-items: center;">
                         <img [src]="contact.img" style="max-width: 6rem;border-radius: .5rem;margin-right: 1rem;">
                         <div>
-                        <p style="line-height: .5rem;font-weight: 400;font-size: 1.7rem;"
-                            [innerHtml]="contact.officer"></p>
-                        <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;"
-                            [innerHtml]="contact.officerTitle">
-                        </p>
+                            <p style="line-height: .5rem;font-weight: 400;font-size: 1.7rem;" [innerHtml]="contact.officer"></p>
+                            <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;" [innerHtml]="contact.officerTitle">
+                            </p>
                         </div>
                     </td>
                     <td>

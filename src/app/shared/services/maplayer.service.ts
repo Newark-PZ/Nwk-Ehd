@@ -29,7 +29,6 @@ interface InitLayerData {
  */
 @Injectable({ providedIn: 'root' })
 export class MapLayerService {
-    mapsApiUrl = 'https://nzlur.carto.com/api/v1/map/';
     zones = {
         'R-1': ['Residential: 1 Family', '#FFFFBE'],
         'R-2': ['Residential: 1-2 Family', '#FFFF00'],
@@ -138,7 +137,6 @@ export class MapLayerService {
         });
     }
     makeLayerGroup(group: 'Boundary' | 'Overlays', visibleLyrs: Array<string> = []): LayerGroup {
-        // const buildCartoUrl = (cartoLayer: string, cols: string): string => `https://nzlur.carto.com/api/v2/sql?format=GeoJSON&q=select%20the_geom,${cols}%20from%20public.${cartoLayer}`;
         const buildArcGISURL = (resourceName: string, resourceNum: number, keyField: string) => `https://services1.arcgis.com/WAUuvHqqP3le2PMh/ArcGIS/rest/services/${resourceName}/FeatureServer/${resourceNum}/query?where="${keyField}" is not null${resourceName === 'Newark_Historic_Assets' ? ` AND "STATUS"='LISTED'` : ''}&geometryType=esriGeometryPolygon&outFields="${keyField}"&returnGeometry=true&f=geojson`;
 
         return new LayerGroup({
@@ -179,8 +177,8 @@ export class MapLayerService {
                 (ip, i) => new VectorTileLayer({
                     className: ip.name, zIndex: ip.zIndex,
                     source: new VectorTileSource({
-                        format: new MVTFormat(),
-                        url: 'https://vectortileservices1.arcgis.com/WAUuvHqqP3le2PMh/arcgis/rest/services/Newark_Parcels_Zoning/VectorTileServer/tile/{z}/{y}/{x}.pbf'
+                        format: new MVTFormat({idProperty: 'LOT_BLOCK_LOT'}),
+                        url: 'https://vectortileservices1.arcgis.com/WAUuvHqqP3le2PMh/arcgis/rest/services/Newark_Parcels_with_Ownership/VectorTileServer/tile/{z}/{y}/{x}.pbf'
                     }),
                     style: feat => this.setParcelStyle(layer, feat)
                 })

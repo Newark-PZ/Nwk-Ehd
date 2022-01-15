@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 // import { EhdMainComponent } from './ehd-main/ehd-main.component';
 import { EhdOpzComponent } from './ehd-opz/ehd-opz.component';
 import { EhdOrcComponent } from './ehd-orc/ehd-orc.component';
-import { Newark360Component } from './newark360/newark360.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -21,12 +20,6 @@ export const APP_ROUTES: Routes = [
     loadChildren: async () => import('./ehd-orc/ehd-orc.module')
       .then(m => m.EhdOrcModule),
     path: 'rentcontrol'
-  },
-  {
-    component: Newark360Component,
-    loadChildren: async () => import('./newark360/newark360.module')
-      .then(m => m.Newark360Module),
-    path: '360'
   },
   {
     path: 'ehd/',

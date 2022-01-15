@@ -1,77 +1,88 @@
 <mat-toolbar class="title">
-<mat-icon style="margin-right: .5rem">live_tv</mat-icon>
-<h2>Virtual Hearings Dashboard</h2>
+    <mat-icon style="margin-right: .5rem">live_tv</mat-icon>
+    <h2>Virtual Hearings Dashboard</h2>
 </mat-toolbar>
 <mat-tab-group [selectedIndex]="currentTab" id="appTabs">
     <mat-tab *ngFor="let tab of boardTabs">
-      <ng-template mat-tab-label>
-        <mat-icon style="margin-right: 1rem">live_tv</mat-icon>
-        <h4>{{tab.label}}</h4>
-      </ng-template>
-      <div class="flex-row justify-content-center">
-        <app-event-detail class="cols-8" style="margin: 1rem;"
-        [board]="tab.board"
-        [agenda]="(tab.data | async).agenda ? (tab.data | async).agenda : ''"
-        [fofId]="(tab.data | async).fofId ? (tab.data | async).fofId : ''"></app-event-detail>
-      </div>
-      <mat-accordion class="docs-accordion">
-        <mat-expansion-panel *ngIf="(tab.data | async) as info">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b>Upcoming Hearing</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              Applications + Supporting Documents
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="card-content card-table"> 
-            <p style="background: lightgray;text-align: center;color: white;-webkit-text-fill-color: white;">{{info.event?.start | date:'short'}}</p>  
-            <mat-table [dataSource]="info.data" multiTemplateDataRows>
-                <ng-container matColumnDef="application">
-                    <mat-cell *matCellDef="let row">
-                      <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}{{ row.app }}</ng-container>
-                      <ng-template #justName><mat-icon>{{ row.type === 'folders' ? 'folder' : 'text_snippet' }}</mat-icon></ng-template>
-                   </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="address">
-                  <mat-cell *matCellDef="let row">{{row.address | titlecase}}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="icon">
-                  <mat-cell *matCellDef="let row"><mat-icon>launch</mat-icon></mat-cell>
-              </ng-container>
-              <mat-row class="row" (click)="goToUrl(row.link)" *matRowDef="let row; columns: ['application', 'address','icon'];"></mat-row>
-            </mat-table>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel *ngIf="(tab.data | async).prevHearings as prev">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Previous Hearing
-            </mat-panel-title>
-            <mat-panel-description>
-              Applications + Supporting Documents
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="card-content card-table" *ngFor="let hearing of prev">  
-            <p style="background: lightgray;text-align: center;color: white;-webkit-text-fill-color: white;">{{hearing.event.start  | date:'short'}}</p>
-            <mat-table [dataSource]="hearing.data" multiTemplateDataRows>
-                <ng-container matColumnDef="application">
-                    <mat-cell *matCellDef="let row">
-                      <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}{{ row.app }}</ng-container>
-                      <ng-template #justName><mat-icon>{{ row.type === 'folders' ? 'folder' : 'text_snippet' }}</mat-icon></ng-template>
-                    </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="address">
-                    <mat-cell *matCellDef="let row">{{row.address | titlecase}}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="icon">
-                  <mat-cell *matCellDef="let row"><mat-icon>launch</mat-icon></mat-cell>
-              </ng-container>
-              <mat-row class="row" (click)="goToUrl(row.link)" *matRowDef="let row; columns: ['application', 'address','icon'];"></mat-row>
-            </mat-table>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+        <ng-template mat-tab-label>
+            <mat-icon style="margin-right: 1rem">live_tv</mat-icon>
+            <h4>{{tab.label}}</h4>
+        </ng-template>
+        <div class="next-event">Next Event</div>
+        <div class="flex-row justify-content-center">
+            <app-event-detail class="cols-8" style="margin: 1rem;" [board]="tab.board" [agenda]="(tab.data | async).agenda ? (tab.data | async).agenda : ''" [fofId]="(tab.data | async).fofId ? (tab.data | async).fofId : ''"></app-event-detail>
+        </div>
+        <mat-accordion class="docs-accordion">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Upcoming Hearings
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Applications + Supporting Documents
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="card-content card-table" *ngFor="let hearing of (tab.data | async).upcomingHearings">
+                    <div>
+                        <span>{{hearing.event.start | date:'short'}} {{hearing.event.type}}</span>
+                        <a mat-stroked-button *ngIf="hearing.event.agenda !== ''" [href]="hearing.event.agenda">Agenda</a>
+                        <a mat-stroked-button *ngIf="hearing.event.fof !== ''" [href]="hearing.event.fof">Findings of Fact</a>
+                        <a mat-stroked-button *ngIf="hearing.event.link !== ''" [href]="hearing.event.link">Zoom Link</a>
+                    </div>
+                    <mat-table [dataSource]="hearing.data" multiTemplateDataRows>
+                        <ng-container matColumnDef="application">
+                            <mat-cell *matCellDef="let row">
+                                <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}{{ row.app }}</ng-container>
+                                <ng-template #justName>
+                                    <mat-icon>{{ row.type === 'folders' ? 'folder' : 'text_snippet' }}</mat-icon>
+                                </ng-template>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="address">
+                            <mat-cell *matCellDef="let row">{{row.address | titlecase}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="icon">
+                            <mat-cell *matCellDef="let row">
+                                <mat-icon>launch</mat-icon>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-row class="row" (click)="goToUrl(row.link)" *matRowDef="let row; columns: ['application', 'address','icon'];"></mat-row>
+                    </mat-table>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Previous Hearing
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Applications + Supporting Documents
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="card-content card-table" *ngFor="let hearing of (tab.data | async).prevHearings">
+                    <p style="background: lightgray;text-align: center;color: white;-webkit-text-fill-color: white;">{{hearing.event.start | date:'short'}} {{hearing.event.type}}</p>
+                    <mat-table [dataSource]="hearing.data" multiTemplateDataRows>
+                        <ng-container matColumnDef="application">
+                            <mat-cell *matCellDef="let row">
+                                <ng-container *ngIf="row.type === 'folders' && row.app.match(colRegex) === null; else justName">{{ row.board }}{{ row.app }}</ng-container>
+                                <ng-template #justName>
+                                    <mat-icon>{{ row.type === 'folders' ? 'folder' : 'text_snippet' }}</mat-icon>
+                                </ng-template>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="address">
+                            <mat-cell *matCellDef="let row">{{row.address | titlecase}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="icon">
+                            <mat-cell *matCellDef="let row">
+                                <mat-icon>launch</mat-icon>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-row class="row" (click)="goToUrl(row.link)" *matRowDef="let row; columns: ['application', 'address','icon'];"></mat-row>
+                    </mat-table>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
     </mat-tab>
-  </mat-tab-group>
-  <app-footer></app-footer>
+</mat-tab-group>
+<app-footer></app-footer>

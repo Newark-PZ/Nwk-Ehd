@@ -261,8 +261,8 @@ export interface VirtualHearingTab {
   agenda?: string;
   fofId?: string;
   event?: Hearing;
-  data?: Array<DataRow>;
-  prevHearings?: Array<{event: Hearing; data: Array<DataRow>}>;
+  upcomingHearings:  Array<{event: Hearing; data: Array<DataRow>}>;
+  prevHearings: Array<{event: Hearing; data: Array<DataRow>}>;
 }
 export interface LegendItem {
   layer: string;

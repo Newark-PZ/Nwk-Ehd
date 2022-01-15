@@ -152,7 +152,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy
         }
     });
     const features = this.instance.getFeaturesAtPixel(pixel)
-      .filter(ft => ft.get('layer') === 'Newark_Parcels_2020_07_31');
+      .filter(ft => ft.get('layer') === 'Newark_Parcels_2020_07_31_AddLotFixed');
     this.clicked = features.length > 0 && features[0].get('MOD4_BLOCK_LOT')
       ? { blocklot: features[0].get('MOD4_BLOCK_LOT'), proploc: features[0].get('PROPLOC'), geo: this.clicked.geo, coords: coordinates }
       : { blocklot: '__-__', proploc: 'No Address/Non-Parcel', geo: this.clicked.geo, coords: coordinates };

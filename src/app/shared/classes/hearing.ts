@@ -13,11 +13,13 @@ export class Hearing {
     folderId: string;
     data: Array<HearingInfo>;
     title: string;
+    type: 'Regular' | 'Special' | 'Cancelled' | 'Delayed';
     constructor(
         options: {
             id: string,
             board: 'CPB' | 'EC' | 'LHPC' | 'RC' | 'ZBA',
             start: string | number,
+            type: 'Regular' | 'Special' | 'Cancelled' | 'Delayed',
             link?: string,
             folderId?: string
         }) {
@@ -29,6 +31,7 @@ export class Hearing {
         this.folderId = options.folderId || '';
         this.link = options.link || '';
         this.title = this.getTitle(this.board);
+        this.type = options.type || 'Regular';
     }
     getTitle(board): string {
         switch (board) {

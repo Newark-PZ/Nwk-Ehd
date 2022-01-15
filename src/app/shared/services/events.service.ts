@@ -49,10 +49,15 @@ export class EventsService {
         this.getBoardEvents()
             .then(r => {
                 this.hearings = r;
-                this.hearings.filter(h => h.withinLegalNotice && h.board !== 'RC')
+                const hearingChoice = (hearing: Hearing) => hearing.withinLegalNotice ? hearing.withinLegalNotice : (hearing.timeUntil >= -19800000 && hearing.timeUntil <= 907200000);
+                this.hearings.filter(h => hearingChoice(h) && h.board !== 'RC')
                     .forEach((h, i) => {
                         this.getHearingFolderList(h.board, h.id)
-                            .then(resp => h.data = resp)
+                            .then(resp => {
+                                h.agenda = resp.filter(v => v.app.match(/(agenda)/ig))[0] ? resp.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
+                                h.fof = resp.filter(v => v.app.match(/(findings of fact|fof)/ig))[0] ? resp.filter(v => v.app.match(/(findings of fact|fof)/ig))[0].link : '';
+                                h.data = resp;
+                            })
                             .catch(err => {
                                 console.error(err, `get hearing folder list of within legal notice failed at ${i}`);
                         });
@@ -66,8 +71,9 @@ export class EventsService {
                             r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '';
                         this.store.dispatch(HearingActions.setTabCPB({
                             agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
-                            data: r.length > 0 ? r : [],
                             event: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000)[0],
+                            upcomingHearings: this.hearings.filter(h => h.board === 'CPB' && h.timeUntil >= -19800000 && h.timeUntil <= 907200000)
+                                .map(h => ({event: h, data: h.data})),
                             prevHearings:  this.hearings.filter(h => h.board === 'CPB' && h.withinLegalNotice)
                                 .map(h => ({event: h, data: h.data}))
                         }));
@@ -82,9 +88,10 @@ export class EventsService {
                             ? r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0].link : '';
                         this.store.dispatch(HearingActions.setTabZBA({
                             agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0] ? r.filter(v => v.app.match(/(agenda)/ig))[0].link : '',
-                            data: r.length > 0 ? r : [],
                             event: this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000)[0],
                             fofId: r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0] ? r.filter(v => v.app.match(/(findings of fact|fof)/ig))[0].link : '',
+                            upcomingHearings: this.hearings.filter(h => h.board === 'ZBA' && h.timeUntil >= -19800000 && h.timeUntil <= 907200000)
+                                .map(h => ({event: h, data: h.data})),
                             prevHearings: this.hearings.filter(h => h.board === 'ZBA' && h.withinLegalNotice)
                                 .map(h => ({event: h, data: h.data}))
                         }));
@@ -98,8 +105,9 @@ export class EventsService {
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0]
                                     ? r.filter(v => v.app.match(/(agenda)/ig))[0].link
                                     : '',
-                                data: r.length > 0 ? r : [],
                                 event: this.hearings.filter(h => h.board === 'EC' && h.timeUntil >= -19800000)[0],
+                                upcomingHearings: this.hearings.filter(h => h.board === 'EC' && h.timeUntil >= -19800000 && h.timeUntil <= 907200000)
+                                    .map(h => ({event: h, data: h.data})),
                                 prevHearings:  this.hearings.filter(h => h.board === 'EC' && h.withinLegalNotice)
                                     .map(h => ({event: h, data: h.data}))
                             }));
@@ -113,8 +121,9 @@ export class EventsService {
                                 agenda:  r.filter(v => v.app.match(/(agenda)/ig))[0]
                                     ? r.filter(v => v.app.match(/(agenda)/ig))[0].link
                                     : '',
-                                data: r.length > 0 ? r : [],
                                 event: this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -19800000)[0],
+                                upcomingHearings: this.hearings.filter(h => h.board === 'LHPC' && h.timeUntil >= -19800000 && h.timeUntil <= 907200000)
+                                    .map(h => ({event: h, data: h.data})),
                                 prevHearings:  this.hearings.filter(h => h.board === 'LHPC' && h.withinLegalNotice)
                                     .map(h => ({event: h, data: h.data}))
                             }));
@@ -122,8 +131,9 @@ export class EventsService {
                     .catch(err => { console.error(err); });
                 this.store.dispatch(HearingActions.setTabRC({
                     agenda: '',
-                    data: [],
                     event: this.hearings.filter(h => h.board === 'RC' && h.timeUntil >= -19800000)[0],
+                    upcomingHearings: this.hearings.filter(h => h.board === 'RC' && h.timeUntil >= -19800000 && h.timeUntil <= 907200000)
+                        .map(h => ({event: h, data: h.data})),
                     prevHearings:  this.hearings.filter(h => h.board === 'RC' && h.withinLegalNotice)
                         .map(h => ({event: h, data: h.data}))
                 }));
@@ -134,7 +144,7 @@ export class EventsService {
 
     }
     async getBoardEvents(): Promise<Array<Hearing>> {
-        const baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1xSUw71nRLvbHklKGy6Ozh3Tou02R8YCFRhUyUmhHASs/values/A2:F200?&key=';
+        const baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1xSUw71nRLvbHklKGy6Ozh3Tou02R8YCFRhUyUmhHASs/values/A2:G200?&key=';
 
         return this.http.get<GSheetsValuesResponse>(`${baseUrl}${environment.config.GSHEETS_API_KEY}`)
             .toPromise()
@@ -142,6 +152,7 @@ export class EventsService {
                     id: v[0],
                     board: v[1],
                     start: v[2],
+                    type: v[6],
                     link: v[4],
                     folderId: v[5]
                 })
@@ -153,17 +164,18 @@ export class EventsService {
     ): Promise<Array<HearingInfo>> {
         const currentHearingID = hearingID ? hearingID : (this.hearings.filter(h => h.board === boardName && h.timeUntil >= -19800000)[0]
             ? this.hearings.filter(h => h.board === boardName && h.timeUntil >= -19800000)[0].id : '');
+        const folderRegex = new RegExp(`${currentHearingID}`,'i');
         const linkMap = (data: HearingFolders): Array<HearingInfo> => data && data.folders.filter(
-            f => f.folderId.includes(currentHearingID) && f.contents
+            f => f.folderId.match(folderRegex) !== null && f.contents
         ).length > 0
-            ? data.folders.filter(fldr => fldr.folderId.includes(currentHearingID))[0].contents
+            ? data.folders.filter(fldr => fldr.folderId.match(folderRegex) !== null)[0].contents
                 .map(f => ({
-                board: boardName,
-                app: this.nameFix(f.name),
-                address: this.address(f.name),
-                link: `https://drive.google.com/${f.type === 'application/vnd.google-apps.folder' ? 'open?id=' : 'file/d/'}${f.id}`,
-                type: f.type === 'application/vnd.google-apps.folder' ? 'folders' : f.type.slice(f.type.lastIndexOf('/'))
-            }))
+                    board: boardName,
+                    app: this.nameFix(f.name),
+                    address: this.address(f.name),
+                    link: `https://drive.google.com/${f.type === 'application/vnd.google-apps.folder' ? 'open?id=' : 'file/d/'}${f.id}`,
+                    type: f.type === 'application/vnd.google-apps.folder' ? 'folders' : f.type.slice(f.type.lastIndexOf('/'))
+                }))
             : [{board: boardName, app: '000', address: 'Coming Soon', link: '', type: 'folders'}];
 
         return this.folderData[boardName].lastUpdated === ''

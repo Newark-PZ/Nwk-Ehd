@@ -6,89 +6,85 @@
         line-height: normal !important;
     }
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.2em;
         white-space: normal !important;
         line-height: normal !important;
     }
     .mat-icon {
-        margin-top: .25rem;
+        margin-top: .25em;
     }
     .title {
         display: flex;
-        height: 2.5rem;
+        height: 2.5em;
     }
     .subtitle {
-        height: 2rem !important;
+        height: 2em !important;
         line-height: 0;
         margin: 0;
-        padding-left: 4rem;
+        padding-left: 4em;
         color: gray;
         -webkit-text-fill-color: gray;
         @media only screen and (max-width: 769px) {
-            padding-left: .5rem;
+            padding-left: .5em;
         }
     }
-    min-height: 2.85rem !important;
+    min-height: 2.85em !important;
     flex-direction: column;
     align-items: flex-start;
     background: linear-gradient(rgba(183, 28, 28, 0.15) 0%, white 100%);
-    padding: 0.5rem 0 0.5rem calc(10vw + 5rem) !important;
+    padding: 0.5em 0 0.5em calc(10vw + 5em) !important;
     @media only screen and (max-width: 769px) {
-        padding: .5rem 0 .5rem 1rem !important;
+        padding: .5em 0 .5em 1em !important;
         h2 {
-            font-size: 1.2rem;
+            font-size: 1.2em;
         }
         h3 {
-            font-size: 1rem;
+            font-size: 1em;
         }
     }
     @media only screen and (max-width: 576px) {
-        padding: .5rem 0 .5rem 1rem !important;
+        padding: .5em 0 .5em 1em !important;
         h2 {
-            font-size: 1.15rem;
+            font-size: 1.15em;
         }
         h3 {
-            font-size: 1rem;
+            font-size: 1em;
         }
     }
 }
 
 .intro-text {
-    display: flex;
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: normal;
     text-align: center;
     font-weight: 600;
-    margin: .5rem;
+    margin: .5em;
     background-color: #0d47a1;
-    border-radius: .25rem;
+    border-radius: .25em;
     flex-wrap: wrap;
-    max-width: 1250px;
     div:first-of-type {
-        flex: 1 1 66%;
         font-weight: 100;
-        color: white;
-        -webkit-text-fill-color: white;
-        margin: .25rem;
-        flex: 1 1 48%;
+        color: #fff;
+        -webkit-text-fill-color: #fff;
+        margin: 0.25em;
+        flex: 1 1 55%;
         display: flex;
-        padding: .75rem;
         align-items: center;
     }
     div:last-of-type {
         display: flex;
-        flex: 1 1 33%;
+        flex: 1 1 40%;
         flex-direction: column;
         justify-content: space-around;
-        margin: .25rem;
+        margin: 0.25em;
         a {
             display: flex;
             color: #0d47a1;
             -webkit-text-fill-color: #0d47a1;
             justify-content: space-between;
-            font-size: 1.25rem;
-            margin: .5rem;
-            padding: .5rem 1rem;
+            font-size: 1.25em;
+            margin: .5em;
+            padding: .5em 1em;
             text-decoration: none;
             box-shadow: none !important;
             &:hover {
@@ -99,31 +95,34 @@
     }
 }
 
-.starting-cards {
+section.intro-text,
+section.section-blocks,
+section.starting-cards {
     display: flex;
-    flex-direction: row;
+    align-items: stretch;
+}
+
+.starting-cards {
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1250px;
 }
 
 .starting-card {
-    flex: 0 1 48%;
-    height: auto;
-    margin: .5rem;
+    flex: 1 1 auto;
+    margin: 1%;
+    width: 20em;
     display: flex !important;
     flex-direction: column;
     justify-content: space-around;
-    user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+    user-select: none;
     box-shadow: none;
-    border: .1rem black solid;
-    padding: .5rem;
+    border: .1em solid #000;
+    padding: .5em;
     -webkit-transition: ease-out 200ms;
-    transition: ease-out 200ms;
-    transition: ease-out 200ms;
     transition: ease-out 200ms, -webkit-transform ease-out 200ms;
+    transition: ease-out 200ms;
     &.disabled {
         pointer-events: none;
         color: lightgrey;
@@ -133,44 +132,36 @@
         display: flex;
         flex-direction: row;
         align-self: stretch;
-        font-size: 1.15rem;
+        font-size: 1.15em;
         .specialIcon {
-            height: 2rem;
-            margin: -1rem -0.5rem 0 0;
+            height: 2em;
+            margin: -1em -0.5em 0 0;
             padding: 0;
             background: #231f20;
-            border-radius: .25rem;
+            border-radius: .25em;
             position: absolute;
             right: 0;
         }
     }
     .card-content {
-        height: 5rem;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        padding: 1rem;
-        margin: .5rem;
-        border: .1rem solid lightgray;
-        border-radius: 0.5rem;
-        background: whitesmoke;
+        padding: 0.5em;
+        margin: 0.5em;
+        border: .1em solid #d3d3d3;
+        border-radius: .5em;
+        background: #f5f5f5;
         -webkit-transition: ease-out 200ms;
-        transition: ease-out 200ms;
-        transition: ease-out 200ms;
         transition: ease-out 200ms, -webkit-transform ease-out 200ms;
+        transition: ease-out 200ms;
     }
-    // &:nth-of-type(1), &:nth-of-type(4) {
-    //   background-color: rgb(255, 255, 224);
-    //   .card-content {
-    //   background-color: rgb(260, 260, 260,.7);
-    //   }
-    // }
     &:nth-of-type(5),
     &:last-of-type {
         background-color: #0d47a1;
         border-color: #0d47a1;
+        font-size: 1em;
         color: white;
-        font-size: 1rem;
         -webkit-text-fill-color: white;
     }
     &:hover {
@@ -194,50 +185,46 @@
         cursor: pointer;
     }
 }
-.section-blocks {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .section-block {
+
+.section-block {
     display: flex !important;
     flex-direction: column;
     justify-content: space-between;
-    margin: 2rem;
-      border: 0.85px black solid;
+    margin: 0.5em;
+    flex: 1 1 auto;
+    border: .01em solid #000;
     .mat-card-title {
-      font-weight: 100 !important;
-      font-size: 2rem;
-      line-height: normal;
+        font-weight: 100 !important;
+        font-size: 2em;
+        line-height: normal;
     }
     .card-body {
-      padding: 1rem;
-      font-size: 1.15rem;
-      line-height: 2rem;
+        padding: 1em;
+        font-size: 1.15em;
+        line-height: 2em;
     }
-  }
-  
+}
+
 mat-table {
     overflow-x: auto;
     overflow-y: hidden;
     tr {
         width: 100%;
-        height: 1.5rem;
+        height: 1.5em;
         &:first-of-type {
             background-color: rgb(13, 71, 161, .1);
         }
         th {
-            font-size: 1rem !important;
+            font-size: 1em !important;
             font-weight: 500;
             text-align: right;
             padding: 0 1rem;
         }
         td {
-            min-width: 15rem;
-            font-size: 1rem !important;
+            font-size: 1em !important;
             font-weight: normal;
             text-align: right;
-            padding: 0 1rem;
+            padding: 0 1em;
         }
         th:first-of-type,
         td:first-of-type {
@@ -248,14 +235,16 @@ mat-table {
             background-color: rgba(13, 71, 161, .05);
         }
         &:not(:first-of-type):hover {
-            background-color:rgb(13, 71, 161, .1);
+            background-color: rgb(13, 71, 161, .1);
         }
     }
 }
+
 mat-expansion-panel {
-    border: .01rem solid rgb(13 71 161/.25);
-    box-shadow: 0rem 0.01rem 0.1rem 0 rgba(13,71,161,.3), 0.01rem 0.01rem 0.2rem 0 rgba(13,71,161,.12), 0rem 0.05rem 0.05rem 0rem rgba(13,71,161,.1) !important;
+    border: .01em solid rgb(13, 71, 161, .25);
+    box-shadow: 0em 0.01em 0.1em 0 rgba(13, 71, 161, .3), 0.01em 0.01em 0.2em 0 rgba(13, 71, 161, .12), 0em 0.05em 0.05em 0em rgba(13, 71, 161, .1) !important;
 }
+
 @media screen and (min-width: 576px) and (max-width: 1030px) {
     .splash-title,
     .splash-subtitle {
@@ -271,21 +260,5 @@ mat-expansion-panel {
         &.left-icon {
             justify-content: flex-start;
         }
-    }
-    .starting-card {
-        flex: 1 1 auto;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .starting-card {
-        flex: 1 1 auto;
-    }
-}
-
-@media screen and (min-width: 1250px) {
-    .intro-text,
-    .starting-cards {
-        margin: auto;
     }
 }

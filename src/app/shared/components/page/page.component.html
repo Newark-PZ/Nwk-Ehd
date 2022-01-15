@@ -1,159 +1,152 @@
 <mat-toolbar *ngIf="page.splashIcon">
-  <div class="title">
-    <mat-icon style="margin-right: .5rem; max-height: 5rem;">{{ page.splashIcon }}</mat-icon>
-    <h2>{{ page.splashTitle }}</h2>
-  </div>
-  <ng-content select='[subtitleDrop]'></ng-content>
+    <div class="title">
+        <mat-icon style="margin-right: .5rem; max-height: 5rem;">{{ page.splashIcon }}</mat-icon>
+        <h2>{{ page.splashTitle }}</h2>
+    </div>
+    <ng-content select='[subtitleDrop]'></ng-content>
 </mat-toolbar>
 <section class="splash" *ngIf="page.splashIcon === undefined">
-  <div class="splash-image" *ngIf="page.splashImg">
-    <img [src]="page.splashImg.src" alt="{{page.splashImg.alt}}">
-  </div>
-  <h2 class="splash-title" [innerHTML]="page.splashTitle"></h2>
-  <div class="splash-blurb" *ngIf="page.splashBlurb">
-    <p [innerHtml]="page.splashBlurb.text"></p>
-    <div class="splash-blurb-btns" *ngIf="page.splashBlurb.buttons">
-      <button *ngFor="let button of page.splashBlurb.buttons" mat-stroked-button [ngStyle]="button.disabled ? {'pointer-events': 'none'} : ''"
-        [routerLink]="button.link ? [button.parent, button.link] : undefined" (click)="goTo(button.extUrl)">
+    <div class="splash-image" *ngIf="page.splashImg">
+        <img [src]="page.splashImg.src" alt="{{page.splashImg.alt}}">
+    </div>
+    <h2 class="splash-title" [innerHTML]="page.splashTitle"></h2>
+    <div class="splash-blurb" *ngIf="page.splashBlurb">
+        <p [innerHtml]="page.splashBlurb.text"></p>
+        <div class="splash-blurb-btns" *ngIf="page.splashBlurb.buttons">
+            <button *ngFor="let button of page.splashBlurb.buttons" mat-stroked-button [ngStyle]="button.disabled ? {'pointer-events': 'none'} : ''" [routerLink]="button.link ? [button.parent, button.link] : undefined" (click)="goTo(button.extUrl)">
         {{ button.text }}
         <mat-icon>exit_to_app</mat-icon>
       </button>
+        </div>
     </div>
-  </div>
 </section>
 <section class="content-intro" *ngIf="page.contentIntro as ci">
-  <div class="left" *ngIf="ci.left">
-    <h2 *ngIf="ci.left.header">{{ ci.left.header }}</h2>
-    <img *ngIf="ci.left.img" [src]="ci.left.img">
-    <div class="text" *ngIf="ci.left.text" [innerHtml]="ci.left.text"></div>
-  </div>
-  <div class="right" *ngIf="ci.right">
-    <h2 *ngIf="ci.right.header">{{ ci.right.header }}</h2>
-    <img *ngIf="ci.right.img" [src]="ci.right.img">
-    <div class="text" *ngIf="ci.right.text" [innerHtml]="ci.right.text"></div>
-  </div>
-  <div class="middle" *ngIf="ci.middle">
-    <h2 *ngIf="ci.middle.header">
-      <mat-icon style="margin: 0 .5rem;vertical-align: bottom;" *ngIf="nextevents | async">event</mat-icon>{{ ci.middle.header }}
-    </h2>
-    <div class="content-intro-btns" *ngIf="nextevents | async">
-      <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
-        <div><b>{{ button.title }}</b><br><span>{{ button.start | date:'short' }}</span></div>
+    <div class="left" *ngIf="ci.left">
+        <h2 *ngIf="ci.left.header">{{ ci.left.header }}</h2>
+        <img *ngIf="ci.left.img" [src]="ci.left.img">
+        <div class="text" *ngIf="ci.left.text" [innerHtml]="ci.left.text"></div>
+    </div>
+    <div class="right" *ngIf="ci.right">
+        <h2 *ngIf="ci.right.header">{{ ci.right.header }}</h2>
+        <img *ngIf="ci.right.img" [src]="ci.right.img">
+        <div class="text" *ngIf="ci.right.text" [innerHtml]="ci.right.text"></div>
+    </div>
+    <div class="middle" *ngIf="ci.middle">
+        <h2 *ngIf="ci.middle.header">
+            <mat-icon style="margin: 0 .5rem;vertical-align: bottom;" *ngIf="nextevents | async">event</mat-icon>{{ ci.middle.header }}
+        </h2>
+        <div class="content-intro-btns" *ngIf="nextevents | async">
+            <button *ngFor="let button of (nextevents | async); let i = index" class="event" (click)="openEvent(button)">
+        <div><strong>{{ button.title }}</strong><span *ngIf="button.type != 'Regular'" class="event-tag">{{button.type}}</span></div>
+        <div>{{button.start | date:'short'}}</div>
       </button>
-      <button class="dashboard-btn" [routerLink]="['/planningzoning/virtualhearing',link]">
+            <button class="dashboard-btn" [routerLink]="['/planningzoning/virtualhearing',link]">
         <mat-icon>live_tv</mat-icon>
         <span>Virtual Hearing</span>
         <span>Dashboard</span>
       </button>
+        </div>
+        <img *ngIf="ci.middle.img" [src]="ci.middle.img">
+        <div class="text" *ngIf="ci.middle.text" [innerHtml]="ci.middle.text"></div>
     </div>
-    <img *ngIf="ci.middle.img" [src]="ci.middle.img">
-    <div class="text" *ngIf="ci.middle.text" [innerHtml]="ci.middle.text"></div>
-  </div>
 </section>
 <ng-content select='[childComponent]'></ng-content>
 <router-outlet></router-outlet>
 <section class="section-blocks">
-  <mat-card class="section-block" *ngFor="let card of page.sections; let i = index;"
-    [attr.data-normal]="card.normal"
-    [ngClass]="card.faq ? 'faq-card' : ''"
-    [style.background]="i % 2 === 0 && !card.normal ? 'url(' + page.splashImg.src +'), rgba(13, 71, 161,.75)' : ''">
-    <mat-card-header *ngIf="card.header">
-      <mat-card-title>{{ card.header }}</mat-card-title>
-    </mat-card-header>
-    <div class="card-body" *ngIf="!card.list" [innerHtml]="card.text"></div>
-    <iframe *ngIf="card.iframe" style="border-width:0;border-width: 0;height: 25rem;padding: 1rem;margin: auto;" frameborder="0" scrolling="no" [src]="iframeUrl" [height]="card.iframe.height ? card.iframe.height : 400" [width]="card.iframe.width ? card.iframe.width : '90%'"></iframe>
-    <mat-accordion *ngIf="card.tables">
-      <mat-expansion-panel *ngFor="let table of card.tables">
-          <mat-expansion-panel-header>
-              <mat-panel-title>
-                  {{ table.title }}
-              </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-table class="faqTable" [dataSource]="table.rows">
-            <ng-container [matColumnDef]="column" *ngFor="let column of table.columns">
-              <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-              <td mat-cell *matCellDef="let row"> {{row[column]}} </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
-            <tr mat-row *matRowDef="let row; columns: table.columns;"></tr>
-          </mat-table>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <div class="card-list" *ngIf="card.list">
-      <ul class="text-list">
-        <li *ngFor="let item of card.list">
-          <b>{{item.text}}</b><span *ngIf="item.subText"> | <i>{{item.subText}}</i></span>
-        </li>
-      </ul>
-    </div>
-    <app-faq *ngIf="card.faq" [faqType]="card.faq"></app-faq>
-    <app-editable-map *ngIf="card.map" style="width: 100%;height: calc(70vh - 4.7rem)"></app-editable-map>
-    <mat-card-actions align="end" *ngIf="card.buttons">
-        <button *ngFor="let button of card.buttons" mat-stroked-button
-        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'"
-        [routerLink]="button.link ? [button.parent, button.link] : undefined" 
-        [queryParams]="button.params ? button.params : undefined" (click)="goTo(button.extUrl)">
+    <mat-card class="section-block" *ngFor="let card of page.sections; let i = index;" [attr.data-normal]="card.normal" [ngClass]="card.faq ? 'faq-card' : ''" [style.background]="i % 2 === 0 && !card.normal ? 'url(' + page.splashImg.src +'), rgba(13, 71, 161,.75)' : ''">
+        <mat-card-header *ngIf="card.header">
+            <mat-card-title>{{ card.header }}</mat-card-title>
+        </mat-card-header>
+        <div class="card-body" *ngIf="!card.list" [innerHtml]="card.text"></div>
+        <iframe *ngIf="card.iframe" style="border-width:0;border-width: 0;height: 25rem;padding: 1rem;margin: auto;" frameborder="0" scrolling="no" [src]="iframeUrl" [height]="card.iframe.height ? card.iframe.height : 400" [width]="card.iframe.width ? card.iframe.width : '90%'"></iframe>
+        <mat-accordion *ngIf="card.tables">
+            <mat-expansion-panel *ngFor="let table of card.tables">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ table.title }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-table class="faqTable" [dataSource]="table.rows">
+                    <ng-container [matColumnDef]="column" *ngFor="let column of table.columns">
+                        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                        <td mat-cell *matCellDef="let row"> {{row[column]}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: table.columns;"></tr>
+                </mat-table>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div class="card-list" *ngIf="card.list">
+            <ul class="text-list">
+                <li *ngFor="let item of card.list">
+                    <b>{{item.text}}</b><span *ngIf="item.subText"> | <i>{{item.subText}}</i></span>
+                </li>
+            </ul>
+        </div>
+        <app-faq *ngIf="card.faq" [faqType]="card.faq"></app-faq>
+        <app-editable-map *ngIf="card.map" style="width: 100%;height: calc(70vh - 4.7rem)"></app-editable-map>
+        <mat-card-actions align="end" *ngIf="card.buttons">
+            <button *ngFor="let button of card.buttons" mat-stroked-button [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" [routerLink]="button.link ? [button.parent, button.link] : undefined" [queryParams]="button.params ? button.params : undefined"
+                (click)="goTo(button.extUrl)">
           <mat-icon>{{ button.icon ? button.icon : 'exit_to_app' }}</mat-icon>
           {{ button.text }}
       </button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="section-block acknowledgments" *ngFor="let card of page.acknowledgments; let i = index;">
-    <mat-card-header *ngIf="card.header">
-      <mat-card-title>{{ card.header }}</mat-card-title>
-    </mat-card-header>
-    <div class="card-body" [innerHtml]="card.text"></div>
-    <mat-card-actions align="end" *ngIf="card.buttons">
-      <a mat-stroked-button *ngFor="let button of card.buttons"
-        [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self"
-        [href]="button.link">
-        <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
-        <ng-template #standardText0>Apply</ng-template>
-        <mat-icon>double_arrow</mat-icon>
-      </a>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="section-block contact" *ngIf="page.contact">
-    <mat-card-header *ngIf="page.contact.header">
-      <mat-card-title>{{ page.contact.header }}</mat-card-title>
-    </mat-card-header>
-    <div class="card-body" style="text-align: center">
-      <table class="text-table">
-        <tr *ngIf="page.contact.hideContactForm !== true">
-          <td><b>For Any Comments/Questions:</b></td>
-          <td>
-            <div>
-              <p style="line-height: .5rem; font-weight: 400; font-size: 1.25rem;">Use Our Contact Form</p>
-              <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;">to best reach us</p>
-            </div>
-          </td>
-          <td>
-            <a href="https://newark.seamlessdocs.com/f/PZO_Contact" target="_blank" class="mat-stroked-button mat-secondary">
+        </mat-card-actions>
+    </mat-card>
+    <mat-card class="section-block acknowledgments" *ngFor="let card of page.acknowledgments; let i = index;">
+        <mat-card-header *ngIf="card.header">
+            <mat-card-title>{{ card.header }}</mat-card-title>
+        </mat-card-header>
+        <div class="card-body" [innerHtml]="card.text"></div>
+        <mat-card-actions align="end" *ngIf="card.buttons">
+            <a mat-stroked-button *ngFor="let button of card.buttons" [ngClass]="button.fullWidth === true ? 'full-width-button' : 'info-buttons'" type="button" target="_self" [href]="button.link">
+                <span *ngIf="button.linkText; else standardText0">{{ button.linkText }}</span>
+                <ng-template #standardText0>Apply</ng-template>
+                <mat-icon>double_arrow</mat-icon>
+            </a>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card class="section-block contact" *ngIf="page.contact">
+        <mat-card-header *ngIf="page.contact.header">
+            <mat-card-title>{{ page.contact.header }}</mat-card-title>
+        </mat-card-header>
+        <div class="card-body" style="text-align: center">
+            <table class="text-table">
+                <tr *ngIf="page.contact.hideContactForm !== true">
+                    <td><b>For Any Comments/Questions:</b></td>
+                    <td>
+                        <div>
+                            <p style="line-height: .5rem; font-weight: 400; font-size: 1.25rem;">Use Our Contact Form</p>
+                            <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;">to best reach us</p>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="https://newark.seamlessdocs.com/f/PZO_Contact" target="_blank" class="mat-stroked-button mat-secondary">
               Click to Submit a Contact Form
             </a>
-          </td>
-        </tr>
-        <tr *ngFor="let contact of page.contact.contacts">
-          <td><b>{{contact.text}}</b></td>
-          <td>
-            <div>
-              <p style="line-height: .5rem; font-weight: 400; font-size: 1.25rem;" [innerHtml]="contact.officer"></p>
-              <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;" [innerHtml]="contact.officerTitle">
-              </p>
-            </div>
-          </td>
-          <td>
-            <div class="flex-row justify-content-around">
-              <p style="font-size: 1rem">
-                <span>Tel: <a [href]="'tel:+1'+contact.phone">({{contact.phone.slice(0,3)}})
+                    </td>
+                </tr>
+                <tr *ngFor="let contact of page.contact.contacts">
+                    <td><b>{{contact.text}}</b></td>
+                    <td>
+                        <div>
+                            <p style="line-height: .5rem; font-weight: 400; font-size: 1.25rem;" [innerHtml]="contact.officer"></p>
+                            <p style="line-height: .5rem; font-weight: 200; font-size: 1.15rem;" [innerHtml]="contact.officerTitle">
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex-row justify-content-around">
+                            <p style="font-size: 1rem">
+                                <span>Tel: <a [href]="'tel:+1'+contact.phone">({{contact.phone.slice(0,3)}})
                     {{contact.phone.slice(3,6)}}-{{contact.phone.slice(6)}}</a></span><br>
-                <span>Email: <a [href]="'mailto:'+contact.email">{{contact.email}}</a></span>
-              </p>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </mat-card>
+                                <span>Email: <a [href]="'mailto:'+contact.email">{{contact.email}}</a></span>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </mat-card>
 </section>
 <app-footer></app-footer>

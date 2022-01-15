@@ -18,7 +18,7 @@ export interface EventTableRow {
 // tslint:disable: template-i18n component-max-inline-declarations template-use-track-by-function template-no-call-expression
 @Component({
     selector: 'app-event-detail',
-    styles: ['.column-section {flex: 1 1 25%; padding-left: .5rem;} .column-content {flex: 1 1 75%; padding-right: .5rem; justify-content: center}'],
+    styles: ['.column-section {flex: 1 1 25%; padding-left: .5rem;} .column-content {flex: 1 1 75%; padding-right: .5rem; margin:0.25rem 0 0.25rem 0; justify-content: center}'],
     template: `
     <mat-table [dataSource]="data" multiTemplateDataRows>
       <ng-container matColumnDef="section">
@@ -42,7 +42,7 @@ export interface EventTableRow {
           </mat-cell>
         </ng-container>
       <mat-row class="row" *matRowDef="let row; columns: cols;"></mat-row>
-      </mat-table>
+    </mat-table>
     `
 })
 export class EventComponent implements OnInit, OnChanges {
@@ -60,7 +60,7 @@ export class EventComponent implements OnInit, OnChanges {
             this.hearing = this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0]
             ? this.events.hearings.filter(h => h.board === this.board && h.timeUntil >= -10800000)[0]
             : new Hearing({id: 'Coming Soon', board: this.board, start: this.getNextWeek()
-                .toDateString()});
+                .toDateString(), type: 'Regular'});
         }
         this.data = this.setData(this.board, this.hearing, this.agenda, this.fofId);
         if (this.type === 'popup') {
@@ -123,7 +123,7 @@ export class EventComponent implements OnInit, OnChanges {
             }
         };
         const setRows = (): Array<EventTableRow> => [
-            { section: 'Date & Time', content: `${hearing ? hearing.start.toLocaleString('en-us') : 'TBD'} EST`},
+            { section: 'Date & Time', content: hearing ? `${hearing.type === 'Cancelled' ? 'Cancelled' : hearing.start.toLocaleString('en-us')+' EST'}` : 'TBD'},
             { section: 'Agenda', content: agenda.length > 0 ? 'Download Agenda' : 'Coming Soon', link: agenda },
             ...(board === 'ZBA'
                 ? [{ section: 'Findings of Fact', content: fofId && fofId.length > 0 ? 'Download Findings' : 'Coming Soon', link: fofId }]
